@@ -1,1 +1,442 @@
-<h1>你好世界</h1>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>世界编辑器中文站</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* 基础字体与行距优化 ———— 提升阅读舒适度，保持羊皮纸韵味 */
+        html {
+            font-size: 100%; /* 便于rem缩放 */
+        }
+
+        body {
+            background: #2b2419;
+            /* 更为舒展的衬线字体，提升辨识度 */
+            font-family: 'Palatino', 'Georgia', 'Times New Roman', 'Book Antiqua', serif;
+            padding: 2rem 1.5rem;
+            color: #2f2418;
+            line-height: 1.65;     /* 增大行距，减少阅读疲劳 */
+            font-size: 1.1rem;     /* 基础字号放大，更容易辨认 */
+            font-weight: 450;
+        }
+
+        /* 主羊皮纸卷轴容器 — 保留复古质感 */
+        .parchment {
+            max-width: 1280px;
+            margin: 0 auto;
+            background: #fcf3da;
+            background-image: radial-gradient(circle at 25% 40%, rgba(210, 180, 120, 0.08) 2%, transparent 2.5%),
+                              radial-gradient(circle at 70% 85%, rgba(160, 120, 60, 0.06) 1.8%, transparent 2%);
+            background-size: 45px 45px, 38px 38px;
+            box-shadow: 0 20px 35px rgba(0, 0, 0, 0.5), 0 0 0 12px #5e3e2b, 0 0 0 16px #8b6946;
+            border-radius: 32px 28px 40px 32px;
+            position: relative;
+            transition: all 0.2s;
+        }
+
+        .parchment::before {
+            content: "";
+            position: absolute;
+            top: 15px;
+            left: 20px;
+            right: 20px;
+            bottom: 15px;
+            pointer-events: none;
+            border-radius: 24px;
+            box-shadow: inset 0 0 30px rgba(82, 55, 28, 0.2);
+        }
+
+        .inner-border {
+            padding: 2.2rem 2rem 2.5rem 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* 标题区 — 略微厚重但保留古典印记 */
+        .header {
+            text-align: center;
+            border-bottom: 2px solid #cbad7a;
+            margin-bottom: 2rem;
+            padding-bottom: 1.2rem;
+        }
+        .header h1 {
+            font-size: 2.8rem;
+            letter-spacing: 3px;
+            font-weight: 700;
+            text-shadow: 3px 3px 6px rgba(100, 60, 20, 0.15);
+            background: linear-gradient(135deg, #5a3a22, #997f54);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            font-family: 'Palatino', 'Georgia', serif;
+        }
+        .header h1 small {
+            font-size: 1rem;
+            background: none;
+            -webkit-background-clip: unset;
+            background-clip: unset;
+            color: #7a6233;
+            display: block;
+            letter-spacing: 2px;
+            margin-top: 8px;
+            font-style: italic;
+            font-weight: normal;
+        }
+        .ornament {
+            font-size: 1.8rem;
+            color: #bc8f6b;
+            opacity: 0.7;
+            margin: 0.2rem 0;
+        }
+
+        /* 章节卡片 — 间距更大，更透气 */
+        .section {
+            background: rgba(250, 242, 215, 0.85);
+            margin-bottom: 2.2rem;
+            border-radius: 28px;
+            border: 1px solid #e7cf92;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            transition: box-shadow 0.2s, transform 0.2s;
+        }
+        .section:hover {
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+            transform: translateY(-2px);
+        }
+
+        .section-title {
+            background: #e7cf9c;
+            padding: 0.8rem 2rem;
+            font-size: 1.7rem;
+            font-weight: bold;
+            border-bottom: 1px solid #ccb176;
+            color: #3d2b16;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            font-family: 'Palatino', 'Georgia', serif;
+            text-shadow: none;
+        }
+        .section-title .icon {
+            font-size: 1.8rem;
+        }
+
+        .section-content {
+            padding: 1.6rem 2rem;
+        }
+
+        /* 链接样式 — 更鲜明且不影响可读性 */
+        a {
+            color: #7a4c2c;
+            text-decoration: none;
+            border-bottom: 1px solid #dbb87c;
+            transition: color 0.2s, border-color 0.2s;
+            font-weight: 500;
+        }
+        a:hover {
+            color: #b45f2b;
+            border-bottom: 1px solid #b45f2b;
+        }
+
+        /* 资源卡片网格 改进间距与字体 */
+        .resource-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.8rem;
+            margin-top: 0.5rem;
+        }
+        .resource-card {
+            flex: 1 1 280px;
+            background: #fff6e8;
+            border-left: 6px solid #c6a15b;
+            padding: 1rem 1.2rem;
+            border-radius: 16px;
+            box-shadow: 2px 4px 8px rgba(0,0,0,0.05);
+            transition: transform 0.1s;
+        }
+        .resource-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+            color: #5e3a1f;
+            letter-spacing: -0.2px;
+        }
+        .resource-card p {
+            font-size: 1rem;
+            line-height: 1.55;
+            color: #4a3922;
+            margin-bottom: 0.5rem;
+        }
+        .badge {
+            display: inline-block;
+            background: #d4bc84;
+            color: #2d2416;
+            font-size: 0.75rem;
+            padding: 3px 10px;
+            border-radius: 30px;
+            margin-right: 8px;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+        }
+
+        /* 工具列表 / 社群列表 优化 */
+        .tool-list, .qq-list, .faq-list {
+            list-style: none;
+        }
+        .tool-list li, .faq-list li {
+            margin-bottom: 1.2rem;
+            border-bottom: 1px dashed #e2cf9c;
+            padding-bottom: 0.8rem;
+            line-height: 1.6;
+        }
+        .qq-list li {
+            margin-bottom: 1rem;
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+        .tool-list strong, .qq-list strong {
+            color: #7a502a;
+            font-weight: 700;
+            font-size: 1.05rem;
+        }
+        .tool-list li, .tool-list p {
+            font-size: 1rem;
+        }
+
+        /* 常见问答区域 更清晰的结构 */
+        .faq-list .question {
+            font-weight: 700;
+            color: #4f3019;
+            margin-top: 1rem;
+            font-size: 1.08rem;
+            letter-spacing: -0.2px;
+        }
+        .faq-list .answer {
+            margin-left: 1rem;
+            padding-left: 1rem;
+            border-left: 4px solid #dbb87c;
+            margin-top: 6px;
+            margin-bottom: 0.5rem;
+            color: #3e2f1e;
+            line-height: 1.6;
+        }
+        .video-link, .external-link {
+            font-size: 0.95rem;
+            display: inline-block;
+            margin-top: 4px;
+        }
+
+        /* 脚注与小提示 */
+        .footer {
+            margin-top: 2.5rem;
+            text-align: center;
+            font-size: 0.85rem;
+            border-top: 1px solid #cdb27a;
+            padding-top: 1.2rem;
+            color: #7e673f;
+            font-style: normal;
+            line-height: 1.6;
+        }
+        hr {
+            border: none;
+            height: 1px;
+            background: linear-gradient(to right, #e9dbbd, #c6a15b, #e9dbbd);
+            margin: 1.2rem 0;
+        }
+
+        /* 提示框内部排版优化 */
+        .section-content div[style*="background:#fff0da"] {
+            font-size: 0.95rem;
+            line-height: 1.55;
+            background: #fff0da;
+            padding: 0.7rem 1rem;
+            border-radius: 20px;
+            margin-top: 0.5rem;
+        }
+
+        /* 响应式调整 */
+        @media (max-width: 680px) {
+            body {
+                padding: 1rem;
+                font-size: 1rem;
+            }
+            .inner-border {
+                padding: 1.2rem;
+            }
+            .section-title {
+                font-size: 1.4rem;
+                padding: 0.6rem 1.2rem;
+            }
+            .header h1 {
+                font-size: 2rem;
+            }
+            .section-content {
+                padding: 1.2rem;
+            }
+            .resource-card h3 {
+                font-size: 1.25rem;
+            }
+            .tool-list li, .faq-list .answer {
+                font-size: 0.96rem;
+            }
+        }
+
+        /* 保留羊皮纸点缀，且不做内容修改 */
+        .scroll-deco {
+            position: absolute;
+            bottom: 15px;
+            right: 25px;
+            opacity: 0.3;
+            font-size: 2rem;
+            pointer-events: none;
+            font-family: serif;
+        }
+        .tooltip-note {
+            font-size: 0.85rem;
+            color: #aa8b5a;
+            line-height: 1.5;
+        }
+
+        /* 增强列表可读性，微调社群项 */
+        .qq-list {
+            gap: 1.2rem;
+        }
+        .qq-list li {
+            background: rgba(255, 245, 225, 0.6);
+            padding: 0.6rem 1rem;
+            border-radius: 20px;
+            border: 1px solid #f2e2bc;
+        }
+        .qq-list strong {
+            font-size: 1.05rem;
+        }
+        /* 保留原有工具列表样式但优化行距 */
+        .tool-list li {
+            font-size: 1rem;
+        }
+        /* 确保所有文字对比度足够 */
+        .answer, .tool-list li, .resource-card p {
+            color: #3e2d1c;
+        }
+    </style>
+</head>
+<body>
+<div class="parchment">
+    <div class="inner-border">
+        <div class="header">
+            <div class="ornament">⚔️ 🛡️ 📜</div>
+            <h1>世界编辑器中文站<br><small>WARCRAFT III WorldEditor Chinese Site</small></h1>
+            <div style="font-size:0.9rem; margin-top:6px;">—— 指引页 ——</div>
+        </div>
+
+        <!-- 综合站点 -->
+        <div class="section">
+            <div class="section-title">
+                <span class="icon">🏰</span> 综合站点
+            </div>
+            <div class="section-content">
+                <div class="resource-grid">
+                    <div class="resource-card">
+                        <h3>🌐 HIVEWORKSHOP<span class="badge">国际核心</span></h3>
+                        <p>全球最知名的魔兽地图编辑器英文社区。众多传奇作者在此建立项目专区，拥有海量地图制作资源与高阶技术讨论。</p>
+                        <a href="https://hiveworkshop.com"  target="_blank">🌀 传送门</a> 
+                    </div>
+                    <div class="resource-card">
+                        <h3>📘 World-Editor-Tutorials<span class="badge">新手宝典</span></h3>
+                        <p>全面而系统的英文教程站，涵盖地形、物编、触发、模型、常见问题，适合新手入门及进阶研修。</p>
+                        <a href="https://World-Editor-Tutorials.Thehelper.net"  target="_blank">🌀 传送门</a> 
+                    </div>
+                    <div class="resource-card">
+                        <h3>🐉 魔兽地图编辑器吧<span class="badge">中文热土</span></h3>
+                        <p>流量最大的中文社区，YDWE、内置JAPI等工具开发者活跃于此，分享前沿技术与地图形而上。</p>
+                        <a href="https://tieba.baidu.com/f?kw=%E9%AD%94%E5%85%BD%E5%9C%B0%E5%9B%BE%E7%BC%96%E8%BE%91%E5%99%A8" target="_blank">🌀 传送门</a> 
+                    </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">
+                <span class="icon">⚒️</span> 常用工具
+            </div>
+            <div class="section-content">
+                <ul class="tool-list">
+                    <li><strong>📜 编辑器汉化补丁</strong> – 适用于最新版本魔兽地图编辑器的纯净汉化补丁，重制版作图交流群获取。</li>
+                    <li><strong>📦 Ladik's Casc Viewer</strong> – 支持所有CASC存储暴雪游戏（版本1.30+）的文件浏览与提取，有汉化版本，重制版作图交流群获取。</li>
+                    <li><strong>📦 MPQEditor</strong> – 经典MPQ数据提取工具（支持1.30-版本），也可以拆解地图文件，不分版本。</li>
+                    <li><strong>🗿 Retera's Model Studio</strong> – 魔兽争霸3模型编辑工具，有很多好用的脚本，支持经典/高清模型。</li>
+                    <li><strong>🗿 Blender</strong> – 一个免费且开源的3D模型制作软件，支持导入导出各种格式的模型。</li>
+                    <li><strong>🎨 GIMP </strong> – 一个免费的图像处理软件，号称Linux下的PhotoShop。支持DDS格式。</li>
+                    <li><strong>🎨 Kirta</strong> – 一款自由开源的免费绘画软件，支持数位板，适合用来绘制3D贴图和游戏图标。有支持导入和导出DDS格式的插件。 </li>
+                </ul>
+			 <div style="font-size:0.85rem; background:#fff0da; padding: 0.6rem; border-radius: 18px;">
+                    🧙 小提示：重制版高清生态不断进化，请确保编辑器版本与社区工具相匹配。
+                         </div>
+            </div>
+        </div>
+
+        <!-- 相关社群 -->
+        <div class="section">
+            <div class="section-title">
+                <span class="icon">🍺</span> 相关社群
+            </div>
+            <div class="section-content">
+                <ul class="qq-list" style="display: flex; flex-wrap: wrap; gap: 1rem; list-style: none;">
+                    <li style="flex:1; min-width: 200px;"><strong>🏛️ 重制版作图交流群</strong><br>群号：632204669<br><span class="badge">作图技术交流</span></li>
+                    <li style="flex:1; min-width: 200px;"><strong>🌍 汉化地图群</strong><br>群号：789662759<br><span class="badge">地图汉化委托/分享</span></li>
+                    <li style="flex:1; min-width: 200px;"><strong>🗿 GA模型交流群</strong><br>群号：365626673<br><span class="badge">模型制作与分享</span></li>
+                    <li style="flex:1; min-width: 200px;"><strong>⚔️ 魔兽战役制作交流群</strong><br>群号：946573495<br><span class="badge">战役制作心得交流</span></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 常见问题 -->
+        <div class="section">
+            <div class="section-title">
+                <span class="icon">❓</span> 常见问题
+            </div>
+            <div class="section-content">
+                <dl class="faq-list">
+                    <div class="question">📌 问：如何获取重制版？</div>
+                    <div class="answer">答：建议在国际服购买正版游戏。访问暴雪战网(battle.net)下载桌面程序，购买/下载/安装。居住地选香港免手机号，标准包约29.9美元（约200元），节假日5折约百元。<br>
+                    <span class="video-link">📺 视频引导：<a href="https://b23.tv/wzVsPZy" ">下载安装暴雪战网</a> | <a href="https://b23.tv/E1JfhF4" ">战网切换国际服</a> | <a href="https://b23.tv/4yLqXIq" ">迅游加速国际服战网登录</a></span></div>
+                    
+                    <div class="question">📌 问：如何获取破解的重制版？</div>
+                    <div class="answer">答：本站不传播盗版资源，请支持正版游戏，尊重创作者劳动，感谢理解。</div>
+
+                    <div class="question">📌 问：重制版有YDWE可以用吗？</div>
+                    <div class="answer">答：YDWE仅适用于游戏1.27a版本，不适用于重制版，请使用原生编辑器+纯净汉化。</div>
+
+                    <div class="question">📌 问：网易启动器（World Editor启动器）可用吗？</div>
+                    <div class="answer">答：该启动器仅用于兼容打开老地图，已无人维护，不建议作为主力作图工具。</div>
+
+                    <div class="question">📌 问：触发器打开都是英文，如何汉化？</div>
+                    <div class="answer">答：重制版作图交流群群文件 → 工具 → 编辑器汉化补丁，提供最新纯净汉化，满足作图需求。</div>
+
+                    <div class="question">📌 问：首次打开编辑器为何看到经典画面？如何切高清？</div>
+                    <div class="answer">答：实际为高清画面+AI处理的经典素材（2.0版本经典高清化插件）。在文件-参数设置中关闭“Textures/Buildings/Icons/Environment/Units/Vfx/Heros”等选项即可恢复高清画面与高清素材。</div>
+
+                    <div class="question">📌 问：修改官方地图/战役后游戏内文本不显示？</div>
+                    <div class="answer">答：重制版官方地图带地区标识的wts本地化文件。仅面向简体中文玩家时，可在素材管理器删除wts文件，直接使用中文文本；若制作官改战役，请参考重制版作图交流群-群文件-常见问题-“重制版修改官方战役的两个技巧”。</div>
+                </dl>
+                <hr>
+                <div style="font-size:0.85rem; background:#fff0da; padding: 0.6rem; border-radius: 18px;">
+                    🧙 小提示：更多问题加重制版作图交流群632204669 </div>
+            </div>
+        </div>
+        <div class="footer">
+            <span>✧ worldeditor.cn ✧</span><br>
+            <span style="font-size:0.7rem;">信息来源于互联网</span><br>
+
+        </div>
+    </div>
+</div>
+</body>
+</html>
