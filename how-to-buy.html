@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>魔兽争霸III：重制版 — 国际服正版</title>
+    <style>
+        /* ===== 重置 & 基础 ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            background: #0a0e17;
+            color: #e8edf5;
+            line-height: 1.7;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        /* ===== 主容器 ===== */
+        .page {
+            max-width: 860px;
+            width: 100%;
+            background: rgba(12, 20, 34, 0.6);
+            backdrop-filter: blur(2px);
+            border-radius: 28px;
+            padding: 40px 44px 48px;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            position: relative;
+        }
+
+        /* ===== 顶部装饰条 ===== */
+        .top-bar {
+            height: 3px;
+            background: linear-gradient(90deg, #c9a84c, #f0d68a, #c9a84c);
+            width: 100%;
+            margin-bottom: 32px;
+            border-radius: 0 0 4px 4px;
+            box-shadow: 0 0 24px rgba(201, 168, 76, 0.15);
+        }
+
+        /* ===== 标题区域 ===== */
+        .game-title {
+            font-size: 32px;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
+            background: linear-gradient(135deg, #ffffff 20%, #c9d8f0 80%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .game-title .gold {
+            background: linear-gradient(135deg, #f0d68a, #c9a84c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .game-sub {
+            font-size: 15px;
+            color: #8899bb;
+            margin-bottom: 24px;
+            font-weight: 300;
+            letter-spacing: 0.3px;
+        }
+
+        /* ===== 价格卡片 ===== */
+        .price-box {
+            display: inline-flex;
+            align-items: baseline;
+            gap: 10px;
+            background: rgba(201, 168, 76, 0.07);
+            border: 1px solid rgba(201, 168, 76, 0.15);
+            padding: 10px 26px;
+            border-radius: 40px;
+            margin-bottom: 18px;
+            flex-wrap: wrap;
+        }
+        .price-box .dollar {
+            font-size: 18px;
+            color: #c9a84c;
+            font-weight: 600;
+        }
+        .price-box .amount {
+            font-size: 30px;
+            font-weight: 700;
+            color: #f0d68a;
+        }
+        .price-box .cny {
+            font-size: 15px;
+            color: #8899bb;
+            margin-left: 2px;
+        }
+        .price-box .badge {
+            background: #c9a84c;
+            color: #0a0e17;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 2px 12px;
+            border-radius: 30px;
+            letter-spacing: 0.3px;
+            margin-left: 4px;
+        }
+
+        .info-line {
+            font-size: 15px;
+            color: #b0c4e0;
+            margin-bottom: 28px;
+            padding: 10px 0 6px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+        }
+        .info-line .emoji {
+            margin-right: 8px;
+        }
+
+        /* ===== 教程区块 — 横向三列 ===== */
+        .tutorials {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin: 24px 0 34px;
+        }
+
+        .tutorial-link {
+            flex: 1 1 calc(33.33% - 14px);
+            min-width: 160px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.25);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: 14px;
+            padding: 18px 12px;
+            text-decoration: none;
+            color: #e8edf5;
+            transition: all 0.2s ease;
+            gap: 4px;
+        }
+        .tutorial-link:hover {
+            border-color: rgba(201, 168, 76, 0.2);
+            background: rgba(201, 168, 76, 0.04);
+            transform: translateY(-3px);
+        }
+        .tutorial-link .label {
+            font-weight: 600;
+            font-size: 15px;
+            color: #c9a84c;
+        }
+        .tutorial-link .url {
+            font-size: 13px;
+            color: #8899bb;
+            word-break: break-word;
+            font-weight: 300;
+        }
+        .tutorial-link .arrow {
+            color: #c9a84c;
+            font-size: 14px;
+            opacity: 0.3;
+            transition: 0.2s;
+        }
+        .tutorial-link:hover .arrow {
+            opacity: 1;
+        }
+
+        /* ===== 分隔标题 ===== */
+        .section-divider {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin: 36px 0 20px;
+        }
+        .section-divider .icon {
+            font-size: 26px;
+            line-height: 1;
+        }
+        .section-divider h2 {
+            font-size: 22px;
+            font-weight: 700;
+            color: #f0f4fc;
+            letter-spacing: 0.3px;
+        }
+        .section-divider .line {
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, rgba(201, 168, 76, 0.15), transparent);
+        }
+
+        /* ===== 好处列表 ===== */
+        .benefit-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 6px 0;
+        }
+        .benefit-list li {
+            padding: 10px 0 10px 28px;
+            position: relative;
+            color: #b0c4e0;
+            font-size: 15px;
+            line-height: 1.7;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+        }
+        .benefit-list li:last-child {
+            border-bottom: none;
+        }
+        .benefit-list li::before {
+            content: '▸';
+            color: #c9a84c;
+            position: absolute;
+            left: 4px;
+            top: 10px;
+            font-weight: 900;
+            font-size: 14px;
+        }
+        .benefit-list li strong {
+            color: #e8edf5;
+            font-weight: 600;
+        }
+
+        /* ===== 底部提示（居中） ===== */
+        .footer-note {
+            margin-top: 34px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.04);
+            font-size: 14px;
+            color: #5a6e8a;
+            text-align: center;
+        }
+        .footer-note .emoji {
+            margin-right: 4px;
+        }
+
+        /* ===== 响应式 ===== */
+        @media (max-width: 640px) {
+            body {
+                padding: 16px 12px;
+            }
+            .page {
+                padding: 28px 20px 32px;
+                border-radius: 20px;
+            }
+            .game-title {
+                font-size: 26px;
+            }
+            .price-box .amount {
+                font-size: 24px;
+            }
+            .tutorial-link {
+                flex: 1 1 100%;
+                min-width: unset;
+                padding: 14px 12px;
+                flex-direction: row;
+                justify-content: flex-start;
+                gap: 10px;
+            }
+            .tutorial-link .label {
+                min-width: 68px;
+                text-align: left;
+            }
+            .tutorial-link .url {
+                flex: 1;
+                text-align: left;
+            }
+            .tutorial-link .arrow {
+                margin-left: auto;
+            }
+            .benefit-list li {
+                font-size: 14px;
+                padding-left: 24px;
+            }
+            .section-divider h2 {
+                font-size: 19px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .page {
+                padding: 20px 14px 24px;
+            }
+            .game-title {
+                font-size: 22px;
+            }
+            .price-box {
+                padding: 8px 16px;
+            }
+            .price-box .amount {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="page">
+
+        <!-- 顶部装饰条 -->
+        <div class="top-bar"></div>
+
+        <!-- ============================================================ -->
+        <!-- 第一部分：游戏介绍 & 价格                                       -->
+        <!-- ============================================================ -->
+
+        <h1 class="game-title">
+            国际服正版 <span class="gold">《魔兽争霸III：重制版》</span>
+        </h1>
+        <div class="game-sub">定价 29.99 美元（大概 200 块人民币）</div>
+
+        <div class="price-box">
+            <span class="dollar">$</span>
+            <span class="amount">29</span>
+            <span class="dollar" style="font-size:20px;">.99</span>
+            <span class="cny">≈ ¥200</span>
+            <span class="badge">随汇率波动</span>
+        </div>
+
+        <div class="info-line">
+            <span class="emoji">🌍</span>
+            国际服和国服不互通，账号单独注册，居住地选香港，不用填手机号，支持支付宝微信付款，逢年过节打 5 折
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- 第二部分：教程链接（横向三列）                                  -->
+        <!-- ============================================================ -->
+
+        <div class="tutorials">
+            <a href="https://www.bilibili.com/video/BV1eT421e7cq" target="_blank" class="tutorial-link">
+                <span class="url">▶️ 教程</span>
+                <span class="label">下载安装暴雪战网</span>
+                <span class="arrow">➡️</span>
+            </a>
+            <a href="https://www.bilibili.com/video/BV1JE421A7Vy" target="_blank" class="tutorial-link">
+                <span class="url">▶️ 教程</span>
+                <span class="label">战网切换国际服</span>
+                <span class="arrow">➡️</span>
+            </a>
+            <a href="https://www.bilibili.com/video/BV1fGmfYdELp" target="_blank" class="tutorial-link">
+                <span class="url">▶️ 教程</span>
+                <span class="label">迅游加速国际服战网登录</span>
+                <span class="arrow">➡️</span>
+            </a>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- 第三部分：正版的好处                                           -->
+        <!-- ============================================================ -->
+
+        <div class="section-divider">
+            <span class="icon">👑</span>
+            <h2>正版的好处</h2>
+            <span class="line"></span>
+        </div>
+
+        <ul class="benefit-list">
+            <li><strong>在线更新：</strong>在战网获取最新版，支持差量更新，不需要每次更新从网盘下载30GB的完整游戏</li>
+            <li><strong>全球联机：</strong>和全世界的人一起联机社区的免费精品地图，不需要去盗版平台玩氪金图充VIP和礼包</li>
+            <li><strong>支持更新：</strong>游戏的销售额会厂商更加重视投入这个游戏，推动游戏正向发展，未来可能会获得更多更新</li>
+        </ul>
+
+        <!-- ============================================================ -->
+        <!-- 第四部分：最新版的好处                                         -->
+        <!-- ============================================================ -->
+
+        <div class="section-divider" style="margin-top:32px;">
+            <span class="icon">⭐</span>
+            <h2>最新版的好处</h2>
+            <span class="line"></span>
+        </div>
+
+        <ul class="benefit-list">
+            <li><strong>支持离线启动：</strong>首次登录战网后，支持长期离线启动游戏，无需每次联网登录账户</li>
+            <li><strong>画面切换混搭：</strong>支持经典画面与高清画面一键切换和素材混搭，原汁原味和全新体验共存</li>
+            <li><strong>中英豪华配音：</strong>保留“原汁原味”的英文原声，也有和魔兽世界风格一致的中文配音</li>
+            <li><strong>翻译精准还原：</strong>告别“阿尔塞斯大战尤迪安”，正确呈现“阿尔萨斯大战伊利丹”</li>
+            <li><strong>最新平衡数据：</strong>随时获取最新版本，与主播、选手和全球赛事保持同一平衡性数据</li>
+            <li><strong>宽屏完美适配：</strong>解决老版本拉伸导致的界面变形问题，不再出现画面压扁拉宽的情况</li>
+            <li><strong>免受叠字打扰：</strong>解决老板的叠字问题，高分辨率下长时间游戏，也不会出现文字重叠现象</li>
+        </ul>
+
+        <!-- ============================================================ -->
+        <!-- 底部信息（居中）                                               -->
+        <!-- ============================================================ -->
+
+        <div class="footer-note">
+            <span> ✧ worldeditor.cn ✧ <br />信息来源于互联网</span>
+        </div>
+
+    </div>
+
+</body>
+</html>
