@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>魔兽争霸III 十年补丁演进报告（2016–2026 · 1.27.0 → 3.0.1）</title>
+<style>
+  :root{
+    --bg:#0d1117; --panel:#161b22; --panel2:#1c2129; --border:#2d333b;
+    --text:#e6edf3; --muted:#9aa4b2; --accent:#e3b341; --accent2:#4a9eff;
+    --green:#3fb950; --red:#f85149; --purple:#bc8cff; --era:#7ee787;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,"Segoe UI","Microsoft YaHei",Roboto,Helvetica,Arial,sans-serif;line-height:1.7;font-size:15px;}
+  .wrap{max-width:1100px;margin:0 auto;padding:40px 28px 80px;}
+  header{border-bottom:1px solid var(--border);padding-bottom:24px;margin-bottom:32px;}
+  h1{font-size:27px;margin:0 0 8px;letter-spacing:.5px;}
+  .sub{color:var(--muted);font-size:14px;}
+  .badge{display:inline-block;background:var(--panel2);border:1px solid var(--border);border-radius:20px;padding:2px 12px;font-size:12px;color:var(--muted);margin:8px 6px 0 0;}
+  .badge b{color:var(--accent);}
+  h2{font-size:20px;margin:44px 0 14px;padding-left:12px;border-left:4px solid var(--accent);}
+  h3{font-size:16px;margin:22px 0 10px;color:var(--accent);}
+  .era-tag{font-size:13px;color:var(--era);font-weight:600;margin-left:6px;}
+  .ver{background:var(--panel);border:1px solid var(--border);border-radius:12px;margin:26px 0;overflow:hidden;}
+  .ver-head{display:flex;align-items:baseline;flex-wrap:wrap;gap:10px;padding:16px 20px;background:var(--panel2);border-bottom:1px solid var(--border);}
+  .ver-head .v{font-size:19px;font-weight:700;color:#fff;}
+  .ver-head .d{font-size:13px;color:var(--muted);}
+  .ver-head .tag{margin-left:auto;font-size:12px;color:var(--muted);background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:2px 8px;}
+  .ver-body{padding:16px 20px 20px;}
+  .hl{background:linear-gradient(90deg,rgba(227,179,65,.12),transparent);border:1px solid rgba(227,179,65,.35);border-radius:8px;padding:10px 14px;margin:4px 0 16px;font-size:14px;color:#f0d9a0;}
+  .hl b{color:var(--accent);}
+  table{width:100%;border-collapse:collapse;margin:12px 0;font-size:14px;}
+  th,td{border:1px solid var(--border);padding:8px 12px;text-align:left;vertical-align:top;}
+  th{background:var(--panel2);color:var(--muted);font-weight:600;white-space:nowrap;}
+  td .k{color:var(--accent2);font-weight:600;}
+  .sec{margin:14px 0 4px;font-weight:700;font-size:14px;color:#fff;display:flex;align-items:center;gap:8px;}
+  .sec::before{content:"";width:8px;height:8px;border-radius:2px;background:var(--accent);flex-shrink:0;}
+  .ed::before{background:var(--purple);}
+  .bug::before{background:var(--red);}
+  ul{margin:6px 0 6px;padding-left:20px;}
+  li{margin:4px 0;}
+  li::marker{color:var(--accent);}
+  code{background:var(--bg);border:1px solid var(--border);border-radius:4px;padding:0 5px;font-size:13px;color:#ffd479;}
+  .note{font-size:13px;color:var(--muted);font-style:italic;margin-top:6px;}
+  .toc{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:16px 20px;margin:20px 0;}
+  .toc a{color:var(--accent2);text-decoration:none;}
+  .toc a:hover{text-decoration:underline;}
+  .toc ol{margin:8px 0 0;padding-left:22px;font-size:14px;}
+  .era-bar{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0;}
+  .era-bar span{font-size:12px;padding:3px 10px;border-radius:12px;border:1px solid var(--border);color:var(--muted);background:var(--panel2);}
+  footer{margin-top:50px;padding-top:20px;border-top:1px solid var(--border);color:var(--muted);font-size:13px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>魔兽争霸III 十年补丁演进报告</h1>
+  <div class="sub">覆盖范围：2016 年 3 月 — 2026 年 10 月 · 版本 1.27.0 → 3.0.1 · 聚焦「游戏功能 / 地图编辑器 / BUG 修复」三大维度</div>
+  <div>
+    <span class="badge">主要版本 <b>18</b></span>
+    <span class="badge">跨度 <b>10 年 7 个月</b></span>
+    <span class="badge">里程碑 <b>1.29 / 1.31 / 1.32 / 1.33 / 2.0 / 3.0</b></span>
+  </div>
+</header>
+
+<div class="era-bar">
+  <span>经典时代（2016–2019）</span>
+  <span>重制版（2020–2026）</span>
+  <span>地图编辑器在 1.29 / 1.31 / 2.0.3 / 3.0 四次大升级</span>
+</div>
+
+<div class="toc">
+  <b style="color:#fff;">版本时间线（按发布顺序）</b>
+  <ol>
+    <li><a href="#v127">1.27</a> — 2016-03/12（系统兼容 + 文件上限 8MB→128MB）</li>
+    <li><a href="#v128">1.28</a> — 2017-04-05（显示模式 / 免管理员存档）</li>
+    <li><a href="#v129">1.29</a> — 2018-04-10（宽屏 / 24 人 / 编辑器大升级）</li>
+    <li><a href="#v130">1.30</a> — 2018-08-08（平衡 + CASC + 16 瓦片）</li>
+    <li><a href="#v131">1.31</a> — 2019-05-28（D3D11 / 64 位 / Lua 编辑器）</li>
+    <li><a href="#v132">1.32（Reforged）</a> — 2020-01-28（重制版发布）</li>
+    <li><a href="#v133">1.33</a> — 2022-08（排名对战 / 档案 / 排行榜）</li>
+    <li><a href="#v134">1.34</a> — 2022-12-01（战队 / 举报 / 按名加入）</li>
+    <li><a href="#v135">1.35</a> — 2023-01-19（自定义战役 / 大平衡）</li>
+    <li><a href="#v136">1.36</a> — 2023-05-09（观战者模式 / 锦标赛）</li>
+    <li><a href="#v20">2.0</a> — 2024-11-13（经典高清 / TFT 主题 / CD 提示条）</li>
+    <li><a href="#v201">2.0.1</a> — 2024-12-17（+ 12-18 热修）</li>
+    <li><a href="#v202">2.0.2</a> — 2025-04-15（性能 / 减速之球）</li>
+    <li><a href="#v203">2.0.3</a> — 2025-07-17（编辑器 natives 大修）</li>
+    <li><a href="#v204">2.0.4</a> — 2026-01-26（3v3/4v4 匹配）</li>
+    <li><a href="#v30">3.0 被遗忘者王国</a> — 2026-09-12（新战役 / DE 画面 / 24 选择）</li>
+    <li><a href="#v301">3.0.1</a> — 2026-10-07</li>
+  </ol>
+</div>
+
+<!-- ============ 1.27 ============ -->
+<div class="ver" id="v127">
+  <div class="ver-head"><span class="v">1.27（a / b）</span><span class="d">1.27a：2016-03-15 · 1.27b：2016-12-13/14</span><span class="tag">2011 年以来首个补丁</span></div>
+  <div class="ver-body">
+    <div class="hl"><b>时代背景：</b>时隔 5 年（2011–2016）暴雪重启更新，先做系统兼容，为后续重制版铺路。</div>
+    <div class="sec">游戏功能性更新</div>
+    <ul>
+      <li><b>1.27a：</b>支持 Windows 7 / 8.1 / 10；新增 Mac 10.10 / 10.11 安装器。</li>
+      <li><b>1.27a：</b>选项新增 1920×1080 分辨率（但无宽屏适配，画面拉伸）。</li>
+      <li><b>1.27b：</b>地图文件大小上限 <b>8MB → 128MB</b>（对自定义地图 / 战役是重大利好）。</li>
+    </ul>
+    <div class="sec ed">地图编辑器更新</div>
+    <ul>
+      <li><b>1.27b：</b>世界编辑器新增「Script Verify（脚本校验）」功能。</li>
+    </ul>
+    <div class="sec bug">BUG 修复</div>
+    <ul>
+      <li><b>1.27a：</b>修复闪电链（Chain Lightning）崩溃。</li>
+      <li><b>1.27b：</b>自定义 .blp 贴图文件不再导致 Mac 崩溃。</li>
+      <li>已知问题：窗口化下伽马设置不生效、西里尔字符仍无法显示、Mac 不支持编辑器。</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ============ 1.28 ============ -->
+<div class="ver" id="v128">
+  <div class="ver-head"><span class="v">1.28（含 1.28.1–1.28.6）</span><span class="d">1.28：2017-04-05</span><span class="tag">小修补丁系列</span></div>
+  <div class="ver-body">
+    <div class="sec">游戏功能性更新</div>
+    <ul>
+      <li>新增显示模式：窗口化全屏（默认）、窗口化（<code>-window</code>）、原生全屏（<code>-nativefullscr</code>）。</li>
+      <li>窗口模式新增鼠标光标限制选项（仅游戏窗口内活动，菜单可解除）。</li>
+      <li>数据迁移不再需以管理员身份运行即可访问游戏存档。</li>
+      <li>优化安装与更新效率。</li>
+    </ul>
+    <div class="sec ed">地图编辑器更新</div>
+    <ul>
+      <li>修复 WorldEdit 的 Map Script Validation 图标与词条。</li>
+    </ul>
+    <div class="sec bug">BUG 修复</div>
+    <ul>
+      <li>修复 CommandFunc.txt 特殊坐标（0,-11）/（-2147483648,-2147483648）导致命令卡错误隐藏。</li>
+      <li>修复比赛结束断战网、视频播放器任意分辨率播放、Windows GameDVR 失效。</li>
+      <li>1.28.2：湿地地图重新加入地图池；Raise Dead 不再导致 Windows/Mac 跨平台反同步；编辑器 Test Map 写入临时目录。</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ============ 1.29 ============ -->
+<div class="ver" id="v129">
+  <div class="ver-head"><span class="v">1.29</span><span class="d">2018-04-10（PTR：2018-02-21）</span><span class="tag">经典时代最大补丁</span></div>
+  <div class="ver-body">
+    <div class="hl"><b>里程碑：</b>真正的宽屏、24 人游戏、以及编辑器上限与 natives 的爆发式扩容，是 Mod 社区的一次狂欢。</div>
+    <div class="sec">游戏功能性更新</div>
+    <ul>
+      <li><b>真宽屏：</b>原生 16:9 宽屏支持，不再拉伸变形（界面加 bookends、菜单加黑柱防拉伸）。</li>
+      <li><b>24 人游戏：</b>大厅支持最多 24 名玩家；队伍颜色扩展。</li>
+      <li><b>12 种新队伍颜色：</b>Maroon / Navy / Turquoise / Violet / Wheat / Peach / Mint / Lavender / Coal / Snow / Emerald / Peanut。</li>
+      <li><b>官方 Streamer/Caster API：</b>可读取金币、木材、食物、APM 等观战信息（无需第三方破解）。</li>
+      <li><b>英雄平衡：</b>13 主族英雄 + 6 酒馆英雄调整；多数英雄移速 270→290；剑圣 / 恶魔猎手削弱，多个冷门英雄增强。</li>
+      <li><b>地图池：</b>1v1 / 2v2 / 3v3 / 4v4 / FFA 全部更新。</li>
+    </ul>
+    <div class="sec ed">地图编辑器更新（爆发式扩容）</div>
+    <ul>
+      <li><b>对象上限 → 30,000</b>（中立单位 2048、中立建筑 384、玩家单位 4320、玩家建筑 2400、物品 1024）。</li>
+      <li><b>地图尺寸 → 480×480</b>；<b>瓦片上限 → 16</b>。</li>
+      <li><b>最大执行数 → 3,000,000</b>；<b>最大食物 → 999</b>；<b>最大资源 → 9,999,999</b>；<b>数组大小 8192 → 32768</b>。</li>
+      <li><b>90+ 新 natives：</b>特效全控制（缩放 / 旋转 / 俯仰，替代假人单位做弹道 / 特效系统）、能力 / 物品 / 单位增强控制、鼠标悬停与点击响应。</li>
+    </ul>
+    <div class="sec bug">BUG 修复</div>
+    <ul>
+      <li>战队可重新创建；Mac 客户端可启动；韩语区启动；多处缺失贴图定位；默认分辨率不再异常。</li>
+      <li>已知问题：原生全屏无法改分辨率、XP 为最后支持版本、部分 natives 改名 / 暂时停用。</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ============ 1.30 ============ -->
+<div class="ver" id="v130">
+  <div class="ver-head"><span class="v">1.30</span><span class="d">2018-08-08（含 1.30.1–1.30.4）</span><span class="tag">平衡 + 底层迁移</span></div>
+  <div class="ver-body">
+    <div class="sec">游戏功能性更新</div>
+    <ul>
+      <li>升级反作弊系统。</li>
+      <li>更新观战 API，可导出更多游戏信息。</li>
+      <li>启用 Large Address Aware（部分机器最多使用 3GB 内存）。</li>
+      <li>游戏文件由 MPQ 迁移至 <b>CASC 文件系统</b>。</li>
+      <li><b>平衡：</b>大法师 / 剑圣 / 巫妖 / 恶魔猎手 / 酒仙 / 深渊魔王等英雄，及火枪手 / 猎头者 / 死灵法师 / 女猎手 / 山岭巨人等单位大幅调整；大量中立 / 物品 / 地图池改动。</li>
+    </ul>
+    <div class="sec ed">地图编辑器更新</div>
+    <ul>
+      <li>最多可选 16 瓦片（含悬崖）。</li>
+      <li>新增 natives：<code>BlzPlaySpecialEffect</code>、<code>BlzSpecialEffectAddSubAnimation</code>、<code>BlzSpecialEffectRemoveSubAnimation</code>、<code>BlzSpecialEffectClearSubAnimations</code>；<code>BlzSetSpecialEffectHeight</code> 计入地形高度。</li>
+    </ul>
+    <div class="sec bug">BUG 修复</div>
+    <ul>
+      <li>修复自定义能力目标参数崩溃、网络延迟恢复、原生全屏鼠标、带弹幕升级的攻城坦克占用 4 食物等。</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ============ 1.31 ============ -->
+<div class="ver" id="v131">
+  <div class="ver-head"><span class="v">1.31</span><span class="d">2019-05-28（PTR：2019-04-24）</span><span class="tag">Reforged 前最后经典补丁</span></div>
+  <div class="ver-body">
+    <div class="hl"><b>里程碑：</b>底层图形 API 现代化 + 编辑器支持 Lua，为 2020 年重制版铺路。</div>
+    <div class="sec">游戏功能性更新</div>
+    <ul>
+      <li>集成 <b>Direct3D 11</b> 与 <b>Metal</b> 图形 API；Windows / Mac 支持 <b>64 位</b>（Mac 弃用 32 位）。</li>
+      <li>客户端非激活时关闭声音；扩展窗口模式。</li>
+      <li><b>RoC 关闭战网</b>（混沌之治玩家自动获得冰封王座）。</li>
+      <li>大量平衡 + 地图池更新（约 30 张地图）。</li>
+    </ul>
+    <div class="sec ed">地图编辑器更新（面向重制版）</div>
+    <ul>
+      <li><b>Lua 脚本支持（Beta）：</b>地图可选 JASS 或 Lua（Scenario → Map Options → Script Language）。</li>
+      <li><b>对象修改系统 API：</b>运行时修改物品 / 能力 / 单位等。</li>
+      <li><b>地图以文件夹保存</b>（以及 MPQ），结构可在编辑器外更新，利于多人协作开发。</li>
+      <li>地图松散文件<b>自动导入</b>。</li>
+      <li><b>UI 编辑器</b>、官方战役地图可在编辑器打开；256 骨骼支持。</li>
+    </ul>
+    <div class="sec bug">BUG 修复</div>
+    <ul>
+      <li>修复触发器保存丢失、自定义电影播放、多个地图反同步（DBZ / Builders and Fighters 等）、声音数据跨图传输、占有命令残留、OBS 切窗冻结、观察者全局战斗音效等。</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ============ 1.32 ============ -->
+<div class="ver" id="v132">
+  <div class="ver-head"><span class="v">1.32（Reforged 发布）</span><span class="d">2020-01-28（含 1.32.1–1.32.10 修复期）</span><span class="tag">重制版上线</span></div>
+  <div class="ver-body">
+    <div class="hl"><b>里程碑：</b>《魔兽争霸III：重制版》正式发布，全面翻新画面与战役，但上线初期口碑受挫；1.32.1–1.32.10 为后续两年持续修复期。</div>
+    <div class="sec">游戏功能性更新</div>
+    <ul>
+      <li><b>重制画面：</b>全部英雄 / 单位 / 建筑 / 环境高清重制；支持<b>经典 / 重制双模式切换</b>。</li>
+      <li><b>战役重做：</b>恢复 3 个原版 Demo 序章任务（Riders on the Storm 等）；全部任务更新地形 / 难度并加入自动存档；达拉然 / 银月城 / 斯坦索姆三城美术与布局重制。</li>
+      <li><b>收藏系统：</b>英雄皮肤、头像、可解锁的战役与匹配奖励。</li>
+      <li><b>语言：</b>新增西班牙语（拉美）、葡萄牙语（巴西），并更新简体 / 繁体中文等 9 种语言。</li>
+      <li><b>战网集成：</b>从战网客户端安装 / 更新 / 启动，含群组与聊天；<b>经典账号链接</b>（保留历史战绩，90 天期限）。</li>
+      <li><b>匹配系统：</b>1v1 / 2v2 / 3v3 / 4v4 / FFA 竞技匹配；可组队 2v2 / 3v3 / 4v4。</li>
+      <li><b>热键与设置：</b>新增 Grid / 传统热键布局；血条 / 队伍颜色 / 英雄状态条 / 冷却显示设置。</li>
+    </ul>
+    <div class="sec ed">地图编辑器更新</div>
+    <ul>
+      <li>1.32 本身编辑器改动有限；1.32.x 修复期持续修复编辑器与自定义地图相关问题（JassHelper 不关闭、部分重制中立单位不可见等）。</li>
+    </ul>
+    <div class="sec bug">BUG 修复 / 已知问题</div>
+    <ul>
+      <li>上线初期大量已知问题：加载黑屏、古树根须放置图标缺失、自定义地图 &gt;256MB 破坏大厅、非拉丁字符重叠、非美式键盘键位失效、跨平台无法邀请、编辑器 JassHelper 残留等，均在 1.32.x 逐步修复。</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ============ 1.33 ============ -->
+<div class="ver" id="v133">
+  <div class="ver-head"><span class="v">1.33.0</span><span class="d">2022-08-17 上线（官方标注 8-10）</span><span class="tag">排名系统</span></div>
+  <div class="ver-body">
+    <div class="hl"><b>核心亮点：</b>排名对战、玩家档案、排行榜三大系统，以及镜头缩放功能。</div>
+    <div class="sec">游戏功能性更新</div>
+    <ul>
+      <li><b>排名对战：</b>排名 / 非排名可选；赛季结束后天梯重置。</li>
+      <li><b>MMR：</b>每种族（含随机）独立 MMR；每种族 5 场定位赛；段位 8 级（Unranked → Champion）。</li>
+      <li><b>!Stats 命令</b>查询对局内胜负与 MMR；<b>排行榜</b>可按种族 / 好友 / 模式筛选；<b>玩家档案</b>显示段位 / 生涯 / 历史。</li>
+      <li><b>经典头像</b>按总胜场解锁；自定义游戏全球化并可按时延筛选；战役调整；新增芝加哥服务器；PopcornFX 升级 2.5.1。</li>
+      <li><b>镜头缩放：</b>滚轮缩放，PageUp/Down 调节，F5 复位，可设默认 / 最大缩放。</li>
+    </ul>
+    <div class="sec ed">编辑器更新</div>
+    <ul>
+      <li>世界编辑器启用 Windows 10 通用控件；GPU 渲染器更新（字体渲染变化，<code>-legacykerning</code> 恢复旧字体）；旧版 Popcorn 特效错误提示。</li>
+    </ul>
+    <div class="sec bug">BUG 修复</div>
+    <ul>
+      <li>FileAliases.JSON 路径、山丘之王语音、动画碰撞、Popcorn 崩溃、地形调色板崩溃、编辑器导入列表排序、音乐播放列表、单位语音 / 头像动画、人类 UI 误显示、Insert 旋转镜头、单机「=」键。</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ============ 1.34 ============ -->
+<div class="ver" id="v134">
+  <div class="ver-head"><span class="v">1.34.0</span><span class="d">2022-12-01</span><span class="tag">战队回归 / 举报</span></div>
+  <div class="ver-body">
+    <div class="hl"><b>核心亮点：</b>战队系统回归、玩家举报、自定义游戏按名称加入。</div>
+    <div class="sec">游戏功能性更新</div>
+    <ul>
+      <li><b>战队：</b>创建 / 加入；等级（牛头人酋长 / 萨满 / 苦工 / 苦工）；酋长与萨满可踢人、晋升、封禁；独立频道；档案显示战队标签。</li>
+      <li><b>玩家举报：</b>自动举报系统，可举报语言、战网昵称、战队内容、作弊、游戏名、冒犯内容、消极比赛等。</li>
+      <li><b>自定义游戏：</b>新增「按名称加入」功能。</li>
+    </ul>
+    <div class="sec bug">改进与 BUG 修复</div>
+    <ul>
+      <li>组队 / 随机匹配后端拆分；新增排名玩法说明界面；切换账号聊天刷新；右键菜单统一（举报 / 组队 / 战队邀请）；社交通知指示；排名徽章与排行榜 UI 改进；档案可从主菜单进入。</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ============ 1.35 ============ -->
+<div class="ver" id="v135">
+  <div class="ver-head"><span class="v">1.35.0</span><span class="d">2023-01-19（Build 19844）</span><span class="tag">自定义战役 / 大平衡</span></div>
+  <div class="ver-body">
+    <div class="hl"><b>核心亮点：</b>自定义战役系统（含战役编辑器大量支持）、地图池更新、全种族平衡调整。</div>
+    <div class="sec">游戏功能性更新</div>
+    <ul>
+      <li><b>自定义战役：</b>可下载游玩或自行创作；部分支持重制 / 经典两种美术。</li>
+      <li><b>前置菜单重做：</b>战役移至「单人游戏」；记录通关难度；读档可载入自定义战役存档。</li>
+      <li><b>战役编辑器支持：</b>「Is Cinematic」选项、缩略图预览、环境音、WebM 背景、自定义电影（VP9 AVI + MP3）、好友在线状态、富文本菜单。</li>
+      <li><b>排名：</b>赛季轮换 + MMR 重置；1v1/2v2/4v4/FFA 地图池更新。</li>
+      <li><b>平衡：</b>全种族大规模调整（祭坛英雄降价、人类攻城坦克重做、剑圣镜像、恶魔猎手献祭等）。</li>
+    </ul>
+    <div class="sec ed">编辑器更新</div>
+    <ul>
+      <li>战役编辑器新增电影选项、缩略图、环境音、WebM 背景与自定义电影支持；自定义战役列表恢复焦点自动刷新。</li>
+    </ul>
+    <div class="sec bug">BUG 修复</div>
+    <ul>
+      <li>早退导致对局无法结算、模型 / 贴图切换加载异常、新增缩放档位（1750/2100/2250）、退出单机误入读档、战役存档字符串重置、载入界面文本错位、战役 / 伤害防御表编辑崩溃、举报描述字数要求移除。</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ============ 1.36 ============ -->
+<div class="ver" id="v136">
+  <div class="ver-head"><span class="v">1.36.0</span><span class="d">2023-05-09</span><span class="tag">观战者模式 / 锦标赛</span></div>
+  <div class="ver-body">
+    <div class="hl"><b>核心亮点：</b>全新观战者模式与每日锦标赛。</div>
+    <div class="sec">游戏功能性更新</div>
+    <ul>
+      <li><b>观战者模式：</b>可开关；点击命令卡跟随；命令卡移至最右；面板可单独开关。</li>
+      <li><b>统计面板</b>（全员种族 / 金 / 木 / 人口 / APM）、<b>生产队列</b>、<b>单位视图</b>、<b>英雄面板</b>（最多 4 人，点击镜头居中）。</li>
+      <li><b>快捷键：</b>Alt+P 生产面板、Alt+U 单位面板；生产条进度改白色。</li>
+      <li><b>锦标赛：</b>每日举行、全员开放；预赛最多 8 场，前 16 名淘汰赛。</li>
+      <li><b>排名：</b>赛季结束 MMR 完全重置；地图池标准化 10 张；地图否决最多 3 个。</li>
+      <li><b>平衡：</b>献祭、哨戒之鸮、秘法哨塔、猎头者、粉碎、食尸等调整；移除闪电之盾，新增卓越之戒 / 大法师之戒掉落。</li>
+    </ul>
+    <div class="sec bug">BUG 修复</div>
+    <ul>
+      <li>战争迷雾 FX 崩溃、观察 CPU 游戏崩溃、失败变观战崩溃、菜单打开热键仍生效、赛后立即看回放卡死、大量玩家观战黑屏、排行榜段位图标不更新。</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ============ 2.0 ============ -->
+<div class="ver" id="v20">
+  <div class="ver-head"><span class="v">2.0</span><span class="d">2024-11-13（魔兽 30 周年）</span><span class="tag">经典高清 / TFT 主题 / 魔兽1·2音乐 / CD提示条</span></div>
+  <div class="ver-body">
+    <div class="hl"><b>核心亮点：</b>Classic HD（经典高清化）+ 插件系统、冰封王座主题、魔兽争霸 1/2 音乐、技能冷却数字提示条、排名 XP 等级。</div>
+    <div class="sec">游戏功能性更新</div>
+    <ul>
+      <li><b>Classic HD + 插件系统：</b>经典单位 / 建筑 / 特效 / 英雄 / 环境 / 图标高清版；可在重制 / 经典 HD 资源间自由混搭。</li>
+      <li><b>收藏：</b>皮肤 / 头像筛选；新增 5 个初始头像、魔兽 1 / 2 头像；战役英雄可作多人皮肤；可禁用皮肤。</li>
+      <li><b>界面：</b>冰封王座主题（点 Logo 切换）；菜单全面更新；游戏内热键自定义；APM / FPS / 计时器 / Ping 开关；比赛历史可回放；创建游戏 / 回放搜索滤镜。</li>
+      <li><b>游戏内 UI：</b>计时器（<code>/time</code>）、反补指示器、金矿工人计数、盟友菜单种族显示、<b>技能冷却数字提示</b>、闲置工人双击跟随、HUD 缩放。</li>
+      <li><b>音乐：</b>新增魔兽 1 / 2 音乐选项。</li>
+      <li><b>多人：</b>排名 XP 与等级；MMR 区间缩减至 0–7000；已排位者赛季后 MMR 不再重置；AT 不再匹配 RT（3v3/4v4）；新增芝加哥、悉尼服务器。</li>
+      <li><b>重制版环境：</b>全部地形美术更新、植被默认关、泛光移除、环境光增强。</li>
+    </ul>
+    <div class="sec ed">编辑器更新</div>
+    <ul>
+      <li>新增「重制 → 经典 HD」插件开关、植被开关。</li>
+    </ul>
+    <div class="sec bug">BUG 修复</div>
+    <ul>
+      <li>无法创建 / 邀请战队、恶魔猎手经重生十字章复活后永久丢视野、对局结果无法结算、Mac 无法启动。</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ============ 2.0.1 ============ -->
+<div class="ver" id="v201">
+  <div class="ver-head"><span class="v">2.0.1</span><span class="d">2024-12-17（Build 22474）+ 12-18 热修（22479）</span><span class="tag">小修补丁</span></div>
+  <div class="ver-body">
+    <div class="sec">游戏功能性更新 / 改动</div>
+    <ul>
+      <li><b>匹配：</b>优先理想延迟而非 MMR（延迟 → MMR → 长时间后任意）。</li>
+      <li><b>排名：</b>失败扣除更多 XP；<b>热键界面</b>支持自定义物品栏与 F 键。</li>
+      <li><b>经典 HD 图标：</b>512→256；TFT 主题加雪；对战设置界面显示对全种族排名。</li>
+      <li><b>旧地形</b>移至插件子文件夹；聊天隐藏系统消息、大厅聊天退出清空；<b>3 款新皮肤</b>（吉安娜、幽灵安东尼达斯、幽灵丛林守护者）；比赛历史加日期；重制镜头 FOV 与经典一致。</li>
+    </ul>
+    <div class="sec bug">BUG 修复</div>
+    <ul>
+      <li>自定义游戏邀请崩溃、无法按名加入私人游戏、HUD 缩小无法选单位、编队偶发自动开启、Windows 7 / 集成显卡 / 超 11 人对局结束崩溃、部分自定义地图单位不显示、克尔苏加德皮肤头像、Direct3D12 参数、剑圣剑刃风暴特效、蝙蝠骑士不稳定化合物、中韩文攻击之爪数值等。</li>
+      <li><b>12-18 热修：</b>新皮肤无法使用、默认缩放复位错误、无法组队邀请、主机离开大厅不退出。</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ============ 2.0.2 ============ -->
+<div class="ver" id="v202">
+  <div class="ver-head"><span class="v">2.0.2</span><span class="d">2025-04-15（Build 22761）</span><span class="tag">性能 / 减速之球 / 平衡</span></div>
+  <div class="ver-body">
+    <div class="sec">游戏功能性更新</div>
+    <ul>
+      <li><b>性能：</b>修复正式服每几秒卡顿。</li>
+      <li><b>战役背景：</b>经典画面启用经典战役背景；可自定义 ROC / TFT 菜单界面；更新重制战役背景。</li>
+      <li><b>光照：</b>重制环境光照方向对齐经典；地牢光照大改；亮度微调。</li>
+      <li><b>地图池：</b>1v1/2v2/3v3/4v4 更新。</li>
+      <li><b>平衡：</b>岗哨 / 治疗守卫、保护之戒等物品调整；人类「火焰之球」替换为新「<b>减速之球</b>」；全种族与中立单位多轮平衡。</li>
+    </ul>
+    <div class="sec ed">编辑器更新</div>
+    <ul>
+      <li>新增「减速之球」能力（AIno）与减益（Bson）；修复防御类型切换升级效果正确改变护甲。</li>
+    </ul>
+    <div class="sec bug">BUG 修复</div>
+    <ul>
+      <li>修复未下载地图时无法按名加入私人自定义游戏。</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ============ 2.0.3 ============ -->
+<div class="ver" id="v203">
+  <div class="ver-head"><span class="v">2.0.3</span><span class="d">2025-07-17 + 07-22 热修（Build 23101）</span><span class="tag">编辑器 natives 大修</span></div>
+  <div class="ver-body">
+    <div class="hl"><b>核心亮点：</b>对世界编辑器 Lua natives 的成规模修复，以及大量可绑定按键与热键冲突检测。</div>
+    <div class="sec">游戏功能性更新</div>
+    <ul>
+      <li><b>服务器：</b>自定义大厅广告 15 分钟超时；修复经典密钥授权、自定义游戏邀请。</li>
+      <li><b>界面：</b>建造 / 训练倒计时；Ctrl+C 改镜头跟踪。</li>
+      <li><b>性能：</b>AI 寻位、重制 VFX 粒子、地形渲染优化。</li>
+      <li><b>视觉：</b>重制着色器更新；降低经典 HD 亮度；经典菜单 / 战役 .webm 换 .mdl 渲染；树木待机动画、环境光遮蔽与泛光选项。</li>
+      <li><b>热键：</b>大幅增加可绑定按键；热键冲突检测；支持非 QWERTY 键盘网格键；移除被动技能热键。</li>
+      <li><b>平衡：</b>剑圣、恶魔猎手、中立英雄与多种族调整。</li>
+    </ul>
+    <div class="sec ed">编辑器更新</div>
+    <ul>
+      <li>自定义战役任务选择背景支持 MDL。</li>
+      <li><b>装饰物上限 30000 → 130000</b>（谨慎使用）；提高绘制距离。</li>
+      <li>修复天气 [RAhr] 永久下雨、模型查看器 / 召唤窗口缩放、变量窗口列宽不保存。</li>
+      <li><b>Natives 大修：</b>修复数十个损坏的 BlzSetAbility____Field natives；BlzSetUnit* / BlzSetUnitWeapon* 等大量字段支持；新增 UNIT_RF_FLY_MAX_HEIGHT（ufmh）。</li>
+      <li>地图选项新增：强制玩家指定缩放、移除反补「!」、新能力 [Amgi]（防弹射）、新能力 [AUa2]（新版复活，保留单位能力）。</li>
+    </ul>
+    <div class="sec bug">BUG 修复</div>
+    <ul>
+      <li>触发器保存错误、单机自定义误入多人房、破坏者驱散不消除反魔盾、工人液态火修复率残留、加载界面 MMR 等级不显示等。</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ============ 2.0.4 ============ -->
+<div class="ver" id="v204">
+  <div class="ver-head"><span class="v">2.0.4</span><span class="d">2026-01-26</span><span class="tag">3v3/4v4 匹配 / 平衡</span></div>
+  <div class="ver-body">
+    <div class="sec">游戏功能性更新</div>
+    <ul>
+      <li><b>匹配：</b>解锁 3v3 / 4v4 的 AT 与 RT；组队搜索施加小幅 MMR 权重；组队人数可小于模式人数（如 2 人排 3v3）；排行榜支持小规模组队；排队前 Ready Up 确认。</li>
+      <li><b>性能：</b>优化 Lua 垃圾回收器。</li>
+      <li><b>平衡：</b>四族大师训练时间统一缩短、食尸鬼基础伤害 9→10、女妖占据新特效、否定法杖成本 / 充能 / 冷却、冰霜巨龙建造时间与冰霜攻击时长、中立英雄起始力量与生命吸取等。</li>
+    </ul>
+    <div class="sec ed">编辑器更新</div>
+    <ul>
+      <li>支持添加额外悬崖类型；修复导入 tileset 崩溃；Lua 脚本使用 % 字符不再崩溃。</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ============ 3.0 ============ -->
+<div class="ver" id="v30">
+  <div class="ver-head"><span class="v">3.0（被遗忘者王国）</span><span class="d">2026-09-12（Build 24268）</span><span class="tag">20 年首个新战役 · DE 画面 · 新英雄 · 24 选择 · 编辑器升级</span></div>
+  <div class="ver-body">
+    <div class="hl"><b>核心亮点：</b>付费 DLC「被遗忘者王国」（序章+三幕，30+ 小时）；免费 3.0 更新带来 Definitive Edition 画面模式（600+ 单位重建）、20 年来首个新中立英雄「被遗忘者圣骑士」、单位选择上限 12→24、世界编辑器大规模升级。</div>
+    <div class="sec">游戏功能性更新（免费 3.0 更新）</div>
+    <ul>
+      <li><b>Definitive Edition 画面模式：</b>第三种画面模式（经典辨识度 + 现代化渲染），600+ 单位重建；光照 / 阴影 / 环境 / 雾升级；可跨画面模式联机。</li>
+      <li><b>新 UI 主题 / 音乐：</b>「被遗忘者王国」主题与音乐、首次启动过场；主菜单音乐随主题变化。</li>
+      <li><b>单位选择上限 12 → 24</b>（改变 20 多年经典限制）。</li>
+      <li><b>新中立英雄「被遗忘者圣骑士」：</b>三模式可用，免费；四技能：正义之怒（冲锋+减速）、奉献（范围治疗+伤害）、神圣光环（友方魔抗）、净化之火（治疗+眩晕+驱散+重伤召唤物）。</li>
+      <li><b>自定义大厅：</b>支持密码保护。</li>
+      <li><b>新游戏服务器：</b>新加坡 / 大阪 / 德里 / 圣吉斯兰 / 墨尔本 / 多伦多 / 奥萨斯库 / 达尔斯 / 哈米纳。</li>
+      <li><b>网络：</b>移除 LAN 模式（经典客户端仍可局域网）。</li>
+      <li><b>新属性：</b>能力增幅 / 能力吸血 / 能力速度 / 法力效率 / 暴击 / 能力暴击 / 坚定等；漂浮文本上限 10k。</li>
+      <li><b>画面选项：</b>点光源阴影、水面、超采样；移除环境光遮蔽 / 泛光 / 头像泛光 / 粒子 / 法术。</li>
+      <li><b>付费 DLC 战役：</b>《The Last Days of Lordaeron》（序章 4 关）+《Forsaken Kingdom》（软开放世界 RPG，类雷克萨战役，含装备栏 / 道具 / 天赋系统），约 30 小时 + 近 1 小时过场。</li>
+    </ul>
+    <div class="sec ed">编辑器更新（大规模升级）</div>
+    <ul>
+      <li><b>新光照编辑器（Lighting Editor）</b>、<b>电影编辑器（Cinematic Editor）</b>。</li>
+      <li>装饰物支持俯仰 / 滚转旋转；装饰物、物品可分配队伍颜色；可编辑泛光灯、阴影投射泛光灯；HD 阴影 / 雾查看。</li>
+      <li>HD 水面、装饰物贴花、水面装饰物、阴影阻挡装饰物；更多雾选项（高度雾 / 指数雾 / 覆盖天空）；实时编辑雾与 HD 水面。</li>
+      <li>alpha 瓦片、迷你地图多色绘制、镜头范围内动态生成迷你地图。</li>
+      <li>装备类别、物品实例类别；HUD 皮肤按玩家选择（含被遗忘者 HUD）；自由镜头。</li>
+      <li><b>新 natives：</b>重置攻击冷却、设置技能剩余冷却、开关所有光环、AI 求援范围常量、字符串 ID 调整工具、后处理工具、泄漏清理 GUI、光照范围可视化等。</li>
+      <li>触发器「复制为脚本（Copy As Script）」、触发器转 Lua；对象局部轴缩放；复制对象保留高度；数据编辑器显示无敌建筑 HP；撤销栈上限提高（可近无限）。</li>
+    </ul>
+    <div class="sec bug">BUG 修复</div>
+    <ul>
+      <li>修复各类 Lua 序列化存档 / 读档问题、迷你地图图标不随 HUD 缩放、地图种族徽章无法更改、非英文键盘登录输入等。</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ============ 3.0.1 ============ -->
+<div class="ver" id="v301">
+  <div class="ver-head"><span class="v">3.0.1</span><span class="d">2026-10-07（Build 24342）</span><span class="tag">美术 / 音频 / 战役平衡 / 中立 / 编辑器修复</span></div>
+  <div class="ver-body">
+    <div class="hl"><b>核心：</b>美术与 VFX 修正、两段新战役难度与平衡调整、被遗忘者圣骑士平衡、大量编辑器 / 自定义地图修复。注：因存档不兼容引发投诉，10 月 8 日暴雪曾短暂回滚至 3.0.0，计划数周内重新部署。</div>
+    <div class="sec">游戏功能性更新 / 美术音频</div>
+    <ul>
+      <li><b>画面：</b>选项重新加入环境光遮蔽（可能降低性能）。</li>
+      <li><b>动画：</b>熊猫人酒仙、兽人苦工重制动画；修复人类圣骑士 / 死亡守卫 / 药剂师穿模。</li>
+      <li><b>特效重调：</b>秘法塔飞弹、暴风雪、神圣护盾、心灵之火、献祭、回春、星辰坠落、黑箭、叉状闪电、冰霜之箭等大量 VFX 按反馈调整。</li>
+      <li><b>模型：</b>多种海龟 / 魔像 / 龙鹰 / 狼着色与缩放修正；HD 新增无雾气瀑布变体。</li>
+      <li><b>过场：</b>FaceFX 唇同步、本地化字幕、过场音乐残留、重复单位修复；动态头像动画、唇同步改善。</li>
+      <li><b>音频：</b>DE 画面使用经典音效。</li>
+      <li><b>战役（The Last Days of Lordaeron）：</b>提高多数 Boss 血量与伤害；调整 Garek 横扫、Ilastar 圣光涌动 / 神圣谴责 / 精神控制；修复越界。</li>
+      <li><b>战役（Forsaken Kingdom）：</b>整体难度提升；英雄属性调整；消耗品 / 装备重平衡；商人新增洗点书；Act 1 银松冲刺竞速调整（护栏 / 缓冲带、移除非法改装、空格刹车）。</li>
+      <li><b>中立：</b>被遗忘者圣骑士「奉献」不再影响空中 / 机械单位；「净化之火」不再驱散疾风步 / 末日等。</li>
+    </ul>
+    <div class="sec ed">编辑器 / 地图相关</div>
+    <ul>
+      <li>修复无面但有顶点的自定义模型崩溃、自定义资源加载、SD/HD 装饰物损坏、测试地图启动时自定义贴图加载失败、多地图关闭丢光照、后处理对话框滑块禁用等。</li>
+    </ul>
+    <div class="sec bug">BUG 修复</div>
+    <ul>
+      <li>石像鬼 / 灵魂行者形态切换取消冷却；经典音效在重制 / DE 模式正确播放；被遗忘者圣骑士加入酒馆热键。</li>
+      <li>主菜单主题背景即时显示；被遗忘者圣骑士其他语言正确播英文语音；被遗忘者光标替换人类光标；物品光照残留。</li>
+      <li>亡灵复仇激活读档崩溃；韩语区资源交易崩溃；Act 1 幽暗城 Boss 战 / 刷装备漏洞。</li>
+    </ul>
+  </div>
+</div>
+
+<footer>
+  <p>数据来源：暴雪官方补丁说明（news.blizzard.com / us.forums.blizzard.com）与 Wowpedia / Liquipedia / JudgeHype / Hive Workshop 交叉核对。</p>
+  <p>说明：① 各版本「平衡性数值调整」条目繁多，本报告仅列代表性改动，完整数值以官方补丁说明为准。② 1.32.1–1.32.10 为 Reforged 发布后的持续修复期，已合并概述。③ 3.0.1 发布后因存档兼容问题短暂回滚，属临时状态。</p>
+</footer>
+
+</div>
+</body>
+</html>
