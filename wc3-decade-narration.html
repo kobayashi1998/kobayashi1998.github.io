@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>外部环境时间线 —— 十年报告补充材料</title>
+<style>
+  :root{
+    --paper:#fbfaf7; --ink:#24272e; --muted:#6b7280; --line:#e3e0d8;
+    --accent:#b8860b; --accent-bg:#fdf6e3; --note:#8a8f98; --blue:#2f6fb0;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:#efede7;color:var(--ink);
+    font-family:-apple-system,"Segoe UI","Microsoft YaHei",Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.9;font-size:16px;}
+  .sheet{max-width:860px;margin:0 auto;background:var(--paper);padding:56px 64px 90px;
+    box-shadow:0 2px 24px rgba(0,0,0,.06);}
+  header{border-bottom:2px solid var(--line);padding-bottom:22px;margin-bottom:30px;}
+  h1{font-size:23px;line-height:1.5;margin:0 0 6px;letter-spacing:.5px;}
+  .meta{margin-top:14px;font-size:13px;color:var(--muted);}
+  .meta span{display:inline-block;background:#f1efe9;border:1px solid var(--line);
+    border-radius:14px;padding:2px 11px;margin:6px 6px 0 0;}
+  .howto{background:var(--accent-bg);border:1px solid #ecdcae;border-radius:10px;
+    padding:14px 18px;font-size:14px;color:#7a6320;margin:22px 0 34px;}
+  .howto b{color:#5f4d14;}
+  h2{font-size:19px;margin:46px 0 8px;padding-bottom:8px;border-bottom:1px solid var(--line);}
+  h2 .act{color:var(--accent);font-size:13px;font-weight:600;letter-spacing:1px;
+    display:block;margin-bottom:2px;}
+  p{margin:13px 0;}
+  .cue{font-size:13.5px;color:var(--note);font-style:italic;border-left:3px solid var(--line);
+    padding:6px 0 6px 14px;margin:16px 0;}
+  .cue b{font-style:normal;color:#8a6d1f;font-weight:600;}
+  .vo{margin:14px 0;padding-left:18px;border-left:3px solid transparent;}
+  .vo .t{font-weight:600;color:var(--accent);font-variant-numeric:tabular-nums;}
+  .kbd{background:#f1efe9;border:1px solid var(--line);border-radius:4px;padding:0 5px;
+    font-size:13px;font-family:Consolas,Menlo,monospace;color:#8a6d1f;}
+  .quote{background:#f6f4ee;border-left:4px solid var(--accent);border-radius:0 8px 8px 0;
+    padding:12px 18px;margin:18px 0;font-size:15.5px;color:#4a4636;}
+  .quote .src{display:block;margin-top:6px;font-size:13px;color:var(--muted);font-style:italic;}
+  h2.end{border-bottom:none;}
+  table{width:100%;border-collapse:collapse;margin:16px 0;font-size:13.5px;}
+  th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top;}
+  th{background:#f4f2ec;color:#555;font-weight:600;white-space:nowrap;}
+  td.s{white-space:nowrap;color:var(--muted);font-variant-numeric:tabular-nums;}
+  .ok{color:#2f7d32;font-weight:600;}
+  .warn{color:#b8860b;font-weight:600;}
+  footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--line);
+    color:var(--muted);font-size:12.5px;}
+  @media print{
+    body{background:#fff;font-size:12.5pt;}
+    .sheet{box-shadow:none;padding:0;max-width:none;}
+    h2{page-break-after:avoid;}
+    .cue,.vo,.quote{page-break-inside:avoid;}
+  }
+</style>
+</head>
+<body>
+<div class="sheet">
+
+<header>
+  <h1>外部环境时间线 —— 《魔兽争霸III 十年补丁演进报告》补充材料</h1>
+  <div class="meta">
+    <span>按年份分段</span>
+    <span>附录：外部事件时间线核对表（按时间排序）</span>
+  </div>
+</header>
+
+<div class="howto">
+  <b>说明：</b>本文梳理报告范围之外、同一时期发生的外部事件，按时间顺序陈述。
+  灰色斜体的「报告节点」用于与报告中的版本卡片对齐，不属于正文内容。
+</div>
+
+<!-- ================= 开场 ================= -->
+<h2><span class="act">开场</span>报告覆盖范围之外的部分</h2>
+
+<div class="vo">
+《魔兽争霸III 十年补丁演进报告》记录的是版本本身：从 1.27 到 3.0.1，共 18 个主要版本，跨度十年七个月，内容包括游戏功能、地图编辑器与 BUG 修复三个维度。
+</div>
+<div class="vo">
+本文是这份报告的补充材料，梳理同一时期发生在这款游戏之外的事件：平台更替、代理关系变化、公司并购、开发团队调整，以及社区自建项目。
+</div>
+<div class="vo">
+这些事件不改变版本号，但构成了这十年里另一条并行的时间线。
+</div>
+
+<!-- ================= 2016–2017 ================= -->
+<h2><span class="act">一 · 2016–2017</span>更新重启与国内平台起步</h2>
+
+<div class="cue"><b>报告节点：</b>1.27（2016，2011 年以来首个补丁）、1.28（2017，小修补丁系列）</div>
+
+<div class="vo">
+<span class="t">2016 年 3 月与 12 月</span>，暴雪相继发布 1.27a 与 1.27b，这是自 2011 年以来的首个补丁，内容包括 Windows 7 / 8.1 / 10 与新版 macOS 支持、1920×1080 选项，以及地图文件大小上限从 8MB 提升到 128MB。
+</div>
+<div class="vo">
+<span class="t">2016 年 5 月</span>，网易《魔兽争霸》官方对战平台上线 RPG 游戏大厅，同期启动「百万基金 RPG 地图作者扶持计划」，以战网点与现金奖励激励原创地图作者。这是国内地图创作与平台绑定关系的起点。
+</div>
+<div class="vo">
+<span class="t">2017 年 4 月</span>，1.28 发布，为小修补丁系列，主要涉及显示模式与存档权限调整。
+</div>
+<div class="vo">
+这一阶段的整体特征：官方更新以底层兼容为主，社区与国内平台承担了游戏内容的主要供给。
+</div>
+
+<!-- ================= 2018 ================= -->
+<h2><span class="act">二 · 2018</span>开发者大会与重制版公布</h2>
+
+<div class="cue"><b>报告节点：</b>1.29（宽屏 / 24 人 / 编辑器扩容）、1.30（CASC 迁移）</div>
+
+<div class="vo">
+<span class="t">2018 年 3 月 3 日</span>，《魔兽争霸 3》地图开发者大会在杭州网易总部举行。到会地图作者三十余人，网易副总裁李日强与暴雪经典游戏开发团队设计师 Pete Stilwell 出席。会议宣布当年将开放四条 API：自定义 UI 界面、操作面板修改、云存储多图联动、商城接口，并提及在地图保护与多语言发布方面提供支持。
+</div>
+<div class="vo">
+会上公布的数据：2017 年平台活跃作者发布超过 1300 张新地图，其中单日活跃玩家过万的「火图」超过 100 张；2017 年平台用户规模同比增长超过 300%。
+</div>
+<div class="vo">
+<span class="t">2018 年</span>，官方对战平台的地图作者年度总收入达到一亿元，百万级年收入的作者已有多位。国内报道在描述这一量级时，也常用「平台年流水破亿」的说法。
+</div>
+<div class="vo">
+会上讨论的部分编辑器改动，后来体现在 1.29 补丁中——大厅人数上限提升至 24 人，对象、地图尺寸、资源上限与新增函数数量同步放开。
+</div>
+<div class="vo">
+<span class="t">2018 年 11 月 2 日</span>，暴雪在嘉年华正式公布《魔兽争霸III：重制版》。公布内容包括模型与动画完整重制、UI 与世界编辑器升级、4K 分辨率支持，以及超过四小时的过场动画重制。当时的计划发售时间为 2019 年。
+</div>
+
+<!-- ================= 2019 ================= -->
+<h2><span class="act">三 · 2019</span>预购、测试与承诺调整</h2>
+
+<div class="cue"><b>报告节点：</b>1.31（D3D11 / 64 位 / Lua 编辑器）</div>
+
+<div class="vo">
+<span class="t">2019 年 1 月 12 日</span>，重制版开启预购，国服畅玩版 168 元、战争嘉奖版 258 元。
+</div>
+<div class="vo">
+<span class="t">2019 年 1 月</span>，网易官方对战平台完成地图商业化，地图作者可获得销售额的 75% 分成。此前 2016 年的扶持计划以奖励为主，商业化之后作者收入与地图销量直接挂钩。这一机制支撑了此后数年国内 RPG 地图的产出规模。
+</div>
+<div class="vo">
+<span class="t">2019 年 3 月 23 日</span>，第四次《魔兽争霸III》地图编辑器开发者大会在南京举行，官方首次在会上公开披露开发者收入数据：平台作者超过 8000 人、上传地图超过 4000 张，RPG 作者总收入达到一亿元，其中已有多位作者月收入过百万。
+</div>
+<div class="vo">
+<span class="t">2019 年 11 月</span>，暴雪嘉年华期间官方表示，应部分老玩家要求，重制版的过场动画表现不会偏离原作过多。这等同于放弃原计划的过场动画重制，也是此后争议的主要来源之一。
+</div>
+<div class="vo">
+<span class="t">2019 年 11 月 13 日</span>，重制版艺术总监 Brian Sousa 宣布离职，结束 18 年暴雪生涯。同期离职的还有星际争霸重制版负责人 Tim Morton。距重制版公布约一年、距发售约两个月。
+</div>
+<div class="vo">
+<span class="t">2019 年 11 月 14 日</span>，国服《魔兽争霸III：重制版》多人模式测试开启，包含兽人、人类、亡灵三族 1v1、2v2、3v3、4v4 与 FFA 匹配对战。
+</div>
+<div class="vo">
+<span class="t">2019 年 12 月 18 日</span>，暴雪宣布跳票，发售时间推迟至 2020 年 1 月。
+</div>
+
+<!-- ================= 2020 ================= -->
+<h2><span class="act">四 · 2020</span>发售、反馈与团队调整</h2>
+
+<div class="cue"><b>报告节点：</b>1.32（重制版上线，含 1.32.1–1.32.10 修复期）</div>
+
+<div class="vo">
+<span class="t">2020 年 1 月 21 日</span>，暴雪更新自定义游戏使用政策（Custom Game Acceptable Use Policy），条款写明「Custom Games are and shall remain the sole and exclusive property of Blizzard」。该措辞承接自星际争霸 2 时期的既有政策，属于统一改写；国内传播过程中出现了夸大与失实版本。
+</div>
+<div class="vo">
+<span class="t">2020 年 1 月下旬</span>，重制版正式发售（国服 1 月 29 日），时间上与疫情初期重合，玩家居家时间显著增加。
+</div>
+<div class="vo">
+<span class="t">2020 年 2 月</span>，Metacritic 用户评分降至 0.5 分，两万余条评价中 95% 以上为 0 分，为该站 PC 游戏历史最低评分。官方随后致歉并为外服玩家开启退款通道。
+</div>
+<div class="vo">
+<span class="t">2020 年 2 月 6 日</span>，1.32.1 发布，修复非拉丁字符叠字问题，官方条目为「Non-Latin glyphs no longer overlap」。该 BUG 会将错误字形叠加在正常文本上，使战役台词「非常可怕」显示为「父马可亲」，在中文互联网形成广泛传播的迷因。
+</div>
+<div class="vo">
+<span class="t">2020 年 3 月 16 日</span>，开发者 Pad 发布社区天梯 W3Champions 的首个 1v1 版本，5 月 30 日增加 FFA 模式。此时暴雪承诺的排位对战、玩家档案与排行榜尚未上线，该平台此后成为魔兽争霸 3 竞技对局的主要场所之一。
+</div>
+<div class="vo">
+<span class="t">2020 年 9 月</span>，1.32.9 补丁发布，条目中包含「调整小鸡（Chicken）的脚印尺寸，使其更贴合模型」。同期补丁仍有大量模型与动画细节调整，社区当时对此有集中讨论。
+</div>
+<div class="vo">
+<span class="t">2020 年秋</span>，原重制版团队解散，时间约为发售八个月之后。彭博社后续调查报道披露了相关背景：动视暴雪内部管理问题、预算削减、经典游戏团队人手不足。国内对这一事件的传播中出现了「开发组被整体砍掉」的表述，实际情况是项目团队解散、开发工作由其他团队接手。
+</div>
+
+<!-- ================= 2021–2022 ================= -->
+<h2><span class="act">五 · 2021–2022</span>空窗期、国服调整与项目移交</h2>
+
+<div class="cue"><b>报告节点：</b>1.33（排名系统 / 玩家档案 / 排行榜，2022-08）、1.34（战队回归，2022-12）</div>
+
+<div class="vo">
+<span class="t">2021 年 4 月</span>，1.32.10 发布。此后到 2022 年 8 月 1.33 上线，中间有约一年零四个月没有实质更新，是这十年中最长的一次空窗期。
+</div>
+<div class="vo">
+<span class="t">2021 年 5 月</span>，国服战网发布《魔兽争霸III：重制版》自定义游戏模式维护公告，国服自定义游戏联机大厅停止开放。此后国服玩家在战网客户端的自定义游戏列表中无法看到或创建房间，欧服、美服、亚服不受影响。对局与 RPG 需求由此进一步集中到国内第三方对战平台。
+</div>
+<div class="vo">
+<span class="t">2022 年 8 月</span>，魔兽争霸 3 划入魔兽世界团队，由 Holly Longdale 负责。此前该项目由暴雪经典游戏团队开发、后由负责星际争霸 2 与风暴英雄的 Team 1 接手。国内玩家对 Holly Longdale 有「风行者女士」的称呼，属社区绰号，非官方称谓。
+</div>
+<div class="vo">
+<span class="t">2022 年 12 月</span>，1.34 发布，战队系统回归，并加入玩家举报与自定义游戏「按名称加入」。
+</div>
+<div class="vo">
+关于同期国内流传的「开发组解散」说法：实际情况是原 Team 1 不再负责 RTS 与风暴英雄项目，团队并未整体消失，魔兽争霸 3 的维护工作被移交至新团队。
+</div>
+
+<!-- ================= 2023 ================= -->
+<h2><span class="act">六 · 2023</span>代理关系终止、平台交接与收购完成</h2>
+
+<div class="cue"><b>报告节点：</b>1.35 自定义战役（2023-01）、1.36 观战者模式 / 锦标赛（2023-05）、1.36.1 回滚（2023-11）</div>
+
+<div class="vo">
+<span class="t">2023 年 1 月 23 日</span>，暴雪与网易的代理协议到期。1 月 24 日 0 时起，由网之易代理的《魔兽争霸III：重制版》及其他暴雪游戏在中国大陆市场终止运营，战网登录与游戏服务器关闭，客户端下载同步停止。这一事件在国内被称为「国服分手」。
+</div>
+<div class="vo">
+<span class="t">2022 年 12 月至 2024 年 4 月</span>，国内平台完成接力，更替顺序为：网易官方对战平台 → UP 对战平台 → KK 对战平台 → KK 官方对战平台。UP 对战平台于 2022 年 12 月 15 日上线，承接原网易官方对战平台的用户与养成数据；2023 年 5 月 30 日，UP 对战平台更名为 KK 对战平台；2024 年 4 月 10 日升级为「KK 官方对战平台」。国内魔兽 RPG 的联机与地图生态由此转移到第三方平台。
+</div>
+<div class="vo">
+该平台的运营主体为上海锐之锋网络科技有限公司（成立于 2018 年 5 月）。国内玩家社区普遍将其称为网易游戏 KK 事业部的关联公司、即「皮包公司」，这一说法主要见于玩家投诉与社区转载，网易与暴雪均未就平台的授权关系作过公开说明。
+</div>
+<div class="vo">
+<span class="t">2023 年 10 月 13 日</span>，英国竞争与市场管理局批准后，微软完成对动视暴雪的收购，交易金额约 687 亿美元。魔兽争霸系列 IP 随之归入微软。
+</div>
+<div class="vo">
+游戏本体的更新在这一年并未停止：1.35 加入自定义战役系统，1.36 加入观战者模式与每日锦标赛，1.36.1 于 2023 年 11 月回滚了 1.33 引入的战役改动。
+</div>
+
+<!-- ================= 2024 ================= -->
+<h2><span class="act">七 · 2024</span>国服恢复与魔兽 30 周年</h2>
+
+<div class="cue"><b>报告节点：</b>2.0.0 经典高清 / TFT 主题 / 战役英雄皮肤（2024-11-13）</div>
+
+<div class="vo">
+<span class="t">2024 年 4 月 10 日</span>，暴雪娱乐、微软游戏与网易共同宣布恢复合作，暴雪游戏自 2024 年夏季起陆续重返中国大陆市场，账号数据保留。此时距停服已过去 442 天。
+</div>
+<div class="vo">
+复运按批次推进：《魔兽世界》于 2024 年 8 月、《炉石传说》于 2024 年 9 月、《守望先锋》于 2025 年 2 月、《暗黑破坏神》系列于 2025 年内先后恢复国服运营；《魔兽争霸III：重制版》未列入恢复名单，国服战网没有重新上架该作。截至 2026 年 10 月，国服玩家的魔兽争霸 III 对战与 RPG 需求仍由第三方平台承接。
+</div>
+<div class="vo">
+<span class="t">2024 年 11 月 13 日</span>，魔兽系列 30 周年。重制版 2.0 更新同步上线，内容包括经典资源高清化（Classic HD）与插件系统、冰封王座主题、游戏内图形化热键设置、魔兽争霸 1 与 2 的音乐选项；《魔兽争霸 I 重制版》与《II 重制版》同日上架。
+</div>
+<div class="vo">
+30 周年直播中，魔兽 RTS 团队高级经理 Brad Chan 就本次更新的定位作了表述：
+</div>
+<div class="quote">
+"When something is broken, you fix it. When something is wrong, you make it right. And if things aren't good enough, you make them better."
+  <span class="src">—— 东西坏了就把它修好；哪里不对就把它改对；如果还不够好，就把它做得更好。<br>Brad Chan，魔兽 30 周年直播（2024-11-13）</span>
+</div>
+
+<!-- ================= 2025–2026 ================= -->
+<h2><span class="act">八 · 2025–2026</span>后续版本的外部背景</h2>
+
+<div class="cue"><b>报告节点：</b>2.0.1–2.0.4、3.0.0（2026-09-12）、3.0.1（2026-10-07）</div>
+
+<div class="vo">
+2024 年 11 月之后，重制版进入以 2.0.x 系列为主的小幅更新阶段。外部环境上，这一阶段的主要变化是：国服已恢复运营，国内 RPG 生态稳定运行在第三方对战平台；暴雪方面则开始以嘉年华节奏发布内容。
+</div>
+<div class="vo">
+<span class="t">2026 年 9 月</span>，3.0.0 与付费战役《被遗忘者王国》在暴雪嘉年华同步上线，同时带来决定版（Definitive Edition）画面模式与面向地图作者的 RPG 框架。该版本移除了局域网模式，离线游玩仅保留在附带经典客户端中，官方论坛出现集中反馈。
+</div>
+<div class="vo">
+<span class="t">2026 年 9 月 16 日</span>，KK 官方对战平台完成魔兽争霸 III 重制版 3.0 的 PVP 对局适配，国内玩家可在该平台体验 3.0 的 PVP 内容；平台同期说明，战役模式与决定版画面暂未提供。
+</div>
+<div class="vo">
+暴雪对此的公开回应包括：项目负责人 Brad Chan 表示网络基础设施不完全由项目团队掌控；艺术总监 David Auk 表示决定版中角色与地面空间感减弱的问题客观存在，成因是团队为兼顾低配置设备性能而移除了用于生成柔和接触阴影的环境光遮蔽。
+</div>
+
+<!-- ================= 结尾 ================= -->
+<h2 class="end"><span class="act">结尾</span>两条并行的时间线</h2>
+
+<div class="vo">
+以上是报告覆盖范围之外、与版本更新同期发生的外部事件，时间跨度从 2016 年更新重启，延续至 2026 年 3.0 更新与国内平台适配。
+</div>
+<div class="vo">
+把两条线放在一起看：一条是版本号，记录了游戏本身的变化；另一条是平台、代理、团队与社区，记录了这款游戏得以继续运行的现实条件。
+</div>
+
+<!-- ================= 校对表 ================= -->
+<h2><span class="act">附录</span>外部事件时间线核对表（按时间排序）</h2>
+
+<p class="cue">下表为正文中提到的全部外部事件，按发生时间排序，并标注核实结果与来源性质。</p>
+
+<table>
+  <tr><th>时间</th><th>事件</th><th>核对结果</th></tr>
+  <tr>
+    <td class="s">2016-05</td>
+    <td>网易官方对战平台 RPG 大厅上线 + 百万基金扶持计划</td>
+    <td><span class="ok">准确。</span>以战网点月奖起步，与后续商业化机制衔接。</td>
+  </tr>
+  <tr>
+    <td class="s">2018-03-03</td>
+    <td>地图开发者大会</td>
+    <td><span class="ok">准确。</span>杭州网易总部，30 余位地图作者；网易副总裁李日强与暴雪设计师 Pete Stilwell 出席；宣布当年开放 4 条 API（UI 定制 / 操作面板 / 云存储多图联动 / 商城）。会上公布 2017 年数据：新图 1300+ 张、日活过万地图 100+ 张。日期以网易官方新闻稿（3-03）为准，部分转载写 3-07。</td>
+  </tr>
+  <tr>
+    <td class="s">2018-11-02</td>
+    <td>2018 暴雪嘉年华：公布重制版</td>
+    <td><span class="ok">准确。</span>承诺内容含 4 小时过场动画、4K、UI 与编辑器升级。</td>
+  </tr>
+  <tr>
+    <td class="s">2018 年</td>
+    <td>平台地图作者年度总收入破亿</td>
+    <td><span class="ok">准确，口径需注意。</span>官方口径为「2018 年 RPG 作者总收入 1 亿元」；中文报道中的「平台年流水破亿」指向同一量级，但严格说平台流水高于作者分成收入。</td>
+  </tr>
+  <tr>
+    <td class="s">2019-01</td>
+    <td>网易平台地图商业化</td>
+    <td><span class="ok">准确。</span>商城机制上线后作者分成 75%；2016-05 的扶持计划为前置阶段。</td>
+  </tr>
+  <tr>
+    <td class="s">2019-01-12</td>
+    <td>重制版开启预购</td>
+    <td><span class="ok">准确。</span>国服畅玩版 168 元、战争嘉奖版 258 元。</td>
+  </tr>
+  <tr>
+    <td class="s">2019-03-23</td>
+    <td>第四次地图编辑器开发者大会（南京）</td>
+    <td><span class="ok">准确。</span>官方首次公开开发者收入数据：作者 8000+ 人、地图 4000+ 张、RPG 作者总收入 1 亿元、多位作者月入百万级。来源：GameLook 现场报道。</td>
+  </tr>
+  <tr>
+    <td class="s">2019-11</td>
+    <td>2019 嘉年华：过场动画改口</td>
+    <td><span class="ok">准确。</span>官方表示动画不会偏离原作过多，等同放弃重制计划。</td>
+  </tr>
+  <tr>
+    <td class="s">2019-11-13</td>
+    <td>艺术总监离职</td>
+    <td><span class="ok">准确。</span>Brian Sousa（重制版艺术总监）宣布离职，18 年暴雪生涯；同期 Tim Morton（星际重制版负责人）亦离职。</td>
+  </tr>
+  <tr>
+    <td class="s">2019-11-14</td>
+    <td>国服 BETA 测试</td>
+    <td><span class="ok">准确。</span>多人模式测试开启，含三族 1v1–4v4 与 FFA 匹配。</td>
+  </tr>
+  <tr>
+    <td class="s">2019-12-18</td>
+    <td>宣布跳票</td>
+    <td><span class="ok">准确。</span>发售推迟至 2020 年 1 月。</td>
+  </tr>
+  <tr>
+    <td class="s">2020-01-21</td>
+    <td>自定义游戏使用政策更新（国内「霸王条款」传播）</td>
+    <td><span class="ok">条款属实，传播版本失实。</span>原文「Custom Games are and shall remain the sole and exclusive property of Blizzard」；该措辞承袭星际争霸 2 时期的既有政策，非重制版新增，国内大量传播版本存在夸大。</td>
+  </tr>
+  <tr>
+    <td class="s">2020-01 底</td>
+    <td>口罩时期（背景）</td>
+    <td><span class="ok">背景成立。</span>疫情初期与重制版发售时间重合。</td>
+  </tr>
+  <tr>
+    <td class="s">2020-02</td>
+    <td>差评 0.5</td>
+    <td><span class="ok">准确。</span>Metacritic 用户评分 0.5，两万余条评价、95%+ 为 0 分，为该站 PC 游戏历史最低；官方随后致歉并开放外服退款。</td>
+  </tr>
+  <tr>
+    <td class="s">2020-02-06</td>
+    <td>「父马可亲」修复</td>
+    <td><span class="ok">准确。</span>1.32.1 修复非拉丁字符叠字（Non-Latin glyphs no longer overlap），该 BUG 为「父马可亲」迷因的来源。</td>
+  </tr>
+  <tr>
+    <td class="s">2020-03-16</td>
+    <td>W3C（W3Champions）</td>
+    <td><span class="ok">准确。</span>Pad 发布社区天梯首个 1v1 版本，5-30 加入 FFA；后成为竞技对局主要平台之一。</td>
+  </tr>
+  <tr>
+    <td class="s">2020-09</td>
+    <td>「修鸡脚」</td>
+    <td><span class="ok">准确。</span>1.32.9 条目：「调整小鸡（Chicken）的脚印尺寸，使其更贴合模型」。</td>
+  </tr>
+  <tr>
+    <td class="s">2020 秋</td>
+    <td>Team 1 解散重组（国内「开发组解散」传播）</td>
+    <td><span class="ok">事实成立，表述需修正。</span>原重制版团队于发售约 8 个月后解散（彭博社后续报道披露管理、预算与人手问题）；后续 Team 1 不再负责 RTS 与风暴英雄，项目移交新团队，并非整体裁撤。</td>
+  </tr>
+  <tr>
+    <td class="s">2021-05</td>
+    <td>国服自定义游戏联机大厅关闭</td>
+    <td><span class="ok">准确。</span>国服战网发布《魔兽争霸III：重制版》自定义游戏模式维护公告，国服自定义游戏大厅停止开放，玩家在客户端内无法看到或创建房间；外服不受影响。国服对局与 RPG 需求进一步转移至第三方平台。</td>
+  </tr>
+  <tr>
+    <td class="s">2022-08</td>
+    <td>项目划归魔兽团队</td>
+    <td><span class="ok">准确。</span>魔兽争霸 3 由 Holly Longdale 负责；「风行者女士」为国内社区绰号，非官方称谓。</td>
+  </tr>
+  <tr>
+    <td class="s">2022-12-15</td>
+    <td>平台接力：UP 对战平台上线</td>
+    <td><span class="ok">准确。</span>承接原网易官方对战平台用户与养成数据。</td>
+  </tr>
+  <tr>
+    <td class="s">2023-01-23 / 01-24</td>
+    <td>国服分手</td>
+    <td><span class="ok">准确。</span>代理协议到期，含《魔兽争霸III：重制版》在内的暴雪游戏于 1 月 24 日 0 时起在中国大陆终止运营。</td>
+  </tr>
+  <tr>
+    <td class="s">2023-05-30</td>
+    <td>UP 对战平台更名 KK 对战平台</td>
+    <td><span class="ok">准确。</span>更替顺序：网易官方对战平台 → UP 对战平台 → KK 对战平台 → KK 官方对战平台（2024-04-10 升级）。运营主体为上海锐之锋网络科技有限公司（2018-05 成立）；「网易皮包公司」为玩家社区说法，见于投诉帖与转载，双方均未公开说明授权关系。</td>
+  </tr>
+  <tr>
+    <td class="s">2023-10-13</td>
+    <td>微软完成收购动视暴雪</td>
+    <td><span class="ok">准确。</span>英国 CMA 当日批准，交易金额约 687 亿美元。</td>
+  </tr>
+  <tr>
+    <td class="s">2024-04-10</td>
+    <td>国服复合</td>
+    <td><span class="ok">准确。</span>暴雪、微软与网易共同宣布恢复合作，2024 年夏季起陆续回归；距停服 442 天。</td>
+  </tr>
+  <tr>
+    <td class="s">2024-08 至 2025</td>
+    <td>暴雪游戏分批回归；《魔兽争霸III：重制版》未上架</td>
+    <td><span class="ok">准确（截至 2026-10）。</span>《魔兽世界》（2024-08）、《炉石传说》（2024-09）、《守望先锋》（2025-02）、《暗黑破坏神》系列等先后恢复国服运营；《魔兽争霸III：重制版》不在恢复名单内，国服战网未重新上架该作。来源：南都 N 视频 / 腾讯新闻（2025-10-20）。</td>
+  </tr>
+  <tr>
+    <td class="s">2024-11-13</td>
+    <td>2.0 与魔兽 30 周年（Brad Chan 表述）</td>
+    <td><span class="ok">准确（原文见正文引用框）。</span>出自魔兽 30 周年 Direct 直播。</td>
+  </tr>
+  <tr>
+    <td class="s">2026-09-16</td>
+    <td>KK 平台适配 3.0 PVP</td>
+    <td><span class="ok">准确。</span>KK 官方对战平台说明：9-16 起支持重制版 3.0 的 PVP 对战；战役模式与决定版画面暂未提供。</td>
+  </tr>
+  <tr>
+    <td class="s">2026-09 / 2026-10</td>
+    <td>3.0.0 与 LAN 移除的公开回应</td>
+    <td><span class="ok">准确。</span>Brad Chan 谈网络基础设施归属；艺术总监 David Auk 承认决定版接触阴影问题存在。</td>
+  </tr>
+</table>
+
+<footer>
+  配套文档：《魔兽争霸III 十年补丁演进报告》（wc3-decade-of-patches.html）—— 本文仅涉外部环境，不重复版本内技术细节。<br>
+  来源：暴雪官方补丁说明与蓝贴、国服战网公告、网易游戏官方新闻稿、GameLook、Wowpedia / Liquipedia / Hive Workshop、PC Gamer / Ars Technica / Bloomberg、南都 N 视频 / 腾讯新闻、新华网 / 新京报贝壳财经 / 中国经营报、企查查工商信息、NGA 与机核社区资料交叉核对。
+</footer>
+
+</div>
+</body>
+</html>
