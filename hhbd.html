@@ -4,26 +4,37 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>编辑器汉化补丁</title>
 <style>
+  :root{
+    --bg:#0d1117; --panel:#161b22; --panel2:#1c2129; --border:#2d333b;
+    --text:#e6edf3; --muted:#9aa4b2; --accent:#e3b341;
+  }
   body{
     margin:0;padding:64px 20px;
-    background:#000;color:#e8e8e8;
+    background:var(--bg);color:var(--text);
     font:15px/1.9 -apple-system,BlinkMacSystemFont,"Microsoft YaHei","PingFang SC",sans-serif;
   }
   main{max-width:600px;margin:0 auto}
+  .back{margin:0 0 24px}
+  .back a{display:inline-block;font-size:13px;color:var(--muted);text-decoration:none;
+    border:1px solid var(--border);background:var(--panel2);border-radius:20px;padding:3px 13px;
+    transition:color .15s,border-color .15s}
+  .back a:hover{color:var(--accent);border-color:var(--accent)}
   h1{margin:0 0 20px;font-size:22px;font-weight:600}
-  h2{margin:36px 0 12px;font-size:15px;font-weight:600}
+  h2{margin:36px 0 12px;font-size:15px;font-weight:600;padding-left:10px;border-left:3px solid var(--accent)}
   p{margin:0 0 12px}
-  a{color:#e8e8e8;text-decoration:underline;text-underline-offset:3px}
-  a:hover{color:#fff}
-  .sep{color:#666;margin:0 10px}
+  a{color:var(--accent);text-decoration:underline;text-underline-offset:3px}
+  a:hover{color:#f0d68a}
+  .sep{color:var(--muted);margin:0 10px}
   ol{margin:0;padding-left:22px}
   ol li{margin:0 0 8px}
-  code{font-family:Consolas,Menlo,monospace;font-size:13.5px;color:#c9c9c9}
-  .tip{color:#999;font-size:13.5px}
+  code{font-family:Consolas,Menlo,monospace;font-size:13.5px;color:#ffd479}
+  .tip{color:var(--muted);font-size:13.5px}
 </style>
 </head>
 <body>
 <main>
+
+  <div class="back"><a href="index.html">← 返回主页</a></div>
 
   <h1>编辑器汉化补丁</h1>
 
@@ -31,7 +42,7 @@
 
   <h2>下载渠道</h2>
   <p>
-    <a href="https://k12cs.cn/downloads/%E7%BC%96%E8%BE%91%E5%99%A8%E6%B1%89%E5%8C%96%E8%A1%A5%E4%B8%810.4.3.zip">直接下载</a> | <a href="https://github.com/kobayashi1998/worldeditor-zhcn/releases">Github 下载</a>
+    <a href="https://k12cs.cn/downloads/%E7%BC%96%E8%BE%91%E5%99%A8%E6%B1%89%E5%8C%96%E8%A1%A5%E4%B8%810.4.3.zip">直接下载</a> <span class="sep">|</span> <a href="https://github.com/kobayashi1998/worldeditor-zhcn/releases">Github 下载</a>
   </p>
 
   <h2>使用说明</h2>
@@ -42,7 +53,5 @@
   <p class="tip">补丁使游戏优先调用本地文件，不涉及修改游戏本体；删除相关文件即可移除本补丁。</p>
 
 </main>
-
-
 
 </body></html>

@@ -14,8 +14,8 @@
 
         body {
             font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
-            background: #0a0e17;
-            color: #e8edf5;
+            background: #0d1117;
+            color: #e6edf3;
             line-height: 1.7;
             min-height: 100vh;
             display: flex;
@@ -27,23 +27,42 @@
         .page {
             max-width: 860px;
             width: 100%;
-            background: rgba(12, 20, 34, 0.6);
-            backdrop-filter: blur(2px);
+            background: #161b22;
             border-radius: 28px;
             padding: 40px 44px 48px;
-            border: 1px solid rgba(255, 255, 255, 0.04);
+            border: 1px solid #2d333b;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
             position: relative;
+        }
+
+        /* ===== 返回主页 ===== */
+        .back-home {
+            margin-bottom: 20px;
+        }
+        .back-home a {
+            display: inline-block;
+            font-size: 13px;
+            color: #9aa4b2;
+            text-decoration: none;
+            border: 1px solid #2d333b;
+            background: #21262d;
+            border-radius: 20px;
+            padding: 4px 14px;
+            transition: color 0.2s, border-color 0.2s;
+        }
+        .back-home a:hover {
+            color: #f0d9a0;
+            border-color: rgba(227, 179, 65, 0.4);
         }
 
         /* ===== 顶部装饰条 ===== */
         .top-bar {
             height: 3px;
-            background: linear-gradient(90deg, #c9a84c, #f0d68a, #c9a84c);
+            background: linear-gradient(90deg, #e3b341, #f0d9a0, #e3b341);
             width: 100%;
             margin-bottom: 32px;
             border-radius: 0 0 4px 4px;
-            box-shadow: 0 0 24px rgba(201, 168, 76, 0.15);
+            box-shadow: 0 0 24px rgba(227, 179, 65, 0.15);
         }
 
         /* ===== 标题区域 - 全部居中 ===== */
@@ -58,13 +77,13 @@
             font-weight: 800;
             letter-spacing: 0.5px;
             margin-bottom: 6px;
-            background: linear-gradient(135deg, #ffffff 20%, #c9d8f0 80%);
+            background: linear-gradient(135deg, #ffffff 20%, #c9d1d9 80%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
         .game-title .gold {
-            background: linear-gradient(135deg, #f0d68a, #c9a84c);
+            background: linear-gradient(135deg, #f0d9a0, #e3b341);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -72,7 +91,7 @@
 
         .game-sub {
             font-size: 15px;
-            color: #8899bb;
+            color: #9aa4b2;
             margin-bottom: 24px;
             font-weight: 300;
             letter-spacing: 0.3px;
@@ -89,8 +108,8 @@
             display: inline-flex;
             align-items: center;
             gap: 12px;
-            background: rgba(201, 168, 76, 0.06);
-            border: 1px solid rgba(201, 168, 76, 0.12);
+            background: rgba(227, 179, 65, 0.06);
+            border: 1px solid rgba(227, 179, 65, 0.12);
             padding: 12px 32px;
             border-radius: 50px;
             flex-wrap: wrap;
@@ -99,59 +118,77 @@
             transition: all 0.3s ease;
         }
         .price-box:hover {
-            border-color: rgba(201, 168, 76, 0.25);
-            background: rgba(201, 168, 76, 0.09);
-            box-shadow: 0 0 30px rgba(201, 168, 76, 0.05);
+            border-color: rgba(227, 179, 65, 0.25);
+            background: rgba(227, 179, 65, 0.09);
+            box-shadow: 0 0 30px rgba(227, 179, 65, 0.05);
         }
 
         .price-box .dollar {
             font-size: 20px;
-            color: #c9a84c;
+            color: #e3b341;
             font-weight: 600;
             letter-spacing: 0.5px;
         }
         .price-box .amount {
             font-size: 34px;
             font-weight: 800;
-            color: #f0d68a;
+            color: #f0d9a0;
             letter-spacing: 1px;
         }
         .price-box .decimal {
             font-size: 22px;
             font-weight: 700;
-            color: #d4b86a;
+            color: #d0a93f;
             margin-left: -4px;
         }
         .price-box .cny {
             font-size: 16px;
-            color: #8899bb;
+            color: #9aa4b2;
             margin-left: 2px;
             font-weight: 300;
         }
         .price-box .divider {
-            color: rgba(255, 255, 255, 0.06);
+            color: #30363d;
             font-size: 24px;
             font-weight: 100;
             margin: 0 2px;
         }
         .price-box .badge {
-            background: linear-gradient(135deg, #c9a84c, #b08a3a);
-            color: #0a0e17;
+            background: linear-gradient(135deg, #e3b341, #b28a2b);
+            color: #0d1117;
             font-size: 11px;
             font-weight: 700;
             padding: 3px 14px;
             border-radius: 30px;
             letter-spacing: 0.5px;
             text-transform: uppercase;
-            box-shadow: 0 2px 12px rgba(201, 168, 76, 0.2);
+            box-shadow: 0 2px 12px rgba(227, 179, 65, 0.2);
+        }
+
+        /* DLC 价格说明（置于版权价格区） */
+        .price-note {
+            text-align: center;
+            font-size: 13px;
+            line-height: 1.85;
+            color: #9aa4b2;
+            max-width: 620px;
+            margin: 0 auto 20px;
+            padding: 9px 18px;
+            border: 1px dashed rgba(227, 179, 65, 0.22);
+            border-radius: 12px;
+            background: rgba(227, 179, 65, 0.04);
+        }
+        .price-note b {
+            color: #e3b341;
+            font-weight: 600;
         }
 
         .info-line {
             font-size: 15px;
-            color: #b0c4e0;
+            color: #c9d1d9;
             margin-bottom: 28px;
             padding: 10px 0 6px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            border-bottom: 1px solid #2d333b;
         }
         .info-line .emoji {
             margin-right: 8px;
@@ -173,33 +210,33 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            background: rgba(0, 0, 0, 0.25);
-            border: 1px solid rgba(255, 255, 255, 0.04);
+            background: #161b22;
+            border: 1px solid #2d333b;
             border-radius: 14px;
             padding: 18px 12px;
             text-decoration: none;
-            color: #e8edf5;
+            color: #e6edf3;
             transition: all 0.2s ease;
             gap: 4px;
         }
         .tutorial-link:hover {
-            border-color: rgba(201, 168, 76, 0.2);
-            background: rgba(201, 168, 76, 0.04);
+            border-color: rgba(227, 179, 65, 0.2);
+            background: rgba(227, 179, 65, 0.04);
             transform: translateY(-3px);
         }
         .tutorial-link .label {
             font-weight: 600;
             font-size: 15px;
-            color: #c9a84c;
+            color: #e3b341;
         }
         .tutorial-link .url {
             font-size: 13px;
-            color: #8899bb;
+            color: #9aa4b2;
             word-break: break-word;
             font-weight: 300;
         }
         .tutorial-link .arrow {
-            color: #c9a84c;
+            color: #e3b341;
             font-size: 14px;
             opacity: 0.3;
             transition: 0.2s;
@@ -222,13 +259,13 @@
         .section-divider h2 {
             font-size: 22px;
             font-weight: 700;
-            color: #f0f4fc;
+            color: #e6edf3;
             letter-spacing: 0.3px;
         }
         .section-divider .line {
             flex: 1;
             height: 1px;
-            background: linear-gradient(90deg, rgba(201, 168, 76, 0.15), transparent);
+            background: linear-gradient(90deg, rgba(227, 179, 65, 0.15), transparent);
         }
 
         /* ===== 好处列表 ===== */
@@ -240,17 +277,17 @@
         .benefit-list li {
             padding: 10px 0 10px 28px;
             position: relative;
-            color: #b0c4e0;
+            color: #c9d1d9;
             font-size: 15px;
             line-height: 1.7;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+            border-bottom: 1px solid #21262d;
         }
         .benefit-list li:last-child {
             border-bottom: none;
         }
         .benefit-list li::before {
             content: '▸';
-            color: #c9a84c;
+            color: #e3b341;
             position: absolute;
             left: 4px;
             top: 10px;
@@ -258,17 +295,19 @@
             font-size: 14px;
         }
         .benefit-list li strong {
-            color: #e8edf5;
+            color: #e6edf3;
             font-weight: 600;
         }
+
+        /* ===== 列表脚注 / 提示条 ===== */
 
         /* ===== 底部提示（居中） ===== */
         .footer-note {
             margin-top: 34px;
             padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.04);
+            border-top: 1px solid #2d333b;
             font-size: 14px;
-            color: #5a6e8a;
+            color: #6e7681;
             text-align: center;
         }
         .footer-note .emoji {
@@ -368,6 +407,8 @@
 
     <div class="page">
 
+        <div class="back-home"><a href="index.html">← 返回主页</a></div>
+
         <!-- 顶部装饰条 -->
         <div class="top-bar"></div>
 
@@ -392,6 +433,10 @@
         <div class="game-sub">
             国际服和国服不互通，账号单独注册<br>
             居住地选香港，不用填手机号，支持支付宝微信付款
+        </div>
+
+        <div class="price-note">
+            新战役《被遗忘者王国》单独 <b>$29.99</b>、与重制版本体同捆 <b>$49.99</b>，可自行决定是否购买
         </div>
 
         <!-- ============================================================ -->
@@ -428,7 +473,7 @@
 
         <ul class="benefit-list">
             <li><strong>在线更新：</strong>在战网获取最新版，支持差量更新，不需要每次更新从网盘下载30GB的完整游戏</li>
-            <li><strong>全球联机：</strong>和全世界的人一起联机社区的免费精品地图，不需要去盗版平台玩氪金图充VIP和礼包</li>
+            <li><strong>全球联机：</strong>和全世界的人一起联机对战和社区精品地图，多个低延迟亚洲服务器</li>
             <li><strong>正向发展：</strong>玩家真金白银的支持，能推动厂商持续投入，生产更多内容，让游戏走得更好更远</li>
         </ul>
 
@@ -450,6 +495,10 @@
             <li><strong>最新平衡数据：</strong>随时获取最新版本，与主播、选手和全球赛事保持同一平衡性数据</li>
             <li><strong>宽屏完美适配：</strong>解决老版本拉伸导致的界面变形问题，不再出现画面压扁拉宽的情况</li>
             <li><strong>免受叠字打扰：</strong>解决老板的叠字问题，高分辨率下长时间游戏，也不会出现文字重叠现象</li>
+            <li><strong>框选上限翻倍：</strong>3.0 把单位选择上限从 12 提升到 24，一次框选即可操作双倍部队</li>
+            <li><strong>决定版新画面：</strong>新增第三种画面模式，600 多个单位重建、光照与阴影升级，更接近经典画面</li>
+            <li><strong>酒馆有新英雄：</strong>新中立英雄“被遗忘者圣骑士”，技能：正义之怒、奉献、神圣光环、净化之火</li>
+            <li><strong>编辑器再升级：</strong>新增光照编辑器、电影编辑器等，并把战役的 RPG 框架开放给所有地图作者</li>
         </ul>
 
         <!-- ============================================================ -->
