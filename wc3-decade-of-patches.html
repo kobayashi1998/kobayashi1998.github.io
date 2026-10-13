@@ -109,7 +109,7 @@
 
   /* ===== 维度筛选器 ===== */
   .filter-bar{margin:16px 0 0;display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:13px;color:var(--muted);}
-  .filter-bar .fl{font-size:12.5px;color:var(--muted);margin-right:2px;}
+  .filter-bar .fl{font-size:14px;color:var(--muted);margin-right:2px;}
   .fbtn{display:inline-flex;align-items:center;gap:6px;cursor:pointer;user-select:none;
     font:inherit;font-size:12.5px;line-height:1.5;color:var(--muted);background:var(--panel2);
     border:1px solid var(--border);border-radius:20px;padding:3px 12px;opacity:.55;
@@ -259,11 +259,11 @@ document.documentElement.setAttribute('data-theme',t)})();
     </ul>
     <div class="sec d-ed">地图编辑器更新</div>
     <ul>
-      <li><b>1.27b：</b>世界编辑器新增「Script Verify（脚本校验）」功能。</li>
+      <li><b>1.27b：</b>新增「脚本校验」功能。</li>
     </ul>
     <div class="sec d-bug">BUG 修复</div>
     <ul>
-      <li><b>1.27a：</b>修复闪电链（Chain Lightning）崩溃。</li>
+      <li><b>1.27a：</b>修复闪电链崩溃。</li>
       <li><b>1.27b：</b>自定义 .blp 贴图文件不再导致 Mac 崩溃。</li>
       <li>已知问题：窗口化下伽马设置不生效、西里尔字符仍无法显示、Mac 不支持编辑器。</li>
     </ul>
@@ -288,7 +288,7 @@ document.documentElement.setAttribute('data-theme',t)})();
     </ul>
     <div class="sec d-ed">地图编辑器更新</div>
     <ul>
-      <li>修复 WorldEdit 的 Map Script Validation 图标与词条。</li>
+      <li>修复「脚本校验」的图标与词条。</li>
     </ul>
     <div class="sec d-bug">BUG 修复</div>
     <ul>
@@ -386,7 +386,7 @@ document.documentElement.setAttribute('data-theme',t)})();
     <ul>
       <li><b>疾风步冷却从「施法」改为「破隐」开始计算</b>，同时冷却 5s → 2s（全等级）。</li>
       <li><b>剑圣暴击改回「含全部伤害」</b>——撤销 1.29 的「仅基础攻击」口径（已回调）。</li>
-      <li><b>新增物品「祭礼匕首」（Ritual Dagger）</b>——亡灵遗物之墓上架，牺牲己方单位换群体回血。</li>
+      <li><b>新增物品「祭礼匕首」</b>——亡灵遗物之墓上架，牺牲己方单位换群体回血。</li>
       <li><b>人类「火焰之球」重做为反治疗定位</b>：移除溅射、新增「降低治疗效果与回血 35% / 3 秒」的减益效果。<b>2.0.2 被「减速之球」取代</b>（已回调）。</li>
       <li><b>骑士新升级「裂甲之刃」</b>（兵营研究，需城堡 / 伐木场 / 铁匠铺，对中型护甲 +15%）。</li>
       <li><b>尖刺障碍升级从 3 级压缩为 2 级</b>（改为「5 基础 + 攻击者伤害的 20% / 50%」）；<b>牛头人「粉碎」改为自带减伤版 + 升级版</b>。</li>
@@ -402,7 +402,9 @@ document.documentElement.setAttribute('data-theme',t)})();
     </ul>
     <div class="sec d-bug">BUG 修复</div>
     <ul>
-      <li>修复触发器保存丢失、自定义电影播放、多个地图反同步（DBZ / Builders and Fighters 等）、声音数据跨图传输、占有命令残留、OBS 切窗冻结、观察者全局战斗音效等。</li>
+      <li>修复触发器保存丢失、自定义电影播放、占有命令残留。</li>
+      <li>修复多个地图反同步（DBZ / Builders and Fighters 等）、声音数据跨图传输。</li>
+      <li>修复 OBS 切窗冻结、观察者全局战斗音效。</li>
     </ul>
   </div>
 </div>
@@ -439,8 +441,10 @@ document.documentElement.setAttribute('data-theme',t)})();
     </ul>
     <div class="sec d-bug">BUG 修复 / 已知问题</div>
     <ul>
-      <li><b>1.32.1（2020-02-06）：</b>官方条目「Non-Latin glyphs no longer overlap（非拉丁字符不再重叠）」，修复中文字形叠加、对话乱码的<b>叠字 BUG</b>；同期修复加载任务误报失败、多面板导致自定义地图崩溃、经典模式渲染异常。</li>
-      <li>上线初期大量已知问题：加载黑屏、古树根须放置图标缺失、自定义地图 &gt;256MB 破坏大厅、非拉丁字符重叠、非美式键盘键位失效、跨平台无法邀请、编辑器 JassHelper 残留等，均在 1.32.x 逐步修复。</li>
+      <li><b>1.32.1（2020-02-06）：</b>官方条目「Non-Latin glyphs no longer overlap（非拉丁字符不再重叠）」，修复中文字形叠加、对话乱码的<b>叠字 BUG</b>。</li>
+      <li><b>1.32.1：</b>修复加载任务误报失败、多面板导致自定义地图崩溃、经典模式渲染异常。</li>
+      <li>上线初期已知问题：加载黑屏、古树根须放置图标缺失、非拉丁字符重叠、非美式键盘键位失效、跨平台无法邀请等，均在 1.32.x 逐步修复。</li>
+      <li>编辑器相关：自定义地图 &gt;256MB 破坏大厅、JassHelper 残留。</li>
     </ul>
   </div>
 </div>
@@ -468,7 +472,10 @@ document.documentElement.setAttribute('data-theme',t)})();
     </ul>
     <div class="sec d-bug">BUG 修复</div>
     <ul>
-      <li>FileAliases.JSON 路径、山丘之王语音、动画碰撞、Popcorn 崩溃、地形调色板崩溃、编辑器导入列表排序、音乐播放列表、单位语音 / 头像动画、人类 UI 误显示、Insert 旋转镜头、单机「=」键。</li>
+      <li>修复 FileAliases.JSON 路径、编辑器导入列表排序。</li>
+      <li>修复山丘之王语音、单位语音 / 头像动画、音乐播放列表。</li>
+      <li>修复动画碰撞、Popcorn 崩溃、地形调色板崩溃。</li>
+      <li>修复人类 UI 误显示、Insert 旋转镜头、单机「=」键。</li>
     </ul>
   </div>
 </div>
@@ -486,7 +493,9 @@ document.documentElement.setAttribute('data-theme',t)})();
     </ul>
     <div class="sec d-bug">改进与 BUG 修复</div>
     <ul>
-      <li>组队 / 随机匹配后端拆分；新增排名玩法说明界面；切换账号聊天刷新；右键菜单统一（举报 / 组队 / 战队邀请）；社交通知指示；排名徽章与排行榜 UI 改进；档案可从主菜单进入。</li>
+      <li>组队 / 随机匹配后端拆分；新增排名玩法说明界面。</li>
+      <li>右键菜单统一（举报 / 组队 / 战队邀请）；社交通知指示。</li>
+      <li>排名徽章与排行榜 UI 改进；档案可从主菜单进入；切换账号聊天刷新。</li>
     </ul>
   </div>
 </div>
@@ -509,7 +518,10 @@ document.documentElement.setAttribute('data-theme',t)})();
     </ul>
     <div class="sec d-bug">BUG 修复</div>
     <ul>
-      <li>早退导致对局无法结算、模型 / 贴图切换加载异常、新增缩放档位（1750/2100/2250）、退出单机误入读档、战役存档字符串重置、载入界面文本错位、战役 / 伤害防御表编辑崩溃、举报描述字数要求移除。</li>
+      <li>修复早退导致对局无法结算、退出单机误入读档。</li>
+      <li>修复模型 / 贴图切换加载异常、载入界面文本错位、战役存档字符串重置。</li>
+      <li>修复战役 / 伤害防御表编辑崩溃；新增缩放档位（1750 / 2100 / 2250）。</li>
+      <li>移除举报描述字数要求。</li>
     </ul>
   </div>
 </div>
@@ -542,7 +554,9 @@ document.documentElement.setAttribute('data-theme',t)})();
     </ul>
     <div class="sec d-bug">BUG 修复</div>
     <ul>
-      <li>战争迷雾 FX 崩溃、观察 CPU 游戏崩溃、失败变观战崩溃、菜单打开热键仍生效、赛后立即看回放卡死、大量玩家观战黑屏、排行榜段位图标不更新。</li>
+      <li>修复战争迷雾 FX 崩溃、观察 CPU 游戏崩溃、失败变观战崩溃。</li>
+      <li>修复菜单打开热键仍生效、赛后立即看回放卡死、大量玩家观战黑屏。</li>
+      <li>修复排行榜段位图标不更新。</li>
     </ul>
   </div>
 </div>
@@ -561,7 +575,7 @@ document.documentElement.setAttribute('data-theme',t)})();
       <li><b>音乐：</b>新增魔兽 1 / 2 音乐选项。</li>
       <li><b>多人：</b>排名 XP 与等级；MMR 区间缩减至 0–7000；已排位者赛季后 MMR 不再重置；AT 不再匹配 RT（3v3/4v4）；新增芝加哥、悉尼服务器。</li>
       <li><b>重制版环境：</b>全部地形美术更新、植被默认关、泛光移除、环境光增强。</li>
-      <li><b>魔兽 I / II / III 战斗合集（Battle Chest）：</b>捆绑魔兽 I / II / III 重制版（含战争嘉奖版奖励与经典原版），<b>$39.99</b>。</li>
+      <li><b>魔兽 I / II / III 战斗合集：</b>捆绑魔兽 I / II / III 重制版（含战争嘉奖版奖励与经典原版），<b>$39.99</b>。</li>
     </ul>
     <div class="sec d-bal">平衡性机制改动</div>
     <ul>
@@ -591,7 +605,10 @@ document.documentElement.setAttribute('data-theme',t)})();
     </ul>
     <div class="sec d-bug">BUG 修复</div>
     <ul>
-      <li>自定义游戏邀请崩溃、无法按名加入私人游戏、HUD 缩小无法选单位、编队偶发自动开启、Windows 7 / 集成显卡 / 超 11 人对局结束崩溃、部分自定义地图单位不显示、克尔苏加德皮肤头像、Direct3D12 参数、剑圣剑刃风暴特效、蝙蝠骑士不稳定化合物、中韩文攻击之爪数值等。</li>
+      <li>修复自定义游戏邀请崩溃、无法按名加入私人游戏、部分自定义地图单位不显示。</li>
+      <li>修复 HUD 缩小无法选单位、编队偶发自动开启。</li>
+      <li>修复 Windows 7 / 集成显卡 / 超 11 人对局结束崩溃、Direct3D12 参数。</li>
+      <li>修复克尔苏加德皮肤头像、剑圣剑刃风暴特效、蝙蝠骑士不稳定化合物、中韩文攻击之爪数值。</li>
       <li><b>12-18 热修：</b>新皮肤无法使用、默认缩放复位错误、无法组队邀请、主机离开大厅不退出。</li>
     </ul>
   </div>
@@ -670,10 +687,10 @@ document.documentElement.setAttribute('data-theme',t)})();
 <div class="ver" id="v300">
   <div class="ver-head"><span class="v">3.0.0</span><span class="d">2026-09-12（Build 24268）</span><span class="tag">20 年首个新战役 · 决定版画面 · 新英雄 · 24 选择 · 编辑器升级</span></div>
   <div class="ver-body">
-  <div class="hl"><b>核心亮点：</b>决定版（Definitive Edition）画面模式（600+ 单位重建）、新中立英雄「被遗忘者圣骑士」、单位选择上限 12→24、世界编辑器大规模升级；付费 DLC 战役《被遗忘者王国》。</div>
+  <div class="hl"><b>核心亮点：</b>决定版画面模式（600+ 单位重建）、新中立英雄「被遗忘者圣骑士」、单位选择上限 12→24、世界编辑器大规模升级；付费 DLC 战役《被遗忘者王国》。</div>
     <div class="sec d-game">游戏功能性更新（3.0.0 免费更新）</div>
     <ul>
-      <li><b>决定版（Definitive Edition）画面模式：</b>第三种画面模式（经典辨识度 + 现代化渲染），600+ 单位重建；光照 / 阴影 / 环境 / 雾升级；可跨画面模式联机。</li>
+      <li><b>决定版画面模式：</b>第三种画面模式（经典辨识度 + 现代化渲染），600+ 单位重建；光照 / 阴影 / 环境 / 雾升级；可跨画面模式联机。</li>
       <li><b>新 UI 主题 / 音乐：</b>「被遗忘者王国」主题与音乐、首次启动过场；主菜单音乐随主题变化。</li>
       <li><b>单位选择上限 12 → 24</b>。</li>
       <li><b>新中立英雄「被遗忘者圣骑士」：</b>三模式可用，免费；四技能：正义之怒（冲锋+减速）、奉献（范围治疗+伤害）、神圣光环（友方魔抗）、净化之火（治疗+眩晕+驱散+重伤召唤物）。</li>
@@ -687,21 +704,21 @@ document.documentElement.setAttribute('data-theme',t)})();
     </ul>
     <div class="sec d-ed">编辑器更新（大规模升级）</div>
     <ul>
-      <li><b>新光照编辑器（Lighting Editor）</b>、<b>电影编辑器（Cinematic Editor）</b>。</li>
+      <li><b>新光照编辑器</b>、<b>电影编辑器</b>。</li>
       <li>装饰物支持俯仰 / 滚转旋转；装饰物、物品可分配队伍颜色；可编辑泛光灯、阴影投射泛光灯；HD 阴影 / 雾查看。</li>
       <li>HD 水面、装饰物贴花、水面装饰物、阴影阻挡装饰物；更多雾选项（高度雾 / 指数雾 / 覆盖天空）；实时编辑雾与 HD 水面。</li>
       <li>alpha 瓦片、迷你地图多色绘制、镜头范围内动态生成迷你地图。</li>
       <li>装备类别、物品实例类别；HUD 皮肤按玩家选择（含被遗忘者 HUD）；自由镜头。</li>
       <li><b>新 natives：</b>重置攻击冷却、设置技能剩余冷却、开关所有光环、AI 求援范围常量、字符串 ID 调整工具、后处理工具、泄漏清理 GUI、光照范围可视化等。</li>
-      <li>触发器「复制为脚本（Copy As Script）」、触发器转 Lua；对象局部轴缩放；复制对象保留高度；数据编辑器显示无敌建筑 HP；撤销栈上限提高（可近无限）。</li>
+      <li>触发器「复制为脚本」、触发器转 Lua；对象局部轴缩放；复制对象保留高度；数据编辑器显示无敌建筑 HP；撤销栈上限提高（可近无限）。</li>
     </ul>
     <div class="sec d-ed">编辑器新增 RPG 框架（源自《被遗忘者王国》战役）</div>
     <ul>
       <li><b>原生实现：</b>新战役的背包 / 装备 / 天赋系统全部在<b>世界编辑器中原生搭建</b>（非第三方脚本），自定义地图可直接复用。</li>
       <li><b>统一入口：</b>三套系统共用主控能力 <code>[ASpc]</code>（对象编辑器中默认无名称），作为「背包 + 装备栏 + 天赋树 + 属性面板」的 UI 控制器。</li>
-      <li><b>背包（Expanded Inventory）：</b>能力 <code>[AIni]</code> 提供第二个 <b>30 格</b>储物窗口；存入其中的物品不提供被动加成，可直接使用消耗品。</li>
-      <li><b>装备栏（Equipment Slots）：</b>能力 <code>[AEqu]</code> 提供 <b>9 个装备槽</b>（头 / 胸 / 手套 / 靴 / 戒指 ×2 / 主手 / 副手 / 饰品）；拾取物品先落入背包，装入槽位后才结算加成。</li>
-      <li><b>天赋（Talent Tree）：</b>天赋树 + 天赋点系统，可自定义天赋配置并在战役中自由加点。</li>
+      <li><b>背包：</b>能力 <code>[AIni]</code> 提供第二个 <b>30 格</b>储物窗口；存入其中的物品不提供被动加成，可直接使用消耗品。</li>
+      <li><b>装备栏：</b>能力 <code>[AEqu]</code> 提供 <b>9 个装备槽</b>（头 / 胸 / 手套 / 靴 / 戒指 ×2 / 主手 / 副手 / 饰品）；拾取物品先落入背包，装入槽位后才结算加成。</li>
+      <li><b>天赋：</b>天赋树 + 天赋点系统，可自定义天赋配置并在战役中自由加点。</li>
       <li><b>物品转装备：</b>对象编辑器新增 <code>Stats - Equipment Type</code> 字段，可将任意经典物品指定为某个装备槽类型。</li>
       <li><b>载体与范围：</b>官方战役以可拾取容器承载整套系统（如 <code>[ebua]</code> Anya's Backpack）；相关能力也可直接挂在英雄或普通单位上。</li>
     </ul>
