@@ -14,6 +14,9 @@
             --muted: #9aa4b2;
             --accent: #e3b341;
             --accent-soft: rgba(227, 179, 65, 0.12);
+            --btn-shadow: rgba(0, 0, 0, 0.45);
+            --card-shadow: rgba(0, 0, 0, 0.45);
+            --soft-text: #b3bdc9;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -82,7 +85,7 @@
         .nav-card:hover {
             border-color: var(--accent);
             transform: translateY(-2px);
-            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.45);
+            box-shadow: 0 8px 22px var(--card-shadow);
         }
         .nav-icon { font-size: 26px; line-height: 1; }
         .nav-card h3 { font-size: 16px; font-weight: 700; }
@@ -158,7 +161,7 @@
         .faq-list .a {
             margin-top: 5px;
             font-size: 14px;
-            color: #b3bdc9;
+            color: var(--soft-text);
             padding-left: 14px;
             border-left: 3px solid var(--border);
         }
@@ -192,9 +195,29 @@
         @media (max-width: 420px) {
             .qq-list { grid-template-columns: 1fr; }
         }
-    </style>
+    
+  /* ===== 日间（浅色）令牌 ===== */
+  :root[data-theme="light"]{
+    --bg:#f6f4ef; --panel:#ffffff; --panel2:#f1eee7; --border:#ddd6c8;
+    --text:#2b2720; --muted:#7c7568; --accent:#9a7b3f;
+    --accent-soft:rgba(154,123,63,.12);
+    --card-shadow:rgba(0,0,0,.10); --soft-text:#5d5647; --btn-shadow:rgba(0,0,0,.12);
+  }
+
+  /* ===== 日/夜切换按钮 ===== */
+  .theme-btn{position:fixed;top:14px;right:14px;z-index:99;width:36px;height:36px;border-radius:50%;
+    border:1px solid var(--border);background:var(--panel);color:var(--text);font-size:15px;line-height:1;
+    cursor:pointer;box-shadow:0 2px 10px var(--btn-shadow,rgba(0,0,0,.3));}
+  .theme-btn:hover{border-color:var(--accent);}
+</style>
+<script>
+(function(){var t=null;try{t=localStorage.getItem('site-theme')}catch(e){}
+if(t!=='light'&&t!=='dark'){t=window.matchMedia&&matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'}
+document.documentElement.setAttribute('data-theme',t)})();
+</script>
 </head>
 <body>
+<button id="themeBtn" class="theme-btn" type="button" aria-label="切换日间/夜间模式" title="切换日间/夜间模式">☀️</button>
 <div class="wrap">
 
     <header class="site-header">
@@ -262,7 +285,6 @@
     <section class="section">
         <h2 class="section-h">常用工具</h2>
         <ul class="tool-list">
-            <li><strong>📜 编辑器汉化补丁</strong> – 适用于最新版本魔兽地图编辑器的纯净汉化补丁。<a href="hhbd.html">查看详情 →</a></li>
             <li><strong>📦 Ladik's Casc Viewer</strong> – 支持所有 CASC 存储暴雪游戏（版本 1.30+）的文件浏览与提取，有汉化版本。</li>
             <li><strong>📦 MPQEditor</strong> – 经典 MPQ 数据提取工具（支持 1.30- 版本），也可以拆解地图文件，不分版本。</li>
             <li><strong>🗿 Retera's Model Studio</strong> – 魔兽争霸 3 模型编辑工具，有很多好用的脚本，支持经典 / 高清模型。</li>
@@ -289,28 +311,20 @@
         <h2 class="section-h">常见问题</h2>
         <ul class="faq-list">
             <li>
-                <div class="q">📌 如何获取重制版？</div>
-                <div class="a">建议在国际服购买正版游戏。访问 battle.net 下载暴雪战网桌面程序，注册国际服账号，居住地选择香港免填手机号。重制版标准包定价 29.9 美元（约 200 元人民币），节假日 5 折。<a href="how-to-buy.html">查看完整指引 →</a></div>
-            </li>
-            <li>
                 <div class="q">📌 如何获取破解的重制版？</div>
-                <div class="a">本站不传播盗版资源，请支持正版游戏，尊重创作者劳动，感谢理解。</div>
+                <div class="a">本站不传播盗版资源。请支持正版游戏，尊重创作者劳动成果，感谢理解。</div>
             </li>
             <li>
                 <div class="q">📌 重制版有 YDWE 可以用吗？</div>
-                <div class="a">YDWE 仅适用于游戏 1.27a 版本，不适用于重制版，请使用原生编辑器 + 纯净汉化。</div>
+                <div class="a">YDWE 仅适用于游戏 1.27a 版本，不适用于重制版。请使用原生编辑器 + 纯净汉化。</div>
             </li>
             <li>
                 <div class="q">📌 网易启动器（World Editor 启动器）可用吗？</div>
-                <div class="a">该启动器仅用于兼容打开老地图，已无人维护，不建议作为主力作图工具。</div>
-            </li>
-            <li>
-                <div class="q">📌 触发器打开都是英文，如何汉化？</div>
-                <div class="a">重制版作图交流群群文件 → 工具 → 编辑器汉化补丁，提供最新纯净汉化，满足作图需求。<a href="hhbd.html">查看详情 →</a></div>
+                <div class="a">该启动器仅用于兼容打开老地图，已无人维护，不建议作为主要作图工具。</div>
             </li>
             <li>
                 <div class="q">📌 修改官方地图/战役后游戏内文本不显示？</div>
-                <div class="a">重制版官方地图使用带地区标识的 wts 文件实现文本翻译。可在素材（导入）管理器里找到这些 wts 文件。物编修改的粉字文本在 wts 里没有对应翻译，所以不会显示。若地图面向全球玩家，应在地图里写英文并在 wts 文件里写对应翻译；若仅面向简中玩家，在素材管理器删除所有 wts 文件，直接在地图写中文即可。修改官方战役请参考重制版作图交流群 - 群文件 - 常见问题 -「重制版修改官方战役的两个技巧」。</div>
+                <div class="a">重制版官方地图使用带地区标识的 wts 文件实现文本翻译。<br>物编修改的粉字文本在 wts 文件里没有对应翻译，所以不会显示。<br>可在素材（导入）管理器里找到这些 wts 文件。<br>若地图面向全球玩家，应在地图里写英文并在 wts 文件里写对应翻译；<br>若仅面向简中玩家，在素材管理器删除所有 wts 文件，直接在地图写中文即可。<br>修改官方战役请参考重制版作图交流群 - 群文件 - 常见问题 -「重制版修改官方战役的两个技巧」。</div>
             </li>
         </ul>
         <div class="tip">🧙 小提示：更多问题请加重制版作图交流群 632204669。</div>
@@ -322,5 +336,12 @@
     </div>
 
 </div>
+<script>
+(function(){var d=document,b=d.getElementById('themeBtn');
+function icon(){b.textContent=d.documentElement.getAttribute('data-theme')==='light'?'🌙':'☀️'}
+b.addEventListener('click',function(){var t=d.documentElement.getAttribute('data-theme')==='light'?'dark':'light';
+d.documentElement.setAttribute('data-theme',t);try{localStorage.setItem('site-theme',t)}catch(e){}icon()});
+icon()})();
+</script>
 </body>
 </html>

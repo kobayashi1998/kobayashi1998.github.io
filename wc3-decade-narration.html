@@ -10,6 +10,12 @@
     --bg:#0d1117; --panel:#161b22; --panel2:#1c2129; --border:#2d333b;
     --text:#e6edf3; --muted:#9aa4b2; --accent:#e3b341; --accent2:#4a9eff;
     --green:#3fb950; --red:#f85149; --purple:#bc8cff; --era:#7ee787;
+    --accent-rgb:227,179,65; --accent2-rgb:74,158,255;
+    --code:#ffd479; --accent-bright:#f0d9a0; --btn-shadow:rgba(0,0,0,.35);
+    --strong:#ffffff;
+    --os:#79c0ff; --os-bg:rgba(56,139,253,.15); --os-bd:rgba(56,139,253,.4);
+    --cn:#ff9492; --cn-bg:rgba(248,81,73,.15); --cn-bd:rgba(248,81,73,.4);
+    --os-dot:#4a9eff; --cn-dot:#f85149;
   }
   *{box-sizing:border-box;}
   body{margin:0;background:var(--bg);color:var(--text);
@@ -17,7 +23,7 @@
     line-height:1.8;font-size:15px;}
   .sheet{max-width:920px;margin:0 auto;padding:44px 28px 80px;}
   header{border-bottom:1px solid var(--border);padding-bottom:22px;margin-bottom:30px;}
-  h1{font-size:26px;line-height:1.5;margin:0 0 6px;letter-spacing:.5px;color:#fff;}
+  h1{font-size:26px;line-height:1.5;margin:0 0 6px;letter-spacing:.5px;color:var(--strong);}
   .meta{margin-top:14px;font-size:13px;color:var(--muted);}
   .meta span{display:inline-block;background:var(--panel2);border:1px solid var(--border);
     border-radius:20px;padding:2px 12px;margin:6px 6px 0 0;color:var(--muted);}
@@ -27,11 +33,11 @@
     border:1px solid var(--border);background:var(--panel2);border-radius:20px;padding:3px 13px;
     transition:color .15s,border-color .15s;}
   .back a:hover{color:var(--accent);border-color:var(--accent);}
-  .howto{background:linear-gradient(90deg,rgba(227,179,65,.12),transparent);
-    border:1px solid rgba(227,179,65,.35);border-radius:8px;
-    padding:14px 18px;font-size:14px;color:#f0d9a0;margin:22px 0 34px;}
+  .howto{background:linear-gradient(90deg,rgba(var(--accent-rgb),.12),transparent);
+    border:1px solid rgba(var(--accent-rgb),.35);border-radius:8px;
+    padding:14px 18px;font-size:14px;color:var(--accent-bright);margin:22px 0 34px;}
   .howto b{color:var(--accent);}
-  .legend{margin-top:10px;padding-top:9px;border-top:1px dashed rgba(227,179,65,.25);
+  .legend{margin-top:10px;padding-top:9px;border-top:1px dashed rgba(var(--accent-rgb),.25);
     font-size:13px;color:var(--muted);}
   .legend > span{display:inline-block;margin-right:18px;white-space:nowrap;}
   h2{font-size:20px;margin:46px 0 14px;padding-left:12px;border-left:4px solid var(--accent);}
@@ -51,44 +57,66 @@
   .tag{display:inline-block;font-size:11.5px;font-weight:700;letter-spacing:.3px;line-height:1.6;
     border-radius:20px;padding:1px 9px;margin-right:9px;vertical-align:1.5px;white-space:nowrap;
     border:1px solid;}
-  .tag-os{color:#79c0ff;background:rgba(56,139,253,.15);border-color:rgba(56,139,253,.4);}
-  .tag-cn{color:#ff9492;background:rgba(248,81,73,.15);border-color:rgba(248,81,73,.4);}
-  .tag-both{color:#e3b341;background:rgba(227,179,65,.15);border-color:rgba(227,179,65,.4);}
+  .tag-os{color:var(--os);background:var(--os-bg);border-color:var(--os-bd);}
+  .tag-cn{color:var(--cn);background:var(--cn-bg);border-color:var(--cn-bd);}
+  .tag-both{color:var(--accent);background:rgba(var(--accent-rgb),.15);border-color:rgba(var(--accent-rgb),.4);}
   td .tag{margin-right:8px;}
+
+  /* ===== 阶段索引 ===== */
+  .toc{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:16px 20px;margin:22px 0;}
+  .toc b{display:block;margin-bottom:10px;}
+  .toc ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:2px;}
+  .toc li{padding:7px 0;font-size:14px;display:flex;align-items:baseline;gap:12px;border-bottom:1px solid var(--border);}
+  .toc li:last-child{border-bottom:none;}
+  .toc li .tm{color:var(--accent);font-weight:600;font-variant-numeric:tabular-nums;flex:none;min-width:116px;}
+  .toc a{color:var(--accent2);text-decoration:none;}
+  .toc a:hover{text-decoration:underline;}
 
   /* ===== 横向时间轴（按时间等比铺开） ===== */
   .htl-wrap{margin:28px 0;}
   .htl{position:relative;}
-  .htl-band{position:absolute;top:0;bottom:0;background:rgba(227,179,65,.04);
-    border-left:1px solid rgba(227,179,65,.15);}
+  .htl-band{position:absolute;top:0;bottom:0;background:rgba(var(--accent-rgb),.04);
+    border-left:1px solid rgba(var(--accent-rgb),.15);}
   .htl-band span{position:absolute;top:1px;left:8px;font-size:10.5px;color:var(--muted);
-    letter-spacing:.5px;white-space:nowrap;}
+    letter-spacing:.5px;white-space:nowrap;background:var(--bg);padding:0 6px;border-radius:8px;}
   .htl-axis{position:absolute;left:7%;right:7%;height:2px;border-radius:2px;
-    background:linear-gradient(90deg,rgba(227,179,65,.5),rgba(74,158,255,.45));}
+    background:linear-gradient(90deg,rgba(var(--accent-rgb),0),rgba(var(--accent-rgb),.55) 5%,rgba(var(--accent-rgb),.55) 95%,rgba(var(--accent-rgb),0));}
   .htl-tick{position:absolute;transform:translateX(-50%);text-align:center;}
-  .htl-tick i{display:block;width:1px;height:7px;margin:0 auto;background:var(--border);}
+  .htl-tick i{display:block;width:1px;height:9px;margin:0 auto;background:var(--muted);opacity:.55;}
   .htl-tick span{display:block;font-size:10.5px;color:var(--muted);margin-top:2px;
     font-variant-numeric:tabular-nums;}
-  .htl-conn{position:absolute;width:1px;margin-left:-.5px;background:var(--border);z-index:1;}
+  .htl-conn{position:absolute;width:0;border-left:1px dashed var(--border);margin-left:-.5px;z-index:1;}
   .htl-ev{position:absolute;height:0;transform:translateX(-50%);z-index:3;width:11.5%;--dot:var(--accent);}
-  .htl-ev.os{--dot:#4a9eff;}
-  .htl-ev.cn{--dot:#f85149;}
-  .htl-ev.both{--dot:#e3b341;}
+  .htl-ev.os{--dot:var(--os-dot);}
+  .htl-ev.cn{--dot:var(--cn-dot);}
+  .htl-ev.both{--dot:var(--accent);}
   .htl-ev .dot{position:absolute;left:50%;top:0;width:9px;height:9px;margin:-4.5px 0 0 -4.5px;
     border-radius:50%;background:var(--bg);border:2px solid var(--dot);}
-  .htl-ev.mile .dot{background:var(--dot);box-shadow:0 0 0 3px rgba(227,179,65,.16);}
+  .htl-ev.mile .dot{background:var(--dot);box-shadow:0 0 0 3px rgba(var(--accent-rgb),.16);}
   .htl-ev .card{position:absolute;left:0;width:100%;box-sizing:border-box;text-align:center;
-    background:var(--panel2);border:1px solid var(--border);border-radius:7px;padding:4px 5px;
-    font-size:10px;line-height:1.4;}
-  .htl-ev .card .tag{display:inline-block;font-size:9.5px;line-height:14px;padding:0 6px;
-    margin:0 0 1px;vertical-align:0;}
-  .htl-ev .card .ct{display:block;font-weight:700;color:#fff;}
-  .htl-ev .card .cs{display:block;color:var(--muted);}
+    background:var(--panel2);border:1px solid var(--border);border-radius:8px;padding:4px 5px;
+    font-size:10px;line-height:1.4;box-shadow:0 1px 5px var(--btn-shadow);
+    transition:border-color .15s ease,box-shadow .15s ease;}
+  .htl-ev .card:hover{border-color:var(--accent);box-shadow:0 3px 10px var(--btn-shadow);}
+  /* 卡片整体按归属着色（不再显示标签） */
+  .htl-ev.os .card{background:var(--os-bg);border-color:var(--os-bd);}
+  .htl-ev.cn .card{background:var(--cn-bg);border-color:var(--cn-bd);}
+  .htl-ev.os .card .ct{color:var(--os);}
+  .htl-ev.cn .card .ct{color:var(--cn);}
+  .htl-ev.os .card:hover{border-color:var(--os);}
+  .htl-ev.cn .card:hover{border-color:var(--cn);}
+  /* 卡片可点击跳转到对应阶段 */
+  .htl-ev .card-a{display:block;text-decoration:none;color:inherit;cursor:pointer;}
+  .htl-ev .card-a:focus-visible .card{outline:2px solid var(--accent);outline-offset:2px;}
+  .htl-ev .card .ct{display:block;font-weight:700;color:var(--strong);}
+  .htl-ev .card .cs{display:block;color:var(--muted);font-size:9.5px;
+    max-width:8.4em;margin:0 auto;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+    letter-spacing:0;}
   .htl-note{font-size:12.5px;color:var(--muted);margin:14px 0 0;}
   .kbd{background:var(--bg);border:1px solid var(--border);border-radius:4px;padding:0 5px;
-    font-size:13px;font-family:Consolas,Menlo,monospace;color:#ffd479;}
+    font-size:13px;font-family:Consolas,Menlo,monospace;color:var(--code);}
   .quote{background:var(--panel);border-left:4px solid var(--accent);border-radius:0 8px 8px 0;
-    padding:12px 18px;margin:18px 0;font-size:15px;color:#c9d1d9;}
+    padding:12px 18px;margin:18px 0;font-size:15px;color:var(--strong);}
   .quote .src{display:block;margin-top:6px;font-size:13px;color:var(--muted);font-style:italic;}
   h2.end{border-bottom:none;}
   table{width:100%;border-collapse:collapse;margin:16px 0;font-size:13.5px;}
@@ -108,9 +136,33 @@
     h2{page-break-after:avoid;}
     .cue,.vo,.quote{page-break-inside:avoid;}
   }
+
+  /* ===== 日间（浅色）令牌 ===== */
+  :root[data-theme="light"]{
+    --bg:#f6f4ef; --panel:#ffffff; --panel2:#f1eee7; --border:#ddd6c8;
+    --text:#2b2720; --muted:#7c7568; --accent:#9a7b3f; --accent2:#2f6fb0;
+    --green:#1a7f37; --red:#c93c37; --purple:#8957e5; --era:#2f7d46;
+    --accent-rgb:154,123,63; --accent2-rgb:47,111,176; --code:#8a6d1f; --btn-shadow:rgba(0,0,0,.12);
+    --strong:#1f1b15;
+    --os:#2f6fb0; --os-bg:rgba(47,111,176,.12); --os-bd:rgba(47,111,176,.38);
+    --cn:#c93c37; --cn-bg:rgba(201,60,55,.12); --cn-bd:rgba(201,60,55,.38);
+    --os-dot:#2f6fb0; --cn-dot:#c93c37;--accent-bright:#8a6d1f; 
+  }
+
+  /* ===== 日/夜切换按钮 ===== */
+  .theme-btn{position:fixed;top:14px;right:14px;z-index:99;width:36px;height:36px;border-radius:50%;
+    border:1px solid var(--border);background:var(--panel);color:var(--text);font-size:15px;line-height:1;
+    cursor:pointer;box-shadow:0 2px 10px var(--btn-shadow,rgba(0,0,0,.3));}
+  .theme-btn:hover{border-color:var(--accent);}
 </style>
+<script>
+(function(){var t=null;try{t=localStorage.getItem('site-theme')}catch(e){}
+if(t!=='light'&&t!=='dark'){t=window.matchMedia&&matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'}
+document.documentElement.setAttribute('data-theme',t)})();
+</script>
 </head>
 <body>
+<button id="themeBtn" class="theme-btn" type="button" aria-label="切换日间/夜间模式" title="切换日间/夜间模式">☀️</button>
 <div class="sheet">
 
 <div class="back"><a href="index.html">← 返回主页</a></div>
@@ -149,7 +201,7 @@
 <!-- ================= 速览时间轴 ================= -->
 <h2><span class="act">速览</span>外部大事件时间轴</h2>
 
-<p class="htl-note">轴线以上为海外（暴雪 / 微软）事件，轴线以下为国内（网易 / 国服 / 国内平台）事件；圆点颜色与卡片标签同样区分归属。</p>
+<p class="htl-note">轴线以上为海外（暴雪 / 动视 / 微软）事件，轴线以下为国内（网易 / 国服 / 国内平台）事件；卡片底色与圆点颜色同样区分归属。</p>
 
 <div class="htl-wrap">
 <div class="htl" style="height:484px">
@@ -182,37 +234,54 @@
   <div class="htl-conn" style="left:48.67%;top:266px;height:92px"></div>
   <div class="htl-conn" style="left:58.45%;top:252px;height:14px"></div>
   <div class="htl-conn" style="left:61.37%;top:266px;height:34px"></div>
+  <div class="htl-conn" style="left:62.14%;top:194px;height:72px"></div>
   <div class="htl-conn" style="left:62.22%;top:266px;height:92px"></div>
-  <div class="htl-conn" style="left:67.83%;top:194px;height:72px"></div>
+  <div class="htl-conn" style="left:67.83%;top:136px;height:130px"></div>
   <div class="htl-conn" style="left:71.68%;top:266px;height:150px"></div>
   <div class="htl-conn" style="left:76.33%;top:252px;height:14px"></div>
   <div class="htl-conn" style="left:90.62%;top:252px;height:14px"></div>
   <div class="htl-conn" style="left:90.71%;top:266px;height:34px"></div>
-  <div class="htl-ev up os mile" style="left:8.58%;top:266px"><span class="dot"></span><span class="card" style="bottom:14px"><span class="tag tag-os">海外</span><span class="ct">重启更新</span><span class="cs">1.27a/b · 上限 128MB</span></span></div>
-  <div class="htl-ev down cn" style="left:9.59%;top:266px"><span class="dot"></span><span class="card" style="top:34px"><span class="tag tag-cn">国内</span><span class="ct">平台起步</span><span class="cs">RPG 大厅 · 百万基金</span></span></div>
-  <div class="htl-ev down cn" style="left:23.95%;top:266px"><span class="dot"></span><span class="card" style="top:34px"><span class="tag tag-cn">国内</span><span class="ct">开发者大会</span><span class="cs">开放四条 API</span></span></div>
-  <div class="htl-ev up os mile" style="left:29.17%;top:266px"><span class="dot"></span><span class="card" style="bottom:14px"><span class="tag tag-os">海外</span><span class="ct">公布重制版</span><span class="cs">暴雪嘉年华</span></span></div>
-  <div class="htl-ev down cn" style="left:30.69%;top:266px"><span class="dot"></span><span class="card" style="top:92px"><span class="tag tag-cn">国内</span><span class="ct">预购</span><span class="cs">国服 168 元 · 258 元</span></span></div>
-  <div class="htl-ev down cn" style="left:32.19%;top:266px"><span class="dot"></span><span class="card" style="top:150px"><span class="tag tag-cn">国内</span><span class="ct">南京大会</span><span class="cs">作者 8000+ · 收入 1 亿</span></span></div>
-  <div class="htl-ev up os" style="left:36.90%;top:266px"><span class="dot"></span><span class="card" style="bottom:72px"><span class="tag tag-os">海外</span><span class="ct">全球 BETA</span><span class="cs">多人测试开启</span></span></div>
-  <div class="htl-ev up os" style="left:37.22%;top:266px"><span class="dot"></span><span class="card" style="bottom:130px"><span class="tag tag-os">海外</span><span class="ct">艺术总监离职</span><span class="cs">Sousa · 18 年生涯</span></span></div>
-  <div class="htl-ev down cn" style="left:37.24%;top:266px"><span class="dot"></span><span class="card" style="top:34px"><span class="tag tag-cn">国内</span><span class="ct">国服同步 BETA</span><span class="cs">测试资格 · 三族对战</span></span></div>
-  <div class="htl-ev up os mile" style="left:38.93%;top:266px"><span class="dot"></span><span class="card" style="bottom:188px"><span class="tag tag-os">海外</span><span class="ct">发售与差评</span><span class="cs">Metacritic 0.5 分</span></span></div>
-  <div class="htl-ev up os" style="left:43.49%;top:266px"><span class="dot"></span><span class="card" style="bottom:14px"><span class="tag tag-os">海外</span><span class="ct">团队解散重组</span><span class="cs">发售约八个月后</span></span></div>
-  <div class="htl-ev down cn" style="left:48.67%;top:266px"><span class="dot"></span><span class="card" style="top:92px"><span class="tag tag-cn">国内</span><span class="ct">国服大厅关闭</span><span class="cs">需求转向三方平台</span></span></div>
-  <div class="htl-ev up os" style="left:58.45%;top:266px"><span class="dot"></span><span class="card" style="bottom:14px"><span class="tag tag-os">海外</span><span class="ct">划归魔兽团队</span><span class="cs">Holly Longdale</span></span></div>
-  <div class="htl-ev down cn" style="left:61.37%;top:266px"><span class="dot"></span><span class="card" style="top:34px"><span class="tag tag-cn">国内</span><span class="ct">平台接力</span><span class="cs">网易 → UP → KK</span></span></div>
-  <div class="htl-ev down cn mile" style="left:62.22%;top:266px"><span class="dot"></span><span class="card" style="top:92px"><span class="tag tag-cn">国内</span><span class="ct">国服停运</span><span class="cs">代理协议到期</span></span></div>
-  <div class="htl-ev up os" style="left:67.83%;top:266px"><span class="dot"></span><span class="card" style="bottom:72px"><span class="tag tag-os">海外</span><span class="ct">微软收购</span><span class="cs">约 687 亿美元</span></span></div>
-  <div class="htl-ev down cn mile" style="left:71.68%;top:266px"><span class="dot"></span><span class="card" style="top:150px"><span class="tag tag-cn">国内</span><span class="ct">官宣复合</span><span class="cs">夏季起分批回归</span></span></div>
-  <div class="htl-ev up os mile" style="left:76.33%;top:266px"><span class="dot"></span><span class="card" style="bottom:14px"><span class="tag tag-os">海外</span><span class="ct">30 周年 2.0</span><span class="cs">经典高清 · 插件</span></span></div>
-  <div class="htl-ev up os mile" style="left:90.62%;top:266px"><span class="dot"></span><span class="card" style="bottom:14px"><span class="tag tag-os">海外</span><span class="ct">3.0 上线</span><span class="cs">决定版 · 新英雄</span></span></div>
-  <div class="htl-ev down cn" style="left:90.71%;top:266px"><span class="dot"></span><span class="card" style="top:34px"><span class="tag tag-cn">国内</span><span class="ct">KK 适配 3.0</span><span class="cs">开放 PVP 对战</span></span></div>
+  <div class="htl-ev up os mile" style="left:8.58%;top:266px"><span class="dot"></span><a class="card-a" href="#s2016"><span class="card" style="bottom:14px"><span class="ct">重启更新</span><span class="cs">1.27a/b</span></span></a></div>
+  <div class="htl-ev down cn" style="left:9.59%;top:266px"><span class="dot"></span><a class="card-a" href="#s2016"><span class="card" style="top:34px"><span class="ct">平台起步</span><span class="cs">RPG 大厅</span></span></a></div>
+  <div class="htl-ev down cn" style="left:23.95%;top:266px"><span class="dot"></span><a class="card-a" href="#s2018"><span class="card" style="top:34px"><span class="ct">开发者大会</span><span class="cs">开放四条 API</span></span></a></div>
+  <div class="htl-ev up os mile" style="left:29.17%;top:266px"><span class="dot"></span><a class="card-a" href="#s2018"><span class="card" style="bottom:14px"><span class="ct">公布重制版</span><span class="cs">暴雪嘉年华</span></span></a></div>
+  <div class="htl-ev down cn" style="left:30.69%;top:266px"><span class="dot"></span><a class="card-a" href="#s2019"><span class="card" style="top:92px"><span class="ct">预购</span><span class="cs">168/258 元</span></span></a></div>
+  <div class="htl-ev down cn" style="left:32.19%;top:266px"><span class="dot"></span><a class="card-a" href="#s2019"><span class="card" style="top:150px"><span class="ct">南京大会</span><span class="cs">8000+ 作者</span></span></a></div>
+  <div class="htl-ev up os" style="left:36.90%;top:266px"><span class="dot"></span><a class="card-a" href="#s2019"><span class="card" style="bottom:72px"><span class="ct">全球 BETA</span><span class="cs">多人测试开启</span></span></a></div>
+  <div class="htl-ev up os" style="left:37.22%;top:266px"><span class="dot"></span><a class="card-a" href="#s2019"><span class="card" style="bottom:130px"><span class="ct">艺术总监离职</span><span class="cs">Sousa</span></span></a></div>
+  <div class="htl-ev down cn" style="left:37.24%;top:266px"><span class="dot"></span><a class="card-a" href="#s2019"><span class="card" style="top:34px"><span class="ct">国服同步 BETA</span><span class="cs">三族对战</span></span></a></div>
+  <div class="htl-ev up os mile" style="left:38.93%;top:266px"><span class="dot"></span><a class="card-a" href="#s2020"><span class="card" style="bottom:188px"><span class="ct">发售与差评</span><span class="cs">Metacritic 0.5</span></span></a></div>
+  <div class="htl-ev up os" style="left:43.49%;top:266px"><span class="dot"></span><a class="card-a" href="#s2020"><span class="card" style="bottom:14px"><span class="ct">团队解散重组</span><span class="cs">发售约八个月后</span></span></a></div>
+  <div class="htl-ev down cn" style="left:48.67%;top:266px"><span class="dot"></span><a class="card-a" href="#s2021"><span class="card" style="top:92px"><span class="ct">国服大厅关闭</span><span class="cs">需求转向三方平台</span></span></a></div>
+  <div class="htl-ev up os" style="left:58.45%;top:266px"><span class="dot"></span><a class="card-a" href="#s2021"><span class="card" style="bottom:14px"><span class="ct">划归魔兽团队</span><span class="cs">Holly Longdale</span></span></a></div>
+  <div class="htl-ev down cn" style="left:61.37%;top:266px"><span class="dot"></span><a class="card-a" href="#s2021"><span class="card" style="top:34px"><span class="ct">平台接力</span><span class="cs">网易 → UP → KK</span></span></a></div>
+  <div class="htl-ev up os" style="left:62.14%;top:266px"><span class="dot"></span><a class="card-a" href="#s2023"><span class="card" style="bottom:72px"><span class="ct">软重启调查</span><span class="cs">评估 relaunch</span></span></a></div>
+  <div class="htl-ev down cn mile" style="left:62.22%;top:266px"><span class="dot"></span><a class="card-a" href="#s2023"><span class="card" style="top:92px"><span class="ct">国服停运</span><span class="cs">代理协议到期</span></span></a></div>
+  <div class="htl-ev up os" style="left:67.83%;top:266px"><span class="dot"></span><a class="card-a" href="#s2023"><span class="card" style="bottom:130px"><span class="ct">微软收购</span><span class="cs">约 687 亿美元</span></span></a></div>
+  <div class="htl-ev down cn mile" style="left:71.68%;top:266px"><span class="dot"></span><a class="card-a" href="#s2024"><span class="card" style="top:150px"><span class="ct">官宣复合</span><span class="cs">夏季起分批回归</span></span></a></div>
+  <div class="htl-ev up os mile" style="left:76.33%;top:266px"><span class="dot"></span><a class="card-a" href="#s2024"><span class="card" style="bottom:14px"><span class="ct">30 周年 2.0</span><span class="cs">经典高清 · 插件</span></span></a></div>
+  <div class="htl-ev up os mile" style="left:90.62%;top:266px"><span class="dot"></span><a class="card-a" href="#s2025"><span class="card" style="bottom:14px"><span class="ct">3.0 上线</span><span class="cs">决定版 · 新英雄</span></span></a></div>
+  <div class="htl-ev down cn" style="left:90.71%;top:266px"><span class="dot"></span><a class="card-a" href="#s2025"><span class="card" style="top:34px"><span class="ct">KK 适配 3.0</span><span class="cs">开放 PVP 对战</span></span></a></div>
 </div>
 </div>
 
+<!-- ================= 阶段索引 ================= -->
+<div class="toc">
+  <b style="color:var(--strong);">年份阶段索引（点击跳转）</b>
+  <ul>
+    <li><span class="tm">2016–2017</span><a href="#s2016">更新重启与国内平台起步</a></li>
+    <li><span class="tm">2018</span><a href="#s2018">开发者大会与重制版公布</a></li>
+    <li><span class="tm">2019</span><a href="#s2019">预购、测试与承诺调整</a></li>
+    <li><span class="tm">2020</span><a href="#s2020">发售、反馈与团队调整</a></li>
+    <li><span class="tm">2021–2022</span><a href="#s2021">空窗期、国服调整与项目移交</a></li>
+    <li><span class="tm">2023</span><a href="#s2023">代理关系终止、平台交接与收购完成</a></li>
+    <li><span class="tm">2024</span><a href="#s2024">国服恢复与魔兽 30 周年</a></li>
+    <li><span class="tm">2025–2026</span><a href="#s2025">后续版本的外部背景</a></li>
+  </ul>
+</div>
+
 <!-- ================= 2016–2017 ================= -->
-<h2><span class="act">一 · 2016–2017</span>更新重启与国内平台起步</h2>
+<h2 id="s2016"><span class="act">2016–2017</span>更新重启与国内平台起步</h2>
 
 <div class="cue"><b>报告节点：</b>1.27（2016，2011 年以来首个补丁）、1.28（2017，小修补丁系列）</div>
 
@@ -226,7 +295,7 @@
 <span class="tag tag-os">海外</span><span class="t">2017 年 4 月</span>，1.28 发布，为小修补丁系列，主要涉及显示模式与存档权限调整。
 </div>
 <!-- ================= 2018 ================= -->
-<h2><span class="act">二 · 2018</span>开发者大会与重制版公布</h2>
+<h2 id="s2018"><span class="act">2018</span>开发者大会与重制版公布</h2>
 
 <div class="cue"><b>报告节点：</b>1.29（宽屏 / 24 人 / 编辑器扩容）、1.30（CASC 迁移）</div>
 
@@ -247,7 +316,7 @@
 </div>
 
 <!-- ================= 2019 ================= -->
-<h2><span class="act">三 · 2019</span>预购、测试与承诺调整</h2>
+<h2 id="s2019"><span class="act">2019</span>预购、测试与承诺调整</h2>
 
 <div class="cue"><b>报告节点：</b>1.31（D3D11 / 64 位 / Lua 编辑器）</div>
 
@@ -277,7 +346,7 @@
 </div>
 
 <!-- ================= 2020 ================= -->
-<h2><span class="act">四 · 2020</span>发售、反馈与团队调整</h2>
+<h2 id="s2020"><span class="act">2020</span>发售、反馈与团队调整</h2>
 
 <div class="cue"><b>报告节点：</b>1.32（重制版上线，含 1.32.1–1.32.10 修复期）</div>
 
@@ -307,7 +376,7 @@
 </div>
 
 <!-- ================= 2021–2022 ================= -->
-<h2><span class="act">五 · 2021–2022</span>空窗期、国服调整与项目移交</h2>
+<h2 id="s2021"><span class="act">2021–2022</span>空窗期、国服调整与项目移交</h2>
 
 <div class="cue"><b>报告节点：</b>1.33（排名系统 / 玩家档案 / 排行榜，2022-08）、1.34（战队回归，2022-12）</div>
 
@@ -328,10 +397,13 @@
 </div>
 
 <!-- ================= 2023 ================= -->
-<h2><span class="act">六 · 2023</span>代理关系终止、平台交接与收购完成</h2>
+<h2 id="s2023"><span class="act">2023</span>代理关系终止、平台交接与收购完成</h2>
 
 <div class="cue"><b>报告节点：</b>1.35 自定义战役（2023-01）、1.36 观战者模式 / 锦标赛（2023-05）、1.36.1 回滚（2023-11）</div>
 
+<div class="vo os">
+<span class="tag tag-os">海外</span><span class="t">2023 年 1 月</span>，暴雪向部分玩家发送用户调查问卷，内容围绕《魔兽争霸III：重制版》的游玩情况与改进期望：问卷先询问受访者是否拥有该作、最近是否游玩，再分别向玩过与没玩过的人群了解流失原因，并列出一系列潜在改进方向（界面大修、战役改进、回归原版艺术风格等）。海外媒体将问卷解读为暴雪正在评估对该作进行「软性重启」（soft reboot / relaunch）的可能；暴雪官方未就此事作过公开说明。
+</div>
 <div class="vo cn">
 <span class="tag tag-cn">国内</span><span class="t">2023 年 1 月 23 日</span>，暴雪与网易的代理协议到期。1 月 24 日 0 时起，由网之易代理的《魔兽争霸III：重制版》及其他暴雪游戏在中国大陆市场终止运营，战网登录与游戏服务器关闭，客户端下载同步停止。这一事件在国内被称为「国服分手」。
 </div>
@@ -345,7 +417,7 @@
 <span class="tag tag-os">海外</span><span class="t">2023 年 10 月 13 日</span>，英国竞争与市场管理局批准后，微软完成对动视暴雪的收购，交易金额约 687 亿美元。魔兽争霸系列 IP 随之归入微软。
 </div>
 <!-- ================= 2024 ================= -->
-<h2><span class="act">七 · 2024</span>国服恢复与魔兽 30 周年</h2>
+<h2 id="s2024"><span class="act">2024</span>国服恢复与魔兽 30 周年</h2>
 
 <div class="cue"><b>报告节点：</b>2.0.0 经典高清 / TFT 主题 / 战役英雄皮肤（2024-11-13）</div>
 
@@ -370,7 +442,7 @@
 </div>
 
 <!-- ================= 2025–2026 ================= -->
-<h2><span class="act">八 · 2025–2026</span>后续版本的外部背景</h2>
+<h2 id="s2025"><span class="act">2025–2026</span>后续版本的外部背景</h2>
 
 <div class="cue"><b>报告节点：</b>2.0.1–2.0.4、3.0.0（2026-09-12）、3.0.1（2026-10-07）</div>
 
@@ -493,7 +565,12 @@
   <tr>
     <td class="s">2020 秋</td>
     <td><span class="tag tag-os">海外</span> Team 1 解散重组（国内「开发组解散」传播）</td>
-    <td>Bloomberg 调查报道（Jason Schreier）、暴雪官方声明<br>表述需修正：原重制版团队于发售约 8 个月后解散；后续 Team 1 不再负责 RTS 与风暴英雄，项目移交新团队，并非整体裁撤。</td>
+    <td>Bloomberg 调查报道（Jason Schreier）、暴雪官方声明</td>
+  </tr>
+  <tr>
+    <td class="s">2021-04</td>
+    <td><span class="tag tag-os">海外</span> 1.32.10 发布，进入约一年四个月的空窗期</td>
+    <td>暴雪官方补丁说明 1.32.10</td>
   </tr>
   <tr>
     <td class="s">2021-05</td>
@@ -511,6 +588,11 @@
     <td>UP 对战平台官方公告、NGA 与机核社区记录</td>
   </tr>
   <tr>
+    <td class="s">2023-01-20</td>
+    <td><span class="tag tag-os">海外</span> 暴雪发送「软性重启」用户调查问卷</td>
+    <td>Warcraft Tavern 报道与问卷译文、TheGamer / 3DM 报道、NGA 转载（2023-01-21）</td>
+  </tr>
+  <tr>
     <td class="s">2023-01-23 / 01-24</td>
     <td><span class="tag tag-cn">国内</span> 国服停运（代理协议到期）</td>
     <td>暴雪中国与网易官方公告、新华网 / 新京报贝壳财经 / 中国经营报报道</td>
@@ -518,7 +600,7 @@
   <tr>
     <td class="s">2023-05-30</td>
     <td><span class="tag tag-cn">国内</span> UP 对战平台更名 KK 对战平台</td>
-    <td>企查查工商信息（上海锐之锋网络科技有限公司）、KK 对战平台官方公告、NGA 玩家投诉帖<br>待证：「网易皮包公司」为玩家社区说法，双方均未公开说明授权关系。</td>
+    <td>企查查工商信息（上海锐之锋网络科技有限公司）、KK 对战平台官方公告、NGA 玩家投诉帖</td>
   </tr>
   <tr>
     <td class="s">2023-10-13</td>
@@ -529,6 +611,11 @@
     <td class="s">2024-04-10</td>
     <td><span class="tag tag-cn">国内</span> 国服复合（2024 年夏季起分批回归）</td>
     <td>暴雪、微软与网易联合公告、新华网 / 中国经营报报道</td>
+  </tr>
+  <tr>
+    <td class="s">2024 上半年</td>
+    <td><span class="tag tag-cn">国内</span> KK 对战平台更名「KK 官方对战平台」，自称官方但无公开授权</td>
+    <td>KK 平台名称与页面存档、NGA 玩家社区讨论、企查查工商信息（上海锐之锋网络科技有限公司）</td>
   </tr>
   <tr>
     <td class="s">2024-08 至 2025</td>
@@ -558,11 +645,17 @@
 </table>
 
 <footer>
-  配套文档：《魔兽争霸III 十年补丁演进报告》（wc3-decade-of-patches.html）—— 本文仅涉外部环境，不重复版本内技术细节。<br>
-  归属标记：海外 = 暴雪 / 微软 / 海外社区；国内 = 网易 / 国服 / 国内平台，以及涉及国服合作的事件。标注以事件主体与发生地为准。<br>
+  配套文档：<a href="wc3-decade-of-patches.html">《魔兽争霸III 十年补丁演进报告》</a> —— 本文仅涉外部环境，不重复版本内技术细节。<br>
   来源：暴雪官方补丁说明与蓝贴、国服战网公告、网易游戏官方新闻稿、GameLook、Wowpedia / Liquipedia / Hive Workshop、PC Gamer / Ars Technica / Bloomberg、南都 N 视频 / 腾讯新闻、新华网 / 新京报贝壳财经 / 中国经营报、企查查工商信息、NGA 与机核社区资料交叉核对。
 </footer>
 
 </div>
+<script>
+(function(){var d=document,b=d.getElementById('themeBtn');
+function icon(){b.textContent=d.documentElement.getAttribute('data-theme')==='light'?'🌙':'☀️'}
+b.addEventListener('click',function(){var t=d.documentElement.getAttribute('data-theme')==='light'?'dark':'light';
+d.documentElement.setAttribute('data-theme',t);try{localStorage.setItem('site-theme',t)}catch(e){}icon()});
+icon()})();
+</script>
 </body>
 </html>
