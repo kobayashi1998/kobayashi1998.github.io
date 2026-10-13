@@ -72,6 +72,26 @@
   .toc a{color:var(--accent2);text-decoration:none;}
   .toc a:hover{text-decoration:underline;}
 
+  /* ===== 阶段索引 ===== */
+  .toc{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:16px 20px;margin:22px 0;}
+  .toc b{display:block;margin-bottom:10px;}
+  .toc ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:2px;}
+  .toc li{padding:7px 0;font-size:14px;display:flex;align-items:baseline;gap:12px;border-bottom:1px solid var(--border);}
+  .toc li:last-child{border-bottom:none;}
+  .toc li .tm{color:var(--accent);font-weight:600;font-variant-numeric:tabular-nums;flex:none;min-width:116px;}
+  .toc a{color:var(--accent2);text-decoration:none;}
+  .toc a:hover{text-decoration:underline;}
+
+  /* ===== 阶段索引 ===== */
+  .toc{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:16px 20px;margin:22px 0;}
+  .toc b{display:block;margin-bottom:10px;}
+  .toc ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:2px;}
+  .toc li{padding:7px 0;font-size:14px;display:flex;align-items:baseline;gap:12px;border-bottom:1px solid var(--border);}
+  .toc li:last-child{border-bottom:none;}
+  .toc li .tm{color:var(--accent);font-weight:600;font-variant-numeric:tabular-nums;flex:none;min-width:116px;}
+  .toc a{color:var(--accent2);text-decoration:none;}
+  .toc a:hover{text-decoration:underline;}
+
   /* ===== 横向时间轴（按时间等比铺开） ===== */
   .htl-wrap{margin:28px 0;}
   .htl{position:relative;}
@@ -240,6 +260,7 @@ document.documentElement.setAttribute('data-theme',t)})();
   <div class="htl-conn" style="left:71.68%;top:266px;height:150px"></div>
   <div class="htl-conn" style="left:76.33%;top:252px;height:14px"></div>
   <div class="htl-conn" style="left:90.62%;top:252px;height:14px"></div>
+  <div class="htl-conn" style="left:90.75%;top:194px;height:72px"></div>
   <div class="htl-conn" style="left:90.71%;top:266px;height:34px"></div>
   <div class="htl-ev up os mile" style="left:8.58%;top:266px"><span class="dot"></span><a class="card-a" href="#s2016"><span class="card" style="bottom:14px"><span class="ct">重启更新</span><span class="cs">1.27a/b</span></span></a></div>
   <div class="htl-ev down cn" style="left:9.59%;top:266px"><span class="dot"></span><a class="card-a" href="#s2016"><span class="card" style="top:34px"><span class="ct">平台起步</span><span class="cs">RPG 大厅</span></span></a></div>
@@ -261,6 +282,7 @@ document.documentElement.setAttribute('data-theme',t)})();
   <div class="htl-ev down cn mile" style="left:71.68%;top:266px"><span class="dot"></span><a class="card-a" href="#s2024"><span class="card" style="top:150px"><span class="ct">官宣复合</span><span class="cs">夏季起分批回归</span></span></a></div>
   <div class="htl-ev up os mile" style="left:76.33%;top:266px"><span class="dot"></span><a class="card-a" href="#s2024"><span class="card" style="bottom:14px"><span class="ct">30 周年 2.0</span><span class="cs">经典高清 · 插件</span></span></a></div>
   <div class="htl-ev up os mile" style="left:90.62%;top:266px"><span class="dot"></span><a class="card-a" href="#s2025"><span class="card" style="bottom:14px"><span class="ct">3.0 上线</span><span class="cs">决定版 · 新英雄</span></span></a></div>
+  <div class="htl-ev up os" style="left:90.75%;top:266px"><span class="dot"></span><a class="card-a" href="#s2025"><span class="card" style="bottom:72px"><span class="ct">W3C 适配 3.0</span><span class="cs">恢复天梯</span></span></a></div>
   <div class="htl-ev down cn" style="left:90.71%;top:266px"><span class="dot"></span><a class="card-a" href="#s2025"><span class="card" style="top:34px"><span class="ct">KK 适配 3.0</span><span class="cs">开放 PVP 对战</span></span></a></div>
 </div>
 </div>
@@ -447,20 +469,23 @@ document.documentElement.setAttribute('data-theme',t)})();
 <div class="cue"><b>报告节点：</b>2.0.1–2.0.4、3.0.0（2026-09-12）、3.0.1（2026-10-07）</div>
 
 <div class="vo os">
-<span class="tag tag-os">海外</span><span class="t">2026 年 9 月</span>，3.0.0 与付费战役《被遗忘者王国》在暴雪嘉年华同步上线，同时带来决定版画面模式与面向地图作者的 RPG 框架。该版本移除了局域网模式，离线游玩仅保留在附带经典客户端中，官方论坛出现集中反馈。
+<span class="tag tag-os">海外</span><span class="t">2026 年 9 月</span>，3.0.0 与付费战役《被遗忘者王国》在暴雪嘉年华同步上线，同时带来决定版画面模式与面向地图作者的 RPG 框架。该版本移除了局域网模式，可能影响依赖虚拟局域网联机功能的第三方平台；离线游玩仅保留在附带经典客户端中，官方论坛出现集中反馈。
 </div>
 <div class="vo cn">
 <span class="tag tag-cn">国内</span><span class="t">2026 年 9 月 16 日</span>，KK 官方对战平台完成魔兽争霸 III 重制版 3.0 的 PVP 对局适配，国内玩家可在该平台体验 3.0 的 PVP 内容；平台同期说明，战役模式与决定版画面暂未提供。
 </div>
 <div class="vo os">
-<span class="tag tag-os">海外</span>暴雪对此的公开回应包括：项目负责人 Brad Chan 表示网络基础设施不完全由项目团队掌控；艺术总监 David Auk 表示决定版中角色与地面空间感减弱的问题客观存在，成因是团队为兼顾低配置设备性能而移除了用于生成柔和接触阴影的环境光遮蔽。
+<span class="tag tag-os">海外</span><span class="t">2026 年 9 月 18 日</span>，社区天梯 W3Champions 发布 1.6.12 完成 3.0 适配，恢复天梯服务。3.0 移除了该平台依赖的底层接口且未提前通知，平台一度停摆、部分赛事延期；团队在数日内找到替代方案，并为启动器补上重制版与决定版画面切换支持，同时修复 macOS 启动问题。
+</div>
+<div class="vo os">
+<span class="tag tag-os">海外</span><span class="t">2026 年 10 月</span>，暴雪就 3.0 的争议作出公开回应：项目负责人 Brad Chan 表示网络基础设施并不完全由项目团队掌控；艺术总监 David Auk 承认决定版中角色与地面的空间感减弱，成因是团队为兼顾低配置设备性能，移除了用于生成柔和接触阴影的环境光遮蔽。
 </div>
 
 <!-- ================= 结尾 ================= -->
 <h2 class="end"><span class="act">结尾</span>两条并行的时间线</h2>
 
 <div class="vo">
-以上是报告覆盖范围之外、与版本更新同期发生的外部事件，时间跨度从 2016 年更新重启，延续至 2026 年 3.0 更新与国内平台适配。
+以上是报告覆盖范围之外、与版本更新同期发生的外部事件，时间跨度从 2016 年更新重启，延续至 2026 年 3.0 更新与国内外平台的适配。
 </div>
 <div class="vo">
 把两条线放在一起看：一条是版本号，记录了游戏本身的变化；另一条是平台、代理、团队与社区，记录了这款游戏得以继续运行的现实条件。
@@ -638,6 +663,11 @@ document.documentElement.setAttribute('data-theme',t)})();
     <td>KK 官方对战平台说明</td>
   </tr>
   <tr>
+    <td class="s">2026-09-18</td>
+    <td><span class="tag tag-os">海外</span> W3C（W3Champions）完成 3.0 适配（1.6.12）</td>
+    <td>W3Champions 官方 1.6.12 版本公告</td>
+  </tr>
+  <tr>
     <td class="s">2026-09 / 2026-10</td>
     <td><span class="tag tag-os">海外</span> 3.0.0 与 LAN 移除的公开回应</td>
     <td>暴雪官方论坛蓝贴（Brad Chan、David Auk 发言）、PC Gamer 报道</td>
@@ -646,7 +676,7 @@ document.documentElement.setAttribute('data-theme',t)})();
 
 <footer>
   配套文档：<a href="wc3-decade-of-patches.html">《魔兽争霸III 十年补丁演进报告》</a> —— 本文仅涉外部环境，不重复版本内技术细节。<br>
-  来源：暴雪官方补丁说明与蓝贴、国服战网公告、网易游戏官方新闻稿、GameLook、Wowpedia / Liquipedia / Hive Workshop、PC Gamer / Ars Technica / Bloomberg、南都 N 视频 / 腾讯新闻、新华网 / 新京报贝壳财经 / 中国经营报、企查查工商信息、NGA 与机核社区资料交叉核对。
+  来源：暴雪官方补丁说明与蓝贴、国服战网公告、网易游戏官方新闻稿、W3Champions 官方公告、GameLook、Wowpedia / Liquipedia / Hive Workshop、PC Gamer / Ars Technica / Bloomberg、南都 N 视频 / 腾讯新闻、新华网 / 新京报贝壳财经 / 中国经营报、企查查工商信息、NGA 与机核社区资料交叉核对。
 </footer>
 
 </div>

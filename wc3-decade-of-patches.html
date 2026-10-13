@@ -276,15 +276,17 @@ document.documentElement.setAttribute('data-theme',t)})();
   <div class="ver-body">
     <div class="sec d-game">游戏功能性更新</div>
     <ul>
-      <li>新增显示模式：窗口化全屏（默认）、窗口化（<code>-window</code>）、原生全屏（<code>-nativefullscr</code>）。</li>
+      <li>新增显示模式：窗口化全屏（默认）。</li>
+      <li>新增显示模式：窗口化（<code>-window</code>）、原生全屏（<code>-nativefullscr</code>）。</li>
       <li>窗口模式新增鼠标光标限制选项（仅游戏窗口内活动，菜单可解除）。</li>
       <li>数据迁移不再需以管理员身份运行即可访问游戏存档。</li>
       <li>优化安装与更新效率。</li>
     </ul>
     <div class="sec d-game">安全 / 底层变动</div>
     <ul>
-      <li><b>Return Bug 依旧可用：</b>原版「不安全的类型转换」漏洞已在 1.24a（2009）修补，但社区用绕过写法（约 3 行 → 15 行）仍可在自定义地图中执行任意代码、植入病毒。</li>
-      <li><b>文件结构迁移：</b>CD-Key 从 War3.mpq 内加密的 <code>font</code> 文件移出，改为安装目录下的独立文件 <code>roc.w3k</code> / <code>tft.w3k</code>。</li>
+      <li><b>Return Bug 依旧可用：</b>原版「不安全的类型转换」漏洞已在 1.24a（2009）修补，但社区用绕过写法仍可在自定义地图中执行任意代码。</li>
+      <li><b>文件结构迁移：</b>CD-Key 从 War3.mpq 内加密的 <code>font</code> 文件移出。</li>
+      <li><b>文件结构迁移：</b>改为安装目录下的独立文件 <code>roc.w3k</code> / <code>tft.w3k</code>。</li>
     </ul>
     <div class="sec d-ed">地图编辑器更新</div>
     <ul>
@@ -308,19 +310,19 @@ document.documentElement.setAttribute('data-theme',t)})();
     <ul>
       <li><b>真正的宽屏适配：</b>原生 16:9 宽屏支持，不再拉伸变形（界面加 bookends、菜单加黑柱防拉伸）。</li>
       <li><b>24 人游戏：</b>大厅支持最多 24 名玩家；队伍颜色扩展。</li>
-      <li><b>12 种新队伍颜色：</b>Maroon / Navy / Turquoise / Violet / Wheat / Peach / Mint / Lavender / Coal / Snow / Emerald / Peanut。</li>
+      <li><b>12 种新队伍颜色：</b>栗色 / 海军蓝 / 青绿色 / 紫罗兰 / 小麦色 / 桃色 / 薄荷色 / 薰衣草色 / 煤色 / 雪白色 / 翡翠色 / 花生色。</li>
       <li><b>官方 Streamer/Caster API：</b>可读取金币、木材、食物、APM 等观战信息（无需第三方破解）。</li>
     </ul>
     <div class="sec d-game">安全 / 底层（社区重点）</div>
     <ul>
-      <li><b>Return Bug 彻底封死：</b>1.29 起 return bug 变体完全失效，依赖它的地图需改用 hashtable natives；部分「返回 null 却声明为 string」的旧地图无法运行。</li>
+      <li><b>Return Bug 彻底封死：</b>1.29 起 return bug 变体完全失效。</li>
+      <li>依赖它的地图需改用 hashtable natives；部分「返回 null 却声明为 string」的旧地图无法运行。</li>
       <li><b>Game.dll 不再独立暴露：</b>Game.dll / Storm.dll 被合并进 Warcraft III.exe，不再以独立 DLL 形式存在于安装目录。</li>
       <li><b>War3Patch.mpq 移除：</b>补丁文件并入其他 MPQ（对战平台需改用 War3x.mpq 内的 blizzard.j / common.j）。</li>
     </ul>
     <div class="sec d-bal">平衡性机制改动</div>
     <ul>
       <li><b>剑圣暴击口径改动：</b>暴击倍率改为<b>只作用于基础攻击</b>、不再放大装备加成伤害。<b>1.31.0 改回「含全部伤害」</b>（已回调）。</li>
-      <li><b>英雄整体数值调整：</b>13 个主族英雄 + 6 个中立英雄的数值 / 技能改动。</li>
     </ul>
     <div class="sec d-ed">编辑器上限与 natives 爆发式扩容</div>
     <ul>
@@ -333,7 +335,8 @@ document.documentElement.setAttribute('data-theme',t)})();
     <ul>
       <li>战队可重新创建；Mac 客户端可启动；韩语区启动；多处缺失贴图定位；默认分辨率不再异常。</li>
       <li><b>系统支持（官方注明）：1.29 为最后一个支持 Windows XP 的版本</b>，此后补丁不再支持 XP。</li>
-      <li>已知问题：原生全屏无法改分辨率、部分 natives 改名 / 暂时停用（<code>Set/GetAbilityOnXXXX</code>、<code>SetUnitNameAll</code>、<code>PlaySpecialEffect</code> 等）。</li>
+      <li>已知问题：原生全屏无法改分辨率。</li>
+      <li>已知问题：部分 natives 改名 / 暂时停用（<code>Set/GetAbilityOnXXXX</code>、<code>SetUnitNameAll</code>、<code>PlaySpecialEffect</code> 等）。</li>
     </ul>
   </div>
 </div>
@@ -362,7 +365,10 @@ document.documentElement.setAttribute('data-theme',t)})();
     <div class="sec d-ed">地图编辑器更新</div>
     <ul>
       <li>最多可选 16 瓦片（含悬崖）。</li>
-      <li>新增 natives：<code>BlzPlaySpecialEffect</code>、<code>BlzSpecialEffectAddSubAnimation</code>、<code>BlzSpecialEffectRemoveSubAnimation</code>、<code>BlzSpecialEffectClearSubAnimations</code>；<code>BlzSetSpecialEffectHeight</code> 计入地形高度。</li>
+      <li>新增 natives：<code>BlzPlaySpecialEffect</code>（特效播放）。</li>
+      <li>新增 natives：<code>BlzSpecialEffectAddSubAnimation</code> / <code>BlzSpecialEffectRemoveSubAnimation</code>（子动画增删）。</li>
+      <li>新增 natives：<code>BlzSpecialEffectClearSubAnimations</code>（清空子动画）。</li>
+      <li><code>BlzSetSpecialEffectHeight</code> 计入地形高度。</li>
     </ul>
     <div class="sec d-bug">BUG 修复</div>
     <ul>
@@ -417,14 +423,19 @@ document.documentElement.setAttribute('data-theme',t)})();
     <div class="sec d-game">游戏功能性更新</div>
     <ul>
       <li><b>重制版画面：</b>全部英雄 / 单位 / 建筑 / 环境高清重制；支持<b>经典 / 重制双模式切换</b>。</li>
-      <li><b>战役部分重做：</b>恢复 3 个原版 Demo 序章任务（Riders on the Storm 等）；全部任务更新地形 / 难度并加入自动存档；达拉然 / 银月城 / 斯坦索姆 / 奥格瑞玛四城美术与布局重制。</li>
+      <li><b>战役部分重做：</b>恢复 3 个原版 Demo 序章任务（Riders on the Storm 等）。</li>
+      <li><b>战役部分重做：</b>全部任务更新地形 / 难度并加入自动存档。</li>
+      <li><b>战役部分重做：</b>达拉然 / 银月城 / 斯坦索姆 / 奥格瑞玛四城美术与布局重制。</li>
       <li><b>收藏：</b>英雄皮肤、头像、可解锁的战役与匹配奖励。</li>
       <li><b>中文配音：</b>在原有配音基础上，新增西班牙语（拉美）、葡萄牙语（巴西），并更新简体 / 繁体中文等 9 种语言。</li>
       <li><b>更多死亡音效：</b>为大量单位补充 / 扩充死亡音效（1.32.2 修复了新的死亡音效在经典模式中被误播放的问题）。</li>
       <li><b>接入战网：</b>从战网客户端安装 / 更新 / 启动，含群组与聊天；<b>经典账号链接</b>（保留历史战绩，90 天期限）。</li>
-      <li><b>版本与定价：</b>上架两档——<b>标准版 $29.99（国服 ¥168）</b>；<b>战争嘉奖版 $39.99（国服 ¥258）</b>，附赠 4 款英雄皮肤（阿尔萨斯 / 塞纳留斯 / 吉安娜 / 萨尔）。</li>
-      <li><b>MMR 匹配：</b>1v1 / 2v2 / 3v3 / 4v4 / FFA 竞技匹配（隐藏 MMR，对局中用 <code>!mmr</code> 查看）；可组队 2v2 / 3v3 / 4v4。</li>
-      <li><b>共享容器（1.32.6，2020-06-03）：</b>安装目录拆分为 <code>Data</code> + <code>_retail_</code>（正式服）+ <code>_ptr_</code>（测试服）三类文件夹，正式服与测试服共用数据、可并存更新。</li>
+      <li><b>版本与定价：</b>上架两档——<b>标准版 $29.99（国服 ¥168）</b>；<b>战争嘉奖版 $39.99（国服 ¥258）</b>。</li>
+      <li><b>战争嘉奖版赠品：</b>附赠 4 款英雄皮肤（阿尔萨斯 / 塞纳留斯 / 吉安娜 / 萨尔）。</li>
+      <li><b>MMR 匹配：</b>1v1 / 2v2 / 3v3 / 4v4 / FFA 竞技匹配（隐藏 MMR，对局中用 <code>!mmr</code> 查看）。</li>
+      <li><b>MMR 匹配组队：</b>可组队 2v2 / 3v3 / 4v4。</li>
+      <li><b>共享容器（1.32.6，2020-06-03）：</b>安装目录拆分为 <code>Data</code> + <code>_retail_</code>（正式服）+ <code>_ptr_</code>（测试服）三类文件夹。</li>
+      <li><b>共享容器（1.32.6，2020-06-03）：</b>正式服与测试服共用数据、可并存更新。</li>
       <li><b>热键与设置：</b>新增 Grid / 传统热键布局；血条 / 队伍颜色 / 英雄状态条 / 冷却显示设置。</li>
     </ul>
     <div class="sec d-bal">平衡性机制改动（主要在 1.32.10，2021-04-13）</div>
@@ -433,7 +444,6 @@ document.documentElement.setAttribute('data-theme',t)})();
       <li><b>人类伐木科技前置放宽：</b>改良伐木移除前置、高级伐木由城堡改<b>要塞</b>；骑士默认自带「裂甲之刃」。</li>
       <li><b>不死族：「埋骨地」不再需要牺牲深渊</b>。</li>
       <li><b>物品与掉落池：</b>各类光环类道具加成集体下调（如勇气勋章、战歌战鼓等）；<b>所有物品回收价 50% → 60%</b>。</li>
-      <li>其余为纯数值调整。</li>
     </ul>
     <div class="sec d-ed">地图编辑器更新</div>
     <ul>
@@ -464,11 +474,13 @@ document.documentElement.setAttribute('data-theme',t)})();
     </ul>
     <div class="sec d-bal">平衡性机制改动</div>
     <ul>
-      <li><b>战役平衡重做：</b>RoC 战役全量平衡重做 + TFT 轻度调整（含 AI 与脚本改动）。<b>1.36.1（2023-11-20）全部回滚</b>（已回调；同期音频调整不在回滚之列）。</li>
+      <li><b>战役平衡重做：</b>RoC 战役全量平衡重做 + TFT 轻度调整（含 AI 与脚本改动）。1.36.1（2023-11-20）全部回滚。</li>
     </ul>
     <div class="sec d-ed">编辑器更新</div>
     <ul>
-      <li>世界编辑器启用 Windows 10 通用控件；GPU 渲染器更新（字体渲染变化，<code>-legacykerning</code> 恢复旧字体）；旧版 Popcorn 特效错误提示。</li>
+      <li>世界编辑器启用 Windows 10 通用控件。</li>
+      <li>GPU 渲染器更新（字体渲染变化，<code>-legacykerning</code> 恢复旧字体）。</li>
+      <li>旧版 Popcorn 特效错误提示。</li>
     </ul>
     <div class="sec d-bug">BUG 修复</div>
     <ul>
@@ -541,8 +553,11 @@ document.documentElement.setAttribute('data-theme',t)})();
     </ul>
     <div class="sec d-game">后续修复版（1.36.1）</div>
     <ul>
-      <li><b>回滚 1.33 战役改动：</b>1.36.1（2023-11-20）回滚 1.33 的 RoC 战役平衡重做与 TFT 轻度调整（同期音频调整不在回滚之列）。</li>
-      <li>同期其他变动：在线游戏恢复存档 / 读档（不适用排位）、镜头缩放支持更细数值、观察者模式可悬停查看英雄经验条、锦标赛结果页可查看队友 / 对手档案。</li>
+      <li><b>回滚 1.33 的战役平衡调整</b>。</li>
+      <li>在线游戏恢复存档 / 读档（不适用排位）。</li>
+      <li>镜头缩放支持更细数值。</li>
+      <li>观察者模式可悬停查看英雄经验条。</li>
+      <li>锦标赛结果页可查看队友 / 对手档案。</li>
     </ul>
     <div class="sec d-bal">平衡性机制改动（1.36.1，2023-11-20）</div>
     <ul>
@@ -550,7 +565,6 @@ document.documentElement.setAttribute('data-theme',t)})();
       <li><b>暗夜精灵「猛禽印记」改为只要求专家级训练</b>。</li>
       <li><b>专家物品重做：</b>重修之书 / 传送法杖商店库存 2；水晶球由 3 级改 2 级并移入消耗品掉落池（3 次使用、移除冷却）；守护指环 +3 移出掉落表。</li>
       <li><b>科技树造价调整：</b>骷髅精通成本 200/175 → 150/100；钢铁系列升级木材成本（钢甲 150 → 125、近战 / 远程武器 100 → 75）。</li>
-      <li>其余为纯数值调整。</li>
     </ul>
     <div class="sec d-bug">BUG 修复</div>
     <ul>
@@ -570,8 +584,11 @@ document.documentElement.setAttribute('data-theme',t)})();
     <ul>
       <li><b>Classic HD + 插件系统：</b>经典单位 / 建筑 / 特效 / 英雄 / 环境 / 图标高清版；可在重制 / 经典 HD 资源间自由混搭。</li>
       <li><b>收藏：</b>皮肤 / 头像筛选；新增 5 个初始头像、魔兽 1 / 2 头像；战役英雄可作多人皮肤；可禁用皮肤。</li>
-      <li><b>界面：</b>冰封王座主题（点 Logo 切换）；菜单全面更新；<b>游戏内热键自定义</b>（图形化改键）；<b>APM / FPS / 计时器 / Ping 开关</b>；比赛历史可回放；创建游戏 / 回放搜索滤镜。</li>
-      <li><b>游戏内 UI：</b>计时器（<code>/time</code>）、反补指示器、金矿工人计数、盟友菜单种族显示、<b>技能冷却数字提示</b>、闲置工人双击跟随、HUD 缩放。</li>
+      <li><b>界面：</b>冰封王座主题（点 Logo 切换）；菜单全面更新。</li>
+      <li><b>界面：</b><b>游戏内热键自定义</b>（图形化改键）；<b>APM / FPS / 计时器 / Ping 开关</b>。</li>
+      <li><b>界面：</b>比赛历史可回放；创建游戏 / 回放搜索滤镜。</li>
+      <li><b>游戏内 UI：</b>计时器（<code>/time</code>）、反补指示器、金矿工人计数。</li>
+      <li><b>游戏内 UI：</b>盟友菜单种族显示、<b>技能冷却数字提示</b>、闲置工人双击跟随、HUD 缩放。</li>
       <li><b>音乐：</b>新增魔兽 1 / 2 音乐选项。</li>
       <li><b>多人：</b>排名 XP 与等级；MMR 区间缩减至 0–7000；已排位者赛季后 MMR 不再重置；AT 不再匹配 RT（3v3/4v4）；新增芝加哥、悉尼服务器。</li>
       <li><b>重制版环境：</b>全部地形美术更新、植被默认关、泛光移除、环境光增强。</li>
@@ -601,7 +618,10 @@ document.documentElement.setAttribute('data-theme',t)})();
       <li><b>匹配：</b>优先理想延迟而非 MMR（延迟 → MMR → 长时间后任意）。</li>
       <li><b>排名：</b>失败扣除更多 XP；<b>热键界面</b>支持自定义物品栏与 F 键。</li>
       <li><b>经典 HD 图标：</b>512→256；TFT 主题加雪；对战设置界面显示对全种族排名。</li>
-      <li><b>旧地形</b>移至插件子文件夹；聊天隐藏系统消息、大厅聊天退出清空；<b>3 款新皮肤</b>（吉安娜、幽灵安东尼达斯、幽灵丛林守护者）；比赛历史加日期；重制镜头 FOV 与经典一致。</li>
+      <li><b>旧地形</b>移至插件子文件夹。</li>
+      <li>聊天隐藏系统消息、大厅聊天退出清空。</li>
+      <li><b>3 款新皮肤</b>（吉安娜、幽灵安东尼达斯、幽灵丛林守护者）。</li>
+      <li>比赛历史加日期；重制镜头 FOV 与经典一致。</li>
     </ul>
     <div class="sec d-bug">BUG 修复</div>
     <ul>
@@ -657,7 +677,9 @@ document.documentElement.setAttribute('data-theme',t)})();
       <li>自定义战役任务选择背景支持 MDL。</li>
       <li><b>装饰物上限 30000 → 130000</b>（谨慎使用）；提高绘制距离。</li>
       <li>修复天气 [RAhr] 永久下雨、模型查看器 / 召唤窗口缩放、变量窗口列宽不保存。</li>
-      <li><b>Natives 大修：</b>修复数十个损坏的 BlzSetAbility____Field natives；BlzSetUnit* / BlzSetUnitWeapon* 等大量字段支持；新增 UNIT_RF_FLY_MAX_HEIGHT（ufmh）。</li>
+      <li><b>Natives 大修：</b>修复数十个损坏的 BlzSetAbility____Field natives。</li>
+      <li><b>字段支持：</b>BlzSetUnit* / BlzSetUnitWeapon* 等大量字段支持。</li>
+      <li>新增 <code>UNIT_RF_FLY_MAX_HEIGHT</code>（ufmh）。</li>
       <li>地图选项新增：强制玩家指定缩放、移除反补「!」、新能力 [Amgi]（防弹射）、新能力 [AUa2]（新版复活，保留单位能力）。</li>
     </ul>
     <div class="sec d-bug">BUG 修复</div>
@@ -673,7 +695,10 @@ document.documentElement.setAttribute('data-theme',t)})();
   <div class="ver-body">
     <div class="sec d-game">游戏功能性更新</div>
     <ul>
-      <li><b>匹配：</b>解锁 3v3 / 4v4 的 AT 与 RT；组队搜索施加小幅 MMR 权重；组队人数可小于模式人数（如 2 人排 3v3）；排行榜支持小规模组队；排队前 Ready Up 确认。</li>
+      <li><b>匹配：</b>解锁 3v3 / 4v4 的 AT 与 RT。</li>
+      <li><b>匹配：</b>组队搜索施加小幅 MMR 权重；排队前 Ready Up 确认。</li>
+      <li><b>匹配：</b>组队人数可小于模式人数（如 2 人排 3v3）。</li>
+      <li><b>匹配：</b>排行榜支持小规模组队。</li>
       <li><b>性能：</b>优化 Lua 垃圾回收器。</li>
     </ul>
     <div class="sec d-ed">编辑器更新</div>
@@ -693,7 +718,8 @@ document.documentElement.setAttribute('data-theme',t)})();
       <li><b>决定版画面模式：</b>第三种画面模式（经典辨识度 + 现代化渲染），600+ 单位重建；光照 / 阴影 / 环境 / 雾升级；可跨画面模式联机。</li>
       <li><b>新 UI 主题 / 音乐：</b>「被遗忘者王国」主题与音乐、首次启动过场；主菜单音乐随主题变化。</li>
       <li><b>单位选择上限 12 → 24</b>。</li>
-      <li><b>新中立英雄「被遗忘者圣骑士」：</b>三模式可用，免费；四技能：正义之怒（冲锋+减速）、奉献（范围治疗+伤害）、神圣光环（友方魔抗）、净化之火（治疗+眩晕+驱散+重伤召唤物）。</li>
+      <li><b>新中立英雄「被遗忘者圣骑士」：</b>三模式可用、免费。</li>
+      <li><b>新英雄四个技能：</b>正义之怒（冲锋+减速）、奉献（范围治疗+伤害）、神圣光环（友方魔抗）、净化之火（治疗+眩晕+驱散+重伤召唤物）。</li>
       <li><b>自定义大厅：</b>支持密码保护。</li>
       <li><b>新游戏服务器：</b>新加坡 / 大阪 / 德里 / 圣吉斯兰 / 墨尔本 / 多伦多 / 奥萨斯库 / 达尔斯 / 哈米纳。</li>
       <li><b>网络：</b>移除 LAN 模式（经典客户端仍可局域网）。</li>
@@ -709,18 +735,23 @@ document.documentElement.setAttribute('data-theme',t)})();
       <li>HD 水面、装饰物贴花、水面装饰物、阴影阻挡装饰物；更多雾选项（高度雾 / 指数雾 / 覆盖天空）；实时编辑雾与 HD 水面。</li>
       <li>alpha 瓦片、迷你地图多色绘制、镜头范围内动态生成迷你地图。</li>
       <li>装备类别、物品实例类别；HUD 皮肤按玩家选择（含被遗忘者 HUD）；自由镜头。</li>
-      <li><b>新 natives：</b>重置攻击冷却、设置技能剩余冷却、开关所有光环、AI 求援范围常量、字符串 ID 调整工具、后处理工具、泄漏清理 GUI、光照范围可视化等。</li>
+      <li><b>新 natives：</b>重置攻击冷却、设置技能剩余冷却、开关所有光环、AI 求援范围、字符串 ID 调整、后处理、泄漏清理等。</li>
       <li>触发器「复制为脚本」、触发器转 Lua；对象局部轴缩放；复制对象保留高度；数据编辑器显示无敌建筑 HP；撤销栈上限提高（可近无限）。</li>
     </ul>
     <div class="sec d-ed">编辑器新增 RPG 框架（源自《被遗忘者王国》战役）</div>
     <ul>
       <li><b>原生实现：</b>新战役的背包 / 装备 / 天赋系统全部在<b>世界编辑器中原生搭建</b>（非第三方脚本），自定义地图可直接复用。</li>
-      <li><b>统一入口：</b>三套系统共用主控能力 <code>[ASpc]</code>（对象编辑器中默认无名称），作为「背包 + 装备栏 + 天赋树 + 属性面板」的 UI 控制器。</li>
-      <li><b>背包：</b>能力 <code>[AIni]</code> 提供第二个 <b>30 格</b>储物窗口；存入其中的物品不提供被动加成，可直接使用消耗品。</li>
-      <li><b>装备栏：</b>能力 <code>[AEqu]</code> 提供 <b>9 个装备槽</b>（头 / 胸 / 手套 / 靴 / 戒指 ×2 / 主手 / 副手 / 饰品）；拾取物品先落入背包，装入槽位后才结算加成。</li>
+      <li><b>统一入口：</b>三套系统共用主控能力 <code>[ASpc]</code>（对象编辑器中默认无名称）。</li>
+      <li><b>统一入口：</b>作为「背包 + 装备栏 + 天赋树 + 属性面板」的 UI 控制器。</li>
+      <li><b>背包：</b>能力 <code>[AIni]</code> 提供第二个 <b>30 格</b>储物窗口。</li>
+      <li><b>背包：</b>存入其中的物品不提供被动加成，可直接使用消耗品。</li>
+      <li><b>装备栏：</b>能力 <code>[AEqu]</code> 提供 <b>9 个装备槽</b>（头 / 胸 / 手套 / 靴 / 戒指 ×2 / 主手 / 副手 / 饰品）。</li>
+      <li><b>装备栏：</b>拾取物品先落入背包，装入槽位后才结算加成。</li>
       <li><b>天赋：</b>天赋树 + 天赋点系统，可自定义天赋配置并在战役中自由加点。</li>
-      <li><b>物品转装备：</b>对象编辑器新增 <code>Stats - Equipment Type</code> 字段，可将任意经典物品指定为某个装备槽类型。</li>
-      <li><b>载体与范围：</b>官方战役以可拾取容器承载整套系统（如 <code>[ebua]</code> Anya's Backpack）；相关能力也可直接挂在英雄或普通单位上。</li>
+      <li><b>物品转装备：</b>对象编辑器新增 <code>Stats - Equipment Type</code> 字段。</li>
+      <li><b>物品转装备：</b>可将任意经典物品指定为某个装备槽类型。</li>
+      <li><b>载体与范围：</b>官方战役以可拾取容器承载整套系统（如 <code>[ebua]</code> Anya's Backpack）。</li>
+      <li><b>载体与范围：</b>相关能力也可直接挂在英雄或普通单位上。</li>
     </ul>
     <div class="sec d-bug">BUG 修复</div>
     <ul>
@@ -744,9 +775,14 @@ document.documentElement.setAttribute('data-theme',t)})();
       <li><b>音频：</b>决定版画面使用经典音效。</li>
       <li><b>新增物品：</b>商人新增洗点书（《被遗忘者王国》战役）。</li>
     </ul>
-    <div class="sec d-ed">编辑器 / 地图相关</div>
+    <div class="sec d-ed">编辑器修复</div>
     <ul>
-      <li>修复无面但有顶点的自定义模型崩溃、自定义资源加载、SD/HD 装饰物损坏、测试地图启动时自定义贴图加载失败、多地图关闭丢光照、后处理对话框滑块禁用等。</li>
+      <li>修复无面但有顶点的自定义模型崩溃。</li>
+      <li>修复自定义资源加载。</li>
+      <li>修复 SD/HD 装饰物损坏。</li>
+      <li>修复测试地图启动时自定义贴图加载失败。</li>
+      <li>修复多地图关闭丢光照。</li>
+      <li>修复后处理对话框滑块禁用等。</li>
     </ul>
     <div class="sec d-bug">BUG 修复</div>
     <ul>
