@@ -2,14 +2,14 @@
 <html lang="zh-CN" data-theme="dark" data-page-node-id="gi5ZPCWevZIlwWRHYtKNFL"><head data-page-node-id="AAuwqnHwqoPRGEub0Hkj71">
 <meta charset="UTF-8" data-page-node-id="lCW7yRrAJLUm4GnjOyf14P">
 <meta name="viewport" content="width=device-width, initial-scale=1.0" data-page-node-id="2vmwAWp0XfinwYfBPUUJBI">
-<title data-page-node-id="RaUxnP7pU2oRm20snzEQyk">魔兽争霸III 十年补丁演进报告（2016–2026 · 1.27.0 → 3.0.1）</title>
-<meta name="description" content="魔兽争霸 III 十年补丁演进报告（2016–2026，1.27.0 → 3.0.1）：按维度梳理游戏功能、平衡性机制、地图编辑器与 BUG 修复的逐版本变化。">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22><text x=%221%22 y=%2225%22 font-size=%2223%22 font-family=%22Segoe UI Emoji,Apple Color Emoji,Noto Color Emoji,sans-serif%22>%F0%9F%93%9C</text></svg>">
+<title data-page-node-id="RaUxnP7pU2oRm20snzEQyk">魔兽争霸III 十年补丁演进报告（2016–2026 · 1.27a → 3.0.1）</title>
+<meta name="description" content="魔兽争霸 III 十年补丁演进报告（2016–2026，1.27a → 3.0.1）：按维度梳理游戏功能、平衡性机制、地图编辑器与 BUG 修复的逐版本变化。">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%2032%2032%22%3E%3Ctext%20x=%221%22%20y=%2225%22%20font-size=%2223%22%20font-family=%22Segoe%20UI%20Emoji,Apple%20Color%20Emoji,Noto%20Color%20Emoji,sans-serif%22%3E%F0%9F%93%9C%3C/text%3E%3C/svg%3E">
 <meta name="theme-color" content="#0d1117" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#f6f4ef" media="(prefers-color-scheme: light)">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="世界编辑器中文站">
-<meta property="og:title" content="魔兽争霸III 十年补丁演进报告（2016–2026 · 1.27.0 → 3.0.1）">
+<meta property="og:title" content="魔兽争霸III 十年补丁演进报告（2016–2026 · 1.27a → 3.0.1）">
 <meta property="og:description" content="按维度梳理游戏功能、平衡性机制、地图编辑器与 BUG 修复的逐版本变化。">
 <meta property="og:url" content="https://worldeditor.cn/wc3-decade-of-patches.html">
 <style data-page-node-id="SPjlZu2rDlCTjTHceSxBmJ">
@@ -58,8 +58,8 @@
   code{background:var(--bg);border:1px solid var(--border);border-radius:4px;padding:0 5px;font-size:13px;color:var(--code);}
   .note{font-size:13px;color:var(--muted);font-style:italic;margin-top:6px;}
   .toc{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:16px 20px;margin:20px 0;}
-  .toc a{color:var(--accent2);text-decoration:none;}
-  .toc a:hover{text-decoration:underline;}
+  .toc a{color:var(--text);text-decoration:none;border-bottom:1px dotted var(--muted);}
+  .toc a:hover{color:var(--strong);border-bottom-color:var(--strong);}
   .toc .tl{list-style:none;margin:10px 0 0;padding:0;font-size:14px;}
   .toc .tl li{padding:3px 0;}
   .toc .tl .tm{color:var(--accent);font-weight:600;font-variant-numeric:tabular-nums;}
@@ -103,8 +103,8 @@
     max-width:8.4em;margin:0 auto;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
     letter-spacing:0;}
   footer{margin-top:50px;padding-top:20px;border-top:1px solid var(--border);color:var(--muted);font-size:13px;}
-  footer a{color:var(--accent2);text-decoration:none;}
-  footer a:hover{text-decoration:underline;}
+  footer a{color:var(--text);text-decoration:none;border-bottom:1px dotted var(--muted);}
+  footer a:hover{color:var(--strong);border-bottom-color:var(--strong);}
 
   /* ===== 日间（浅色）令牌 ===== */
   :root[data-theme="light"]{
