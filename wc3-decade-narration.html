@@ -87,14 +87,14 @@
     border-left:1px solid rgba(var(--accent-rgb),.15);}
   .htl-band span{position:absolute;top:1px;left:8px;font-size:10.5px;color:var(--muted);
     letter-spacing:.5px;white-space:nowrap;background:var(--bg);padding:0 6px;border-radius:8px;}
-  .htl-axis{position:absolute;left:7%;right:7%;height:2px;border-radius:2px;
+  .htl-axis{position:absolute;left:4.05%;right:3.65%;height:2px;border-radius:2px;
     background:linear-gradient(90deg,rgba(var(--accent-rgb),0),rgba(var(--accent-rgb),.55) 5%,rgba(var(--accent-rgb),.55) 95%,rgba(var(--accent-rgb),0));}
   .htl-tick{position:absolute;transform:translateX(-50%);text-align:center;}
   .htl-tick i{display:block;width:1px;height:9px;margin:0 auto;background:var(--muted);opacity:.55;}
   .htl-tick span{display:block;font-size:10.5px;color:var(--muted);margin-top:2px;
     font-variant-numeric:tabular-nums;}
   .htl-conn{position:absolute;width:0;border-left:1px dashed var(--border);margin-left:-.5px;z-index:1;}
-  .htl-ev{position:absolute;height:0;transform:translateX(-50%);z-index:3;width:11.5%;--dot:var(--accent);}
+  .htl-ev{position:absolute;height:0;transform:translateX(-50%);z-index:3;width:9.5%;--dot:var(--accent);}
   .htl-ev.os{--dot:var(--os-dot);}
   .htl-ev.cn{--dot:var(--cn-dot);}
   .htl-ev.both{--dot:var(--accent);}
@@ -227,74 +227,82 @@ document.documentElement.setAttribute('data-theme',t)})();
 <p class="htl-note">轴线以上为海外（暴雪 / 动视 / 微软）事件，轴线以下为国内（网易 / 国服 / 国内平台）事件；卡片底色与圆点颜色同样区分归属。</p>
 
 <div class="htl-wrap">
-<div class="htl" style="height:600px">
-  <div class="htl-band" style="left:7.00%;width:55.22%"><span>国服运营期</span></div>
-  <div class="htl-band" style="left:62.22%;width:9.46%"><span>停服 442 天</span></div>
-  <div class="htl-band" style="left:71.68%;width:21.32%"><span>复运后 · 第三方平台</span></div>
+<div class="htl" style="height:496px">
+  <div class="htl-band" style="left:4.05%;width:59.29%"><span>国服运营期</span></div>
+  <div class="htl-band" style="left:63.34%;width:10.13%"><span>停服 442 天</span></div>
+  <div class="htl-band" style="left:73.47%;width:22.88%"><span>合作恢复 · 魔兽 3 未复运</span></div>
   <div class="htl-axis" style="top:266px"></div>
-  <div class="htl-tick" style="left:7.00%;top:266px"><i></i><span>2016</span></div>
-  <div class="htl-tick" style="left:14.83%;top:266px"><i></i><span>2017</span></div>
-  <div class="htl-tick" style="left:22.65%;top:266px"><i></i><span>2018</span></div>
-  <div class="htl-tick" style="left:30.46%;top:266px"><i></i><span>2019</span></div>
-  <div class="htl-tick" style="left:38.27%;top:266px"><i></i><span>2020</span></div>
-  <div class="htl-tick" style="left:46.10%;top:266px"><i></i><span>2021</span></div>
-  <div class="htl-tick" style="left:53.92%;top:266px"><i></i><span>2022</span></div>
-  <div class="htl-tick" style="left:61.73%;top:266px"><i></i><span>2023</span></div>
-  <div class="htl-tick" style="left:69.54%;top:266px"><i></i><span>2024</span></div>
-  <div class="htl-tick" style="left:77.38%;top:266px"><i></i><span>2025</span></div>
-  <div class="htl-tick" style="left:85.19%;top:266px"><i></i><span>2026</span></div>
-  <div class="htl-conn" style="left:8.58%;top:252px;height:14px"></div>
-  <div class="htl-conn" style="left:9.59%;top:266px;height:34px"></div>
-  <div class="htl-conn" style="left:23.95%;top:266px;height:34px"></div>
-  <div class="htl-conn" style="left:29.17%;top:252px;height:14px"></div>
-  <div class="htl-conn" style="left:30.69%;top:266px;height:92px"></div>
-  <div class="htl-conn" style="left:32.19%;top:266px;height:150px"></div>
-  <div class="htl-conn" style="left:36.90%;top:194px;height:72px"></div>
-  <div class="htl-conn" style="left:37.22%;top:136px;height:130px"></div>
-  <div class="htl-conn" style="left:37.24%;top:266px;height:34px"></div>
-  <div class="htl-conn" style="left:38.93%;top:78px;height:188px"></div>
-  <div class="htl-conn" style="left:43.49%;top:252px;height:14px"></div>
-  <div class="htl-conn" style="left:48.67%;top:266px;height:92px"></div>
-  <div class="htl-conn" style="left:58.45%;top:252px;height:14px"></div>
-  <div class="htl-conn" style="left:60.77%;top:266px;height:34px"></div>
-  <div class="htl-conn" style="left:61.37%;top:266px;height:92px"></div>
-  <div class="htl-conn" style="left:62.14%;top:194px;height:72px"></div>
-  <div class="htl-conn" style="left:62.22%;top:266px;height:150px"></div>
-  <div class="htl-conn" style="left:67.83%;top:136px;height:130px"></div>
-  <div class="htl-conn" style="left:71.68%;top:266px;height:208px"></div>
-  <div class="htl-conn" style="left:71.68%;top:266px;height:266px"></div>
-  <div class="htl-conn" style="left:76.33%;top:252px;height:14px"></div>
-  <div class="htl-conn" style="left:90.09%;top:266px;height:34px"></div>
-  <div class="htl-conn" style="left:90.62%;top:252px;height:14px"></div>
-  <div class="htl-conn" style="left:90.75%;top:194px;height:72px"></div>
-  <div class="htl-conn" style="left:90.71%;top:266px;height:92px"></div>
-  <div class="htl-ev up os mile" style="left:8.58%;top:266px"><span class="dot"></span><a class="card-a" href="#s2016"><span class="card" style="bottom:14px"><span class="ct">重启更新</span><span class="cs">重制版立项</span></span></a></div>
-  <div class="htl-ev down cn" style="left:9.59%;top:266px"><span class="dot"></span><a class="card-a" href="#s2016"><span class="card" style="top:34px"><span class="ct">平台起步</span><span class="cs">RPG 大厅</span></span></a></div>
-  <div class="htl-ev down cn" style="left:23.95%;top:266px"><span class="dot"></span><a class="card-a" href="#s2018"><span class="card" style="top:34px"><span class="ct">开发者大会</span><span class="cs">公布平台数据</span></span></a></div>
-  <div class="htl-ev up os mile" style="left:29.17%;top:266px"><span class="dot"></span><a class="card-a" href="#s2018"><span class="card" style="bottom:14px"><span class="ct">公布重制版</span><span class="cs">暴雪嘉年华</span></span></a></div>
-  <div class="htl-ev down cn" style="left:30.69%;top:266px"><span class="dot"></span><a class="card-a" href="#s2019"><span class="card" style="top:92px"><span class="ct">预购</span><span class="cs">168/258 元</span></span></a></div>
-  <div class="htl-ev down cn" style="left:32.19%;top:266px"><span class="dot"></span><a class="card-a" href="#s2019"><span class="card" style="top:150px"><span class="ct">南京大会</span><span class="cs">8000+ 作者</span></span></a></div>
-  <div class="htl-ev up os" style="left:36.90%;top:266px"><span class="dot"></span><a class="card-a" href="#s2019"><span class="card" style="bottom:72px"><span class="ct">全球 BETA</span><span class="cs">多人测试开启</span></span></a></div>
-  <div class="htl-ev up os" style="left:37.22%;top:266px"><span class="dot"></span><a class="card-a" href="#s2019"><span class="card" style="bottom:130px"><span class="ct">艺术总监离职</span><span class="cs">Sousa</span></span></a></div>
-  <div class="htl-ev down cn" style="left:37.24%;top:266px"><span class="dot"></span><a class="card-a" href="#s2019"><span class="card" style="top:34px"><span class="ct">国服同步 BETA</span><span class="cs">与全球同一轮</span></span></a></div>
-  <div class="htl-ev up os mile" style="left:38.93%;top:266px"><span class="dot"></span><a class="card-a" href="#s2020"><span class="card" style="bottom:188px"><span class="ct">发售与差评</span><span class="cs">Metacritic 0.5</span></span></a></div>
-  <div class="htl-ev up os" style="left:43.49%;top:266px"><span class="dot"></span><a class="card-a" href="#s2020"><span class="card" style="bottom:14px"><span class="ct">团队解散重组</span><span class="cs">发售约八个月后</span></span></a></div>
-  <div class="htl-ev down cn" style="left:48.67%;top:266px"><span class="dot"></span><a class="card-a" href="#s2021"><span class="card" style="top:92px"><span class="ct">国服大厅关闭</span><span class="cs">需求转向三方平台</span></span></a></div>
-  <div class="htl-ev up os" style="left:58.45%;top:266px"><span class="dot"></span><a class="card-a" href="#s2021"><span class="card" style="bottom:14px"><span class="ct">划归魔兽团队</span><span class="cs">Holly Longdale</span></span></a></div>
-  <div class="htl-ev down cn" style="left:60.77%;top:266px"><span class="dot"></span><a class="card-a" href="#s2021"><span class="card" style="top:34px"><span class="ct">宣布不续约</span><span class="cs">协议 1 月 23 日到期</span></span></a></div>
-  <div class="htl-ev down cn" style="left:61.37%;top:266px"><span class="dot"></span><a class="card-a" href="#s2021"><span class="card" style="top:92px"><span class="ct">UP 平台上线</span><span class="cs wide">后更名为KK平台</span></span></a></div>
-  <div class="htl-ev up os" style="left:62.14%;top:266px"><span class="dot"></span><a class="card-a" href="#s2023"><span class="card" style="bottom:72px"><span class="ct">软重启调查</span><span class="cs">评估改进方向</span></span></a></div>
-  <div class="htl-ev down cn mile" style="left:62.22%;top:266px"><span class="dot"></span><a class="card-a" href="#s2023"><span class="card" style="top:150px"><span class="ct">国服停运</span><span class="cs">代理协议到期</span></span></a></div>
-  <div class="htl-ev up os" style="left:67.83%;top:266px"><span class="dot"></span><a class="card-a" href="#s2023"><span class="card" style="bottom:130px"><span class="ct">微软收购</span><span class="cs">约 687 亿美元</span></span></a></div>
-  <div class="htl-ev down cn mile" style="left:71.68%;top:266px"><span class="dot"></span><a class="card-a" href="#s2024"><span class="card" style="top:208px"><span class="ct">官宣复合</span><span class="cs">夏季起分批回归</span></span></a></div>
-  <div class="htl-ev down cn" style="left:71.68%;top:266px"><span class="dot"></span><a class="card-a" href="#s2024"><span class="card" style="top:266px"><span class="ct">升级 KK 官方</span><span class="cs">自称官方·无授权</span></span></a></div>
-  <div class="htl-ev up os mile" style="left:76.33%;top:266px"><span class="dot"></span><a class="card-a" href="#s2024"><span class="card" style="bottom:14px"><span class="ct">30 周年 2.0</span><span class="cs">经典高清 · 插件</span></span></a></div>
-  <div class="htl-ev down cn" style="left:90.09%;top:266px"><span class="dot"></span><a class="card-a" href="#s2025"><span class="card" style="top:34px"><span class="ct">KK 被行政处罚</span><span class="cs">网络出版违规</span></span></a></div>
-  <div class="htl-ev up os mile" style="left:90.62%;top:266px"><span class="dot"></span><a class="card-a" href="#s2025"><span class="card" style="bottom:14px"><span class="ct">3.0 上线</span><span class="cs">决定版 · 新英雄</span></span></a></div>
-  <div class="htl-ev up os" style="left:90.75%;top:266px"><span class="dot"></span><a class="card-a" href="#s2025"><span class="card" style="bottom:72px"><span class="ct">W3C 适配 3.0</span><span class="cs">恢复天梯</span></span></a></div>
-  <div class="htl-ev down cn" style="left:90.71%;top:266px"><span class="dot"></span><a class="card-a" href="#s2025"><span class="card" style="top:92px"><span class="ct">KK 适配 3.0</span><span class="cs">经典画面·对战</span></span></a></div>
+  <div class="htl-tick" style="left:4.05%;top:266px"><i></i><span>2016</span></div>
+  <div class="htl-tick" style="left:12.46%;top:266px"><i></i><span>2017</span></div>
+  <div class="htl-tick" style="left:20.85%;top:266px"><i></i><span>2018</span></div>
+  <div class="htl-tick" style="left:29.22%;top:266px"><i></i><span>2019</span></div>
+  <div class="htl-tick" style="left:37.61%;top:266px"><i></i><span>2020</span></div>
+  <div class="htl-tick" style="left:46.03%;top:266px"><i></i><span>2021</span></div>
+  <div class="htl-tick" style="left:54.40%;top:266px"><i></i><span>2022</span></div>
+  <div class="htl-tick" style="left:62.79%;top:266px"><i></i><span>2023</span></div>
+  <div class="htl-tick" style="left:71.17%;top:266px"><i></i><span>2024</span></div>
+  <div class="htl-tick" style="left:79.56%;top:266px"><i></i><span>2025</span></div>
+  <div class="htl-tick" style="left:87.95%;top:266px"><i></i><span>2026</span></div>
+  <div class="htl-conn" style="left:5.75%;top:252px;height:14px"></div>
+  <div class="htl-conn" style="left:29.45%;top:252px;height:14px"></div>
+  <div class="htl-conn" style="left:36.13%;top:204px;height:62px"></div>
+  <div class="htl-conn" style="left:36.20%;top:156px;height:110px"></div>
+  <div class="htl-conn" style="left:38.34%;top:108px;height:158px"></div>
+  <div class="htl-conn" style="left:39.35%;top:252px;height:14px"></div>
+  <div class="htl-conn" style="left:43.23%;top:60px;height:206px"></div>
+  <div class="htl-conn" style="left:59.30%;top:252px;height:14px"></div>
+  <div class="htl-conn" style="left:69.37%;top:252px;height:14px"></div>
+  <div class="htl-conn" style="left:78.46%;top:204px;height:62px"></div>
+  <div class="htl-conn" style="left:93.80%;top:252px;height:14px"></div>
+  <div class="htl-conn" style="left:93.94%;top:204px;height:62px"></div>
+  <div class="htl-conn" style="left:94.24%;top:156px;height:110px"></div>
+  <div class="htl-conn" style="left:6.83%;top:266px;height:34px"></div>
+  <div class="htl-conn" style="left:22.25%;top:266px;height:34px"></div>
+  <div class="htl-conn" style="left:29.27%;top:266px;height:82px"></div>
+  <div class="htl-conn" style="left:36.57%;top:266px;height:34px"></div>
+  <div class="htl-conn" style="left:48.77%;top:266px;height:34px"></div>
+  <div class="htl-conn" style="left:61.94%;top:266px;height:34px"></div>
+  <div class="htl-conn" style="left:62.35%;top:266px;height:82px"></div>
+  <div class="htl-conn" style="left:63.31%;top:266px;height:130px"></div>
+  <div class="htl-conn" style="left:66.25%;top:266px;height:178px"></div>
+  <div class="htl-conn" style="left:73.47%;top:266px;height:34px"></div>
+  <div class="htl-conn" style="left:73.47%;top:266px;height:82px"></div>
+  <div class="htl-conn" style="left:93.22%;top:266px;height:34px"></div>
+  <div class="htl-conn" style="left:93.91%;top:266px;height:82px"></div>
+  <div class="htl-ev up os mile" style="left:5.75%;top:266px"><span class="dot"></span><a class="card-a" href="#s2016"><span class="card" style="bottom:14px"><span class="ct">重启更新</span><span class="cs">重制版立项</span></span></a></div>
+  <div class="htl-ev up os mile" style="left:29.45%;top:266px"><span class="dot"></span><a class="card-a" href="#s2018"><span class="card" style="bottom:14px"><span class="ct">公布重制版</span><span class="cs">2018 嘉年华</span></span></a></div>
+  <div class="htl-ev up os" style="left:36.13%;top:266px"><span class="dot"></span><a class="card-a" href="#s2019"><span class="card" style="bottom:62px"><span class="ct">全球 BETA</span><span class="cs">10 月 29 日</span></span></a></div>
+  <div class="htl-ev up os mile" style="left:36.20%;top:266px"><span class="dot"></span><a class="card-a" href="#s2019"><span class="card" style="bottom:110px"><span class="ct">放弃过场</span><span class="cs">承诺收缩</span></span></a></div>
+  <div class="htl-ev up os mile" style="left:38.34%;top:266px"><span class="dot"></span><a class="card-a" href="#s2020"><span class="card" style="bottom:158px"><span class="ct">发售与差评</span><span class="cs">评分 0.5 史低</span></span></a></div>
+  <div class="htl-ev up os" style="left:39.35%;top:266px"><span class="dot"></span><a class="card-a" href="#s2020"><span class="card" style="bottom:14px"><span class="ct">W3C 首发</span><span class="cs">社区建天梯</span></span></a></div>
+  <div class="htl-ev up os" style="left:43.23%;top:266px"><span class="dot"></span><a class="card-a" href="#s2020"><span class="card" style="bottom:206px"><span class="ct">解散重组</span><span class="cs">转手他组维护</span></span></a></div>
+  <div class="htl-ev up os" style="left:59.30%;top:266px"><span class="dot"></span><a class="card-a" href="#s2021"><span class="card" style="bottom:14px"><span class="ct">划归魔兽组</span><span class="cs">Longdale 接手</span></span></a></div>
+  <div class="htl-ev up os mile" style="left:69.37%;top:266px"><span class="dot"></span><a class="card-a" href="#s2023"><span class="card" style="bottom:14px"><span class="ct">微软收购</span><span class="cs">约 687 亿美元</span></span></a></div>
+  <div class="htl-ev up os mile" style="left:78.46%;top:266px"><span class="dot"></span><a class="card-a" href="#s2024"><span class="card" style="bottom:62px"><span class="ct">30 周年 2.0</span><span class="cs">经典高清</span></span></a></div>
+  <div class="htl-ev up os mile" style="left:93.80%;top:266px"><span class="dot"></span><a class="card-a" href="#s2025"><span class="card" style="bottom:14px"><span class="ct">3.0 上线</span><span class="cs">决定版画面</span></span></a></div>
+  <div class="htl-ev up os" style="left:93.94%;top:266px"><span class="dot"></span><a class="card-a" href="#s2025"><span class="card" style="bottom:62px"><span class="ct">W3C 适配 3.0</span><span class="cs">恢复天梯</span></span></a></div>
+  <div class="htl-ev up os" style="left:94.24%;top:266px"><span class="dot"></span><a class="card-a" href="#s2025"><span class="card" style="bottom:110px"><span class="ct">官方回应</span><span class="cs">阴影与网络</span></span></a></div>
+  <div class="htl-ev down cn" style="left:6.83%;top:266px"><span class="dot"></span><a class="card-a" href="#s2016"><span class="card" style="top:34px"><span class="ct">平台起步</span><span class="cs">RPG 大厅</span></span></a></div>
+  <div class="htl-ev down cn" style="left:22.25%;top:266px"><span class="dot"></span><a class="card-a" href="#s2018"><span class="card" style="top:34px"><span class="ct">开发者大会</span><span class="cs">1300 张新图</span></span></a></div>
+  <div class="htl-ev down cn" style="left:29.27%;top:266px"><span class="dot"></span><a class="card-a" href="#s2019"><span class="card" style="top:82px"><span class="ct">地图商业化</span><span class="cs">作者分成 75%</span></span></a></div>
+  <div class="htl-ev down cn" style="left:36.57%;top:266px"><span class="dot"></span><a class="card-a" href="#s2019"><span class="card" style="top:34px"><span class="ct">国服 BETA</span><span class="cs">与全球同步</span></span></a></div>
+  <div class="htl-ev down cn" style="left:48.77%;top:266px"><span class="dot"></span><a class="card-a" href="#s2021"><span class="card" style="top:34px"><span class="ct">国服大厅关闭</span><span class="cs">需求外移</span></span></a></div>
+  <div class="htl-ev down cn" style="left:61.94%;top:266px"><span class="dot"></span><a class="card-a" href="#s2021"><span class="card" style="top:34px"><span class="ct">宣布不续约</span><span class="cs">协议 1/23 到期</span></span></a></div>
+  <div class="htl-ev down cn" style="left:62.35%;top:266px"><span class="dot"></span><a class="card-a" href="#s2021"><span class="card" style="top:82px"><span class="ct">UP 上线</span><span class="cs">承接数据存档</span></span></a></div>
+  <div class="htl-ev down cn mile" style="left:63.31%;top:266px"><span class="dot"></span><a class="card-a" href="#s2023"><span class="card" style="top:130px"><span class="ct">国服停运</span><span class="cs">停服 442 天起</span></span></a></div>
+  <div class="htl-ev down cn" style="left:66.25%;top:266px"><span class="dot"></span><a class="card-a" href="#s2023"><span class="card" style="top:178px"><span class="ct">更名 KK</span><span class="cs">引入 Y3 编辑器</span></span></a></div>
+  <div class="htl-ev down cn mile" style="left:73.47%;top:266px"><span class="dot"></span><a class="card-a" href="#s2024"><span class="card" style="top:34px"><span class="ct">官宣复合</span><span class="cs">夏季分批回归</span></span></a></div>
+  <div class="htl-ev down cn" style="left:73.47%;top:266px"><span class="dot"></span><a class="card-a" href="#s2024"><span class="card" style="top:82px"><span class="ct">KK 自称官方</span><span class="cs">未获授权</span></span></a></div>
+  <div class="htl-ev down cn" style="left:93.22%;top:266px"><span class="dot"></span><a class="card-a" href="#s2025"><span class="card" style="top:34px"><span class="ct">KK 被处罚</span><span class="cs">网络出版违规</span></span></a></div>
+  <div class="htl-ev down cn" style="left:93.91%;top:266px"><span class="dot"></span><a class="card-a" href="#s2025"><span class="card" style="top:82px"><span class="ct">KK 适配 3.0</span><span class="cs">仅 PVP 可用</span></span></a></div>
 </div>
 </div>
+
+
+
+
+
+
 
 <!-- ================= 阶段索引 ================= -->
 <div class="toc">
