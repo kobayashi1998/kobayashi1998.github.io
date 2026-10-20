@@ -32,7 +32,7 @@
   .sheet{max-width:920px;margin:0 auto;padding:44px 28px 80px;}
   header{border-bottom:1px solid var(--border);padding-bottom:22px;margin-bottom:30px;}
   h1{font-size:26px;line-height:1.5;margin:0 0 6px;letter-spacing:.5px;color:var(--strong);}
-  .meta{margin-top:14px;font-size:13px;color:var(--muted);}
+  .meta{margin-top:14px;font-size:12px;color:var(--muted);}
   .meta span{display:inline-block;background:var(--panel2);border:1px solid var(--border);
     border-radius:20px;padding:2px 12px;margin:6px 6px 0 0;color:var(--muted);}
   /* 返回主页 */
@@ -83,6 +83,14 @@
   /* ===== 横向时间轴（按时间等比铺开） ===== */
   .htl-wrap{margin:28px 0;}
   .htl{position:relative;}
+  /* 窄屏：保持卡片可读宽度，容器内横向滚动 */
+  @media (max-width:820px){
+    .htl-wrap{overflow-x:auto;overflow-y:hidden;padding-bottom:8px;scrollbar-width:thin;}
+    .htl{min-width:860px;}
+    .htl-wrap::-webkit-scrollbar{height:8px;}
+    .htl-wrap::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px;}
+    .htl-wrap::-webkit-scrollbar-track{background:transparent;}
+  }
   .htl-band{position:absolute;top:0;bottom:0;background:rgba(var(--accent-rgb),.04);
     border-left:1px solid rgba(var(--accent-rgb),.15);}
   .htl-band span{position:absolute;top:1px;left:8px;font-size:10.5px;color:var(--muted);
@@ -134,36 +142,55 @@
   td.s{white-space:nowrap;color:var(--muted);font-variant-numeric:tabular-nums;}
   .ok{color:var(--green);font-weight:600;}
   .warn{color:var(--accent);font-weight:600;}
-  footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--border);
-    color:var(--muted);font-size:12.5px;}
+  footer{margin-top:50px;padding-top:20px;border-top:1px solid var(--border);color:var(--muted);font-size:12.5px;line-height:1.8;}
+  footer p{margin:0 0 6px;}footer p:last-child{margin-bottom:0;}
   footer a{color:var(--text);text-decoration:none;border-bottom:1px dotted var(--muted);}
   footer a:hover{color:var(--strong);border-bottom-color:var(--strong);}
-  @media print{
-    body{background:#fff;color:#111;font-size:12.5pt;}
-    .sheet{padding:0;max-width:none;}
-    .howto{background:#f7f5ee;color:#5f4d14;}
-    .htl-ev .card,.quote{background:#f7f7f7;color:#111;}
-    .htl-ev .card .ct{color:#111;}
-    h2{page-break-after:avoid;}
-    .cue,.vo,.quote{page-break-inside:avoid;}
-  }
-
   /* ===== 日间（浅色）令牌 ===== */
   :root[data-theme="light"]{
     --bg:#f6f4ef; --panel:#ffffff; --panel2:#f1eee7; --border:#ddd6c8;
-    --text:#2b2720; --muted:#7c7568; --accent:#9a7b3f; --accent2:#2f6fb0;
-    --green:#1a7f37; --red:#c93c37; --purple:#8957e5; --era:#2f7d46;
-    --accent-rgb:154,123,63; --accent2-rgb:47,111,176; --code:#8a6d1f; --btn-shadow:rgba(0,0,0,.12);
+    --text:#2b2720; --muted:#6b6559; --accent:#806428; --accent2:#2d69a7;
+    --green:#187734; --red:#bd3834; --purple:#7a4dcc; --era:#2c7642;
+    --accent-rgb:128,100,40; --accent2-rgb:45,105,167; --code:#785c12; --btn-shadow:rgba(0,0,0,.12);
     --strong:#1f1b15;
-    --os:#2f6fb0; --os-bg:rgba(47,111,176,.12); --os-bd:rgba(47,111,176,.38);
-    --cn:#c93c37; --cn-bg:rgba(201,60,55,.12); --cn-bd:rgba(201,60,55,.38);
-    --os-dot:#2f6fb0; --cn-dot:#c93c37;--accent-bright:#8a6d1f;
+    --os:#2d69a7; --os-bg:rgba(45,105,167,.12); --os-bd:rgba(45,105,167,.38);
+    --cn:#bd3834; --cn-bg:rgba(189,56,52,.12); --cn-bd:rgba(189,56,52,.38);
+    --os-dot:#2d69a7; --cn-dot:#bd3834;--accent-bright:#6a5119;
+  }
+
+  /* ===== 打印样式（纯白底，省墨） ===== */
+  @media print{
+    :root,:root[data-theme="light"]{
+      --bg:#ffffff; --panel:#ffffff; --panel2:#ffffff; --border:#c8c8c8;
+      --text:#000000; --muted:#3d3d3d; --strong:#000000;
+      --accent:#7a5f24; --accent-bright:#5e4718; --code:#5e4718;
+      --accent-rgb:122,95,36; --accent2:#2d69a7; --accent2-rgb:45,105,167;
+      --green:#146c30; --red:#b0302c; --purple:#6b41b8; --era:#256636;
+      --os:#2d69a7; --os-dot:#2d69a7; --os-bg:rgba(45,105,167,.10); --os-bd:#8fa9c6;
+      --cn:#b0302c; --cn-dot:#b0302c; --cn-bg:rgba(176,48,44,.10); --cn-bd:#c99b98;
+      --btn-shadow:none;
+    }
+    body{background:#fff;color:#000;font-size:12.5pt;line-height:1.65;}
+    .sheet{padding:0;max-width:none;}
+    .theme-btn,.back,.noprint{display:none;}
+    .filter-bar .opt,.filter-bar .freset{display:none;}
+    .filter-bar .fbtn{background:#fff;border-color:#8b8b8b;color:#000;}
+    .filter-bar .fbtn.off{color:#6b6b6b;text-decoration:line-through;opacity:1;}
+    header{border-bottom-color:#bdbdbd;}
+    h2{border-left-color:#7a5f24;page-break-after:avoid;}
+    .howto,.quote{background:#fff;}
+    .htl-ev .card{background:#fff;color:#000;border-color:#bdbdbd;}
+    .htl-ev .card .ct,.htl-ev .card .cv{color:#000;}
+    .cue,.vo,.quote{page-break-inside:avoid;}
+    footer a{color:#000;border-bottom-color:#8b8b8b;}
+    .htl{min-width:0;}    /* 覆盖窄屏 860px 布局，否则 A4 右侧被裁 */
+    .htl-wrap{overflow:visible;}
   }
 
   /* ===== 归属筛选器（海外 / 国内） ===== */
   .filter-bar{margin:16px 0 0;display:flex;flex-wrap:wrap;align-items:center;gap:8px;
     font-size:13px;color:var(--muted);}
-  .filter-bar .fl{font-size:14px;color:var(--muted);margin-right:2px;}
+  .filter-bar .fl{font-size:12px;color:var(--muted);margin-right:2px;}
   /* 按钮 + 归属说明（说明文字不参与点击） */
   .filter-bar .fh{display:inline-flex;align-items:center;font-size:12px;color:var(--muted);}
   .filter-bar .fh .fd{margin-left:7px;opacity:.9;}
@@ -182,7 +209,6 @@
   /* 筛选生效时的隐藏规则：正文条目 / 引述块 / 时间轴卡片 */
   html[data-hide-os] .vo.os, html[data-hide-os] .quote.os, html[data-hide-os] .htl-ev.os{display:none;}
   html[data-hide-cn] .vo.cn, html[data-hide-cn] .quote.cn, html[data-hide-cn] .htl-ev.cn{display:none;}
-  @media print{.filter-bar{display:none;}}
 
   /* ===== 日/夜切换按钮 ===== */
   .theme-btn{position:fixed;top:14px;right:14px;z-index:99;width:30px;height:30px;border-radius:50%;
@@ -196,7 +222,7 @@ if(t!=='light'&&t!=='dark'){t=window.matchMedia&&matchMedia('(prefers-color-sche
 document.documentElement.setAttribute('data-theme',t)})();
 </script>
 <style id="__dm_no_drag_style__">* { -webkit-user-drag: none !important; }</style><style id="__dm_bindable_badge_style__">[data-sp-bindable="database"]{outline:1px dashed #0088ff;outline-offset:2px;border-radius:4px;}[data-sp-bindable="database"] *{pointer-events:none !important;transition:none !important;animation:none !important;}[data-sp-bindable="database"]{transition:none !important;animation:none !important;}</style></head>
-<body data-page-node-id="3oevsCziOLpccnHKGEJPFX" style="">
+<body data-page-node-id="3oevsCziOLpccnHKGEJPFX">
 <button id="themeBtn" class="theme-btn" type="button" aria-label="切换日间/夜间模式" title="切换日间/夜间模式" data-page-node-id="BZNkvlitlBPTUw8jRPHOiW">☀️</button>
 <div class="sheet" data-page-node-id="tGzCV3AAjkQn9sd9lE1vyL">
 
@@ -204,19 +230,19 @@ document.documentElement.setAttribute('data-theme',t)})();
 
 <header data-page-node-id="2AE7Wmj9JDrJS62Hf8CIeZ">
   <h1 data-page-node-id="vmUAvpVjPIlO6knjFrxONs">外部环境时间线 —— 《魔兽争霸III 十年补丁演进报告》补充材料</h1>
-  <div class="meta" data-page-node-id="EEzQbjCsP0P1GiS3vRoqSa" style="font-size: 12px; white-space: pre-wrap;">覆盖范围：2016 年 3 月 1.27a 恢复更新 — 2026 年 10 月 暴雪回应 3.0 争议​​</div>
+  <div class="meta" data-page-node-id="EEzQbjCsP0P1GiS3vRoqSa">覆盖范围：2016 年 3 月 1.27a 恢复更新 — 2026 年 10 月 暴雪回应 3.0 争议​​</div>
   <div class="filter-bar" id="filterBar" data-page-node-id="VtysqMdq224kLnBRBP22UD">
-    <span class="fl" data-page-node-id="g8p2zJtIM76DHy2ayFdsFD" style="font-size: 12px; white-space: pre-wrap;">聚焦范围（可选）：​​</span>
-    <span class="fh" data-page-node-id="eHqoAKnp9MAMKWk6xlAF8r" style="font-size: 12px;"><button type="button" class="fbtn on" data-d="os" data-page-node-id="F7zCkDh1NU6DDekeURrTf1"><span class="dot" data-page-node-id="oq7BGZieKKqEWQDLVfip0S"></span>海外</button><span class="fd" data-page-node-id="LXYawxQe7ztAzyj4e6OkqV">暴雪 / 微软 / 海外社区</span></span>
-    <span class="fh" data-page-node-id="RHGIiIQ2oMIT8xaFDpxsO0" style="font-size: 12px;"><button type="button" class="fbtn on" data-d="cn" data-page-node-id="XzGrxMdsao1PSCTjGQEZjx"><span class="dot" data-page-node-id="ypcDv9HGI7H5Y6sskuZmFP"></span>国内</button><span class="fd" data-page-node-id="PS2U0zzaHonTwBSNnJ7b24">网易 / 国服 / 国内平台</span></span>
+    <span class="fl" data-page-node-id="g8p2zJtIM76DHy2ayFdsFD">聚焦范围<span class="opt">（可选）</span>：​</span>
+    <span class="fh" data-page-node-id="eHqoAKnp9MAMKWk6xlAF8r"><button type="button" class="fbtn on" data-d="os" data-page-node-id="F7zCkDh1NU6DDekeURrTf1"><span class="dot" data-page-node-id="oq7BGZieKKqEWQDLVfip0S"></span>海外</button><span class="fd" data-page-node-id="LXYawxQe7ztAzyj4e6OkqV">暴雪 / 微软 / 海外社区</span></span>
+    <span class="fh" data-page-node-id="RHGIiIQ2oMIT8xaFDpxsO0"><button type="button" class="fbtn on" data-d="cn" data-page-node-id="XzGrxMdsao1PSCTjGQEZjx"><span class="dot" data-page-node-id="ypcDv9HGI7H5Y6sskuZmFP"></span>国内</button><span class="fd" data-page-node-id="PS2U0zzaHonTwBSNnJ7b24">网易 / 国服 / 国内平台</span></span>
     <a class="freset" id="filterReset" role="button" tabindex="0" data-page-node-id="1VxXDk9HElKBTUBGK4L9Fc">全部显示</a>
   </div>
 </header>
 
 <!-- ================= 开场 ================= -->
-<h2 data-page-node-id="7O002gPyzfvxVGm5G4pHSd" style=""><span class="act" data-page-node-id="cRGT2gskGz0MSpJtDUEGbC">开场</span>补丁之外</h2>
+<h2 data-page-node-id="7O002gPyzfvxVGm5G4pHSd"><span class="act" data-page-node-id="cRGT2gskGz0MSpJtDUEGbC">开场</span>补丁之外</h2>
 
-<div class="vo" data-page-node-id="MiPiuWHrL5qhOsc072Mc4g" style="">本文是《魔兽争霸III 十年补丁演进报告》的补充材料，梳理同一时期发生在这款游戏之外的大事件：代理关系变化、第三方平台更替、公司并购、开发团队调整，以及社区自建项目等。</div>
+<div class="vo" data-page-node-id="MiPiuWHrL5qhOsc072Mc4g">本文是《魔兽争霸III 十年补丁演进报告》的补充材料，梳理同一时期发生在这款游戏之外的大事件：代理关系变化、第三方平台更替、公司并购、开发团队调整，以及社区自建项目等。</div>
 <div class="vo" data-page-node-id="E3WSFDPivrkgAlO3gSOgDp">
 这些事件不改变版本号，但构成了这十年里另一条并行的时间线。
 </div>
@@ -244,7 +270,7 @@ document.documentElement.setAttribute('data-theme',t)})();
   <div class="htl-tick" style="left:78.79%;top:266px"><i></i><span>2025</span></div>
   <div class="htl-tick" style="left:87.01%;top:266px"><i></i><span>2026</span></div>
   <div class="htl-conn" style="left:6.42%;top:252px;height:14px"></div>
-  <div class="htl-conn" style="left:29.65%;top:252px;height:14px"></div>
+  <div class="htl-conn" style="left:28.08%;top:252px;height:14px"></div>
   <div class="htl-conn" style="left:36.2%;top:204px;height:62px"></div>
   <div class="htl-conn" style="left:36.27%;top:156px;height:110px"></div>
   <div class="htl-conn" style="left:38.37%;top:108px;height:158px"></div>
@@ -270,7 +296,7 @@ document.documentElement.setAttribute('data-theme',t)})();
   <div class="htl-conn" style="left:92.18%;top:266px;height:34px"></div>
   <div class="htl-conn" style="left:92.86%;top:266px;height:82px"></div>
   <div class="htl-ev up os mile" style="left:6.42%;top:266px"><span class="dot"></span><a class="card-a" href="#s2016"><span class="card" style="bottom:14px"><span class="ct">重启更新</span><span class="cs">重制版立项</span></span></a></div>
-  <div class="htl-ev up os mile" style="left:29.65%;top:266px"><span class="dot"></span><a class="card-a" href="#s2018"><span class="card" style="bottom:14px"><span class="ct">公布重制版</span><span class="cs">2018 嘉年华</span></span></a></div>
+  <div class="htl-ev up os mile" style="left:28.08%;top:266px"><span class="dot"></span><a class="card-a" href="#s2018"><span class="card" style="bottom:14px"><span class="ct">公布重制版</span><span class="cs">2018 嘉年华</span></span></a></div>
   <div class="htl-ev up os" style="left:36.2%;top:266px"><span class="dot"></span><a class="card-a" href="#s2019"><span class="card" style="bottom:62px"><span class="ct">全球 BETA</span><span class="cs">10 月 29 日</span></span></a></div>
   <div class="htl-ev up os mile" style="left:36.27%;top:266px"><span class="dot"></span><a class="card-a" href="#s2019"><span class="card" style="bottom:110px"><span class="ct">放弃过场</span><span class="cs">承诺收缩</span></span></a></div>
   <div class="htl-ev up os mile" style="left:38.37%;top:266px"><span class="dot"></span><a class="card-a" href="#s2020"><span class="card" style="bottom:158px"><span class="ct">发售与差评</span><span class="cs">评分 0.5 史低</span></span></a></div>
@@ -306,7 +332,7 @@ document.documentElement.setAttribute('data-theme',t)})();
 
 <!-- ================= 阶段索引 ================= -->
 <div class="toc">
-  <b style="color:var(--strong);">年份阶段索引（点击跳转）</b>
+  <b style="color:var(--strong);">年份阶段索引<span class="noprint">（点击跳转）</span></b>
   <ul>
     <li><span class="tm">2016–2017</span><a href="#s2016">更新重启与国内平台起步</a></li>
     <li><span class="tm">2018</span><a href="#s2018">开发者大会与重制版公布</a></li>
@@ -508,9 +534,9 @@ document.documentElement.setAttribute('data-theme',t)})();
 把两条线放在一起看：一条是版本号，记录了游戏本身的变化；另一条是平台、代理、团队与社区，记录了这款游戏得以继续运行的现实条件。
 </div>
 
-<footer data-page-node-id="FDaWkzCRPzvVyPBwK2bw5p" style="">
-  配套文档：<a href="wc3-decade-of-patches.html" data-page-node-id="4pM4OneudNrEfesqXSLFBm">《魔兽争霸III 十年补丁演进报告》</a> —— 本文仅涉外部环境，不重复版本内技术细节。<br data-page-node-id="PFgUeDG3gKXA6neVYWsCXk">
-  来源：（公告新闻）暴雪官方补丁说明与官网公告、官方论坛蓝贴、自定义游戏使用政策原文、暴雪嘉年华与 30 周年 Direct 直播；国服战网公告与预购页面存档；网易游戏官方新闻稿、官方对战平台公告与官方微博公告、网易内部反腐通报、网易招聘 hr.163.com 职位列表；UP 对战平台与 KK 官方对战平台官方公告、W3Champions 项目页与版本公告；英国 CMA 公告、微软 / 动视暴雪官方新闻稿。（媒体社区）界面新闻、GameLook、游研社、17173 / 新浪财经、新华网 / 新京报贝壳财经 / 中国经营报、南都 N 视频 / 腾讯新闻；PC Gamer / Kotaku / Ars Technica / Eurogamer / Bloomberg、Warcraft Tavern / TheGamer；NGA、机核、3DM / 游久网 / 多玩游戏网 / 360 游戏、新浪游戏与网易号转载。（数据工商）Metacritic 页面存档、Wowpedia / Liquipedia / Hive Workshop、百度百科「KK 对战平台」与「向浪」条目；企查查 / 天眼查 / 爱企查工商信息与软件著作权登记、国家企业信用信息公示系统行政处罚记录。
+<footer data-page-node-id="FDaWkzCRPzvVyPBwK2bw5p">
+  <p>配套文档：<a href="wc3-decade-of-patches.html" data-page-node-id="4pM4OneudNrEfesqXSLFBm">《魔兽争霸III 十年补丁演进报告》</a></p>
+  <p>来源：（公告新闻）暴雪官方补丁说明与官网公告、官方论坛蓝贴、自定义游戏使用政策原文、暴雪嘉年华与 30 周年 Direct 直播；国服战网公告与预购页面存档；网易游戏官方新闻稿、官方对战平台公告与官方微博公告、网易内部反腐通报、网易招聘 hr.163.com 职位列表；UP 对战平台与 KK 官方对战平台官方公告、W3Champions 项目页与版本公告；英国 CMA 公告、微软 / 动视暴雪官方新闻稿。（媒体社区）界面新闻、GameLook、游研社、17173 / 新浪财经、新华网 / 新京报贝壳财经 / 中国经营报、南都 N 视频 / 腾讯新闻；PC Gamer / Kotaku / Ars Technica / Eurogamer / Bloomberg、Warcraft Tavern / TheGamer；NGA、机核、3DM / 游久网 / 多玩游戏网 / 360 游戏、新浪游戏与网易号转载。（数据工商）Metacritic 页面存档、Wowpedia / Liquipedia / Hive Workshop、百度百科「KK 对战平台」与「向浪」条目；企查查 / 天眼查 / 爱企查工商信息与软件著作权登记、国家企业信用信息公示系统行政处罚记录。</p>
 </footer>
 
 </div>

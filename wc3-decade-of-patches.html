@@ -26,7 +26,7 @@
   .wrap{max-width:1100px;margin:0 auto;padding:40px 28px 80px;}
   header{border-bottom:1px solid var(--border);padding-bottom:24px;margin-bottom:32px;}
   h1{font-size:27px;margin:0 0 8px;letter-spacing:.5px;}
-  .sub{color:var(--muted);font-size:14px;}
+  .sub{color:var(--muted);font-size:12px;}
   .badge{display:inline-block;background:var(--panel2);border:1px solid var(--border);border-radius:20px;padding:2px 12px;font-size:12px;color:var(--muted);margin:8px 6px 0 0;}
   .badge b{color:var(--accent);}
   h2{font-size:20px;margin:44px 0 14px;padding-left:12px;border-left:4px solid var(--accent);}
@@ -75,6 +75,14 @@
   /* ===== 横向时间轴（按时间等比铺开） ===== */
   .htl-wrap{margin:28px 0;}
   .htl{position:relative;}
+  /* 窄屏：保持卡片可读宽度，容器内横向滚动 */
+  @media (max-width:960px){
+    .htl-wrap{overflow-x:auto;overflow-y:hidden;padding-bottom:8px;scrollbar-width:thin;}
+    .htl{min-width:920px;}
+    .htl-wrap::-webkit-scrollbar{height:8px;}
+    .htl-wrap::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px;}
+    .htl-wrap::-webkit-scrollbar-track{background:transparent;}
+  }
   .htl-band{position:absolute;top:0;bottom:0;background:rgba(var(--accent-rgb),.04);
     border-left:1px solid rgba(var(--accent-rgb),.15);}
   .htl-band span{position:absolute;top:1px;left:8px;font-size:10.5px;color:var(--muted);
@@ -102,22 +110,51 @@
   .htl-ev .card .cs{display:block;color:var(--muted);font-size:9.5px;
     max-width:8.4em;margin:0 auto;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
     letter-spacing:0;}
-  footer{margin-top:50px;padding-top:20px;border-top:1px solid var(--border);color:var(--muted);font-size:13px;}
+  footer{margin-top:50px;padding-top:20px;border-top:1px solid var(--border);color:var(--muted);font-size:12.5px;line-height:1.8;}
+  footer p{margin:0 0 6px;}footer p:last-child{margin-bottom:0;}
   footer a{color:var(--text);text-decoration:none;border-bottom:1px dotted var(--muted);}
   footer a:hover{color:var(--strong);border-bottom-color:var(--strong);}
 
   /* ===== 日间（浅色）令牌 ===== */
   :root[data-theme="light"]{
     --bg:#f6f4ef; --panel:#ffffff; --panel2:#f1eee7; --border:#ddd6c8;
-    --text:#2b2720; --muted:#7c7568; --accent:#9a7b3f; --accent2:#2f6fb0;
-    --green:#1a7f37; --red:#c93c37; --purple:#8957e5; --era:#2f7d46;
-    --accent-rgb:154,123,63; --accent2-rgb:47,111,176; --code:#8a6d1f; --btn-shadow:rgba(0,0,0,.12);
-    --strong:#1f1b15;--accent-bright:#8a6d1f;
+    --text:#2b2720; --muted:#6b6559; --accent:#806428; --accent2:#2d69a7;
+    --green:#187734; --red:#bd3834; --purple:#7a4dcc; --era:#2c7642;
+    --accent-rgb:128,100,40; --accent2-rgb:45,105,167; --code:#785c12; --btn-shadow:rgba(0,0,0,.12);
+    --strong:#1f1b15;--accent-bright:#6a5119;
+  }
+
+  /* ===== 打印样式（纯白底，省墨） ===== */
+  @media print{
+    :root,:root[data-theme="light"]{
+      --bg:#ffffff; --panel:#ffffff; --panel2:#ffffff; --border:#c8c8c8;
+      --text:#000000; --muted:#3d3d3d; --strong:#000000;
+      --accent:#7a5f24; --accent-bright:#5e4718; --code:#5e4718;
+      --accent-rgb:122,95,36; --accent2:#2d69a7; --accent2-rgb:45,105,167;
+      --green:#146c30; --red:#b0302c; --purple:#6b41b8; --era:#256636;
+      --btn-shadow:none;
+    }
+    body{background:#fff;color:#000;font-size:12.5pt;line-height:1.65;}
+    .wrap{padding:0;max-width:none;}
+    .theme-btn,.back,.noprint{display:none;}
+    .filter-bar .opt,.filter-bar .freset{display:none;}
+    .filter-bar .fbtn{background:#fff;border-color:#8b8b8b;color:#000;}
+    .filter-bar .fbtn.off{color:#6b6b6b;text-decoration:line-through;opacity:1;}
+    header{border-bottom-color:#bdbdbd;}
+    h2{border-left-color:#7a5f24;page-break-after:avoid;}
+    .ver,.toc{border-color:#bdbdbd;}
+    .toc a{color:#000;border-bottom-color:#8b8b8b;}
+    .hl{background:#fff;border-color:#c9b98e;}
+    .badge{background:#fff;border-color:#bdbdbd;}
+    .sec{page-break-after:avoid;}
+    li,tr{page-break-inside:avoid;}
+    .htl{min-width:0;}    /* 覆盖窄屏 920px 布局，否则 A4 右侧被裁 */
+    .htl-wrap{overflow:visible;}
   }
 
   /* ===== 维度筛选器 ===== */
   .filter-bar{margin:16px 0 0;display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:13px;color:var(--muted);}
-  .filter-bar .fl{font-size:14px;color:var(--muted);margin-right:2px;}
+  .filter-bar .fl{font-size:12px;color:var(--muted);margin-right:2px;}
   .fbtn{display:inline-flex;align-items:center;gap:6px;cursor:pointer;user-select:none;
     font:inherit;font-size:12.5px;line-height:1.5;color:var(--muted);background:var(--panel2);
     border:1px solid var(--border);border-radius:20px;padding:3px 12px;opacity:.55;
@@ -149,7 +186,7 @@ if(t!=='light'&&t!=='dark'){t=window.matchMedia&&matchMedia('(prefers-color-sche
 document.documentElement.setAttribute('data-theme',t)})();
 </script>
 <style id="__dm_no_drag_style__" data-page-node-id="5NHsha2BIrP8jttRB42NEm">* { -webkit-user-drag: none !important; }</style><style id="__dm_bindable_badge_style__" data-page-node-id="I22LeSBveRrs0VDZ8sUgDX">[data-sp-bindable="database"]{outline:1px dashed #0088ff;outline-offset:2px;border-radius:4px;}[data-sp-bindable="database"] *{pointer-events:none !important;transition:none !important;animation:none !important;}[data-sp-bindable="database"]{transition:none !important;animation:none !important;}</style></head>
-<body data-page-node-id="TAvQL0S35D2KHHVRH40mH0" style="">
+<body data-page-node-id="TAvQL0S35D2KHHVRH40mH0">
 <button id="themeBtn" class="theme-btn" type="button" aria-label="切换日间/夜间模式" title="切换日间/夜间模式" data-page-node-id="9OUT0qHPaPphutkAfEGcRL">☀️</button>
 <div class="wrap" data-page-node-id="vDMTDNCCHUUZETyZ4tLFUH">
 
@@ -157,10 +194,10 @@ document.documentElement.setAttribute('data-theme',t)})();
 
 <header data-page-node-id="xZH720Okj9cyGkcJDreeAx">
   <h1 data-page-node-id="oWXiJuBsELP7q6vIUlqrGx">魔兽争霸III 十年补丁演进报告</h1>
-  <div class="sub" data-page-node-id="UpMuHtPrVciThFMCgF6uZr" style="font-size: 12px; white-space: pre-wrap;">覆盖范围：2016 年 3 月 版本 1.27a — 2026 年 10 月 版本 3.0.1​</div>
+  <div class="sub" data-page-node-id="UpMuHtPrVciThFMCgF6uZr">覆盖范围：2016 年 3 月 版本 1.27a — 2026 年 10 月 版本 3.0.1​</div>
 
   <div class="filter-bar" id="filterBar" data-page-node-id="LmlrAiloD653zCHw5Cop8L">
-    <span class="fl" data-page-node-id="laLKo45D4OAF6GbSPcQw6U" style="font-size: 12px; white-space: pre-wrap;">聚焦范围（可选）：​</span>
+    <span class="fl" data-page-node-id="laLKo45D4OAF6GbSPcQw6U">聚焦范围<span class="opt">（可选）</span>：</span>
     <button type="button" class="fbtn on" data-d="game" data-page-node-id="Cfy4YOBWXR4rOIiGTADC8g"><span class="dot" data-page-node-id="o7oOanYWWJ30TpJNdB4M66"></span>游戏功能</button>
     <button type="button" class="fbtn on" data-d="bal" data-page-node-id="wPiHZ9JBXwECVVM6ZrDvRZ"><span class="dot" data-page-node-id="lBhSksTUCbgPcuFUCkXkdE"></span>平衡性机制</button>
     <button type="button" class="fbtn on" data-d="ed" data-page-node-id="GQzrdJ9jQVU6Oejs9yDuRT"><span class="dot" data-page-node-id="dWD8xHSDB257EguNSHHHXv"></span>地图编辑器</button>
@@ -200,7 +237,7 @@ document.documentElement.setAttribute('data-theme',t)})();
   <div class="htl-conn" style="left:26.67%;top:208px;height:92px" data-page-node-id="zQQAh47ruanMCSjUTm5gpd"></div>
   <div class="htl-conn" style="left:33.12%;top:208px;height:34px" data-page-node-id="hHa59JVnL0AhhphFq94nmi"></div>
   <div class="htl-conn" style="left:38.53%;top:194px;height:14px" data-page-node-id="JYxn5HuJXclV7YjdCF9yLo"></div>
-  <div class="htl-conn" style="left:58.9%;top:194px;height:14px" data-page-node-id="4d5B0TU7cZYTEwQzpFxsg3"></div>
+  <div class="htl-conn" style="left:59.05%;top:194px;height:14px" data-page-node-id="4d5B0TU7cZYTEwQzpFxsg3"></div>
   <div class="htl-conn" style="left:61.39%;top:208px;height:34px" data-page-node-id="IPd74IhtgcwAWgmlHFaKPp"></div>
   <div class="htl-conn" style="left:62.46%;top:208px;height:92px" data-page-node-id="sRytpNb6BEmQssqmqZDQRI"></div>
   <div class="htl-conn" style="left:64.89%;top:136px;height:72px" data-page-node-id="mr0EIHDsh3eA4xAu6haOsH"></div>
@@ -217,7 +254,7 @@ document.documentElement.setAttribute('data-theme',t)})();
   <div class="htl-ev down" style="left:26.67%;top:208px" data-page-node-id="1ZZpCwjP24WjmCgWGmdXjz"><span class="dot" data-page-node-id="H6795p4IWICAEWgxnBeWgO"></span><span class="card" style="top:92px" data-page-node-id="mgC0OTUQU5waLtX94MpXwW"><a class="cv" href="#v130" data-page-node-id="hm8xD4HEgRriyt5L6tHEaI">1.30</a><span class="ct" data-page-node-id="zFL5rfSvgFGctWlkClpmO5">底层迁移</span><span class="cs" data-page-node-id="HHGM8JwFoymuU6XcTkQL8S">MPQ → CASC</span></span></div>
   <div class="htl-ev down mile" style="left:33.12%;top:208px" data-page-node-id="EtN9saUepPRsWS72lxcB8z"><span class="dot" data-page-node-id="lxklOnQj00yZLqtMNZdSN0"></span><span class="card" style="top:34px" data-page-node-id="VEuq0yrvKEk0NISurPlmEv"><a class="cv" href="#v131" data-page-node-id="sJLf3K2AXXMYuCBXEKCQJI">1.31</a><span class="ct" data-page-node-id="ud6SF0rtuMBreRA7DdOlFO">渲染换代</span><span class="cs" data-page-node-id="EkUrRFJdbpM7xRtYl192Vq">D3D11 · Lua</span></span></div>
   <div class="htl-ev up mile" style="left:38.53%;top:208px" data-page-node-id="DGgJUZSahOnpGSX8gN5ck8"><span class="dot" data-page-node-id="UMsR4w185JTeVSsF9xBVz7"></span><span class="card" style="bottom:14px" data-page-node-id="L5AUZfYFgEXsZUDSEYQxx3"><a class="cv" href="#v132" data-page-node-id="M85eQAVpxkDMcvq6MMA3HE">1.32</a><span class="ct" data-page-node-id="1NaTI9IaJnp4z6ArDM3MhR">重制版发布</span><span class="cs" data-page-node-id="d6nmbrtqvuIp2r7m5ZbyMT">含 1.32.x 修复期</span></span></div>
-  <div class="htl-ev up mile" style="left:58.9%;top:208px" data-page-node-id="yT37XvvCzvZPkumzB5qQZ4"><span class="dot" data-page-node-id="daXpZ6ei8C4HSXq6gccFpU"></span><span class="card" style="bottom:14px" data-page-node-id="7k34RHP2zC4citd3SFXOgm"><a class="cv" href="#v133" data-page-node-id="Ys4csF69rNOKToa97GBxkY">1.33</a><span class="ct" data-page-node-id="BYJHgdFMdFPscr5te8lFL4">排名对战</span><span class="cs" data-page-node-id="KjiNKMSRs4BZAZQxyR3aOf">档案 · 排行榜</span></span></div>
+  <div class="htl-ev up mile" style="left:59.05%;top:208px" data-page-node-id="yT37XvvCzvZPkumzB5qQZ4"><span class="dot" data-page-node-id="daXpZ6ei8C4HSXq6gccFpU"></span><span class="card" style="bottom:14px" data-page-node-id="7k34RHP2zC4citd3SFXOgm"><a class="cv" href="#v133" data-page-node-id="Ys4csF69rNOKToa97GBxkY">1.33</a><span class="ct" data-page-node-id="BYJHgdFMdFPscr5te8lFL4">排名对战</span><span class="cs" data-page-node-id="KjiNKMSRs4BZAZQxyR3aOf">档案 · 排行榜</span></span></div>
   <div class="htl-ev down" style="left:61.39%;top:208px" data-page-node-id="BpBMXePvz2w59Ho62j96Cb"><span class="dot" data-page-node-id="VCURGJDk38Mu2uZsrJnHQ9"></span><span class="card" style="top:34px" data-page-node-id="HICKFt2bO8cyC1Lfix5tXr"><a class="cv" href="#v134" data-page-node-id="KzK2HFzAFNEeQg9fdPQRW5">1.34</a><span class="ct" data-page-node-id="pAcMHwv5ATDbIFSCa69YUh">战队回归</span><span class="cs" data-page-node-id="QkHbq3NIXhwWvavGE6qIfY">举报 · 按名加入</span></span></div>
   <div class="htl-ev down" style="left:62.46%;top:208px" data-page-node-id="y6Lb5HnM7Q9D7u9hKEvxM4"><span class="dot" data-page-node-id="7dUI5GGwnUfiUuLZxkPKCc"></span><span class="card" style="top:92px" data-page-node-id="oCL055mEWVZ2GO3R8cKcyR"><a class="cv" href="#v135" data-page-node-id="7zQ1mq6DjjrGgEiiiV2h54">1.35</a><span class="ct" data-page-node-id="5IW1ddF7UCD5tAS8dZTDRJ">自定义战役</span><span class="cs" data-page-node-id="JINmMxe7LVDW5rgzykRYsx">战役可发布</span></span></div>
   <div class="htl-ev up" style="left:64.89%;top:208px" data-page-node-id="IokdAxrZYuo8VwiHCFAPCO"><span class="dot" data-page-node-id="drczJi33UeSldvFdhoBQDK"></span><span class="card" style="bottom:72px" data-page-node-id="GGd1jTCHbIUX7J0VikjZ0S"><a class="cv" href="#v136" data-page-node-id="X8Ntnm9nGKgiF8qarFLB18">1.36</a><span class="ct" data-page-node-id="vtLoGhMT7FmsgvgyCUGKsp">观战者模式</span><span class="cs" data-page-node-id="PPGK912uwEqx8oCUEbaY86">每日锦标赛</span></span></div>
@@ -232,7 +269,7 @@ document.documentElement.setAttribute('data-theme',t)})();
 </div>
 
 <div class="toc" data-page-node-id="yJ6oDBamC4QObOvCLxbFjt">
-  <b style="color:var(--strong);" data-page-node-id="YEFboD23IKlpBh45rKO6e6">全部版本索引（按发布顺序，点击跳转）</b>
+  <b style="color:var(--strong);" data-page-node-id="YEFboD23IKlpBh45rKO6e6">全部版本索引<span class="noprint">（按发布顺序，点击跳转）</span></b>
   <ul class="tl" data-page-node-id="nCZdWg6BCxDsqnB0w8meXK">
     <li data-page-node-id="wDHN9jZug09KrsKCU6PiFl"><span class="tm" data-page-node-id="AgFOh37ADMSA5ySr47qtZ8">2016-03-15</span> —— <a href="#v127" data-page-node-id="CXujlBjaqnWYnXuo7DLqdV">1.27</a> 时隔 5 年重启更新：新版系统兼容、1920×1080 分辨率；地图上限 8MB→128MB</li>
     <li data-page-node-id="9eOhZxlGwV0lX7ZfG7HWK5"><span class="tm" data-page-node-id="PVjUtrM97OVHMctsWdhVmH">2017-04-05</span> —— <a href="#v128" data-page-node-id="RzXaMfN8MJK3DiOGnCpIGQ">1.28</a> 小修补丁系列：窗口化全屏 / 原生全屏、免管理员存档、Mac 修复</li>
@@ -799,8 +836,8 @@ document.documentElement.setAttribute('data-theme',t)})();
 </div>
 
 <footer data-page-node-id="IuELxN2dRnFesU249nE4SD">
-  <p data-page-node-id="ZkvaoEIQs4WGkbOQPPvQID">配套文档：<a href="wc3-decade-narration.html" data-page-node-id="xUx6kjRSnVNEeXolcMImFP">《外部环境时间线 —— 十年报告补充材料》</a> —— 记录同期发生在版本之外的外部事件。</p>
-  <p data-page-node-id="TATZd56lr5q0IqaYm0MvHQ">数据来源：暴雪官方补丁说明（news.blizzard.com / us.forums.blizzard.com）与 Wowpedia / Liquipedia / JudgeHype / Hive Workshop 交叉核对。</p>
+  <p data-page-node-id="ZkvaoEIQs4WGkbOQPPvQID">配套文档：<a href="wc3-decade-narration.html" data-page-node-id="xUx6kjRSnVNEeXolcMImFP">《外部环境时间线 —— 十年报告补充材料》</a></p>
+  <p data-page-node-id="TATZd56lr5q0IqaYm0MvHQ">来源：暴雪官方补丁说明（news.blizzard.com / us.forums.blizzard.com）与 Wowpedia / Liquipedia / JudgeHype / Hive Workshop 交叉核对。</p>
 </footer>
 
 </div>
