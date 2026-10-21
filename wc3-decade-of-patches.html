@@ -1,18 +1,18 @@
 <!DOCTYPE html>
-<html lang="zh-CN" data-theme="dark"><head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>魔兽争霸III 十年补丁演进报告（2016–2026 · 1.27a → 3.0.1）</title>
-<meta name="description" content="魔兽争霸III 十年补丁演进报告（2016–2026，1.27a → 3.0.1）：按维度梳理游戏功能、平衡性机制、地图编辑器与 BUG 修复的逐版本变化。">
-    <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%2032%2032%22%3E%3Ctext%20x=%221%22%20y=%2225%22%20font-size=%2223%22%20font-family=%22Segoe%20UI%20Emoji,Apple%20Color%20Emoji,Noto%20Color%20Emoji,sans-serif%22%3E%F0%9F%93%9C%3C/text%3E%3C/svg%3E">
-<meta name="theme-color" content="#0d1117" media="(prefers-color-scheme: dark)">
-<meta name="theme-color" content="#f6f4ef" media="(prefers-color-scheme: light)">
-<meta property="og:type" content="article">
-<meta property="og:site_name" content="世界编辑器中文站">
-<meta property="og:title" content="魔兽争霸III 十年补丁演进报告（2016–2026 · 1.27a → 3.0.1）">
-<meta property="og:description" content="按维度梳理游戏功能、平衡性机制、地图编辑器与 BUG 修复的逐版本变化。">
-<meta property="og:url" content="https://worldeditor.cn/wc3-decade-of-patches.html">
-<style>
+<html lang="zh-CN" data-theme="dark" data-page-node-id="7YvCnBw5QRe5a5nVAuVmju"><head data-page-node-id="hvHPpLFBFViAiaHysSzwN2">
+<meta charset="UTF-8" data-page-node-id="ZrbVMdeW8SxBLphMLucsgO">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" data-page-node-id="PS48mm1dFHRzfipm8UAU6L">
+<title data-page-node-id="LVQ2gwboE3gIHNrscHLjDB">魔兽争霸III 十年补丁演进报告（2016–2026 · 1.27a → 3.0.1）</title>
+<meta name="description" content="魔兽争霸III 十年补丁演进报告（2016–2026，1.27a → 3.0.1）：按维度梳理游戏功能、平衡性机制、地图编辑器与 BUG 修复的逐版本变化。" data-page-node-id="Bn6kk8HYzvXfbr4UUtOyOw">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%2032%2032%22%3E%3Ctext%20x=%221%22%20y=%2225%22%20font-size=%2223%22%20font-family=%22Segoe%20UI%20Emoji,Apple%20Color%20Emoji,Noto%20Color%20Emoji,sans-serif%22%3E%F0%9F%93%9C%3C/text%3E%3C/svg%3E" data-page-node-id="nANhDyUYPSyCBrRyVKureO">
+<meta name="theme-color" content="#0d1117" media="(prefers-color-scheme: dark)" data-page-node-id="EyqYwOHz01xy4rFUkZkI68">
+<meta name="theme-color" content="#f6f4ef" media="(prefers-color-scheme: light)" data-page-node-id="C75j3ELYPJO9Ou9ULmTFTc">
+<meta property="og:type" content="article" data-page-node-id="hbersbWDRrBWYNRhGxnHVK">
+<meta property="og:site_name" content="世界编辑器中文站" data-page-node-id="H0ZYLXF7O3n0chaxGKbc7W">
+<meta property="og:title" content="魔兽争霸III 十年补丁演进报告（2016–2026 · 1.27a → 3.0.1）" data-page-node-id="h5xrYX06OBIJLfxnA5irkj">
+<meta property="og:description" content="按维度梳理游戏功能、平衡性机制、地图编辑器与 BUG 修复的逐版本变化。" data-page-node-id="I8gBvWYRsI4qn3X8ZeWuTO">
+<meta property="og:url" content="https://worldeditor.cn/wc3-decade-of-patches.html" data-page-node-id="esaIE66Kh5ytX6OUsDkHhw">
+<style data-page-node-id="aCw0wGDwklJuNs6S4p3WUF">
   :root{
     --bg:#0d1117; --panel:#161b22; --panel2:#1c2129; --border:#2d333b;
     --text:#e6edf3; --muted:#9aa4b2; --accent:#e3b341; --accent2:#4a9eff;
@@ -22,29 +22,39 @@
     --strong:#ffffff;
   }
   *{box-sizing:border-box;}
-  body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,"Segoe UI","Microsoft YaHei",Roboto,Helvetica,Arial,sans-serif;line-height:1.7;font-size:15px;}
-  .wrap{max-width:1100px;margin:0 auto;padding:40px 28px 80px;}
-  header{border-bottom:1px solid var(--border);padding-bottom:24px;margin-bottom:32px;}
-  h1{font-size:27px;margin:0 0 8px;letter-spacing:.5px;}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,"Segoe UI","Microsoft YaHei",Roboto,Helvetica,Arial,sans-serif;line-height:1.7;font-size:14px;}
+  .wrap{max-width:936px;margin:0 auto;padding:44px 28px 80px;}
+  /* 版心正文收窄到 880px，与《补充材料》页（920px 版心 / 864px 正文）对齐 */
+  header,h2,.lede,.vo,.ver,.cue,.quote,table,.htl-note,.htl-wrap,.toc,footer{max-width:880px;}
+  header{border-bottom:1px solid var(--border);padding-bottom:24px;margin-bottom:30px;}
+  h1{font-size:26px;line-height:1.5;margin:0 0 6px;letter-spacing:.5px;color:var(--strong);}
   .sub{color:var(--muted);font-size:12px;}
   .badge{display:inline-block;background:var(--panel2);border:1px solid var(--border);border-radius:20px;padding:2px 12px;font-size:12px;color:var(--muted);margin:8px 6px 0 0;}
   .badge b{color:var(--accent);}
-  h2{font-size:20px;margin:44px 0 14px;padding-left:12px;border-left:4px solid var(--accent);}
+  h2{font-size:20px;line-height:1.5;margin:46px 0 14px;padding-left:12px;border-left:4px solid var(--accent);}
+  h2 .act{color:var(--accent);font-size:13px;font-weight:600;letter-spacing:1px;display:block;margin-bottom:2px;}
   h3{font-size:16px;margin:22px 0 10px;color:var(--accent);}
+  h2.end{border-bottom:none;}
   .era-tag{font-size:13px;color:var(--era);font-weight:600;margin-left:6px;}
-  .ver{background:var(--panel);border:1px solid var(--border);border-radius:12px;margin:26px 0;overflow:hidden;}
-  .ver-head{display:flex;align-items:baseline;flex-wrap:wrap;gap:10px;padding:16px 20px;background:var(--panel2);border-bottom:1px solid var(--border);}
-  .ver-head .v{font-size:19px;font-weight:700;color:var(--strong);}
-  .ver-head .d{font-size:13px;color:var(--muted);}
-  .ver-head .tag{margin-left:auto;font-size:12px;color:var(--muted);background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:2px 8px;}
-  .ver-body{padding:16px 20px 20px;}
-  .hl{background:linear-gradient(90deg,rgba(var(--accent-rgb),.12),transparent);border:1px solid rgba(var(--accent-rgb),.35);border-radius:8px;padding:10px 14px;margin:4px 0 16px;font-size:14px;color:var(--accent-bright);}
-  .hl b{color:var(--accent);}
-  table{width:100%;border-collapse:collapse;margin:12px 0;font-size:14px;}
-  th,td{border:1px solid var(--border);padding:8px 12px;text-align:left;vertical-align:top;}
+  /* 版本块：左侧金色竖条；日期与副标题为金色行，版本号为白色大字（参考用户示意图） */
+  .ver{margin:30px 0 40px;}
+  /* 金色竖条只罩标题区（日期 / 副标题 / 版本号），不延伸到正文 */
+  .ver-title{border-left:4px solid var(--accent);padding:2px 0 2px 16px;margin:0 0 12px;}
+  .ver-head{padding:0 0 10px;}
+  .ver-head .v{display:inline-block;font-size:23px;font-weight:700;color:var(--strong);
+    letter-spacing:.5px;font-variant-numeric:tabular-nums;line-height:1.35;}
+  .ver .d{display:block;font-size:13px;font-weight:700;color:var(--accent);
+    font-variant-numeric:tabular-nums;margin:0 0 2px;}
+  .ver-head .tag{margin-left:10px;font-size:12px;color:var(--muted);letter-spacing:.3px;}
+  .ver-body{padding:0;}
+  /* 版本副标题（时代背景 / 里程碑 / 核心亮点）：置于版本标题下，无卡片 */
+  .ver-sub{font-size:13px;color:var(--accent);font-weight:700;line-height:1.7;padding:0;margin:0 0 4px;}
+  .ver-sub b{font-weight:800;}
+  table{width:100%;border-collapse:collapse;margin:16px 0;font-size:13.5px;}
+  th,td{border:1px solid var(--border);padding:7px 10px;text-align:left;vertical-align:top;}
   th{background:var(--panel2);color:var(--muted);font-weight:600;white-space:nowrap;}
   td .k{color:var(--accent2);font-weight:600;}
-  .sec{margin:14px 0 4px;font-weight:700;font-size:14px;color:var(--strong);display:flex;align-items:center;gap:8px;}
+  .sec{margin:14px 0 4px;font-weight:700;font-size:15px;color:var(--strong);display:flex;align-items:center;gap:8px;}
   .sec::before{content:"";width:8px;height:8px;border-radius:2px;background:var(--accent);flex-shrink:0;}
   .d-bal::before{background:var(--green);}
   .d-ed::before{background:var(--purple);}
@@ -57,18 +67,39 @@
   .d-bug ~ ul > li::marker{color:var(--red);}
   code{background:var(--bg);border:1px solid var(--border);border-radius:4px;padding:0 5px;font-size:13px;color:var(--code);}
   .note{font-size:13px;color:var(--muted);font-style:italic;margin-top:6px;}
-  .toc{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:16px 20px;margin:20px 0;}
-  .toc a{color:var(--accent);text-decoration:none;border-bottom:1px dotted var(--muted);}
-  .toc a:hover{color:var(--accent-bright,var(--strong));border-bottom-color:var(--accent);}
-  .toc .tl{list-style:none;margin:10px 0 0;padding:0;font-size:14px;}
-  .toc .tl li{padding:3px 0;}
-  .toc .tl .tm{color:var(--muted);font-weight:600;font-variant-numeric:tabular-nums;}
+  .lede{line-height:1.8;color:var(--text);margin:18px 0;padding-left:18px;}
+  .lede p{margin:13px 0;}
+  /* 无卡片：索引直接排在正文流里，不加底框与分隔线 */
+  .toc{margin:22px 0;}
+  h2 .noprint{font-size:12px;font-weight:400;color:var(--muted);letter-spacing:0;margin-left:2px;}
+  .toc a{color:var(--text);text-decoration:none;border-bottom:1px dotted var(--muted);}
+  .toc a:hover{color:var(--strong);border-bottom-color:var(--strong);}
+  .toc a.tv{border-bottom:none;}
+  /* 目录：日期 / 版本号 / 描述 三列制表对齐，每行不换行 */
+  .toc .tl{list-style:none;margin:6px 0 0;padding:0;font-size:14px;}
+  .toc .tl li{display:flex;align-items:baseline;gap:14px;padding:2px 0;}
+  .toc .tl .tm{color:var(--muted);font-weight:400;font-variant-numeric:tabular-nums;flex:none;min-width:104px;}
+  .toc .tl .tv{color:var(--accent);font-weight:700;text-decoration:none;
+    font-variant-numeric:tabular-nums;flex:none;min-width:52px;}
+  .toc .tl .tv:hover{text-decoration:underline;}
+  .toc .tl .td{flex:1 1 auto;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
   /* 返回主页 */
   .back{margin:0 0 20px;}
   .back a{display:inline-block;font-size:13px;color:var(--muted);text-decoration:none;
     border:1px solid var(--border);background:var(--panel2);border-radius:20px;padding:3px 13px;
     transition:color .15s,border-color .15s;}
   .back a:hover{color:var(--accent);border-color:var(--accent);}
+
+  /* ===== 标注 / 引述 / 归属（与《补充材料》页同款） ===== */
+  .tag{display:inline-block;font-size:11.5px;font-weight:700;letter-spacing:.3px;line-height:1.6;
+    border-radius:20px;padding:1px 9px;margin-right:9px;vertical-align:1.5px;white-space:nowrap;
+    border:1px solid;}
+  .cue{font-size:13.5px;color:var(--muted);font-style:italic;border-left:3px solid var(--border);
+    padding:6px 0 6px 14px;margin:16px 0;}
+  .cue b{font-style:normal;color:var(--accent);font-weight:600;}
+  .quote{background:var(--panel);border-left:4px solid var(--accent);border-radius:0 8px 8px 0;
+    padding:12px 18px;margin:18px 0;font-size:14px;color:var(--strong);}
+  .quote .src{display:block;margin-top:6px;font-size:13px;color:var(--muted);font-style:italic;}
   .era-bar{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0;}
   .era-bar span{font-size:12px;padding:3px 10px;border-radius:12px;border:1px solid var(--border);color:var(--muted);background:var(--panel2);}
 
@@ -83,33 +114,40 @@
     .htl-wrap::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px;}
     .htl-wrap::-webkit-scrollbar-track{background:transparent;}
   }
-  .htl-band{position:absolute;top:0;bottom:0;background:rgba(var(--accent-rgb),.04);
+  /* 窄屏：收紧目录三列的固定列宽，给描述列让出空间 */
+  @media (max-width:900px){
+    .toc .tl li{gap:10px;}
+    .toc .tl .tm{min-width:88px;}
+    .toc .tl .tv{min-width:46px;}
+  }
+  .htl-band{position:absolute;top:0;bottom:0;
+    background:linear-gradient(90deg,rgba(var(--accent-rgb),.055),rgba(var(--accent-rgb),0));
     border-left:1px solid rgba(var(--accent-rgb),.15);}
   .htl-band span{position:absolute;top:1px;left:8px;font-size:10.5px;color:var(--muted);
-    letter-spacing:.5px;white-space:nowrap;background:var(--bg);padding:0 6px;border-radius:8px;}
+    letter-spacing:.5px;white-space:nowrap;}
   .htl-axis{position:absolute;left:5.75%;right:5.75%;height:2px;border-radius:2px;
-    background:linear-gradient(90deg,rgba(var(--accent-rgb),0),rgba(var(--accent-rgb),.55) 5%,rgba(var(--accent-rgb),.55) 95%,rgba(var(--accent-rgb),0));}
+    background:linear-gradient(90deg,rgba(var(--accent-rgb),0),rgba(var(--accent-rgb),.75) 5%,rgba(var(--accent-rgb),.75) 95%,rgba(var(--accent-rgb),0));}
   .htl-tick{position:absolute;transform:translateX(-50%);text-align:center;}
-  .htl-tick i{display:block;width:1px;height:9px;margin:0 auto;background:var(--muted);opacity:.55;}
+  .htl-tick i{display:block;width:1px;height:9px;margin:0 auto;background:var(--muted);opacity:.8;}
   .htl-tick span{display:block;font-size:10.5px;color:var(--muted);margin-top:2px;
     font-variant-numeric:tabular-nums;}
-  .htl-conn{position:absolute;width:0;border-left:1px dashed var(--border);margin-left:-.5px;z-index:1;}
+  .htl-conn{position:absolute;width:0;border-left:1px dashed var(--accent);margin-left:-.5px;z-index:1;opacity:.55;}
   .htl-ev{position:absolute;height:0;transform:translateX(-50%);z-index:3;width:11.5%;}
-  .htl-ev .dot{position:absolute;left:50%;top:0;width:9px;height:9px;margin:-4.5px 0 0 -4.5px;
+  .htl-ev .dot{position:absolute;left:50%;top:0;width:8px;height:8px;margin:-4px 0 0 -4px;
     border-radius:50%;background:var(--bg);border:2px solid var(--accent);}
-  .htl-ev.mile .dot{background:var(--accent);box-shadow:0 0 0 3px rgba(var(--accent-rgb),.16);}
+  /* 里程碑：更大实心圆点，不用外扩光晕（避免卡片式浮雕） */
+  .htl-ev.mile .dot{width:12px;height:12px;margin:-6px 0 0 -6px;
+    background:var(--accent);border-width:3px;border-color:rgba(var(--accent-rgb),.35);}
   .htl-ev .card{position:absolute;left:0;width:100%;box-sizing:border-box;text-align:center;
     background:var(--panel2);border:1px solid var(--border);border-radius:8px;padding:4px 5px;
-    font-size:10px;line-height:1.4;box-shadow:0 1px 5px var(--btn-shadow);
-    transition:border-color .15s ease,box-shadow .15s ease;}
-  .htl-ev .card:hover{border-color:var(--accent);box-shadow:0 3px 10px var(--btn-shadow);}
+    font-size:10px;line-height:1.4;transition:border-color .15s ease;}
   .htl-ev .card .cv{display:block;font-weight:700;color:var(--accent);text-decoration:none;
     font-variant-numeric:tabular-nums;}
-  .htl-ev .card a.cv:hover{text-decoration:underline;}
+  .htl-ev .card a.cv:hover{text-decoration:underline;color:var(--accent-bright);}
   .htl-ev .card .ct{display:block;color:var(--strong);font-weight:600;}
   .htl-ev .card .cs{display:block;color:var(--muted);font-size:9.5px;
-    max-width:8.4em;margin:0 auto;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
     letter-spacing:0;}
+  .htl-ev .card:hover{border-color:var(--accent);}
   footer{margin-top:50px;padding-top:20px;border-top:1px solid var(--border);color:var(--muted);font-size:12.5px;line-height:1.8;}
   footer p{margin:0 0 6px;}footer p:last-child{margin-bottom:0;}
   footer a{color:var(--text);text-decoration:none;border-bottom:1px dotted var(--muted);}
@@ -134,7 +172,7 @@
       --green:#146c30; --red:#b0302c; --purple:#6b41b8; --era:#256636;
       --btn-shadow:none;
     }
-    body{background:#fff;color:#000;font-size:12.5pt;line-height:1.65;}
+    body{background:#fff;color:#000;font-size:11.5pt;line-height:1.65;}
     .wrap{padding:0;max-width:none;}
     .theme-btn,.back,.noprint{display:none;}
     .filter-bar .opt,.filter-bar .freset{display:none;}
@@ -142,14 +180,19 @@
     .filter-bar .fbtn.off{color:#6b6b6b;text-decoration:line-through;opacity:1;}
     header{border-bottom-color:#bdbdbd;}
     h2{border-left-color:#7a5f24;page-break-after:avoid;}
-    .ver,.toc{border-color:#bdbdbd;}
+    .toc{border-color:#bdbdbd;}
+    .ver-title{border-left-color:#7a5f24;}
     .toc a{color:#000;border-bottom-color:#8b8b8b;}
-    .hl{background:#fff;border-color:#c9b98e;}
+    .ver-sub{color:#3d3d3d;}
+    .ver-sub b{color:#000;}
     .badge{background:#fff;border-color:#bdbdbd;}
     .sec{page-break-after:avoid;}
     li,tr{page-break-inside:avoid;}
     .htl{min-width:0;}    /* 覆盖窄屏 920px 布局，否则 A4 右侧被裁 */
     .htl-wrap{overflow:visible;}
+    /* 打印保留时间轴背景色（彩色节点、聚焦范围淡色）；轴线改用边框绘制，保证不勾选"背景图形"也能打印 */
+    .htl, .htl *{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+    .htl-axis{height:0;border-top:2px solid var(--accent);border-radius:0;}
   }
 
   /* ===== 维度筛选器 ===== */
@@ -180,668 +223,700 @@
     cursor:pointer;box-shadow:0 2px 10px var(--btn-shadow,rgba(0,0,0,.3));}
   .theme-btn:hover{border-color:var(--accent);}
 </style>
-<script>
+<script data-page-node-id="p9MUliO9qkHUmbjY2miTJb">
 (function(){var t=null;try{t=localStorage.getItem('site-theme')}catch(e){}
 if(t!=='light'&&t!=='dark'){t=window.matchMedia&&matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'}
 document.documentElement.setAttribute('data-theme',t)})();
 </script>
-</head>
-<body>
-<button id="themeBtn" class="theme-btn" type="button" aria-label="切换日间/夜间模式" title="切换日间/夜间模式">☀️</button>
-<div class="wrap">
+<style id="__dm_no_drag_style__" data-page-node-id="pRL3eD86tKv4Nz8uXHiHfU">* { -webkit-user-drag: none !important; }</style><style id="__dm_bindable_badge_style__" data-page-node-id="J56RgW8b90YZev9QQEBGpN">[data-sp-bindable="database"]{outline:1px dashed #0088ff;outline-offset:2px;border-radius:4px;}[data-sp-bindable="database"] *{pointer-events:none !important;transition:none !important;animation:none !important;}[data-sp-bindable="database"]{transition:none !important;animation:none !important;}</style></head>
+<body data-page-node-id="nzWI4sr4HQqI3fxNLbFy8S" style="">
+<button id="themeBtn" class="theme-btn" type="button" aria-label="切换日间/夜间模式" title="切换日间/夜间模式" data-page-node-id="J9Eh1CMPGjKGFGNLcr1RMg">☀️</button>
+<div class="wrap" data-page-node-id="l8BPx94o6f3DmofZlenyJ7">
 
-<div class="back"><a href="index.html">← 返回主页</a></div>
+<div class="back" data-page-node-id="BHk77KZ6MpQ0gck4qmgnyS"><a href="index.html" data-page-node-id="s1geCUwnYfVAAgWHlzdwgK">← 返回主页</a></div>
 
-<header>
-  <h1>魔兽争霸III 十年补丁演进报告</h1>
-  <div class="sub">覆盖范围：2016 年 3 月 版本 1.27a — 2026 年 10 月 版本 3.0.1​</div>
+<header data-page-node-id="LCj9AEuKC1QCWwCK96ISv0">
+  <h1 data-page-node-id="qv5aamUgkXLvUBAnTgnV6X">魔兽争霸III 十年补丁演进报告</h1>
+  <div class="sub" data-page-node-id="PkKGM2edQkhsc2C5K9GDxk">覆盖范围：2016 年 3 月 版本 1.27a — 2026 年 10 月 版本 3.0.1​</div>
 
-  <div class="filter-bar" id="filterBar">
-    <span class="fl">聚焦范围<span class="opt">（可选）</span>：</span>
-    <button type="button" class="fbtn on" data-d="game"><span class="dot"></span>游戏功能</button>
-    <button type="button" class="fbtn on" data-d="bal"><span class="dot"></span>平衡性机制</button>
-    <button type="button" class="fbtn on" data-d="ed"><span class="dot"></span>地图编辑器</button>
-    <button type="button" class="fbtn on" data-d="bug"><span class="dot"></span>BUG 修复</button>
-    <a class="freset" id="filterReset" role="button" tabindex="0">全部显示</a>
+  <div class="filter-bar" id="filterBar" data-page-node-id="7wZRJEpKDJ7xqQpIGSUBrw">
+    <span class="fl" data-page-node-id="qjHBBlKqIGUizCDCsUgSEU">聚焦范围<span class="opt" data-page-node-id="fuJGhFRUgQwRBQ16tHzOWG">（可选）</span>：</span>
+    <button type="button" class="fbtn on" data-d="game" data-page-node-id="zWUWfTOQCNPz23dstIoaI1"><span class="dot" data-page-node-id="DjmTMsDqBkLv9oEBar7gOg"></span>游戏功能</button>
+    <button type="button" class="fbtn on" data-d="bal" data-page-node-id="BXnHePFuT4ZyKXugAxHCBg"><span class="dot" data-page-node-id="Xm1HhqMB76C08xE5E4zURf"></span>平衡性机制</button>
+    <button type="button" class="fbtn on" data-d="ed" data-page-node-id="pbd5ZwnBjgMqfccBERIr90"><span class="dot" data-page-node-id="3Tg6eyxlfBYkXA7Mr8pn88"></span>地图编辑器</button>
+    <button type="button" class="fbtn on" data-d="bug" data-page-node-id="E4aDkKZ0GQv3620Up6dWno"><span class="dot" data-page-node-id="3yAim3bgagBUj8AT2X5SpP"></span>BUG 修复</button>
+    <a class="freset" id="filterReset" role="button" tabindex="0" data-page-node-id="gL4HBEQFwOoTw5GFWsHwNM">全部显示</a>
   </div>
 </header>
 
-<div class="era-bar">
-  <span>经典时代（2016–2019）</span>
-  <span>重制版（2020–2026）</span>
-  <span>地图编辑器在 1.29 / 1.31 / 2.0.3 / 3.0 四次大升级</span>
+<h2 data-page-node-id="oNXreKMyo7vLtc1iiaNvpr" style=""><span class="act" data-page-node-id="JDxfMA7ZtRXnTFzNeCkCtF">开场</span>补丁说明的重新梳理</h2>
+<div class="lede" data-page-node-id="zPEL8MCSPEReiAa3lnTM03">
+  <p data-page-node-id="OkJOiPkNiEv8tntSIu8ZfN" style="">十年的补丁说明累积了数以千计的条目，逐条阅读只能看到零散的数值增减与功能增补，难以看出更新背后的走向。本报告把它们按版本重新梳理，是为了从繁多的更新内容中理出脉络。​</p>
+  <p data-page-node-id="d15XxpMXcfJhF7milgH3GZ" style="">梳理的切入点是四个部分——游戏功能、平衡性机制、地图编辑器、BUG 修复。这并非随意切分：补丁文字之下，对应的是暴雪对引擎的升级与现代化改造、对比赛平衡性的持续关注、对地图制作社区的潜力挖掘，以及对逐渐复杂的游戏系统的问题修补。这四条主线彼此交织，贯穿了这十年的每一份补丁说明。​</p>
+</div>
+
+<div class="era-bar" data-page-node-id="44weDEn87jSj3wO9y2G7YY">
+  
+  
+  
 </div>
 
 <!-- ============ 时间轴（速览） ============ -->
-<h2>十年时间轴：版本与里程碑</h2>
+<h2 data-page-node-id="fyFUQTMq1z0NomlgCro5v7" style=""><span class="act" data-page-node-id="XYcBIEfZFwmkIGBcwWlVBN">速览</span>版本与里程碑时间轴</h2>
 
-<div class="htl-wrap">
-<div class="htl" style="height:368px">
-  <div class="htl-band" style="left:5.75%;width:32.78%"><span>经典时代 2016–2019</span></div>
-  <div class="htl-band" style="left:38.53%;width:55.72%"><span>重制版时代 2020–2026</span></div>
-  <div class="htl-axis" style="top:208px"></div>
-  <div class="htl-tick" style="left:5.75%;top:208px"><i></i><span>2016</span></div>
-  <div class="htl-tick" style="left:13.81%;top:208px"><i></i><span>2017</span></div>
-  <div class="htl-tick" style="left:21.85%;top:208px"><i></i><span>2018</span></div>
-  <div class="htl-tick" style="left:29.89%;top:208px"><i></i><span>2019</span></div>
-  <div class="htl-tick" style="left:37.93%;top:208px"><i></i><span>2020</span></div>
-  <div class="htl-tick" style="left:45.99%;top:208px"><i></i><span>2021</span></div>
-  <div class="htl-tick" style="left:54.03%;top:208px"><i></i><span>2022</span></div>
-  <div class="htl-tick" style="left:62.07%;top:208px"><i></i><span>2023</span></div>
-  <div class="htl-tick" style="left:70.11%;top:208px"><i></i><span>2024</span></div>
-  <div class="htl-tick" style="left:78.18%;top:208px"><i></i><span>2025</span></div>
-  <div class="htl-tick" style="left:86.21%;top:208px"><i></i><span>2026</span></div>
-  <div class="htl-conn" style="left:7.38%;top:194px;height:14px"></div>
-  <div class="htl-conn" style="left:15.89%;top:208px;height:34px"></div>
-  <div class="htl-conn" style="left:24.04%;top:194px;height:14px"></div>
-  <div class="htl-conn" style="left:26.67%;top:208px;height:92px"></div>
-  <div class="htl-conn" style="left:33.12%;top:208px;height:34px"></div>
-  <div class="htl-conn" style="left:38.53%;top:194px;height:14px"></div>
-  <div class="htl-conn" style="left:59.05%;top:194px;height:14px"></div>
-  <div class="htl-conn" style="left:61.39%;top:208px;height:34px"></div>
-  <div class="htl-conn" style="left:62.46%;top:208px;height:92px"></div>
-  <div class="htl-conn" style="left:64.89%;top:136px;height:72px"></div>
-  <div class="htl-conn" style="left:77.1%;top:194px;height:14px"></div>
-  <div class="htl-conn" style="left:77.84%;top:208px;height:34px"></div>
-  <div class="htl-conn" style="left:80.46%;top:136px;height:72px"></div>
-  <div class="htl-conn" style="left:82.51%;top:208px;height:92px"></div>
-  <div class="htl-conn" style="left:86.76%;top:78px;height:130px"></div>
-  <div class="htl-conn" style="left:91.8%;top:208px;height:34px"></div>
-  <div class="htl-conn" style="left:92.36%;top:194px;height:14px"></div>
-  <div class="htl-ev up mile" style="left:7.38%;top:208px"><span class="dot"></span><span class="card" style="bottom:14px"><a class="cv" href="#v127">1.27</a><span class="ct">更新重启</span><span class="cs">上限 8→128MB</span></span></div>
-  <div class="htl-ev down" style="left:15.89%;top:208px"><span class="dot"></span><span class="card" style="top:34px"><a class="cv" href="#v128">1.28</a><span class="ct">显示模式</span><span class="cs">小修补丁系列</span></span></div>
-  <div class="htl-ev up mile" style="left:24.04%;top:208px"><span class="dot"></span><span class="card" style="bottom:14px"><a class="cv" href="#v129">1.29</a><span class="ct">经典时代最大补丁</span><span class="cs">宽屏 · 24 人</span></span></div>
-  <div class="htl-ev down" style="left:26.67%;top:208px"><span class="dot"></span><span class="card" style="top:92px"><a class="cv" href="#v130">1.30</a><span class="ct">底层迁移</span><span class="cs">MPQ → CASC</span></span></div>
-  <div class="htl-ev down mile" style="left:33.12%;top:208px"><span class="dot"></span><span class="card" style="top:34px"><a class="cv" href="#v131">1.31</a><span class="ct">渲染换代</span><span class="cs">D3D11 · Lua</span></span></div>
-  <div class="htl-ev up mile" style="left:38.53%;top:208px"><span class="dot"></span><span class="card" style="bottom:14px"><a class="cv" href="#v132">1.32</a><span class="ct">重制版发布</span><span class="cs">含 1.32.x 修复期</span></span></div>
-  <div class="htl-ev up mile" style="left:59.05%;top:208px"><span class="dot"></span><span class="card" style="bottom:14px"><a class="cv" href="#v133">1.33</a><span class="ct">排名对战</span><span class="cs">档案 · 排行榜</span></span></div>
-  <div class="htl-ev down" style="left:61.39%;top:208px"><span class="dot"></span><span class="card" style="top:34px"><a class="cv" href="#v134">1.34</a><span class="ct">战队回归</span><span class="cs">举报 · 按名加入</span></span></div>
-  <div class="htl-ev down" style="left:62.46%;top:208px"><span class="dot"></span><span class="card" style="top:92px"><a class="cv" href="#v135">1.35</a><span class="ct">自定义战役</span><span class="cs">战役可发布</span></span></div>
-  <div class="htl-ev up" style="left:64.89%;top:208px"><span class="dot"></span><span class="card" style="bottom:72px"><a class="cv" href="#v136">1.36</a><span class="ct">观战者模式</span><span class="cs">每日锦标赛</span></span></div>
-  <div class="htl-ev up mile" style="left:77.1%;top:208px"><span class="dot"></span><span class="card" style="bottom:14px"><a class="cv" href="#v20">2.0.0</a><span class="ct">魔兽 30 周年</span><span class="cs">经典高清 · 插件</span></span></div>
-  <div class="htl-ev down" style="left:77.84%;top:208px"><span class="dot"></span><span class="card" style="top:34px"><a class="cv" href="#v201">2.0.1</a><span class="ct">匹配与热键</span><span class="cs">物品栏热键</span></span></div>
-  <div class="htl-ev up" style="left:80.46%;top:208px"><span class="dot"></span><span class="card" style="bottom:72px"><a class="cv" href="#v202">2.0.2</a><span class="ct">性能优化</span><span class="cs">减速之球调整</span></span></div>
-  <div class="htl-ev down" style="left:82.51%;top:208px"><span class="dot"></span><span class="card" style="top:92px"><a class="cv" href="#v203">2.0.3</a><span class="ct">编辑器大修</span><span class="cs">原生函数改进</span></span></div>
-  <div class="htl-ev up" style="left:86.76%;top:208px"><span class="dot"></span><span class="card" style="bottom:130px"><a class="cv" href="#v204">2.0.4</a><span class="ct">大团战匹配</span><span class="cs">3v3 / 4v4</span></span></div>
-  <div class="htl-ev down mile" style="left:91.8%;top:208px"><span class="dot"></span><span class="card" style="top:34px"><a class="cv" href="#v300">3.0.0</a><span class="ct">决定版与新战役</span><span class="cs">新英雄 · 选择 24</span></span></div>
-  <div class="htl-ev up" style="left:92.36%;top:208px"><span class="dot"></span><span class="card" style="bottom:14px"><a class="cv" href="#v301">3.0.1</a><span class="ct">美术音频修复</span><span class="cs">环境光遮蔽回归</span></span></div>
+<div class="htl-wrap" data-page-node-id="d5ocxKEltjgyXEYgS878Z8">
+<div class="htl" style="height:368px" data-page-node-id="GZupG84IukgRquJU4ciBbd">
+  <div class="htl-band" style="left:5.75%;width:32.78%" data-page-node-id="MDvEFP4bgYVMPZiu84jWev"><span data-page-node-id="Vho2LHdFv4lrknCz5HZNyN">经典时代 2016–2019</span></div>
+  <div class="htl-band" style="left:38.53%;width:55.72%" data-page-node-id="sGKutGVh3THSkdY7iWairH"><span data-page-node-id="9EU5LjAPgtXDVkQ6w29mEA">重制版时代 2020–2026</span></div>
+  <div class="htl-axis" style="top:208px" data-page-node-id="W1WtwlthEMMJctiOjMbcVU"></div>
+  <div class="htl-tick" style="left:5.75%;top:208px" data-page-node-id="0UJJMMUFmdFG8XGiOXn8LG"><i data-page-node-id="zxwgHnGPJeFqIPoIQHY2Eb"></i><span data-page-node-id="WqB9f1UqlXUYvCpwtfrMyv">2016</span></div>
+  <div class="htl-tick" style="left:13.81%;top:208px" data-page-node-id="3xnFfVl87juihJOGq90Gyo"><i data-page-node-id="ypK0B4tAqcJnOJRO8wc3LA"></i><span data-page-node-id="vNFpUuA597ZRlvpGC0BGVd">2017</span></div>
+  <div class="htl-tick" style="left:21.85%;top:208px" data-page-node-id="71GzlM5ygKEZ6svMGuGCqP"><i data-page-node-id="DDXiopZYx0NrvzNYE8Dwhx"></i><span data-page-node-id="c8zmQWnctGxhZfvI2spHvP">2018</span></div>
+  <div class="htl-tick" style="left:29.89%;top:208px" data-page-node-id="1TL3MaHV0tsnF406r0CWaM"><i data-page-node-id="84SVbK88f9CRVHvt5SP4qz"></i><span data-page-node-id="OoNRTmRQeOtKWB4X9GZckG">2019</span></div>
+  <div class="htl-tick" style="left:37.93%;top:208px" data-page-node-id="gfjeSqYU6ukR75sTRcYL4u"><i data-page-node-id="mhDZsGKCaJM1CSNE4aNInW"></i><span data-page-node-id="OA7IBc2VhgGeNrQqAXI9pV">2020</span></div>
+  <div class="htl-tick" style="left:45.99%;top:208px" data-page-node-id="RmrfApGq9NN02i7W2DlGdo"><i data-page-node-id="lK7HRUmvn4BFZArSEEcJhU"></i><span data-page-node-id="d6YAQKYidABqOdCJ5xkYso">2021</span></div>
+  <div class="htl-tick" style="left:54.03%;top:208px" data-page-node-id="fMAmUHDaIZDsSWCyWg8mwP"><i data-page-node-id="eCRFClqXfdKmiSI1wYZKeD"></i><span data-page-node-id="eUclNuzHXVKsE6koQcgSFF">2022</span></div>
+  <div class="htl-tick" style="left:62.07%;top:208px" data-page-node-id="4DRrajDmttBa20qo9a4riS"><i data-page-node-id="MXVXIUN2fjXKieJ48ddPM3"></i><span data-page-node-id="BakHC1wrAEQ7JmCtpXli0s">2023</span></div>
+  <div class="htl-tick" style="left:70.11%;top:208px" data-page-node-id="0gE6987PwRHQ0CFChocbRQ"><i data-page-node-id="jvnK8lZPGbM9CxNEG1wZQo"></i><span data-page-node-id="o1nfDucnHjr12pywomXGKt">2024</span></div>
+  <div class="htl-tick" style="left:78.18%;top:208px" data-page-node-id="l5225TgUNxZYc4jN7M6VDp"><i data-page-node-id="ZOOuXQzx6PqHtHY8ERFgo2"></i><span data-page-node-id="VBsXNL98yqLfIS39oT30yG">2025</span></div>
+  <div class="htl-tick" style="left:86.21%;top:208px" data-page-node-id="FEQ8Vgnps20K0jvw1clAFH"><i data-page-node-id="OAePpis4dzX0ZJbltUGTGp"></i><span data-page-node-id="FzkeN3lMMI9GLQAfyFhNB9">2026</span></div>
+  <div class="htl-conn" style="left:7.38%;top:194px;height:14px" data-page-node-id="0kcC9tSIFGYUfK7jMV632g"></div>
+  <div class="htl-conn" style="left:15.89%;top:208px;height:34px" data-page-node-id="9VKwnE5ZOb51Adni9Zusfr"></div>
+  <div class="htl-conn" style="left:24.04%;top:194px;height:14px" data-page-node-id="DB63BnFsxFASuEX4zQmr0Z"></div>
+  <div class="htl-conn" style="left:26.67%;top:208px;height:92px" data-page-node-id="n3lpC0jAE46Mxe1JI9Et8N"></div>
+  <div class="htl-conn" style="left:33.12%;top:208px;height:34px" data-page-node-id="htIRD9paHYb86pETFU8Evc"></div>
+  <div class="htl-conn" style="left:38.53%;top:194px;height:14px" data-page-node-id="TAOljOwzVYrLWP12zE0U3Q"></div>
+  <div class="htl-conn" style="left:59.05%;top:194px;height:14px" data-page-node-id="C9Va7ozELhS1nEiqlE5mtT"></div>
+  <div class="htl-conn" style="left:61.39%;top:208px;height:34px" data-page-node-id="JTtb6bCHEBicTm7plrOWeY"></div>
+  <div class="htl-conn" style="left:62.46%;top:208px;height:92px" data-page-node-id="mtxHCIoms65YAQKA9nnRhc"></div>
+  <div class="htl-conn" style="left:64.89%;top:136px;height:72px" data-page-node-id="UOVz4v7r3VS4nYpoBto53J"></div>
+  <div class="htl-conn" style="left:77.1%;top:194px;height:14px" data-page-node-id="Vf5FcQGggHWn8iexYpWvLO"></div>
+  <div class="htl-conn" style="left:77.84%;top:208px;height:34px" data-page-node-id="fx2LQLa1quN9gaAw0W1H0E"></div>
+  <div class="htl-conn" style="left:80.46%;top:136px;height:72px" data-page-node-id="pGfkIA5DGuDnJ489XIFao5"></div>
+  <div class="htl-conn" style="left:82.51%;top:208px;height:92px" data-page-node-id="JXvCYB0it0GzQIHfMc8Mey"></div>
+  <div class="htl-conn" style="left:86.76%;top:78px;height:130px" data-page-node-id="DkEN179yKAm1rnXGGPYcAt"></div>
+  <div class="htl-conn" style="left:91.8%;top:208px;height:34px" data-page-node-id="bd5P4w1YRgM8YEz0nvLpDz"></div>
+  <div class="htl-conn" style="left:92.36%;top:194px;height:14px" data-page-node-id="Asi1PTy7GP7EMAfN6iirU2"></div>
+  <div class="htl-ev up mile" style="left:7.38%;top:208px" data-page-node-id="QH0KghR5jFPOS85AhCheG1"><span class="dot" data-page-node-id="IuGQjwDnwEDvphdfRcgmWj"></span><span class="card" style="bottom:14px" data-page-node-id="uAlnIWFx7POPrCZJKrNEod"><a class="cv" href="#v127" data-page-node-id="9WRQrDLu75Dl58d0WjlHCD">1.27</a><span class="ct" data-page-node-id="rcKc3jTVAiUqUHbOQhm9AC">更新重启</span><span class="cs" data-page-node-id="u9qGcrtBewwrmh9xu3CjJ4">上限 8→128MB</span></span></div>
+  <div class="htl-ev down" style="left:15.89%;top:208px" data-page-node-id="PrhpgakIFDr0orD3JoMV4B"><span class="dot" data-page-node-id="yJrhnfysq8cTLvcj6KIrFn"></span><span class="card" style="top:34px" data-page-node-id="0p227wCAW0Fy5xQrjhn27v"><a class="cv" href="#v128" data-page-node-id="V4QTodMUKu77pDolDFIdwC">1.28</a><span class="ct" data-page-node-id="CVFdS0EZFHLk2NJrebfm2E">显示模式</span><span class="cs" data-page-node-id="IHGJ0mJo7Uk0cBjESp1WJs">小修补丁系列</span></span></div>
+  <div class="htl-ev up mile" style="left:24.04%;top:208px" data-page-node-id="KWLUczp426t6uKglmG4Fmw"><span class="dot" data-page-node-id="qBT5UcHY2WufHvi7jq5wpa"></span><span class="card" style="bottom:14px" data-page-node-id="SWO2bBCxE6O4m0YQgj6p6q"><a class="cv" href="#v129" data-page-node-id="zdYudJXeqvNy3kkLbTDB0i">1.29</a><span class="ct" data-page-node-id="lTHKr66oLNE0lzHRO1Xrhs">经典时代最大补丁</span><span class="cs" data-page-node-id="yWtQBIInusayDAJ0PRpOaA">宽屏 · 24 人</span></span></div>
+  <div class="htl-ev down" style="left:26.67%;top:208px" data-page-node-id="1eBxjHeTW3XUGF9IrXdD3L"><span class="dot" data-page-node-id="F80JnD8zlUqwx9KjpvkF56"></span><span class="card" style="top:92px" data-page-node-id="iLbeBBEE6wr1WnQdy9YCVc"><a class="cv" href="#v130" data-page-node-id="nvUY5XnUwl033U1BBU3NVa">1.30</a><span class="ct" data-page-node-id="AvHSwR8VTQEIHOiy6MkxSE">底层迁移</span><span class="cs" data-page-node-id="ElBRAYrIWsoM9Qjq3EzA1M">MPQ → CASC</span></span></div>
+  <div class="htl-ev down mile" style="left:33.12%;top:208px" data-page-node-id="ytupwkbsOXsaN5XnA9maze"><span class="dot" data-page-node-id="SxZeq1rpJHJNpKnx81hCmS"></span><span class="card" style="top:34px" data-page-node-id="UmrkxxZU4MyN6r9IdeTE6s"><a class="cv" href="#v131" data-page-node-id="GBC8RapJJgcO6jVxGp2fcb">1.31</a><span class="ct" data-page-node-id="ZlhFpfFJCcDusNZovfXdOK">渲染换代</span><span class="cs" data-page-node-id="SQolOjDrtcdI4gNxU8W5Vx">D3D11 · Lua</span></span></div>
+  <div class="htl-ev up mile" style="left:38.53%;top:208px" data-page-node-id="kLadLkOIeqjJXve2bb1Lxk"><span class="dot" data-page-node-id="nSsqTrbmgYxhXmt7GAoRx9"></span><span class="card" style="bottom:14px" data-page-node-id="jk3CfGNYogH4Ct79L9YLQn"><a class="cv" href="#v132" data-page-node-id="GsJGLuA5KQIYLJNEkU8EJT">1.32</a><span class="ct" data-page-node-id="7dtNnbDS3JRaKZM5ufH1Un">重制版发布</span><span class="cs" data-page-node-id="hAZqsGX5FslF1LRFKQ2rVG">含 1.32.x 修复期</span></span></div>
+  <div class="htl-ev up mile" style="left:59.05%;top:208px" data-page-node-id="frqTlBnM861TPtJHMT9ASo"><span class="dot" data-page-node-id="XvGWLGHcj7r4TXXreiuDdB"></span><span class="card" style="bottom:14px" data-page-node-id="6HQG7oFQRcU7R3vb7yAGvL"><a class="cv" href="#v133" data-page-node-id="YWeW9DBLf8X78IuI4GSnYj">1.33</a><span class="ct" data-page-node-id="70UtY70CWpZRftoApOcsis">排名对战</span><span class="cs" data-page-node-id="7HFJx3gMk9U8gmllvpbqtW">档案 · 排行榜</span></span></div>
+  <div class="htl-ev down" style="left:61.39%;top:208px" data-page-node-id="eA2cMHtdsg0gfpVvQHsD9x"><span class="dot" data-page-node-id="jFlHG5zD1L2jclRsdJcMYO"></span><span class="card" style="top:34px" data-page-node-id="avDa9P7VUh3o0GtnCMUnsK"><a class="cv" href="#v134" data-page-node-id="dDrtvUvwtKwkaEpZ67VaA4">1.34</a><span class="ct" data-page-node-id="hkLwzZo44JAhbaiDJsap87">战队回归</span><span class="cs" data-page-node-id="OUlnD9AgZ69Yob1VAn4ojN">举报 · 按名加入</span></span></div>
+  <div class="htl-ev down" style="left:62.46%;top:208px" data-page-node-id="Rv77fu4KBKLDa7OLy2D0PK"><span class="dot" data-page-node-id="KiCvMmFnKAghVoDXnxg4yp"></span><span class="card" style="top:92px" data-page-node-id="XEgzKIhGOlODKlaXmbdgYk"><a class="cv" href="#v135" data-page-node-id="YQv8hWzK5qLI2ttz8qtBC8">1.35</a><span class="ct" data-page-node-id="PtjBhR0i4vCXnO2Iz7zqxk">自定义战役</span><span class="cs" data-page-node-id="JaGyppHNjyrKwVDsx1UZqR">战役可发布</span></span></div>
+  <div class="htl-ev up" style="left:64.89%;top:208px" data-page-node-id="hRXTYs3QuV8QDcbz03OpcP"><span class="dot" data-page-node-id="d2EPDIRVgo6H5K1s5EzkLU"></span><span class="card" style="bottom:72px" data-page-node-id="60n6AMcS5diwoNlcJ2dhkU"><a class="cv" href="#v136" data-page-node-id="tiR6TY0xzuohjGlG8S09I1">1.36</a><span class="ct" data-page-node-id="TIgBcvXWSABC9bQfSByktB">观战者模式</span><span class="cs" data-page-node-id="MPw6AGrQGPjTZ3Z9AshXj5">每日锦标赛</span></span></div>
+  <div class="htl-ev up mile" style="left:77.1%;top:208px" data-page-node-id="lFq2SFraESH2jVNpj8Done"><span class="dot" data-page-node-id="ILb9wlrfMA7iHDtYybX8z4"></span><span class="card" style="bottom:14px" data-page-node-id="OYr6GGhHZA3CjVLiALVran"><a class="cv" href="#v20" data-page-node-id="mbEKyAFnXKzeWowo7iDPdw">2.0.0</a><span class="ct" data-page-node-id="bcWsSHar5nTwgE4DJkqt6B">魔兽 30 周年</span><span class="cs" data-page-node-id="px5NFrqLaFjLhQlZ0eDwwY">经典高清 · 插件</span></span></div>
+  <div class="htl-ev down" style="left:77.84%;top:208px" data-page-node-id="jUlA8n1ljIFWehGpNKYOik"><span class="dot" data-page-node-id="IhVaZYbm1ViCXDEnALBNIA"></span><span class="card" style="top:34px" data-page-node-id="LiWkco39MgIfbSWamdKbSz"><a class="cv" href="#v201" data-page-node-id="7fytnCQMR0YcXjhzSYYqrH">2.0.1</a><span class="ct" data-page-node-id="APrOyPYudaWzzDPwEXqFwC">匹配与热键</span><span class="cs" data-page-node-id="tUnEeq0U1GVT2AGxRyDkIT">物品栏热键</span></span></div>
+  <div class="htl-ev up" style="left:80.46%;top:208px" data-page-node-id="LFCovamlIToJGKnhhdTx7q"><span class="dot" data-page-node-id="Z9dfqmH3VeFi3WHgFrytQH"></span><span class="card" style="bottom:72px" data-page-node-id="te31mp6DGio9jJe65CTBwl"><a class="cv" href="#v202" data-page-node-id="elvJJy3yXzJFbDxlNDXUqO">2.0.2</a><span class="ct" data-page-node-id="C2acEy5DTtV2SOADTXPTKw">性能优化</span><span class="cs" data-page-node-id="CoZYFiJAZbvStVHSr4G7QC">减速宝珠调整</span></span></div>
+  <div class="htl-ev down" style="left:82.51%;top:208px" data-page-node-id="LHYuuEFgidt9Rd95ka0WjZ"><span class="dot" data-page-node-id="j6E5eYOlMtbWaWxeHCVzf3"></span><span class="card" style="top:92px" data-page-node-id="4FhNJe4SwYq6vh6Bvn0KTc"><a class="cv" href="#v203" data-page-node-id="VjC5kbFBVaLXj4cXle9NxV">2.0.3</a><span class="ct" data-page-node-id="77DHfzzaY1mlwxz9vKcipF">编辑器大修</span><span class="cs" data-page-node-id="bOF8SKdmcRWCYe8uP0B0ps">原生函数改进</span></span></div>
+  <div class="htl-ev up" style="left:86.76%;top:208px" data-page-node-id="m0JMhcubzydUgwbN7tnC31"><span class="dot" data-page-node-id="f8oYJepD2ihmiHoEoFigyk"></span><span class="card" style="bottom:130px" data-page-node-id="RiESAUVHFTvDZVWPYRlKr3"><a class="cv" href="#v204" data-page-node-id="ZEtFTJwFy8nJmYG5Fw14C5">2.0.4</a><span class="ct" data-page-node-id="k1u41wVdNXEp9sepB46kUT">大团战匹配</span><span class="cs" data-page-node-id="2CnC0aqBP43ChkC1NzDNIj">3v3 / 4v4</span></span></div>
+  <div class="htl-ev down mile" style="left:91.8%;top:208px" data-page-node-id="Y996b2CcamCzTqug32jig1"><span class="dot" data-page-node-id="Q7qhzwSLx6tpzv7M9jtQch"></span><span class="card" style="top:34px" data-page-node-id="EjhJZGoT6TexYhrZRAKLqD"><a class="cv" href="#v300" data-page-node-id="fZHEXTi9tkXkYmNAVB0Lzk">3.0.0</a><span class="ct" data-page-node-id="BYJBzQvvLcgJhjbvoNQfGF">决定版与新战役</span><span class="cs" data-page-node-id="CBZJBt7c8FBA0JRFveV2aq">新英雄 · 选择 24</span></span></div>
+  <div class="htl-ev up" style="left:92.36%;top:208px" data-page-node-id="KKkhcCEwWC3BNb62DhidiT"><span class="dot" data-page-node-id="D4tA1d5BBQ5qZKveilNrKR"></span><span class="card" style="bottom:14px" data-page-node-id="AEjiJcF4oR5MdQ70A8JRME"><a class="cv" href="#v301" data-page-node-id="XS3i04IDpORHd6mdvsLdQr">3.0.1</a><span class="ct" data-page-node-id="6hqCxWcOmEXhQT0XCfYC61">美术音频修复</span><span class="cs" data-page-node-id="qP02P2wwWY7ywPVf6hRfx1">环境光遮蔽回归</span></span></div>
 </div>
 </div>
 
-<div class="toc">
-  <b style="color:var(--strong);">全部版本索引<span class="noprint">（按发布顺序，点击跳转）</span></b>
-  <ul class="tl">
-    <li><span class="tm">2016-03-15</span> —— <a href="#v127">1.27</a> 时隔 5 年重启更新：新版系统兼容、1920×1080 分辨率；地图上限 8MB→128MB</li>
-    <li><span class="tm">2017-04-05</span> —— <a href="#v128">1.28</a> 小修补丁系列：窗口化全屏 / 原生全屏、免管理员存档、Mac 修复</li>
-    <li><span class="tm">2018-04-10</span> —— <a href="#v129">1.29</a> 真正的宽屏适配、24 人游戏；剑圣暴击口径改动；编辑器上限与原生函数爆发式扩容；Return Bug 彻底封死、Game.dll 不再暴露</li>
-    <li><span class="tm">2018-08-08</span> —— <a href="#v130">1.30</a> 存储格式 MPQ→CASC；灵魂行者改图腾训练、二次嘲讽等科技树 / 训练建筑变动；16 瓦片与大量编辑器函数；顶盾伤害结算修复</li>
-    <li><span class="tm">2019-05-28</span> —— <a href="#v131">1.31</a> 底层图形 API 现代化 D3D11、64 位客户端；疾风步破隐计冷却、新增祭礼匕首；编辑器支持 Lua</li>
-    <li><span class="tm">2020-01-28</span> —— <a href="#v132">1.32</a> 重制版画面、接入战网、收藏、MMR 匹配、中文配音；1.32.10 平衡性回调；叠字 Bug 修复</li>
-    <li><span class="tm">2022-08-17</span> —— <a href="#v133">1.33</a> 排名对战、玩家档案、排行榜三大系统 + 镜头缩放；RoC 战役平衡重做，后于 1.36.1 回滚</li>
-    <li><span class="tm">2022-12-01</span> —— <a href="#v134">1.34</a> 战队系统回归、玩家举报、自定义游戏按名称加入</li>
-    <li><span class="tm">2023-01-19</span> —— <a href="#v135">1.35</a> 自定义战役系统，含战役编辑器大量支持；赛季轮换（赛季结束 MMR 重置）</li>
-    <li><span class="tm">2023-05-09</span> —— <a href="#v136">1.36</a> 全新观战者模式、每日锦标赛；专家物品重做；1.36.1 回滚 1.33 战役改动</li>
-    <li><span class="tm">2024-11-13</span> —— <a href="#v20">2.0.0</a> 经典高清插件系统、冰封王座主题、魔兽 1/2 音乐；AT 不再匹配 RT</li>
-    <li><span class="tm">2024-12-17</span> —— <a href="#v201">2.0.1</a> 匹配按延迟优先、3 款新皮肤、物品栏热键自定义、批量崩溃修复</li>
-    <li><span class="tm">2025-04-15</span> —— <a href="#v202">2.0.2</a> 性能优化；火焰之球被减速之球取代，编辑器新增对应能力与减益</li>
-    <li><span class="tm">2025-07-17</span> —— <a href="#v203">2.0.3</a> 世界编辑器 Lua 原生函数成规模修复、可绑定按键与热键冲突检测；装饰物与瓦片上限大幅提高</li>
-    <li><span class="tm">2026-01-26</span> —— <a href="#v204">2.0.4</a> 3v3 / 4v4 匹配；编辑器 Lua 优化；崩溃修复</li>
-    <li><span class="tm">2026-09-12</span> —— <a href="#v300">3.0.0</a> 决定版画面 600+ 单位重建、首个新中立英雄「被遗忘者圣骑士」、选择上限 12→24、付费 DLC 战役；编辑器大规模升级</li>
-    <li><span class="tm">2026-10-07</span> —— <a href="#v301">3.0.1</a> 美术 / VFX 修复、编辑器修复；因存档不兼容曾短暂回滚</li>
+<h2 id="toc" data-page-node-id="toc-act" style=""><span class="act" data-page-node-id="toc-act2" style="">目录
+</span>时间版本索引<span class="noprint" data-page-node-id="CtoOIlSsHTWzGI9jT5XZoE">（按发布顺序，点击跳转）</span></h2>
+<div class="toc" data-page-node-id="KD1AvHSQoOB2BoUVO6PFvO">
+  <ul class="tl" data-page-node-id="Ypic924EPCvtsu7ZBZ">
+    <li data-page-node-id="8rpJ0jupMl4osStejozHGd" style="">
+      <span class="tm" data-page-node-id="KHekYqT3MpVl2FdA2zXqv9">2016-03-15</span><a class="tv" href="#v127" data-page-node-id="p3rCFAgw08eP0rSwaafmdu">1.27</a><span class="td" title="时隔 5 年重启更新：新版系统兼容、1920×1080 分辨率；地图上限 8MB→128MB" data-page-node-id="aA2Co3iHLcw0vgvFhgKsdT" style="">时隔 5 年重启更新：新版系统兼容、1920×1080 分辨率；地图上限 8MB→128MB​​​</span></li>
+    <li data-page-node-id="7hODbkezxVW59ZgKSQwtn9" style="">
+      <span class="tm" data-page-node-id="nSK1Lm7Kha2BSGTaXPKITY">2017-04-05</span><a class="tv" href="#v128" data-page-node-id="RvoXKEw0bZnVy28QJm0YkL">1.28</a><span class="td" title="小修补丁系列：窗口化全屏 / 原生全屏、免管理员存档、Mac 修复" data-page-node-id="i7fmRWyY5U7mgeyf7QxT8z">小修补丁系列：窗口化全屏 / 原生全屏、免管理员存档、Mac 修复</span></li>
+    <li data-page-node-id="qXCj8FD7BxCgO5x9wRWUA1" style="">
+      <span class="tm" data-page-node-id="f7xVabbONcbnfDVEpGzuTT">2018-04-10</span><a class="tv" href="#v129" data-page-node-id="QMmPhaiqoQR12nFM5nK0Wg">1.29</a><span class="td" title="真正的宽屏适配、24 人游戏；编辑器上限与原生函数爆发式扩容；Return Bug 封死" data-page-node-id="hqzlooAIxCZB50xqed8GKu">真正的宽屏适配、24 人游戏；编辑器上限与原生函数爆发式扩容；Return Bug 封死</span></li>
+    <li data-page-node-id="mNJX4xXlu8ohrpDmd6AVOp" style="">
+      <span class="tm" data-page-node-id="HMH6jYXPkLISVUQ6CldRGq">2018-08-08</span><a class="tv" href="#v130" data-page-node-id="eGMNLdXwH4xuHGV526sG8A">1.30</a><span class="td" title="存储格式 MPQ→CASC；灵魂行者改图腾训练；16 瓦片与大量编辑器函数" data-page-node-id="0W0DOGFJGwVUOyFAqgGHdh">存储格式 MPQ→CASC；灵魂行者改图腾训练；16 瓦片与大量编辑器函数</span></li>
+    <li data-page-node-id="R5tzn2BOJXBTPFPKqUJxs4" style="">
+      <span class="tm" data-page-node-id="IyVFVYh4JSCHSCA8BYX3fo">2019-05-28</span><a class="tv" href="#v131" data-page-node-id="56xNe848LO1cLsKYEHwkRv">1.31</a><span class="td" title="底层图形 API 现代化 D3D11、64 位客户端；疾风步破隐计冷却、新增祭礼匕首；编辑器支持 Lua" data-page-node-id="PbJyzHFStGDXxUIZapT0AZ">底层图形 API 现代化 D3D11、64 位客户端；疾风步破隐计冷却、新增祭礼匕首；编辑器支持 Lua</span></li>
+    <li data-page-node-id="1EcFJOaTzrf5xfEdxOHlKR" style="">
+      <span class="tm" data-page-node-id="GR0Z3BA8sBz1yTaqXpdvAH">2020-01-28</span><a class="tv" href="#v132" data-page-node-id="AHdeJqu5JNwGIOyQqfnQo8">1.32</a><span class="td" title="重制版画面、接入战网、收藏、MMR 匹配、中文配音；1.32.10 平衡性回调；叠字 Bug 修复" data-page-node-id="jznFXgYr2GHHoFIbrhEyRW" style="">《重制版》发布、接入战网、收藏、MMR 匹配、中文配音；叠字 Bug 修复​​​</span></li>
+    <li data-page-node-id="QNklnu4OTPti3XLdYtpTDa" style="">
+      <span class="tm" data-page-node-id="iGiJNsCBPkwCRofeGglQlE">2022-08-17</span><a class="tv" href="#v133" data-page-node-id="87ahSJa2nnCsPHoRCLkX6f">1.33</a><span class="td" title="排名对战、玩家档案、排行榜三大系统 + 镜头缩放；RoC 战役平衡重做，后于 1.36.1 回滚" data-page-node-id="G5Gjmsyum9U5zHqgTTVteP" style="">排名对战、玩家档案、排行榜三大系统 + 镜头缩放；战役平衡调整​</span></li>
+    <li data-page-node-id="YLTgTYS5S3oLJeNbIMbnXw" style="">
+      <span class="tm" data-page-node-id="Uq5pM77UVoPFiMGmJERTDb">2022-12-01</span><a class="tv" href="#v134" data-page-node-id="OjllWcDhwvW7WdRrzqO7pu">1.34</a><span class="td" title="战队系统回归、玩家举报、自定义游戏按名称加入" data-page-node-id="KhHzoFpiaPlIHkQ2aEGLOT">战队系统回归、玩家举报、自定义游戏按名称加入</span></li>
+    <li data-page-node-id="28sCQVS4BM1j6bHkSOv1rl" style="">
+      <span class="tm" data-page-node-id="MlWLnV6kPCRmm4RNHZMBs1">2023-01-19</span><a class="tv" href="#v135" data-page-node-id="WCA3wCRK8J0xaoVSQGwHuU">1.35</a><span class="td" title="自定义战役系统，含战役编辑器大量支持；赛季轮换（赛季结束 MMR 重置）" data-page-node-id="a1eIJ4MMJQx8LAls4ENkgw">自定义战役系统，含战役编辑器大量支持；赛季轮换（赛季结束 MMR 重置）</span></li>
+    <li data-page-node-id="jBhNLVfGrWT5BUWctQHvaD" style="">
+      <span class="tm" data-page-node-id="NCEfcfzHiuoDgZCGtBHymK">2023-05-09</span><a class="tv" href="#v136" data-page-node-id="R2y4aAC1xlRpbPPBCHpNuF">1.36</a><span class="td" title="全新观战者模式、每日锦标赛；专家物品重做；1.36.1 回滚 1.33 战役改动" data-page-node-id="jgtsReCMm8fSwoG34zFHEK">全新观战者模式、每日锦标赛；专家物品重做；1.36.1 回滚 1.33 战役改动</span></li>
+    <li data-page-node-id="G0HMAgRZS29JqjLdW8GqNA" style="">
+      <span class="tm" data-page-node-id="H9OrrciL31zB1Z1KiLcEUT">2024-11-13</span><a class="tv" href="#v20" data-page-node-id="OkqiSDQ0q8v2IEcPnn4XV4">2.0.0</a><span class="td" title="经典高清插件系统、冰封王座主题、魔兽 1/2 音乐；AT 不再匹配 RT" data-page-node-id="eCVmZcWdYkThc0uoTSkvj0">经典高清插件系统、冰封王座主题、魔兽 1/2 音乐；AT 不再匹配 RT</span></li>
+    <li data-page-node-id="BkLw0VLr8Wu7OoFG4EiZ5d" style="">
+      <span class="tm" data-page-node-id="w4UVE2M3VlXDbcQALplLBu">2024-12-17</span><a class="tv" href="#v201" data-page-node-id="ESiU3EsILWei7nkiAD8e7l">2.0.1</a><span class="td" title="匹配按延迟优先、3 款新皮肤、物品栏热键自定义、批量崩溃修复" data-page-node-id="ccUiSvzHPM7LZH48dbXO5M">匹配按延迟优先、3 款新皮肤、物品栏热键自定义、批量崩溃修复</span></li>
+    <li data-page-node-id="n981CGt6af4HbJKFre93Dn" style="">
+      <span class="tm" data-page-node-id="YvJhJIzKBbIsQpizXVSdpk">2025-04-15</span><a class="tv" href="#v202" data-page-node-id="okxMDFghGGSPrzx0foTNmB">2.0.2</a><span class="td" title="性能优化；火焰宝珠被减速宝珠取代，编辑器新增对应能力与减益" data-page-node-id="hZ6gMWBNAJCd3CwfQeNmyA">性能优化；火焰宝珠被减速宝珠取代，编辑器新增对应能力与减益</span></li>
+    <li data-page-node-id="oWZPGfEtBSKCAhsmTxorli" style="">
+      <span class="tm" data-page-node-id="r9iExN5txt4ekWzJJIDYyq">2025-07-17</span><a class="tv" href="#v203" data-page-node-id="WCs2a7bAclSCvGBJhV7Gi5">2.0.3</a><span class="td" title="世界编辑器 Lua 原生函数成规模修复、可绑定按键与热键冲突检测；装饰物与瓦片上限大幅提高" data-page-node-id="x4C0acDNltILbXtPc2MkGS" style="">世界编辑器 Lua 原生函数成规模修复、可绑定按键与热键冲突检测；​</span></li>
+    <li data-page-node-id="ISTC5e8gWEcSNq7Fq1YrVf" style="">
+      <span class="tm" data-page-node-id="BuJGVrSzGYIa24IECC8xq5">2026-01-26</span><a class="tv" href="#v204" data-page-node-id="MZy5TFVv8hxkNbZMKWfvMK">2.0.4</a><span class="td" title="3v3 / 4v4 匹配；编辑器 Lua 优化；崩溃修复" data-page-node-id="YAxKdCLJ4fRHQNRwclB67g">3v3 / 4v4 匹配；编辑器 Lua 优化；崩溃修复</span></li>
+    <li data-page-node-id="UsqLctekYoM4MtodnGjjA3" style="">
+      <span class="tm" data-page-node-id="rrgV438mvrjl3ILhOnFTuT">2026-09-12</span><a class="tv" href="#v300" data-page-node-id="6QmBodXALCBMSc3X3glEDw">3.0.0</a><span class="td" title="决定版画面 600+ 单位重建、新中立英雄「被遗忘者圣骑士」、选择上限 12→24、编辑器大升级" data-page-node-id="v3ZO2ujgG0jRVURnyMqXhd" style="">《被遗忘者王国》发布、决定版画面、新英雄「被遗忘者圣骑士」、选择上限→24​​</span></li>
+    <li data-page-node-id="hfw7KQmxLjXrR9jH1GpEbD" style="">
+      <span class="tm" data-page-node-id="CRIPDYMlQAzEzfXBjB25uQ">2026-10-07</span><a class="tv" href="#v301" data-page-node-id="5YixIXUcg4J1HE5FP19jNP">3.0.1</a><span class="td" title="美术 / VFX 修复、编辑器修复；因存档不兼容曾短暂回滚" data-page-node-id="VWPVTTaB4scfq6FL6bCwdO" style="white-space: pre-wrap;">战役难度调整、美术 / VFX 修复、编辑器修复、战役修复​​​​​​​</span></li>
   </ul>
 </div>
 
 <!-- ============ 1.27 ============ -->
-<div class="ver" id="v127">
-  <div class="ver-head"><span class="v">1.27（a / b）</span><span class="d">1.27a：2016-03-15 · 1.27b：2016-12-13</span><span class="tag">2011 年以来首个补丁</span></div>
-  <div class="ver-body">
-    <div class="hl"><b>时代背景：</b>时隔 5 年（2011–2016）暴雪重启更新，先做系统兼容。</div>
-    <div class="sec d-game">游戏功能性更新</div>
-    <ul>
-      <li>支持 Windows 7 / 8.1 / 10；新增 Mac 10.10 / 10.11 安装器。</li>
-      <li>选项新增 1920×1080 分辨率（但无宽屏适配，画面拉伸）。</li>
-      <li>1.27b：地图文件大小上限 8MB → 128MB。</li>
+<div class="ver" id="v127" data-page-node-id="x5vIuDH1a3i1JEyrtEjd1y"><div class="ver-title" data-page-node-id="c9EHxGoa590X2XOnoObB7R"><span class="d" data-page-node-id="W7hZiwGfpPko6EhXCO0tDW" style="">2016-03-15 时隔 5 年重启更新</span>
+<div class="ver-sub" data-page-node-id="kDdmeXQvkUprxHAQhpleJ9" style=""></div>
+<div class="ver-head" data-page-node-id="QyqZbDGlqzowydpx5K674u"><span class="v" data-page-node-id="uxoY5iOsuAkYdGiQDKLZFp" style="white-space: pre-wrap;">版本1.27（a / b）</span></div></div>
+  <div class="ver-body" data-page-node-id="YHaYE4eeEr8p6F7oqyoETi">
+    <div class="sec d-game" data-page-node-id="bgRcgKe7aaM3OAmRmRyiJr">游戏功能性更新</div>
+    <ul data-page-node-id="rISHzmshvE7AECtpvROQYK">
+      <li data-page-node-id="jdcFz74BDwtkfjrCPaE9Dd">支持 Windows 7 / 8.1 / 10；新增 Mac 10.10 / 10.11 安装器。</li>
+      <li data-page-node-id="A65aKD6lvPfdTewvXANeaW">选项新增 1920×1080 分辨率（但无宽屏适配，画面拉伸）。</li>
+      <li data-page-node-id="b9XMKA5t0WMnFPLAi66Xyp">1.27b：地图文件大小上限 8MB → 128MB。</li>
     </ul>
-    <div class="sec d-ed">地图编辑器更新</div>
-    <ul>
-      <li>1.27b：新增「脚本校验」功能。</li>
+    <div class="sec d-ed" data-page-node-id="BL6dLVAAqFXD6viEDrUyy0">地图编辑器更新</div>
+    <ul data-page-node-id="GjPXT2vBdzC8qhycLUw625">
+      <li data-page-node-id="yApuuHgwDtwCSAeHMC9EY0">1.27b：新增「脚本校验」功能。</li>
     </ul>
-    <div class="sec d-bug">BUG 修复</div>
-    <ul>
-      <li>修复闪电链崩溃。</li>
-      <li>1.27b：自定义 .blp 贴图文件不再导致 Mac 崩溃。</li>
-      <li>已知问题：窗口化下伽马设置不生效、西里尔字符仍无法显示、Mac 不支持编辑器。</li>
+    <div class="sec d-bug" data-page-node-id="9zLvMjdNQ6tMKIdpcHfnua">BUG 修复</div>
+    <ul data-page-node-id="LfbBF2JkbC3al0uDj7ev4N">
+      <li data-page-node-id="XSh5PBI1ejQNWmKIAw48nh">修复闪电链崩溃。</li>
+      <li data-page-node-id="1ePkHxWaveDoIKBLKkVYvn">1.27b：自定义 .blp 贴图文件不再导致 Mac 崩溃。</li>
+      <li data-page-node-id="n4zBAh6pbx6CjkULEtBdaM">已知问题：窗口化下伽马设置不生效、西里尔字符仍无法显示、Mac 不支持编辑器。</li>
     </ul>
   </div>
 </div>
 
 <!-- ============ 1.28 ============ -->
-<div class="ver" id="v128">
-  <div class="ver-head"><span class="v">1.28（含 1.28.1–1.28.6）</span><span class="d">1.28：2017-04-05</span><span class="tag">小修补丁系列</span></div>
-  <div class="ver-body">
-    <div class="sec d-game">游戏功能性更新</div>
-    <ul>
-      <li>新增显示模式：窗口化全屏（默认）、窗口化（<code>-window</code>）、原生全屏（<code>-nativefullscr</code>）。</li>
-      <li>窗口模式新增鼠标光标限制选项（仅游戏窗口内活动，菜单可解除）。</li>
-      <li>数据迁移不再需以管理员身份运行即可访问游戏存档。</li>
-      <li>优化安装与更新效率。</li>
+<div class="ver" id="v128" data-page-node-id="M0GfcDsZzmHS2vMextK7Dq"><div class="ver-title" data-page-node-id="sFdUTEUgJTu2RIzWLtsA5x"><span class="d" data-page-node-id="WdjPftzfDOWDUrKV7VvUgH" style="">2017-04-05​</span>
+<div class="ver-head" data-page-node-id="S5y89Hc2EsFC2ZKzDRprCG"><span class="v" data-page-node-id="6rvNdLBPTzwF3uls6HtK4c">版本1.28（含 1.28.1–1.28.6）</span></div></div>
+  <div class="ver-body" data-page-node-id="GOvM7JbcbYtLBFfSpV8bpE">
+    <div class="sec d-game" data-page-node-id="e7swCid3KPQ8Yb29IUtyKP">游戏功能性更新</div>
+    <ul data-page-node-id="0VvP8BVmYTIevrciywsord">
+      <li data-page-node-id="JspkHtOEhsqkHqZwzIb5vj">新增显示模式：窗口化全屏（默认）、窗口化（<code data-page-node-id="41pydoa7ALS0Z0CRc4zUHE">-window</code>）、原生全屏（<code data-page-node-id="ptF0QdwhGFqHlGrJcFm7IM">-nativefullscr</code>）。</li>
+      <li data-page-node-id="pPDRXzJmc4GF4Ex2Eecxqm">窗口模式新增鼠标光标限制选项（仅游戏窗口内活动，菜单可解除）。</li>
+      <li data-page-node-id="GshhPj8X6jWlQVRybfTcxD">数据迁移不再需以管理员身份运行即可访问游戏存档。</li>
+      <li data-page-node-id="GGnJBjeV19S8dZEH0Wcuz2">优化安装与更新效率。</li>
     </ul>
-    <div class="sec d-game">安全 / 底层变动</div>
-    <ul>
-      <li>Return Bug 依旧可用：原版「不安全的类型转换」漏洞已在 1.24a（2009）修补，但社区用绕过写法仍可在自定义地图中执行任意代码。</li>
-      <li>文件结构迁移：CD-Key 从 War3.mpq 内加密的 <code>font</code> 文件移出，改为安装目录下的独立文件 <code>roc.w3k</code> / <code>tft.w3k</code>。</li>
+    <div class="sec d-game" data-page-node-id="cTkxloJKcZfPjvwhge2DCW">安全 / 底层变动</div>
+    <ul data-page-node-id="CNNsBl9VhYk6zpiygr9f6O">
+      <li data-page-node-id="uotvUAt4w1ksHorsuB346R">Return Bug 依旧可用：原版「不安全的类型转换」漏洞已在 1.24a（2009）修补，但社区用绕过写法仍可在自定义地图中执行任意代码。</li>
+      <li data-page-node-id="ZtZGg0Nc4Eo9BNUgueFJyP">文件结构迁移：CD-Key 从 War3.mpq 内加密的 <code data-page-node-id="FEo2zXkVLhzlyiMVR45gEZ">font</code> 文件移出，改为安装目录下的独立文件 <code data-page-node-id="rcb1Npui1zrD2PnxupSbem">roc.w3k</code> / <code data-page-node-id="EVJSSnwivEC8cdMfMnKkJy">tft.w3k</code>。</li>
     </ul>
-    <div class="sec d-ed">地图编辑器更新</div>
-    <ul>
-      <li>修复「脚本校验」的图标与词条。</li>
+    <div class="sec d-ed" data-page-node-id="AhAzziuHO5ebwsoZ5SCqWH">地图编辑器更新</div>
+    <ul data-page-node-id="f5EeGj0SfbBw1jWqcFGfAj">
+      <li data-page-node-id="Af7zAgmTMnA7htXwyekG8J">修复「脚本校验」的图标与词条。</li>
     </ul>
-    <div class="sec d-bug">BUG 修复</div>
-    <ul>
-      <li>修复 CommandFunc.txt 特殊坐标（0,-11）/（-2147483648,-2147483648）导致命令卡错误隐藏。</li>
-      <li>修复比赛结束断战网、视频播放器任意分辨率播放、Windows GameDVR 失效。</li>
-      <li>1.28.2：复活死尸不再导致 Windows/Mac 跨平台反同步；编辑器 Test Map 写入临时目录。</li>
+    <div class="sec d-bug" data-page-node-id="cHlQJRXOaXVhK4pF1XTH4P">BUG 修复</div>
+    <ul data-page-node-id="ONMzQt3bBoHgfHfQCTs1qT">
+      <li data-page-node-id="KNfmeXVuo6JiwSrAzbVgFE">修复 CommandFunc.txt 特殊坐标（0,-11）/（-2147483648,-2147483648）导致命令卡错误隐藏。</li>
+      <li data-page-node-id="nA4x80nhPxGg40SbafGlDg">修复比赛结束断战网、视频播放器任意分辨率播放、Windows GameDVR 失效。</li>
+      <li data-page-node-id="DR2S9gH4GDBWxLnF4uIHp4">1.28.2：复活死尸不再导致 Windows/Mac 跨平台反同步；编辑器 Test Map 写入临时目录。</li>
     </ul>
   </div>
 </div>
 
 <!-- ============ 1.29 ============ -->
-<div class="ver" id="v129">
-  <div class="ver-head"><span class="v">1.29</span><span class="d">2018-04-10（PTR：2018-02-21）</span><span class="tag">经典时代最大补丁</span></div>
-  <div class="ver-body">
-    <div class="hl"><b>里程碑：</b>真正的宽屏适配、24 人游戏、Return Bug 彻底封死、Game.dll 不再独立暴露，以及编辑器上限与原生函数的爆发式扩容。</div>
-    <div class="sec d-game">游戏功能性更新</div>
-    <ul>
-      <li>真正的宽屏适配：原生 16:9 宽屏支持，不再拉伸变形（界面加黑边、菜单加黑柱防拉伸）。</li>
-      <li>24 人游戏：大厅支持最多 24 名玩家；队伍颜色扩展。</li>
-      <li>12 种新队伍颜色：栗色 / 海军蓝 / 青绿色 / 紫罗兰 / 小麦色 / 桃色 / 薄荷色 / 薰衣草色 / 煤色 / 雪白色 / 翡翠色 / 花生色。</li>
-      <li>官方 Streamer/Caster API：可读取金币、木材、食物、APM 等观战信息（无需第三方破解）。</li>
+<div class="ver" id="v129" data-page-node-id="cLrh7R91g9zDKM9Fh7lGqb"><div class="ver-title" data-page-node-id="6ZWGMlaeHfnmy9gtyEpyBm"><span class="d" data-page-node-id="rIkTD2Pdja57dKZVCAhDFW" style="">2018-04-10​</span>
+
+<div class="ver-head" data-page-node-id="HpmFpytCxpnCp02F7oEj2u"><span class="v" data-page-node-id="70OzTRE4zDNyxMYHsZ9xHD">版本1.29</span></div></div>
+  <div class="ver-body" data-page-node-id="V3SXCGdybqiDUdU5hTBVRz">
+    <div class="sec d-game" data-page-node-id="btkgfBokpf4v2MN991alxr">游戏功能性更新</div>
+    <ul data-page-node-id="JucnHS1iMAgzpO1aq39uMu">
+      <li data-page-node-id="8BA2wuNYKePPVyFFbTBZ5M">真正的宽屏适配：原生 16:9 宽屏支持，不再拉伸变形（界面加黑边、菜单加黑柱防拉伸）。</li>
+      <li data-page-node-id="o0D1pCFYN2zm2QvAcARMCo">24 人游戏：大厅支持最多 24 名玩家；队伍颜色扩展。</li>
+      <li data-page-node-id="igCmDqD5qMhfyajYciXkMC">12 种新队伍颜色：栗色 / 海军蓝 / 青绿色 / 紫罗兰 / 小麦色 / 桃色 / 薄荷色 / 薰衣草色 / 煤色 / 雪白色 / 翡翠色 / 花生色。</li>
+      <li data-page-node-id="lBYKX8ooCxQ9LmgU7aNloB">官方 Streamer/Caster API：可读取金币、木材、食物、APM 等观战信息（无需第三方破解）。</li>
     </ul>
-    <div class="sec d-game">安全 / 底层（社区重点）</div>
-    <ul>
-      <li>Return Bug 彻底封死：1.29 起 return bug 变体完全失效。</li>
-      <li>依赖它的地图需改用原生哈希表函数；部分「返回 null 却声明为 string」的旧地图无法运行。</li>
-      <li>Game.dll 不再独立暴露：Game.dll / Storm.dll 被合并进 Warcraft III.exe，不再以独立 DLL 形式存在于安装目录。</li>
-      <li>War3Patch.mpq 移除：补丁文件并入其他 MPQ（对战平台需改用 War3x.mpq 内的 blizzard.j / common.j）。</li>
+    <div class="sec d-game" data-page-node-id="FErFPFqNChN4BgHgvRABNw">安全 / 底层（社区重点）</div>
+    <ul data-page-node-id="j0rJTqEACSNPEGuw9ZjmyQ">
+      <li data-page-node-id="0ihXDRdB25yowPb8avPCAr">Return Bug 彻底封死：1.29 起 return bug 变体完全失效。</li>
+      <li data-page-node-id="j7KvQLvCqEkJKB9FVfyutw">依赖它的地图需改用原生哈希表函数；部分「返回 null 却声明为 string」的旧地图无法运行。</li>
+      <li data-page-node-id="vdHDpRYqz1mCB3F1DBoqQX">Game.dll 不再独立暴露：Game.dll / Storm.dll 被合并进 Warcraft III.exe，不再以独立 DLL 形式存在于安装目录。</li>
+      <li data-page-node-id="YldLSwcGunfUHDfeE0ASFT">War3Patch.mpq 移除：补丁文件并入其他 MPQ（对战平台需改用 War3x.mpq 内的 blizzard.j / common.j）。</li>
     </ul>
-    <div class="sec d-bal">平衡性机制改动</div>
-    <ul>
-      <li>剑圣暴击口径改动：暴击倍率改为只作用于基础攻击、不再放大装备加成伤害。1.31 改回「含全部伤害」。</li>
+    <div class="sec d-bal" data-page-node-id="hZwiQqm4U1cZtzp23FuDqG">平衡性机制改动</div>
+    <ul data-page-node-id="mcnbqumdicjRqs33p7rWOd">
+      <li data-page-node-id="33NYruW9o2duwgRrCrjD1p">剑圣暴击口径改动：暴击倍率改为只作用于基础攻击、不再放大装备加成伤害。1.31 改回「含全部伤害」。</li>
     </ul>
-    <div class="sec d-ed">编辑器上限与原生函数爆发式扩容</div>
-    <ul>
-      <li>对象上限 → 30,000（分项：中立单位 2048、中立建筑 384、玩家单位 4320、玩家建筑 2400、物品 1024）。</li>
-      <li>地图尺寸 → 480×480；瓦片上限 → 16。</li>
-      <li>最大执行数 → 1,666,666（旧值 300,000）；最大食物 → 999（旧值 300）；最大资源 → 9,999,999；数组大小 8192 → 32768。</li>
-      <li>90+ 个新原生函数：特效全控制（缩放 / 旋转 / 俯仰，替代假人单位做弹道 / 特效系统）、能力 / 物品 / 单位增强控制、鼠标悬停与点击响应。</li>
+    <div class="sec d-ed" data-page-node-id="nvEAvdvExWjKEBKv3CE0Ke">编辑器上限与原生函数爆发式扩容</div>
+    <ul data-page-node-id="WkcBY9YuL0wmQW2tCvBAtM">
+      <li data-page-node-id="29ZWPOweSBqKbw5XdccGuo">对象上限 → 30,000（分项：中立单位 2048、中立建筑 384、玩家单位 4320、玩家建筑 2400、物品 1024）。</li>
+      <li data-page-node-id="ixa9Pa76dFjBZ1KfNFfeMa">地图尺寸 → 480×480；瓦片上限 → 16。</li>
+      <li data-page-node-id="0oEiLGa4pPJgP3e1Jf6NIn">最大执行数 → 1,666,666（旧值 300,000）；最大食物 → 999（旧值 300）；最大资源 → 9,999,999；数组大小 8192 → 32768。</li>
+      <li data-page-node-id="GKN6O2motk2CG6nqiVOhAb" style="">新原生函数：特效全控制（缩放 / 旋转 / 俯仰，替代假人单位做弹道 / 特效系统）、能力 / 物品 / 单位增强控制、鼠标悬停与点击响应。​​​​</li>
     </ul>
-    <div class="sec d-bug">BUG 修复</div>
-    <ul>
-      <li>战队可重新创建；Mac 客户端可启动；韩语区启动；多处缺失贴图定位；默认分辨率不再异常。</li>
-      <li>系统支持（官方注明）：1.29 为最后一个支持 Windows XP 的版本，此后补丁不再支持 XP。</li>
-      <li>已知问题：原生全屏无法改分辨率、部分原生函数改名 / 暂时停用（<code>Set/GetAbilityOnXXXX</code>、<code>SetUnitNameAll</code>、<code>PlaySpecialEffect</code> 等）。</li>
+    <div class="sec d-bug" data-page-node-id="CcUYCLbz8qFuogFaim1f01">BUG 修复</div>
+    <ul data-page-node-id="ZoiWLhM5DHp9KVLuxeritE">
+      <li data-page-node-id="LoMJH0hg02UQG4wSzYw8pU">战队可重新创建；Mac 客户端可启动；韩语区启动；多处缺失贴图定位；默认分辨率不再异常。</li>
+      <li data-page-node-id="hFifEPECuEAjFXkQUSaFPi">系统支持（官方注明）：1.29 为最后一个支持 Windows XP 的版本，此后补丁不再支持 XP。</li>
+      <li data-page-node-id="cL9gUUTwWx7sgBya39MVGD">已知问题：原生全屏无法改分辨率、部分原生函数改名 / 暂时停用（<code data-page-node-id="CteV3OT75UwWJlEliFy5R7">Set/GetAbilityOnXXXX</code>、<code data-page-node-id="aNoZUBhPsRrzxzyNpiQaxu">SetUnitNameAll</code>、<code data-page-node-id="lGdAEJiNsJKxtJu4SLvM7Z">PlaySpecialEffect</code> 等）。</li>
     </ul>
   </div>
 </div>
 
 <!-- ============ 1.30 ============ -->
-<div class="ver" id="v130">
-  <div class="ver-head"><span class="v">1.30</span><span class="d">2018-08-08（含 1.30.1–1.30.4）</span><span class="tag">底层迁移</span></div>
-  <div class="ver-body">
-    <div class="sec d-game">游戏功能性更新</div>
-    <ul>
-      <li>升级反作弊系统。</li>
-      <li>更新观战 API，可导出更多游戏信息。</li>
-      <li>启用 Large Address Aware（部分机器最多使用 3GB 内存）。</li>
-      <li>游戏文件由 MPQ 迁移至 CASC 文件系统。</li>
+<div class="ver" id="v130" data-page-node-id="lVZmS4HAvKbRNDbRBWxeKz"><div class="ver-title" data-page-node-id="IloPXnbjkFXD5vG22MDMyd"><span class="d" data-page-node-id="CPAoTAKB4zgZTfu1CuiHH5" style="">2018-08-08​</span>
+<div class="ver-head" data-page-node-id="u3d6AqAXTVyRJLCBa1viBy"><span class="v" data-page-node-id="YHvmB0L615c9y3CPQRaWAD" style="">版本1.30（含 1.30.1–1.30.4）​</span></div></div>
+  <div class="ver-body" data-page-node-id="gAoL4h1XbIiX1FHP7pwlYa">
+    <div class="sec d-game" data-page-node-id="xdG4PHV9aOHgrOi7gTyvAQ">游戏功能性更新</div>
+    <ul data-page-node-id="op72sNgQNp4N4iX4tqesRO">
+      <li data-page-node-id="rRFuFiTpHrPpq46tIT1h8W">升级反作弊系统。</li>
+      <li data-page-node-id="GUUF2RRufRSbDacxv5wKvP">更新观战 API，可导出更多游戏信息。</li>
+      <li data-page-node-id="G9rTeyvJv6r9oLrzkS6xZi">启用 Large Address Aware（部分机器最多使用 3GB 内存）。</li>
+      <li data-page-node-id="PKhRt7vzzthZc30d2ELWX7">游戏文件由 MPQ 迁移至 CASC 文件系统。</li>
     </ul>
-    <div class="sec d-bal">平衡性机制改动（科技树 · 训练建筑 · 商店）</div>
-    <ul>
-      <li>灵魂行者改在牛头人图腾训练（原灵魂归宿），热键 T → W；图腾改由据点解锁（原堡垒）、不再需战争磨坊，灵魂行者排到命令栏第一格。</li>
-      <li>山岭巨人嘲讽 3 秒后再次触发。1.32.10 回调。</li>
-      <li>两项升级默认解锁：女猎手「哨兵」（另设 180 秒持续时间，原永久）、角鹰兽「驯服角鹰兽」——对应升级项从科技树移除。</li>
-      <li>亡灵「骨质增强」科技移除，效果并入「骷髅精通」。</li>
-      <li>科技树前置变动：女猎手「月刃」改由远古之树解锁；战争古树移除「哨兵」升级；奇美拉栖木不再需要风之古树。</li>
-      <li>商店物品池调整：亡灵遗物之墓「献祭头骨」不再需要坟场。</li>
-      <li>人类步兵「顶盾」免疫伤害的重复结算 Bug 修复（原 30% 反弹时免疫伤害被算两次；修正为 30% 反弹 / 70% 受 50% 伤害）。</li>
+    <div class="sec d-bal" data-page-node-id="QMtrEOwCDSH8IhaFzQSDJx">平衡性机制改动（科技树 · 训练建筑 · 商店）</div>
+    <ul data-page-node-id="zCTBkGHu7av8UIHAjuVzrp">
+      <li data-page-node-id="DVNn8Fzfxq7i8bZC8YQpxa" style="">灵魂行者改在牛头人图腾训练（原灵魂归宿）；图腾改由据点解锁（原堡垒），不再需战争磨坊。​​​​</li>
+      <li data-page-node-id="xTeFjMJfNz8n27XK35iEIU">山岭巨人嘲讽 3 秒后再次触发。1.32.10 回调。</li>
+      <li data-page-node-id="hFrBKyrbUncpQvH5NyqRZt">两项升级默认解锁：女猎手「哨兵」（另设 180 秒持续时间，原永久）、角鹰兽「驯服角鹰兽」——对应升级项从科技树移除。</li>
+      <li data-page-node-id="UQXPtHQ7NEHsAlH7cfsBKV">亡灵「骨质增强」科技移除，效果并入「骷髅精通」。</li>
+      <li data-page-node-id="mW3ZcH5unBN8AMpu8uovf0">科技树前置变动：女猎手「月刃」改由远古之树解锁；战争古树移除「哨兵」升级；奇美拉栖木不再需要风之古树。</li>
+      <li data-page-node-id="1VYFTAUvWWfjtjJjZVAyHk">商店物品池调整：亡灵遗物之墓「献祭头骨」不再需要坟场。</li>
+      <li data-page-node-id="g60mNFsstikDQ5SQWLYEaF">人类步兵「顶盾」免疫伤害的重复结算 Bug 修复（原 30% 反弹时免疫伤害被算两次；修正为 30% 反弹 / 70% 受 50% 伤害）。</li>
     </ul>
-    <div class="sec d-ed">地图编辑器更新</div>
-    <ul>
-      <li>最多可选 16 瓦片（含悬崖）。</li>
-      <li>新增原生函数：<code>BlzPlaySpecialEffect</code>（特效播放）。</li>
-      <li>新增原生函数：<code>BlzSpecialEffectAddSubAnimation</code> / <code>BlzSpecialEffectRemoveSubAnimation</code>（子动画增删）。</li>
-      <li>新增原生函数：<code>BlzSpecialEffectClearSubAnimations</code>（清空子动画）。</li>
-      <li><code>BlzSetSpecialEffectHeight</code> 计入地形高度。</li>
+    <div class="sec d-ed" data-page-node-id="KxZ7DGIqC12AcDx6A0lYYN">地图编辑器更新</div>
+    <ul data-page-node-id="xGQRUVv6NtWWLUqv1tYfp4">
+      <li data-page-node-id="dzG2gks0ViTBXosSgVExBu">最多可选 16 瓦片（含悬崖）。</li>
+      <li data-page-node-id="UgEHw40tWDPyp6AB4zL3n3">新增原生函数：<code data-page-node-id="C9OaCqxWspWHG91SDOKr0A">BlzPlaySpecialEffect</code>（特效播放）。</li>
+      <li data-page-node-id="Em5RoOkyOnqEZjVkwRpCJq">新增原生函数：<code data-page-node-id="W5fw4tF12CUlp0zFo5ffvW">BlzSpecialEffectAddSubAnimation</code> / <code data-page-node-id="Skd2GgxCGRAyn78g3uDSIY">BlzSpecialEffectRemoveSubAnimation</code>（子动画增删）。</li>
+      <li data-page-node-id="AxjwY6lUIcta9E6DoKcy2B">新增原生函数：<code data-page-node-id="mFeorjY2IgkcJDGAjIQ355">BlzSpecialEffectClearSubAnimations</code>（清空子动画）。</li>
+      <li data-page-node-id="dpiGLPT9CceDB0PQRXmPTY"><code data-page-node-id="PcwIL9SMfUQmJHOL5EccQY">BlzSetSpecialEffectHeight</code> 计入地形高度。</li>
     </ul>
-    <div class="sec d-bug">BUG 修复</div>
-    <ul>
-      <li>修复自定义能力目标参数崩溃、网络延迟恢复、原生全屏鼠标、带弹幕升级的蒸汽坦克占用 4 食物等。</li>
+    <div class="sec d-bug" data-page-node-id="ocGzOJ4XkeLUcL4UCTJ05h">BUG 修复</div>
+    <ul data-page-node-id="h4Ik5KmULjwQLgERXMiXDl">
+      <li data-page-node-id="ck8iXyc8CkJYpETo7hkub4">修复自定义能力目标参数崩溃、网络延迟恢复、原生全屏鼠标、带弹幕升级的蒸汽坦克占用 4 食物等。</li>
     </ul>
   </div>
 </div>
 
 <!-- ============ 1.31 ============ -->
-<div class="ver" id="v131">
-  <div class="ver-head"><span class="v">1.31</span><span class="d">2019-05-28（含 1.31.1 · PTR 2019-04-24）</span><span class="tag">Reforged 前最后经典补丁</span></div>
-  <div class="ver-body">
-    <div class="hl"><b>里程碑：</b>底层图形 API 现代化 + 编辑器支持 Lua。</div>
-    <div class="sec d-game">游戏功能性更新</div>
-    <ul>
-      <li>集成 Direct3D 11 与 Metal 图形 API；Windows / Mac 支持 64 位（Mac 弃用 32 位）。</li>
-      <li>客户端非激活时关闭声音；扩展窗口模式。</li>
-      <li>RoC 关闭战网（混沌之治玩家自动获得冰封王座）。</li>
+<div class="ver" id="v131" data-page-node-id="jGViKf9MQ3PSd8gB8Kz0hw"><div class="ver-title" data-page-node-id="3peALbhkWihWDzH6yIWPEG"><span class="d" data-page-node-id="ljD4CukgEWFStlu9vMeFlu" style="">2019-05-28​</span>
+
+<div class="ver-head" data-page-node-id="5R8WsftEA54dJ6qsDyC0ZF"><span class="v" data-page-node-id="hwiI3zdL2RsaWwe9Us4WQs">版本1.31</span></div></div>
+  <div class="ver-body" data-page-node-id="R03ZNTfa4JnCDBluF9Hz9L">
+    <div class="sec d-game" data-page-node-id="A1hbScb8Q6jjJqGqk4AK1U">游戏功能性更新</div>
+    <ul data-page-node-id="RJFVYKjhBKeB1oXoSMZKjI">
+      <li data-page-node-id="5yxor3KC6p7m4Gm26ZkBmJ">集成 Direct3D 11 与 Metal 图形 API；Windows / Mac 支持 64 位（Mac 弃用 32 位）。</li>
+      <li data-page-node-id="u6WydPv4c4HTbIMRafnqqc">客户端非激活时关闭声音；扩展窗口模式。</li>
+      <li data-page-node-id="FqkcHvcPKyEQKvrs259UTP">RoC 关闭战网（混沌之治玩家自动获得冰封王座）。</li>
     </ul>
-    <div class="sec d-bal">平衡性机制改动</div>
-    <ul>
-      <li>疾风步冷却从施法时改为破隐时开始计算，同时冷却 5s → 2s（全等级）。</li>
-      <li>剑圣暴击改回「含全部伤害」——撤销 1.29 的「仅基础攻击」口径。</li>
-      <li>新增物品「祭礼匕首」——亡灵遗物之墓上架，牺牲己方单位换群体回血。</li>
-      <li>人类「火焰之球」重做为反治疗定位：移除溅射、新增「降低治疗效果与回血 35% / 3 秒」的减益效果。2.0.2 被「减速之球」取代。</li>
-      <li>骑士新升级「裂甲之刃」（兵营研究，需城堡 / 伐木场 / 铁匠铺，对中型护甲 +15%）。</li>
-      <li>尖刺障碍升级从 3 级压缩为 2 级（改为 5 基础 + 攻击者伤害的 20% / 50%）。</li>
-      <li>牛头人「粉碎」改为自带减伤版 + 升级版。</li>
-      <li>科多兽「吞噬」可作用于无抗性皮肤的山岭巨人。</li>
+    <div class="sec d-bal" data-page-node-id="RfRPSr2MRbFzwhOibkZMng">平衡性机制改动</div>
+    <ul data-page-node-id="ZD2twJxVjrhAcbPUsfmz9c">
+      <li data-page-node-id="xyfVaCZ2ItDIWcUmK9P4QP">疾风步冷却从施法时改为破隐时开始计算，同时冷却 5s → 2s（全等级）。</li>
+      <li data-page-node-id="64ACvT1tIluWaeBvsHutgz">剑圣暴击改回「含全部伤害」——撤销 1.29 的「仅基础攻击」口径。</li>
+      <li data-page-node-id="RjNdc9TBwCkQU87IT5psVv">新增物品「祭礼匕首」——亡灵遗物之墓上架，牺牲己方单位换群体回血。</li>
+      <li data-page-node-id="WiapdtbKqz385DvERERtQE">人类「火焰宝珠」重做为反治疗定位：移除溅射、新增「降低治疗效果与回血 35% / 3 秒」的减益效果。2.0.2 被「减速宝珠」取代。</li>
+      <li data-page-node-id="F4TliXoXS7g9jZB1n7grCB">骑士新升级「裂甲之刃」（兵营研究，需城堡 / 伐木场 / 铁匠铺，对中型护甲 +15%）。</li>
+      <li data-page-node-id="0XzKWz1BcdGwxmBK8ZTstq">尖刺障碍升级从 3 级压缩为 2 级（改为 5 基础 + 攻击者伤害的 20% / 50%）。</li>
+      <li data-page-node-id="DmCMUOAwwlh5kwc5IaC8P4">牛头人「粉碎」改为自带减伤版 + 升级版。</li>
+      <li data-page-node-id="PVMXqYKzEJ9faaQXJLwZOn">科多兽「吞噬」可作用于无抗性皮肤的山岭巨人。</li>
     </ul>
-    <div class="sec d-ed">地图编辑器更新（面向重制版）</div>
-    <ul>
-      <li>Lua 脚本支持（Beta）：地图可选 JASS 或 Lua（情节→地图选项→脚本语言）。</li>
-      <li>对象修改系统 API：运行时修改物品 / 能力 / 单位等。</li>
-      <li>地图以文件夹保存（以及 MPQ），结构可在编辑器外更新，利于多人协作开发。</li>
-      <li>松散文件自动导入：地图以文件夹保存时，文件夹内资源自动识别导入，无需再经导入管理器登记。</li>
-      <li>自定义界面函数：新增一批自定义界面原生函数，地图作者可增删、调整界面框架。</li>
-      <li>官方战役地图可在编辑器打开。</li>
-      <li>模型支持 256 骨骼。</li>
+    <div class="sec d-ed" data-page-node-id="W7hBvuSLTbTRBOTtoezGih">地图编辑器更新（面向重制版）</div>
+    <ul data-page-node-id="ulBXQO7L0cgo4ZuopnlUGz">
+      <li data-page-node-id="7O5FwtWOAqLhf9UEU8W8Ub">Lua 脚本支持（Beta）：地图可选 JASS 或 Lua（情节→地图选项→脚本语言）。</li>
+      <li data-page-node-id="cnJ1DA4AEfwoJiRmb5ZSxQ">对象修改系统 API：运行时修改物品 / 能力 / 单位等。</li>
+      <li data-page-node-id="UKUokS9DpSv1PoMGcqURCB">地图以文件夹保存（以及 MPQ），结构可在编辑器外更新，利于多人协作开发。</li>
+      <li data-page-node-id="fBZXiqpOmKd9x3aw9zJCWg">松散文件自动导入：地图以文件夹保存时，文件夹内资源自动识别导入，无需再经导入管理器登记。</li>
+      <li data-page-node-id="H1pTeRRtrECu8zmZ9ZFR2J">自定义界面函数：新增一批自定义界面原生函数，地图作者可增删、调整界面框架。</li>
+      <li data-page-node-id="uWwEEKhz5BI5lNiEeHbwud">官方战役地图可在编辑器打开。</li>
+      <li data-page-node-id="eqt4YnxDAWfSx9oSy0qTlj">模型支持 256 骨骼。</li>
     </ul>
-    <div class="sec d-bug">BUG 修复</div>
-    <ul>
-      <li>修复触发器保存丢失、自定义电影播放、占有命令残留。</li>
-      <li>修复多个地图反同步（DBZ / Builders and Fighters 等）、声音数据跨图传输。</li>
-      <li>修复 OBS 切窗冻结、观察者全局战斗音效。</li>
+    <div class="sec d-bug" data-page-node-id="CTYwuUWJaGdiwhB4DNofdh">BUG 修复</div>
+    <ul data-page-node-id="u5H5bJvIhwsmBqtdm1NjZo">
+      <li data-page-node-id="YGnhcHbo60d3plwPuKHT0J">修复触发器保存丢失、自定义电影播放、占有命令残留。</li>
+      <li data-page-node-id="cKeEMoDGr4opVG4k3sWZ1y">修复多个地图反同步（DBZ / Builders and Fighters 等）、声音数据跨图传输。</li>
+      <li data-page-node-id="MJpd1v9w8DtH2se5yJTLWG">修复 OBS 切窗冻结、观察者全局战斗音效。</li>
     </ul>
   </div>
 </div>
 
 <!-- ============ 1.32 ============ -->
-<div class="ver" id="v132">
-  <div class="ver-head"><span class="v">1.32</span><span class="d">2020-01-28（含 1.32.1–1.32.10）</span><span class="tag">重制版上线</span></div>
-  <div class="ver-body">
-    <div class="hl"><b>里程碑：</b>《魔兽争霸III：重制版》正式发布——重制版画面、战役部分重做、接入战网、收藏系统、MMR 匹配、中文配音、共享容器、修复叠字 BUG。</div>
-    <div class="sec d-game">游戏功能性更新</div>
-    <ul>
-      <li>重制版画面：全部英雄 / 单位 / 建筑 / 环境高清重制；支持经典 / 重制双模式切换。</li>
-      <li>战役部分重做：恢复 3 个原版试玩版序章任务（「风暴中的骑士们」等）；全部任务更新地形 / 难度并加入自动存档。</li>
-      <li>战役美术重制：达拉然 / 银月城 / 斯坦索姆三城美术与布局重制；全部战役角色与视觉素材更新。</li>
-      <li>收藏：英雄皮肤、头像、可解锁的战役与匹配奖励。</li>
-      <li>多语言配音：在原有配音基础上，新增西班牙语（拉美）、葡萄牙语（巴西），并更新简体 / 繁体中文等 9 种语言。</li>
-      <li>更多死亡音效：为大量单位补充 / 扩充死亡音效（1.32.2 修复了新的死亡音效在经典模式中被误播放的问题）。</li>
-      <li>接入战网：从战网客户端安装 / 更新 / 启动，含群组与聊天；经典账号链接（保留历史战绩，90 天期限）。</li>
-      <li>版本与定价：上架两档——标准版 $29.99（国服 ¥168）；战争嘉奖版 $39.99（国服 ¥258）。</li>
-      <li>战争嘉奖版赠品：附赠 4 款英雄皮肤（阿尔萨斯 / 塞纳留斯 / 吉安娜 / 萨尔）。</li>
-      <li>MMR 匹配：1v1 / 2v2 / 3v3 / 4v4 / FFA 竞技匹配（隐藏 MMR，对局中用 <code>!mmr</code> 查看）。</li>
-      <li>MMR 匹配组队：可组队 2v2 / 3v3 / 4v4。</li>
-      <li>共享容器（1.32.6）：安装目录拆分为 <code>Data</code> + <code>_retail_</code>（正式服）+ <code>_ptr_</code>（测试服）三类文件夹，正式服与测试服共用数据、可并存更新。</li>
-      <li>热键与设置：新增 Grid / 传统热键布局；血条 / 队伍颜色 / 英雄状态条 / 冷却显示设置。</li>
+<div class="ver" id="v132" data-page-node-id="XmySl0tNX2BWyM18HbRuBV"><div class="ver-title" data-page-node-id="3dvqbtUfIyPnFd6PaiMYut"><span class="d" data-page-node-id="0h9Pg72Bf82Gzb3TBLk3O6" style="">2020-01-28 《魔兽争霸III：重制版》发布​​​</span>
+
+<div class="ver-head" data-page-node-id="e1ZQaU3ZuxpdEo0bRjkUK0"><span class="v" data-page-node-id="MYNpeG9pyrzJYVtR1GTPpv" style="">版本1.32（含 1.32.1–1.32.10） ​​</span></div></div>
+  <div class="ver-body" data-page-node-id="GMsQWDVgWrA9jGvOyzAztQ">
+    <div class="sec d-game" data-page-node-id="DB0GcGepEWka6Jcu6HgFsM">游戏功能性更新</div>
+    <ul data-page-node-id="B7uGht9abg4QcRyNP6oZh7">
+      <li data-page-node-id="tCBdChcrqvzRXeCdSoKNXS">重制版画面：全部英雄 / 单位 / 建筑 / 环境高清重制；支持经典 / 重制双模式切换。</li>
+      <li data-page-node-id="MMsXTECXb0I2M6qdb6uNoF">战役部分重做：恢复 3 个原版试玩版序章任务（「风暴中的骑士们」等）；全部任务更新地形 / 难度并加入自动存档。</li>
+      <li data-page-node-id="uP4MjCrt61S1Z0DwGqIJIF">战役美术重制：达拉然 / 银月城 / 斯坦索姆三城美术与布局重制；全部战役角色与视觉素材更新。</li>
+      <li data-page-node-id="PdwaiD1q4VcVw6amBpFJ8K">收藏：英雄皮肤、头像、可解锁的战役与匹配奖励。</li>
+      <li data-page-node-id="6DmdPxaHAikSmw6pV061Dj">多语言配音：在原有配音基础上，新增西班牙语（拉美）、葡萄牙语（巴西），并更新简体 / 繁体中文等 9 种语言。</li>
+      <li data-page-node-id="ivE1WjgGfJdbwHVDH6SJtF">更多死亡音效：为大量单位补充 / 扩充死亡音效（1.32.2 修复了新的死亡音效在经典模式中被误播放的问题）。</li>
+      <li data-page-node-id="jN1zxz4u9HORj2Te78748W">接入战网：从战网客户端安装 / 更新 / 启动，含群组与聊天；经典账号链接（保留历史战绩，90 天期限）。</li>
+      <li data-page-node-id="5Uw4Xa2i3nip9DusBDWWor">版本与定价：上架两档——标准版 $29.99（国服 ¥168）；战争嘉奖版 $39.99（国服 ¥258）。</li>
+      <li data-page-node-id="9QhcPIyLbjImgiMFaKEE0G">战争嘉奖版赠品：附赠 4 款英雄皮肤（阿尔萨斯 / 塞纳留斯 / 吉安娜 / 萨尔）。</li>
+      <li data-page-node-id="AF28O72BQL9YLo2PqufnQn">MMR 匹配：1v1 / 2v2 / 3v3 / 4v4 / FFA 竞技匹配（隐藏 MMR，对局中用 <code data-page-node-id="wc7CWtTHwhhSmuhinlwoeR">!mmr</code> 查看）。</li>
+      <li data-page-node-id="9VxQOl84htEIOLIJeFLR5H">MMR 匹配组队：可组队 2v2 / 3v3 / 4v4。</li>
+      <li data-page-node-id="kjsFFabLSdJDkJ2JhDJYei" style="">共享容器（1.32.6）：安装目录拆分为 <code data-page-node-id="9ouJTUvjfG22aWsD0PPC1E">Data</code> + <code data-page-node-id="aIIleRZtKGT9KXYHuWrIwE">_retail_</code>（正式服）+ <code data-page-node-id="E7KhY3UzT2DSzQZNh7vfV4">_ptr_</code>（测试服）三类文件夹，正式服与测试服共用数据。</li>
+      <li data-page-node-id="GA2V1gtard5JebiMYZ52Di">热键与设置：新增 Grid / 传统热键布局；血条 / 队伍颜色 / 英雄状态条 / 冷却显示设置。</li>
     </ul>
-    <div class="sec d-bal">平衡性机制改动（主要在 1.32.10，2021-04-13）</div>
-    <ul>
-      <li>山岭巨人「第二次嘲讽」被移除（1.30 引入，1.32.10 回调）。</li>
-      <li>人类伐木科技前置放宽：改良伐木移除前置、高级伐木由城堡改要塞；骑士默认自带「裂甲之刃」。</li>
-      <li>亡灵：「埋骨地」不再需要牺牲深渊。</li>
-      <li>物品与掉落池：各类光环类道具加成集体下调（如勇气勋章、战歌战鼓等）；所有物品回收价 50% → 60%。</li>
+    <div class="sec d-bal" data-page-node-id="ee3Fzk07d3C0Byj3siJapv">平衡性机制改动（主要在 1.32.10，2021-04-13）</div>
+    <ul data-page-node-id="a4J0wrUvHr58NcmGgXqSCF">
+      <li data-page-node-id="FlAv00UX6hisdP2q7QNh6k">山岭巨人「第二次嘲讽」被移除（1.30 引入，1.32.10 回调）。</li>
+      <li data-page-node-id="jMdm8GRZ9hjFV0Kb3F4HYC">人类伐木科技前置放宽：改良伐木移除前置、高级伐木由城堡改要塞；骑士默认自带「裂甲之刃」。</li>
+      <li data-page-node-id="8vGmYShBk9Pao4FmEWrExh">亡灵：「埋骨地」不再需要牺牲深渊。</li>
+      <li data-page-node-id="1hIIioxFRpuPPSWccNQdgd">物品与掉落池：各类光环类道具加成集体下调（如勇气勋章、战歌军鼓等）；所有物品回收价 50% → 60%。</li>
     </ul>
-    <div class="sec d-ed">地图编辑器更新</div>
-    <ul>
-      <li>1.32.x 修复期持续修复编辑器与自定义地图相关问题。</li>
+    <div class="sec d-ed" data-page-node-id="v7TDxamUdouuFVibttMzSG">地图编辑器更新</div>
+    <ul data-page-node-id="CTPGOilHCR6s5ypVHAwyGY">
+      <li data-page-node-id="hRb5oQ4KVOw7K4aBB1HAjp">1.32.x 修复期持续修复编辑器与自定义地图相关问题。</li>
     </ul>
-    <div class="sec d-bug">BUG 修复 / 已知问题</div>
-    <ul>
-      <li>1.32.1（发布首周）：修复了在高分辨率下中文字形叠加、对话乱码的叠字 BUG。</li>
-      <li>1.32.1：修复加载任务误报失败、多面板导致自定义地图崩溃、经典模式渲染异常。</li>
-      <li>上线初期已知问题：加载黑屏、古树根须放置图标缺失、非拉丁字符重叠、非美式键盘键位失效、跨平台无法邀请等，均在 1.32.x 逐步修复。</li>
-      <li>编辑器相关：自定义地图 &gt;256MB 破坏大厅、JassHelper 残留。</li>
+    <div class="sec d-bug" data-page-node-id="7CCCeKqLOwdlFXA2MjTkTr">BUG 修复 / 已知问题</div>
+    <ul data-page-node-id="uyNbT4Ap268aYgze2Uk0jk">
+      <li data-page-node-id="TBCNeBozHxe3inmU0A9vZz">1.32.1（发布首周）：修复了在高分辨率下中文字形叠加、对话乱码的叠字 BUG。</li>
+      <li data-page-node-id="kcdL48IZfFQpzNYwZXmyoT">1.32.1：修复加载任务误报失败、多面板导致自定义地图崩溃、经典模式渲染异常。</li>
+      <li data-page-node-id="QeEFZRsiGBkF2HcKvcyreM" style="">上线初期已知问题：加载黑屏、古树根须放置图标缺失、非拉丁字符重叠、非美式键盘键位失效等，均在 1.32.x 逐步修复。​​</li>
+      <li data-page-node-id="EqQP1T4pbZiaX1YDOSFIgF">编辑器相关：自定义地图 &gt;256MB 破坏大厅、JassHelper 残留。</li>
     </ul>
   </div>
 </div>
 
 <!-- ============ 1.33 ============ -->
-<div class="ver" id="v133">
-  <div class="ver-head"><span class="v">1.33</span><span class="d">2022-08-17（原定 2022-08-10）</span><span class="tag">排名系统</span></div>
-  <div class="ver-body">
-    <div class="hl"><b>核心亮点：</b>排名对战、玩家档案、排行榜三大系统，以及镜头缩放功能。</div>
-    <div class="sec d-game">游戏功能性更新</div>
-    <ul>
-      <li>排名对战：排名 / 非排名可选；赛季结束后天梯重置。</li>
-      <li>MMR：每种族（含随机）独立 MMR；每种族 5 场定位赛；段位 8 级（从「未定级」到「冠军」）。</li>
-      <li>!Stats 命令查询对局内胜负与 MMR；排行榜可按种族 / 好友 / 模式筛选；玩家档案显示段位 / 生涯 / 历史。</li>
-      <li>经典头像按总胜场解锁；自定义游戏全球化并可按时延筛选；新增芝加哥服务器；PopcornFX 升级 2.5.1。</li>
-      <li>镜头缩放：滚轮缩放，PageUp/Down 调节，F5 复位，可设默认 / 最大缩放。</li>
+<div class="ver" id="v133" data-page-node-id="1ZRQb2XzsYT3p8U0naJT2d"><div class="ver-title" data-page-node-id="HjCxCtDrkrdEC7NaVfh6ji"><span class="d" data-page-node-id="LOj6qxsLCwyhQvRhAOihcW">2022-08-17（原定 2022-08-10）</span>
+
+<div class="ver-head" data-page-node-id="wplwWJuic4BnDZwCrUiGAu"><span class="v" data-page-node-id="0mv8fRnS89MVW6EC3WMW92">版本1.33</span></div></div>
+  <div class="ver-body" data-page-node-id="W3GyUYDKuD4FqmujTnDBn1">
+    <div class="sec d-game" data-page-node-id="UXyy8FNg1r5uNmJ0xhkGcI">游戏功能性更新</div>
+    <ul data-page-node-id="KA3AMMiOCTfQQYraE28YZw">
+      <li data-page-node-id="B8DPh136i4E253CN8MMioA">排名对战：排名 / 非排名可选；赛季结束后天梯重置。</li>
+      <li data-page-node-id="lEOStXAsyTSclDAnd1MRpO">MMR：每种族（含随机）独立 MMR；每种族 5 场定位赛；段位 8 级（从「未定级」到「冠军」）。</li>
+      <li data-page-node-id="wzzG3wB88MBO2qbo8SackW">!Stats 命令查询对局内胜负与 MMR；排行榜可按种族 / 好友 / 模式筛选；玩家档案显示段位 / 生涯 / 历史。</li>
+      <li data-page-node-id="sK0U4iDFrEGAjDxBoE5F0T">经典头像按总胜场解锁；自定义游戏全球化并可按时延筛选；新增芝加哥服务器；PopcornFX 升级 2.5.1。</li>
+      <li data-page-node-id="slIvBNtA68CAMq2vHBphkN">镜头缩放：滚轮缩放，PageUp/Down 调节，F5 复位，可设默认 / 最大缩放。</li>
     </ul>
-    <div class="sec d-bal">平衡性机制改动</div>
-    <ul>
-      <li>战役平衡重做：RoC 战役全量平衡重做 + TFT 轻度调整（含 AI 与脚本改动）。1.36.1 全部回滚。</li>
+    <div class="sec d-bal" data-page-node-id="sTWZpDPJCaqBqMexObgOdD">平衡性机制改动</div>
+    <ul data-page-node-id="SgYLRUrqnUU4wh8pk5Cmx3">
+      <li data-page-node-id="Dj6WfD7VWtO9QGkIZHMxq2">战役平衡重做：RoC 战役全量平衡重做 + TFT 轻度调整（含 AI 与脚本改动）。1.36.1 全部回滚。</li>
     </ul>
-    <div class="sec d-ed">编辑器更新</div>
-    <ul>
-      <li>世界编辑器启用 Windows 10 通用控件。</li>
-      <li>GPU 渲染器更新（字体渲染变化，<code>-legacykerning</code> 恢复旧字体）。</li>
-      <li>旧版 Popcorn 特效错误提示。</li>
+    <div class="sec d-ed" data-page-node-id="V87q6JiKfeqJpFIkDx9b1n">编辑器更新</div>
+    <ul data-page-node-id="ceth99ei6skQZPbwxZkexO">
+      <li data-page-node-id="cgyuGJHMeYlUKM7bayq1Hz">世界编辑器启用 Windows 10 通用控件。</li>
+      <li data-page-node-id="LdpRxOKTe7Fex4RoNa6AL0">GPU 渲染器更新（字体渲染变化，<code data-page-node-id="HD4D603GSMs92okqJvBP5i">-legacykerning</code> 恢复旧字体）。</li>
+      <li data-page-node-id="VrylzK8hWAFuPyZOtGkhKM">旧版 Popcorn 特效错误提示。</li>
     </ul>
-    <div class="sec d-bug">BUG 修复</div>
-    <ul>
-      <li>修复 FileAliases.JSON 路径、编辑器导入列表排序。</li>
-      <li>修复山丘之王语音、单位语音 / 头像动画、音乐播放列表。</li>
-      <li>修复动画碰撞、Popcorn 崩溃、地形调色板崩溃。</li>
-      <li>修复人类 UI 误显示、Insert 旋转镜头、单机「=」键。</li>
+    <div class="sec d-bug" data-page-node-id="uMbciLHNEsUKVsVm4Fmx8m">BUG 修复</div>
+    <ul data-page-node-id="vQHbfAroV7nanlXBxYGllp">
+      <li data-page-node-id="rmWDzfYWqB2pXIF1Nvdi4d">修复 FileAliases.JSON 路径、编辑器导入列表排序。</li>
+      <li data-page-node-id="5EVlxKddH4F6VnghABkiSS">修复山丘之王语音、单位语音 / 头像动画、音乐播放列表。</li>
+      <li data-page-node-id="kG5DPoifClzAA6bh5RyxM2">修复动画碰撞、Popcorn 崩溃、地形调色板崩溃。</li>
+      <li data-page-node-id="H4CxPAo7qXdKJW2eT4w9iY">修复人类 UI 误显示、Insert 旋转镜头、单机「=」键。</li>
     </ul>
   </div>
 </div>
 
 <!-- ============ 1.34 ============ -->
-<div class="ver" id="v134">
-  <div class="ver-head"><span class="v">1.34</span><span class="d">2022-12-01</span><span class="tag">战队回归 / 举报</span></div>
-  <div class="ver-body">
-    <div class="hl"><b>核心亮点：</b>战队系统回归、玩家举报、自定义游戏按名称加入。</div>
-    <div class="sec d-game">游戏功能性更新</div>
-    <ul>
-      <li>战队：创建 / 加入；等级（牛头人酋长 / 萨满 / 兽人步兵 / 苦工）；酋长与萨满可踢人、晋升、封禁；独立频道；档案显示战队标签。</li>
-      <li>玩家举报：自动举报系统，可举报语言、战网昵称、战队内容、作弊、游戏名、冒犯内容、消极比赛等。</li>
-      <li>自定义游戏：新增「按名称加入」功能。</li>
+<div class="ver" id="v134" data-page-node-id="dVYIY05wkvOmxVbMH9fZTb"><div class="ver-title" data-page-node-id="xSqsTBxVt2YsxpSLFjND6u"><span class="d" data-page-node-id="ujGLlrGuKhdAKDwjwuWS2B">2022-12-01</span>
+
+<div class="ver-head" data-page-node-id="rRZifpu7iB1x7PBuPXkCJe"><span class="v" data-page-node-id="pPqK3e0ChQL5GGH8qkDyb2">版本1.34</span></div></div>
+  <div class="ver-body" data-page-node-id="4MBDnMgoAWc3ZwQhmWzqrT">
+    <div class="sec d-game" data-page-node-id="2YuX0AKWlnj0gkyfZVwyiL">游戏功能性更新</div>
+    <ul data-page-node-id="VQW7RsrJXUHhPL6WoazENg">
+      <li data-page-node-id="Ba1tGqDIAXV4E82WTWAFWR">战队：创建 / 加入；等级（牛头人酋长 / 萨满 / 兽人步兵 / 苦工）；酋长与萨满可踢人、晋升、封禁；独立频道；档案显示战队标签。</li>
+      <li data-page-node-id="NDUCzx6h9uwqnn24beA00m">玩家举报：自动举报系统，可举报语言、战网昵称、战队内容、作弊、游戏名、冒犯内容、消极比赛等。</li>
+      <li data-page-node-id="oKYySeKNDW28dxE8GGp8YN">自定义游戏：新增「按名称加入」功能。</li>
     </ul>
-    <div class="sec d-bug">改进与 BUG 修复</div>
-    <ul>
-      <li>组队 / 随机匹配后端拆分；新增排名玩法说明界面。</li>
-      <li>右键菜单统一（举报 / 组队 / 战队邀请）；社交通知指示。</li>
-      <li>排名徽章与排行榜 UI 改进；档案可从主菜单进入；切换账号聊天刷新。</li>
+    <div class="sec d-bug" data-page-node-id="rc4NidWnc8oW7biV56iFHv">改进与 BUG 修复</div>
+    <ul data-page-node-id="zNP9hfGSlKiCkyxNgihpsJ">
+      <li data-page-node-id="PBBzV0domhFtrlYpZiJ2l0">组队 / 随机匹配后端拆分；新增排名玩法说明界面。</li>
+      <li data-page-node-id="OlQ1ylkFXFcxPeuypqhu9T">右键菜单统一（举报 / 组队 / 战队邀请）；社交通知指示。</li>
+      <li data-page-node-id="feu5hbgnUMoGihgVM6pqDB">排名徽章与排行榜 UI 改进；档案可从主菜单进入；切换账号聊天刷新。</li>
     </ul>
   </div>
 </div>
 
 <!-- ============ 1.35 ============ -->
-<div class="ver" id="v135">
-  <div class="ver-head"><span class="v">1.35</span><span class="d">2023-01-19（含 1.35.0a · Build 19844）</span><span class="tag">自定义战役 / 战役编辑器</span></div>
-  <div class="ver-body">
-    <div class="hl"><b>核心亮点：</b>自定义战役系统（含战役编辑器大量支持）。</div>
-    <div class="sec d-game">游戏功能性更新</div>
-    <ul>
-      <li>自定义战役：可下载游玩或自行创作；部分支持重制 / 经典两种美术。</li>
-      <li>前置菜单重做：战役移至「单人游戏」；记录通关难度；读档可载入自定义战役存档。</li>
-      <li>战役编辑器支持：「是过场动画」选项、好友在线状态、富文本菜单。</li>
-      <li>排名：赛季轮换（赛季结束 MMR 重置）。</li>
+<div class="ver" id="v135" data-page-node-id="LP4aIzh6J61kUGQoL4L4QG"><div class="ver-title" data-page-node-id="7qjSIl2bs0JLR2sbgv3FwJ"><span class="d" data-page-node-id="ggVVEjbBPzU5Ladra90Hi2" style="">2023-01-19​</span>
+
+<div class="ver-head" data-page-node-id="YjpYzb5snyG6YcrcS9RCTl"><span class="v" data-page-node-id="ZFbox4EXw6FxuaRaXfboYM">版本1.35</span></div></div>
+  <div class="ver-body" data-page-node-id="ZpUpBHDcrlKZNxfFAtOMIt">
+    <div class="sec d-game" data-page-node-id="L8W7GQ6K7M6mC5oBFMITFW">游戏功能性更新</div>
+    <ul data-page-node-id="W7J3Rrb7hACVo6gtUD00JR">
+      <li data-page-node-id="9KbNEH8hlgsKeDjQ6m55Nc">自定义战役：可下载游玩或自行创作；部分支持重制 / 经典两种美术。</li>
+      <li data-page-node-id="qm2croZ8aGjKtQ6Tu2UDHG">前置菜单重做：战役移至「单人游戏」；记录通关难度；读档可载入自定义战役存档。</li>
+      <li data-page-node-id="eGeBPN6r27usMnOfaHB3ke">战役编辑器支持：「是过场动画」选项、好友在线状态、富文本菜单。</li>
+      <li data-page-node-id="ydagx5OaDE0b5YwNgeAV7F">排名：赛季轮换（赛季结束 MMR 重置）。</li>
     </ul>
-    <div class="sec d-ed">编辑器更新</div>
-    <ul>
-      <li>战役编辑器新增电影选项（VP9 AVI + MP3）、缩略图、环境音、WebM 背景支持；自定义战役列表恢复焦点自动刷新。</li>
+    <div class="sec d-ed" data-page-node-id="MbJgdC4zdUfnd5OZKgFNxP">编辑器更新</div>
+    <ul data-page-node-id="jZURgHBJKISIAKV0jO1acn">
+      <li data-page-node-id="cUwoGzBFIFU3VNb5HwApRk">战役编辑器新增电影选项（VP9 AVI + MP3）、缩略图、环境音、WebM 背景支持；自定义战役列表恢复焦点自动刷新。</li>
     </ul>
-    <div class="sec d-bug">BUG 修复</div>
-    <ul>
-      <li>修复早退导致对局无法结算、退出单机误入读档。</li>
-      <li>修复模型 / 贴图切换加载异常、载入界面文本错位、战役存档字符串重置。</li>
-      <li>修复战役 / 伤害防御表编辑崩溃；新增缩放档位（1750 / 2100 / 2250）。</li>
-      <li>移除举报描述字数要求。</li>
+    <div class="sec d-bug" data-page-node-id="n2T0kuyUIumFOon6POtMGc">BUG 修复</div>
+    <ul data-page-node-id="pjhaLFp3nvCFSb7PgRcYx3">
+      <li data-page-node-id="uHKxMjOpv3OZjk4CkEOEQg">修复早退导致对局无法结算、退出单机误入读档。</li>
+      <li data-page-node-id="QSNdXXiOFAnCCaAEiA0xHy">修复模型 / 贴图切换加载异常、载入界面文本错位、战役存档字符串重置。</li>
+      <li data-page-node-id="MXKNNYcaGdVO3H4QU0VBaf">修复战役 / 伤害防御表编辑崩溃；新增缩放档位（1750 / 2100 / 2250）。</li>
+      <li data-page-node-id="T6DTm9ySxl9sebvFblAoEl">移除举报描述字数要求。</li>
     </ul>
   </div>
 </div>
 
 <!-- ============ 1.36 ============ -->
-<div class="ver" id="v136">
-  <div class="ver-head"><span class="v">1.36</span><span class="d">2023-05-09（含 1.36.1–1.36.2）</span><span class="tag">观战者模式 / 锦标赛</span></div>
-  <div class="ver-body">
-    <div class="hl"><b>核心亮点：</b>全新观战者模式与每日锦标赛。</div>
-    <div class="sec d-game">游戏功能性更新</div>
-    <ul>
-      <li>观战者模式：可开关；点击命令卡跟随；命令卡移至最右；面板可单独开关。</li>
-      <li>统计面板（全员种族 / 金 / 木 / 人口 / APM）、生产队列、单位视图、英雄面板（最多 4 人，点击镜头居中）。</li>
-      <li>快捷键：Alt+P 生产面板、Alt+U 单位面板；生产条进度改白色。</li>
-      <li>锦标赛：每日举行、全员开放；预赛最多 8 场，前 16 名淘汰赛。</li>
-      <li>排名：赛季结束 MMR 重置；地图否决最多 3 个。</li>
+<div class="ver" id="v136" data-page-node-id="LSfYRcD4s27sg40BasIYsv"><div class="ver-title" data-page-node-id="aB769OPSp5YkT6vqHHbenP"><span class="d" data-page-node-id="xdmbH6xjufS0kpy4WwPDk5" style="">2023-05-09​​</span>
+
+<div class="ver-head" data-page-node-id="1ikqyCV1kSVAhm9sHdF5l5"><span class="v" data-page-node-id="TsfyiLyR2Md5dtmRdv6EiW" style="">版本1.36（含 1.36.1–1.36.2）​</span></div></div>
+  <div class="ver-body" data-page-node-id="LBWCzhca3swmZPocWsk6yJ">
+    <div class="sec d-game" data-page-node-id="La4RrqrblY0mlQXBJeJuit">游戏功能性更新</div>
+    <ul data-page-node-id="VSgcCFW5JzsZyh2PUveWDz">
+      <li data-page-node-id="olde5j7uHbRkkuAP8jCti1">观战者模式：可开关；点击命令卡跟随；命令卡移至最右；面板可单独开关。</li>
+      <li data-page-node-id="XybZ79pGTCB9Wnygk4OU0S">统计面板（全员种族 / 金 / 木 / 人口 / APM）、生产队列、单位视图、英雄面板（最多 4 人，点击镜头居中）。</li>
+      <li data-page-node-id="i8uhmDXr1STF4nF8RxBGzE">快捷键：Alt+P 生产面板、Alt+U 单位面板；生产条进度改白色。</li>
+      <li data-page-node-id="pGUCtUjwhWVBK99cB35DJn">锦标赛：每日举行、全员开放；预赛最多 8 场，前 16 名淘汰赛。</li>
+      <li data-page-node-id="9RbTAVlGCEPPvr0DYgydEM">排名：赛季结束 MMR 重置；地图否决最多 3 个。</li>
     </ul>
-    <div class="sec d-game">后续修复版（1.36.1）</div>
-    <ul>
-      <li>回滚 1.33 的战役平衡调整。</li>
-      <li>在线游戏恢复存档 / 读档（不适用排位）。</li>
-      <li>镜头缩放支持更细数值。</li>
-      <li>观察者模式可悬停查看英雄经验条。</li>
-      <li>锦标赛结果页可查看队友 / 对手档案。</li>
+    <div class="sec d-game" data-page-node-id="oeRaFq3WzlWG1WI426keHh">后续修复版（1.36.1）</div>
+    <ul data-page-node-id="biXH4T7xoKSLTNOiZVjqrA">
+      <li data-page-node-id="4hccc7F9388BRNFk2aQRto">回滚 1.33 的战役平衡调整。</li>
+      <li data-page-node-id="IhtWFWz6zXZCwzVcDqM2uL">在线游戏恢复存档 / 读档（不适用排位）。</li>
+      <li data-page-node-id="aGNbcNHArXxBnsXGH8GILR">镜头缩放支持更细数值。</li>
+      <li data-page-node-id="TC7sWcF8AKLSyQFa9BkZa8">观察者模式可悬停查看英雄经验条。</li>
+      <li data-page-node-id="9MJmcGC7SDTEzVnxLW11YS">锦标赛结果页可查看队友 / 对手档案。</li>
     </ul>
-    <div class="sec d-bal">平衡性机制改动（1.36.1，2023-11-20）</div>
-    <ul>
-      <li>新增物品「卓越之戒」/「大法师之戒」。</li>
-      <li>暗夜精灵「猛禽印记」改为只要求专家级训练。</li>
-      <li>专家物品重做：重修之书 / 传送法杖商店库存 2；水晶球由 3 级改 2 级并移入消耗品掉落池（3 次使用、移除冷却）；守护指环 +3 移出掉落表。</li>
-      <li>科技树造价调整：骷髅精通成本 200/175 → 150/100；钢铁系列升级木材成本（钢甲 150 → 125、近战 / 远程武器 100 → 75）。</li>
+    <div class="sec d-bal" data-page-node-id="UJfLAWYax377Zpj1VHGpgf">平衡性机制改动（1.36.1，2023-11-20）</div>
+    <ul data-page-node-id="brfjeMVDRGUxi6mObexZFb">
+      <li data-page-node-id="tiIwQiD02LURVkZi9S0HN7">新增物品「卓越之戒」/「大法师之戒」。</li>
+      <li data-page-node-id="RViMwP5olY2VTEcSYlwQFT">暗夜精灵「猛禽印记」改为只要求专家级训练。</li>
+      <li data-page-node-id="IaFzdd14s9oMrgdcfPcGTM" style="">重修之书 / 传送法杖商店库存 2；水晶球由 3 级改 2 级并移入消耗品掉落池（3 次使用、移除冷却）；防护之戒 +3 移出掉落表。​</li>
+      <li data-page-node-id="wCUVXEx8Own1HDlKx7e2NI">科技树造价调整：骷髅精通成本 200/175 → 150/100；钢铁系列升级木材成本（钢甲 150 → 125、近战 / 远程武器 100 → 75）。</li>
     </ul>
-    <div class="sec d-bug">BUG 修复</div>
-    <ul>
-      <li>修复战争迷雾 FX 崩溃、观察 CPU 游戏崩溃、失败变观战崩溃。</li>
-      <li>修复菜单打开热键仍生效、赛后立即看回放卡死、大量玩家观战黑屏。</li>
-      <li>修复排行榜段位图标不更新。</li>
+    <div class="sec d-bug" data-page-node-id="eLTaiAzGUyPfOpidg7yaEh">BUG 修复</div>
+    <ul data-page-node-id="x74vP2FeoXQ4rvLC8skXaU">
+      <li data-page-node-id="wAgeuBOwVzpZFLAGEOPFu1">修复战争迷雾 FX 崩溃、观察 CPU 游戏崩溃、失败变观战崩溃。</li>
+      <li data-page-node-id="W1BhKzID6ce7mGZUQHdCxq">修复菜单打开热键仍生效、赛后立即看回放卡死、大量玩家观战黑屏。</li>
+      <li data-page-node-id="uKiVLNbXnOhGnkSInvNWRy">修复排行榜段位图标不更新。</li>
     </ul>
   </div>
 </div>
 
 <!-- ============ 2.0 ============ -->
-<div class="ver" id="v20">
-  <div class="ver-head"><span class="v">2.0.0</span><span class="d">2024-11-13（魔兽 30 周年）</span><span class="tag">经典高清 / TFT 主题 / 战役英雄皮肤 / 魔兽1·2音乐 / CD提示条</span></div>
-  <div class="ver-body">
-    <div class="hl"><b>核心亮点：</b>经典高清（Classic HD）+ 插件系统、冰封王座主题、魔兽争霸 1/2 音乐、技能冷却数字提示条、排名 XP 等级。</div>
-    <div class="sec d-game">游戏功能性更新</div>
-    <ul>
-      <li>经典高清 + 插件系统：经典单位 / 建筑 / 特效 / 英雄 / 环境 / 图标高清版；可在重制 / 经典高清资源间自由混搭。</li>
-      <li>收藏：皮肤 / 头像筛选；新增 5 个初始头像、魔兽 1 / 2 头像；战役英雄可作多人皮肤；可禁用皮肤。</li>
-      <li>菜单界面：冰封王座主题（点 Logo 切换）；菜单流程与所有前端菜单更新。</li>
-      <li>对局界面：游戏内热键自定义（图形化改键）；APM / FPS / 计时器 / Ping 开关。</li>
-      <li>检索与历史：比赛历史可回放；创建游戏 / 回放搜索滤镜。</li>
-      <li>游戏内 UI：计时器（<code>/time</code>）、反补指示器、金矿工人计数、盟友菜单种族显示、技能冷却数字提示、闲置工人双击跟随、HUD 缩放。</li>
-      <li>音乐：新增魔兽 1 / 2 音乐选项。</li>
-      <li>多人：排名 XP 与等级；MMR 区间缩减至 0–7000；已排位者赛季后 MMR 不再重置；AT 不再匹配 RT（3v3/4v4）；新增芝加哥、悉尼服务器。</li>
-      <li>重制版环境：全部地形美术更新、植被默认关、泛光移除、环境光增强。</li>
-      <li>魔兽 I / II / III 战斗合集：捆绑魔兽 I / II / III 重制版（含战争嘉奖版奖励与经典原版），$39.99。</li>
+<div class="ver" id="v20" data-page-node-id="MYKKwBuCQdEc2KYLlCYp1d"><div class="ver-title" data-page-node-id="ANbLpEXa8myBIByGDKEAmI"><span class="d" data-page-node-id="AkdxcLee5N69zpbH0CjPul" style="">2024-11-13 魔兽 30 周年​</span>
+
+<div class="ver-head" data-page-node-id="Jw4kFQKtV8wZtba4dHIHSn"><span class="v" data-page-node-id="mS1mU87s8NJB0sviT0Vv5M">版本2.0.0</span></div></div>
+  <div class="ver-body" data-page-node-id="VuKOnDAhHJKtoVF6jj3VEU">
+    <div class="sec d-game" data-page-node-id="A5t7uUn8Hl1vC11X0SY3ss">游戏功能性更新</div>
+    <ul data-page-node-id="LQFWmyZs0s2B95oypiBCOW">
+      <li data-page-node-id="uTK3R17ykvxq5eG22uklm4">经典高清 + 插件系统：经典单位 / 建筑 / 特效 / 英雄 / 环境 / 图标高清版；可在重制 / 经典高清资源间自由混搭。</li>
+      <li data-page-node-id="h1BIz9Ax3oB7FU89xFgUAM">收藏：皮肤 / 头像筛选；新增 5 个初始头像、魔兽 1 / 2 头像；战役英雄可作多人皮肤；可禁用皮肤。</li>
+      <li data-page-node-id="z3bI1AKeRNTtppFe8HnYuC">菜单界面：冰封王座主题（点 Logo 切换）；菜单流程与所有前端菜单更新。</li>
+      <li data-page-node-id="eImNiGUiTwNNDJhFiaDSrr">对局界面：游戏内热键自定义（图形化改键）；APM / FPS / 计时器 / Ping 开关。</li>
+      <li data-page-node-id="OzbBXwpdHXVrLnIbqCeXc5">检索与历史：比赛历史可回放；创建游戏 / 回放搜索滤镜。</li>
+      <li data-page-node-id="hD37ZNIYh7eiHIDH2Fsqqh">游戏内 UI：计时器（<code data-page-node-id="znMpHAOWgxOrP3NKwgBNLA">/time</code>）、反补指示器、金矿工人计数、盟友菜单种族显示、技能冷却数字提示、闲置工人双击跟随、HUD 缩放。</li>
+      <li data-page-node-id="m4qIVkoMMzvV1EbH7HcBMv">音乐：新增魔兽 1 / 2 音乐选项。</li>
+      <li data-page-node-id="VvcSGRMKu2haG13mRvWpAP" style="white-space: pre-wrap;">多人游戏：排位添加了经验和等级；MMR 区间缩减至 0–7000；AT 不再匹配 RT（3v3/4v4）；新增芝加哥、悉尼服务器。​​​​​</li>
+      <li data-page-node-id="FTvD1mEiZM8fMC1koXvC1W">重制版环境：全部地形美术更新、植被默认关、泛光移除、环境光增强。</li>
+      <li data-page-node-id="0INPko3v6xscFinRhIRCW6">魔兽 I / II / III 战斗合集：捆绑魔兽 I / II / III 重制版（含战争嘉奖版奖励与经典原版），$39.99。</li>
     </ul>
-    <div class="sec d-bal">平衡性机制改动</div>
-    <ul>
-      <li>多人匹配机制：MMR 区间由不限缩减为 0–7000；AT 与 RT 分开匹配（3v3 / 4v4）。</li>
+    <div class="sec d-bal" data-page-node-id="Rb74J85COYru0HkZP7Tyyk">平衡性机制改动</div>
+    <ul data-page-node-id="afteygSkSvA2d3AxQH4Btp">
+      <li data-page-node-id="y4d42GJzbCtJ0XkEoU6gUJ">多人匹配机制：MMR 区间由不限缩减为 0–7000；AT 与 RT 分开匹配（3v3 / 4v4）。</li>
     </ul>
-    <div class="sec d-ed">编辑器更新</div>
-    <ul>
-      <li>新增「重制 → 经典高清」插件开关、植被开关。</li>
+    <div class="sec d-ed" data-page-node-id="FtGo6B3YOvGjPWwVbGPZQg">编辑器更新</div>
+    <ul data-page-node-id="hJPQEoIXYitcNOLfG4rC1x">
+      <li data-page-node-id="ksGiCdjVoZLqa87sSrKfBW">新增「重制 → 经典高清」插件开关、植被开关。</li>
     </ul>
-    <div class="sec d-bug">BUG 修复</div>
-    <ul>
-      <li>无法创建 / 邀请战队、恶魔猎手经重生十字章复活后永久丢视野、对局结果无法结算、Mac 无法启动。</li>
+    <div class="sec d-bug" data-page-node-id="PcyACL0uYOusDi1pufXAmH">BUG 修复</div>
+    <ul data-page-node-id="Gl74irDAOXrUAwUPOcRcKt">
+      <li data-page-node-id="LYGB1c2JMRZ9Sjleea15J4">无法创建 / 邀请战队、恶魔猎手经重生十字章复活后永久丢视野、对局结果无法结算、Mac 无法启动。</li>
     </ul>
   </div>
 </div>
 
 <!-- ============ 2.0.1 ============ -->
-<div class="ver" id="v201">
-  <div class="ver-head"><span class="v">2.0.1</span><span class="d">2024-12-17（Build 22474）+ 2024-12-18 热修（22479）</span><span class="tag">小修补丁</span></div>
-  <div class="ver-body">
-    <div class="sec d-game">游戏功能性更新 / 改动</div>
-    <ul>
-      <li>匹配：优先理想延迟而非 MMR（延迟 → MMR → 长时间后任意）。</li>
-      <li>排名：失败扣除更多 XP；热键界面支持自定义物品栏与 F 键。</li>
-      <li>经典高清图标：512→256；TFT 主题加雪；对战设置界面显示对全种族排名。</li>
-      <li>旧地形移至插件子文件夹。</li>
-      <li>聊天隐藏系统消息、大厅聊天退出清空。</li>
-      <li>3 款新皮肤（吉安娜、幽灵安东尼达斯、幽灵丛林守护者）。</li>
-      <li>比赛历史加日期；重制镜头 FOV 与经典一致。</li>
+<div class="ver" id="v201" data-page-node-id="8hRtlrguqoqtilNgmX8cbH"><div class="ver-title" data-page-node-id="vMwStatvwtxkUKz76yDnCf"><span class="d" data-page-node-id="wFVNwJ52BauRzoNp9i53TX" style="">2024-12-17​​</span>
+<div class="ver-head" data-page-node-id="hjKNLBA7RJUKCNwzO9qyx6"><span class="v" data-page-node-id="qlvGaAoP1HAIzDtMIRDZdZ">版本2.0.1</span></div></div>
+  <div class="ver-body" data-page-node-id="1AQpYrDiNwBtUrRGncFKIz">
+    <div class="sec d-game" data-page-node-id="qBPwSt1gMogXA1s707C49n">游戏功能性更新 / 改动</div>
+    <ul data-page-node-id="Si0FvwpnfblJ9gBoemcdoi">
+      <li data-page-node-id="vq1KOzQLY8x15NRzPOYrJm">匹配：优先理想延迟而非 MMR（延迟 → MMR → 长时间后任意）。</li>
+      <li data-page-node-id="0s2hnqu1ndJxuJM6pnArO4">排名：失败扣除更多 XP；热键界面支持自定义物品栏与 F 键。</li>
+      <li data-page-node-id="cK1qph2qV9GqbtNeymB57l">经典高清图标：512→256；TFT 主题加雪；对战设置界面显示对全种族排名。</li>
+      <li data-page-node-id="h7SfbCYQtxAGL3oDzPhnnF">旧地形移至插件子文件夹。</li>
+      <li data-page-node-id="aeQ5sv8EbA7d2QXp6d9t2x">聊天隐藏系统消息、大厅聊天退出清空。</li>
+      <li data-page-node-id="eAy1cx6KLDz5FnDTd9zYjw">3 款新皮肤（吉安娜、幽灵安东尼达斯、幽灵丛林守护者）。</li>
+      <li data-page-node-id="PO6lpManRVbZJrnfRCGBQB">比赛历史加日期；重制镜头 FOV 与经典一致。</li>
     </ul>
-    <div class="sec d-bug">BUG 修复</div>
-    <ul>
-      <li>修复自定义游戏邀请崩溃、无法按名加入私人游戏、部分自定义地图单位不显示。</li>
-      <li>修复 HUD 缩小无法选单位、编队偶发自动开启。</li>
-      <li>修复 Windows 7 / 集成显卡 / 超 11 人对局结束崩溃、Direct3D12 参数。</li>
-      <li>修复克尔苏加德皮肤头像、剑圣剑刃风暴特效、蝙蝠骑士不稳定化合物、中韩文攻击之爪数值。</li>
-      <li>2024-12-18 热修：新皮肤无法使用、默认缩放复位错误、无法组队邀请、主机离开大厅不退出。</li>
+    <div class="sec d-bug" data-page-node-id="2yW4yLgaDPJ5pYd62REOHC">BUG 修复</div>
+    <ul data-page-node-id="aBoD96mEyVUzNxkiCgDNZd">
+      <li data-page-node-id="x7iSIGht6FH7mc1OAp4UHw">修复自定义游戏邀请崩溃、无法按名加入私人游戏、部分自定义地图单位不显示。</li>
+      <li data-page-node-id="D9HzW5O5UuKuKpq6XqsPl5">修复 HUD 缩小无法选单位、编队偶发自动开启。</li>
+      <li data-page-node-id="5k7MaoUb8L1BTvPp1EJkrf">修复 Windows 7 / 集成显卡 / 超 11 人对局结束崩溃、Direct3D12 参数。</li>
+      <li data-page-node-id="Tw2hgOJQGG6RtOAKHpqvDE">修复克尔苏加德皮肤头像、剑圣剑刃风暴特效、蝙蝠骑士不稳定化合物、中韩文攻击之爪数值。</li>
+      <li data-page-node-id="Q0piuku3uI4H7CJNF98vwZ">2024-12-18 热修：新皮肤无法使用、默认缩放复位错误、无法组队邀请、主机离开大厅不退出。</li>
     </ul>
   </div>
 </div>
 
 <!-- ============ 2.0.2 ============ -->
-<div class="ver" id="v202">
-  <div class="ver-head"><span class="v">2.0.2</span><span class="d">2025-04-15（Build 22761）</span><span class="tag">性能 / 减速之球</span></div>
-  <div class="ver-body">
-    <div class="sec d-game">游戏功能性更新</div>
-    <ul>
-      <li>性能：修复正式服每几秒卡顿。</li>
-      <li>战役背景：经典画面启用经典战役背景；可自定义 ROC / TFT 菜单界面；更新重制战役背景。</li>
-      <li>光照：重制环境光照方向对齐经典；地牢光照大改；亮度微调。</li>
+<div class="ver" id="v202" data-page-node-id="ix8tRkXWResKcxJGqvFErq"><div class="ver-title" data-page-node-id="uiIafyDqayYyEloLZUGVPp"><span class="d" data-page-node-id="7h1scP5EHqGcJRturRGrqc" style="">2025-04-15​</span>
+<div class="ver-head" data-page-node-id="Ak4RqkM2VSSSR8YRwI9wJd"><span class="v" data-page-node-id="w6As5Qbkjt66IhyTDEkzGP">版本2.0.2</span></div></div>
+  <div class="ver-body" data-page-node-id="RDdnvv8ES2dOeLvo9wvRAh">
+    <div class="sec d-game" data-page-node-id="xKOtumv18lcRfhS5Ii2llk">游戏功能性更新</div>
+    <ul data-page-node-id="VWl8lKK3r8Ve24qLKcCfv0">
+      <li data-page-node-id="Pn933mWR7YZodC3CQCaibM">性能：修复正式服每几秒卡顿。</li>
+      <li data-page-node-id="aK1xD2NzdYfzhvDWhkS1HO">战役背景：经典画面启用经典战役背景；可自定义 ROC / TFT 菜单界面；更新重制战役背景。</li>
+      <li data-page-node-id="fTko1wovd6dDPrHCAOWVbK">光照：重制环境光照方向对齐经典；地牢光照大改；亮度微调。</li>
     </ul>
-    <div class="sec d-bal">平衡性机制改动</div>
-    <ul>
-      <li>人类「火焰之球」被「减速之球」取代。</li>
+    <div class="sec d-bal" data-page-node-id="RCHMKEleY08sDEFrvDC5lA">平衡性机制改动</div>
+    <ul data-page-node-id="h45MXhiDuBjKGsmWRVAGJn">
+      <li data-page-node-id="bzhDM1qt4gCZujhRES7KaS">人类「火焰宝珠」被「减速宝珠」取代。</li>
     </ul>
-    <div class="sec d-ed">编辑器更新</div>
-    <ul>
-      <li>新增「减速之球」能力（AIno）与减益（Bson）；修复防御类型切换升级效果正确改变护甲。</li>
+    <div class="sec d-ed" data-page-node-id="L9CLrgnm8IdAMwxKWxDPYV">编辑器更新</div>
+    <ul data-page-node-id="VcHLacy8AUzEmA2BHgHkJv">
+      <li data-page-node-id="y7EfpUEN4oBRj1aPF16pab">新增「减速宝珠」能力（AIno）与减益（Bson）；修复防御类型切换升级效果正确改变护甲。</li>
     </ul>
-    <div class="sec d-bug">BUG 修复</div>
-    <ul>
-      <li>修复未下载地图时无法按名加入私人自定义游戏。</li>
+    <div class="sec d-bug" data-page-node-id="9cVEB8WgMtHWkNeoXBEUPg">BUG 修复</div>
+    <ul data-page-node-id="smQX26zrhb5SfAsoPCoB04">
+      <li data-page-node-id="ZwFN3a2AlZ31rnMuAIQpO8">修复未下载地图时无法按名加入私人自定义游戏。</li>
     </ul>
   </div>
 </div>
 
 <!-- ============ 2.0.3 ============ -->
-<div class="ver" id="v203">
-  <div class="ver-head"><span class="v">2.0.3</span><span class="d">2025-07-17（Build 22968）+ 2025-07-22 热修（Build 22988）+ 2025-09-15 热修（Build 23101）</span><span class="tag">编辑器原生函数大修 / 瓦片 16→64</span></div>
-  <div class="ver-body">
-    <div class="hl"><b>核心亮点：</b>对世界编辑器 Lua 原生函数的成规模修复，大量可绑定按键与热键冲突检测，以及瓦片上限翻四倍（16 → 64）。</div>
-    <div class="sec d-game">游戏功能性更新</div>
-    <ul>
-      <li>服务器：自定义大厅广告 15 分钟超时；修复经典密钥授权、自定义游戏邀请。</li>
-      <li>界面：建造 / 训练倒计时；Ctrl+C 改镜头跟踪。</li>
-      <li>性能：AI 寻位、重制 VFX 粒子、地形渲染优化。</li>
-      <li>视觉：重制着色器更新；降低经典高清亮度；经典菜单 / 战役 .webm 换 .mdl 渲染；树木待机动画、环境光遮蔽与泛光选项。</li>
-      <li>热键：大幅增加可绑定按键；热键冲突检测；支持非 QWERTY 键盘网格键；移除被动技能热键。</li>
+<div class="ver" id="v203" data-page-node-id="xvxjrAbtSMjpH8m3JNFKWh"><div class="ver-title" data-page-node-id="GOyTZMdJx3KBUMsGpI237u"><span class="d" data-page-node-id="GUKOrr1naH1FRogqN4EwWZ" style="">2025-07-17​</span>
+
+<div class="ver-head" data-page-node-id="zVqvOiLrHmTMq3KuSfFJzP"><span class="v" data-page-node-id="DKeW0ibIVtZDSufSNfMzPj">版本2.0.3</span></div></div>
+  <div class="ver-body" data-page-node-id="7GfQGZE0CAPznki9xdtWYf">
+    <div class="sec d-game" data-page-node-id="hyE9RzwLMeQr6jNlLinUnI">游戏功能性更新</div>
+    <ul data-page-node-id="AaSD9rDWF9BSxokRCggCxk">
+      <li data-page-node-id="8cQ5nEMOvYyKKlpaRQYEua">服务器：自定义大厅广告 15 分钟超时；修复经典密钥授权、自定义游戏邀请。</li>
+      <li data-page-node-id="qGIOsxk0vzbwoCKWmbD0mC">界面：建造 / 训练倒计时；Ctrl+C 改镜头跟踪。</li>
+      <li data-page-node-id="uez9ZF4W16hBFb6RBE8opC">性能：AI 寻位、重制 VFX 粒子、地形渲染优化。</li>
+      <li data-page-node-id="ZodqHeBXDd7k8j7ktifzdu">视觉：重制着色器更新；降低经典高清亮度；经典菜单 / 战役 .webm 换 .mdl 渲染；树木待机动画、环境光遮蔽与泛光选项。</li>
+      <li data-page-node-id="emlisBpbRRgKQ0tFtwHCHw">热键：大幅增加可绑定按键；热键冲突检测；支持非 QWERTY 键盘网格键；移除被动技能热键。</li>
     </ul>
-    <div class="sec d-ed">编辑器更新（2.0.3 主补丁，2025-07-17）</div>
-    <ul>
-      <li>自定义战役任务选择背景支持 MDL。</li>
-      <li>装饰物上限 30000 → 130000（谨慎使用）；提高绘制距离。</li>
-      <li>修复天气 [RAhr] 永久下雨、模型查看器 / 召唤窗口缩放、变量窗口列宽不保存。</li>
-      <li>原生函数大修：修复数十个损坏的 <code>BlzSetAbility____Field</code> 原生函数。</li>
-      <li>字段支持：BlzSetUnit* / BlzSetUnitWeapon* 等大量字段支持。</li>
-      <li>新增 <code>UNIT_RF_FLY_MAX_HEIGHT</code>（ufmh）。</li>
-      <li>地图选项新增：强制玩家指定缩放、移除反补「!」、新能力 [Amgi]（防弹射）、新能力 [AUa2]（新版复活，保留单位能力）。</li>
+    <div class="sec d-ed" data-page-node-id="9by76y3EXvqI6P9TiBnPCh">编辑器更新（2.0.3 主补丁，2025-07-17）</div>
+    <ul data-page-node-id="xHTEJCBfOs1hfp9e2TQTJe">
+      <li data-page-node-id="4HANIJWpDAqHabIjf2Om0F">自定义战役任务选择背景支持 MDL。</li>
+      <li data-page-node-id="hDjxmpOEhmEVApl7BXM6tB">装饰物上限 30000 → 130000（谨慎使用）；提高绘制距离。</li>
+      <li data-page-node-id="CtCGevOaMNljLHcIHKBovZ">修复天气 [RAhr] 永久下雨、模型查看器 / 召唤窗口缩放、变量窗口列宽不保存。</li>
+      <li data-page-node-id="eppcFqRiE1gN7Upy9J5hxr">原生函数大修：修复数十个损坏的 <code data-page-node-id="Xv9S9BeY2jS8DbWSXG3I2b">BlzSetAbility____Field</code> 原生函数。</li>
+      <li data-page-node-id="2iM7Vq0DeRIlfS58nxHv7N">字段支持：BlzSetUnit* / BlzSetUnitWeapon* 等大量字段支持。</li>
+      <li data-page-node-id="D3pzTy1ssvrSkMzpmJBbMo">新增 <code data-page-node-id="ntb80kP56PG2dNJVlmRPnh">UNIT_RF_FLY_MAX_HEIGHT</code>（ufmh）。</li>
+      <li data-page-node-id="ik1g9JWjSgQkPJsknCxz5F">地图选项新增：强制玩家指定缩放、移除反补「!」、新能力 [Amgi]（防弹射）、新能力 [AUa2]（新版复活，保留单位能力）。</li>
     </ul>
-    <div class="sec d-ed">编辑器更新（2.0.3 Build 23101，2025-09-15）</div>
-    <ul>
-      <li>瓦片上限 16 → 64（谨慎使用：瓦片集纹理越多，地图加载时间越长）。此改动提升 .w3e 文件版本号，用该版本编辑器保存的地图与旧版本不兼容。</li>
-      <li>高级页新增选项「保留复制对象高度」：启用后粘贴时沿用复制时的高度。</li>
-      <li>修复 <code>BlzSetAbility____</code> 系列原生函数作用于全局、而非单个技能的问题。</li>
+    <div class="sec d-ed" data-page-node-id="iNF57iBNhvYkij1GE6G9oE">编辑器更新（2.0.3 Build 23101，2025-09-15）</div>
+    <ul data-page-node-id="Zae8GOiMmjX2OMSY73yEAE">
+      <li data-page-node-id="SyaoeTxVB1gWrel7xHOj3j" style="">瓦片上限 16 → 64。此改动提升 .w3e 文件版本号，用该版本编辑器保存的地图与旧版本不兼容。​</li>
+      <li data-page-node-id="Qok5OkKH1Q8JxbzYOLG5Ng">高级页新增选项「保留复制对象高度」：启用后粘贴时沿用复制时的高度。</li>
+      <li data-page-node-id="130Vr8AVJ9QkHy4xcHyUfa">修复 <code data-page-node-id="IOK1Ox889IHrDuXJEfPqe3">BlzSetAbility____</code> 系列原生函数作用于全局、而非单个技能的问题。</li>
     </ul>
-    <div class="sec d-bug">BUG 修复</div>
-    <ul>
-      <li>触发器保存错误、单机自定义误入多人房、破坏者驱散不消除反魔盾、工人液态火修复率残留、加载界面 MMR 等级不显示等。</li>
-      <li>2025-07-22 热修（Build 22988）：海巫冰霜箭导致单位无响应、经典 VFX 过透、SetCameraTargetController 失效、按住任意键掉帧、闲置工人图标热键显示。</li>
-      <li>2025-09-15 热修（Build 23101）：创建无效 UberSplat、Lua 加载声音文件、内存损坏导致的随机崩溃；鼠标悬停 UI 时误发指令；(8)Royal Gardens 东北绿点过近、Warchasers 英雄不显示物品栏。</li>
+    <div class="sec d-bug" data-page-node-id="ReoTLyuIzRHJhhhlkVCxnh">BUG 修复</div>
+    <ul data-page-node-id="ATPEQT7CFWbYodznpF2ZI7">
+      <li data-page-node-id="Hej1ssqyrgpWAQ5qKrjIBa">触发器保存错误、单机自定义误入多人房、破坏者驱散不消除反魔盾、工人液态火修复率残留、加载界面 MMR 等级不显示等。</li>
+      <li data-page-node-id="2kBc7r0uVPsAdi6CIQGSFx" style="white-space: pre-wrap;">2025-07-22 热修（Build 22988）：海巫冰霜箭导致单位无响应、经典 VFX 过透、SetCameraTargetController 失效、按住任意键掉帧、
+闲置工人图标热键显示。</li>
+      <li data-page-node-id="X0X0yuGoPvRyJB5S5oITum" style="white-space: pre-wrap;">2025-09-15 热修（Build 23101）：创建无效 UberSplat、Lua 加载声音文件、内存损坏导致的随机崩溃；鼠标悬停 UI 时误发指令；
+(8)Royal Gardens 东北绿点过近、Warchasers 英雄不显示物品栏。</li>
     </ul>
   </div>
 </div>
 
 <!-- ============ 2.0.4 ============ -->
-<div class="ver" id="v204">
-  <div class="ver-head"><span class="v">2.0.4</span><span class="d">2026-01-26</span><span class="tag">3v3/4v4 匹配 / Lua 优化 / % 崩溃修复</span></div>
-  <div class="ver-body">
-    <div class="sec d-game">游戏功能性更新</div>
-    <ul>
-      <li>匹配：解锁 3v3 / 4v4 的 AT 与 RT；组队搜索施加小幅 MMR 权重；组队人数可小于模式人数；排行榜支持小规模组队；排队前需确认。</li>
-      <li>性能：优化 Lua 垃圾回收器。</li>
+<div class="ver" id="v204" data-page-node-id="El0gmiC3Epr4vU9F91H7Bz"><div class="ver-title" data-page-node-id="92oG5EVwACHqbmD9XizkYH"><span class="d" data-page-node-id="w9T5xerM1TEFqpUKWkaGE2">2026-01-26</span>
+<div class="ver-head" data-page-node-id="Ugi62U1VVjJUfb5zqYvRTU"><span class="v" data-page-node-id="ybBJDX6a315ti4ZmQDfAHY">版本2.0.4</span></div></div>
+  <div class="ver-body" data-page-node-id="LgQFXZZ3gh6MZfMSSlGWCx">
+    <div class="sec d-game" data-page-node-id="kNxiqDy7OJeNBb3XsggFOe">游戏功能性更新</div>
+    <ul data-page-node-id="WmeyKDKLrjPBlCm99q1Mmf">
+      <li data-page-node-id="YvXPcDV6lTTbII8dRwnwnd">匹配：解锁 3v3 / 4v4 的 AT 与 RT；组队搜索施加小幅 MMR 权重；组队人数可小于模式人数；排行榜支持小规模组队；排队前需确认。</li>
+      <li data-page-node-id="k9Rg813Xv6gRtw4ND3u5gw">性能：优化 Lua 垃圾回收器。</li>
     </ul>
-    <div class="sec d-ed">编辑器更新</div>
-    <ul>
-      <li>支持添加额外悬崖类型；修复导入地形纹理集崩溃；Lua 脚本使用 % 字符不再崩溃。</li>
+    <div class="sec d-ed" data-page-node-id="ykqoGWQEESETbYrRyrg3tH">编辑器更新</div>
+    <ul data-page-node-id="AiGNXyk8EbpThV851CdtH5">
+      <li data-page-node-id="iyumUycDIDWziTNB7aZlHD">支持添加额外悬崖类型；修复导入地形纹理集崩溃；Lua 脚本使用 % 字符不再崩溃。</li>
     </ul>
   </div>
 </div>
 
 <!-- ============ 3.0.0 ============ -->
-<div class="ver" id="v300">
-  <div class="ver-head"><span class="v">3.0.0</span><span class="d">2026-09-12（Build 24268）</span><span class="tag">系列首个新战役 · 决定版画面 · 新英雄 · 24 选择 · 编辑器升级</span></div>
-  <div class="ver-body">
-  <div class="hl"><b>核心亮点：</b>决定版画面模式（600+ 单位重建）、新中立英雄「被遗忘者圣骑士」、框选上限 12→24、世界编辑器大升级、DLC 战役《被遗忘者王国》。</div>
-    <div class="sec d-game">游戏功能性更新（3.0.0 免费更新）</div>
-    <ul>
-      <li>决定版画面模式：第三种画面模式（经典辨识度 + 现代化渲染），600+ 单位重建；光照 / 阴影 / 环境 / 雾升级；可跨画面模式联机。</li>
-      <li>新 UI 主题 / 音乐：「被遗忘者王国」主题与音乐、首次启动过场；主菜单音乐随主题变化。</li>
-      <li>单位选择上限 12 → 24。</li>
-      <li>新中立英雄「被遗忘者圣骑士」：三模式可用、免费。</li>
-      <li>新英雄四个技能：正义之怒（冲锋+减速）、奉献（范围治疗+伤害）、神圣光环（友方魔抗）、净化之火（治疗+眩晕+驱散+重伤召唤物）。</li>
-      <li>自定义大厅：支持密码保护。</li>
-      <li>新游戏服务器：新加坡 / 大阪 / 德里 / 圣吉斯兰 / 墨尔本 / 多伦多 / 奥萨斯库 / 达尔斯 / 哈米纳。</li>
-      <li>网络：移除 LAN 模式（经典客户端仍可局域网）。</li>
-      <li>新属性：能力增幅 / 能力吸血 / 能力速度 / 法力效率 / 暴击 / 能力暴击 / 坚定等；漂浮文本上限 10k。</li>
-      <li>画面选项：点光源阴影、水面、超采样；移除环境光遮蔽 / 泛光 / 头像泛光 / 粒子 / 法术。</li>
-      <li>付费 DLC 战役：《被遗忘者王国》（软开放世界 RPG，含装备栏 / 道具 / 天赋系统），约 30 小时 + 近 1 小时过场。</li>
-      <li>DLC 定价：《被遗忘者王国》单独 $29.99（需已拥有重制版本体）；与本体同捆 $49.99。</li>
+<div class="ver" id="v300" data-page-node-id="mNK7EEC5eHfVuewJqUjFlq"><div class="ver-title" data-page-node-id="GDywE79tNbsPkxSI1Er5hX"><span class="d" data-page-node-id="9J4Iq18CuEJpv6ZkHDX4Rx" style="">2026-09-12 《被遗忘者王国》资料片发布​</span>
+
+<div class="ver-head" data-page-node-id="AAux7cH6gxUeiDITwqj2Cp"><span class="v" data-page-node-id="eo9QbVg9KL6dH1iYB32GqS" style="">版本3.0.0 ​​</span></div></div>
+  <div class="ver-body" data-page-node-id="H8iKIOfERK1PLEvjUFX6i3">
+    <div class="sec d-game" data-page-node-id="VpEoAenMlGEDQz0cGfiy9H">游戏功能性更新（3.0.0 免费更新）</div>
+    <ul data-page-node-id="ZyXdWE7mckKCt0jmEDr4YD">
+      <li data-page-node-id="ZT0fSqQj7BSDZi7rFI3cf7">决定版画面模式：第三种画面模式（经典辨识度 + 现代化渲染），600+ 单位重建；光照 / 阴影 / 环境 / 雾升级；可跨画面模式联机。</li>
+      <li data-page-node-id="h7Ephb8GLHL6y5NktHUlIo">新 UI 主题 / 音乐：「被遗忘者王国」主题与音乐、首次启动过场；主菜单音乐随主题变化。</li>
+      <li data-page-node-id="e3901ktmW6EWVldhyTUYQY">单位选择上限 12 → 24。</li>
+      <li data-page-node-id="HGqfwiRJcGeBbel7kGPFxO">新中立英雄「被遗忘者圣骑士」：三模式可用、免费。</li>
+      <li data-page-node-id="O5Kq1mdighYWcP918T5PFm" style="">四个技能：正义之怒（冲锋+减速）、奉献（范围治疗+伤害）、神圣光环（友方魔抗）、净化之火（治疗+眩晕+驱散+重伤召唤物）。​​</li>
+      <li data-page-node-id="jejAjpkjLnJiBHlMo68hOQ">自定义大厅：支持密码保护。</li>
+      <li data-page-node-id="RMnM1CQRwN6UI4PreUqN0l">新游戏服务器：新加坡 / 大阪 / 德里 / 圣吉斯兰 / 墨尔本 / 多伦多 / 奥萨斯库 / 达尔斯 / 哈米纳。</li>
+      <li data-page-node-id="cZ13vHDxnXC7F0MymVaGSK">网络：移除 LAN 模式（经典客户端仍可局域网）。</li>
+      <li data-page-node-id="vDzfDj8wBKALZ4KSFbZhYB">新属性：能力增幅 / 能力吸血 / 能力速度 / 法力效率 / 暴击 / 能力暴击 / 坚定等；漂浮文本上限 10k。</li>
+      <li data-page-node-id="uEQaaKJKkMKk4iNsbrGAE1">画面选项：点光源阴影、水面、超采样；移除环境光遮蔽 / 泛光 / 头像泛光 / 粒子 / 法术。</li>
+      <li data-page-node-id="7nTnBcB0RjnYIgCDkUB8DE">付费 DLC 战役：《被遗忘者王国》（软开放世界 RPG，含装备栏 / 道具 / 天赋系统），约 30 小时 + 近 1 小时过场。</li>
+      <li data-page-node-id="PqXRbxPlqYWpWycxBkTBF0">DLC 定价：《被遗忘者王国》单独 $29.99（需已拥有重制版本体）；与本体同捆 $49.99。</li>
     </ul>
-    <div class="sec d-ed">编辑器更新（大规模升级）</div>
-    <ul>
-      <li>新光照编辑器、电影编辑器。</li>
-      <li>装饰物支持俯仰 / 滚转旋转；装饰物、物品可分配队伍颜色；可编辑泛光灯、阴影投射泛光灯；HD 阴影 / 雾查看。</li>
-      <li>HD 水面、装饰物贴花、水面装饰物、阴影阻挡装饰物；更多雾选项（高度雾 / 指数雾 / 覆盖天空）；实时编辑雾与 HD 水面。</li>
-      <li>透明瓦片、迷你地图多色绘制、镜头范围内动态生成迷你地图。</li>
-      <li>装备类别、物品实例类别；HUD 皮肤按玩家选择（含被遗忘者 HUD）；自由镜头。</li>
-      <li>新原生函数：重置攻击冷却、设置技能剩余冷却、开关所有光环、AI 求援范围、字符串 ID 调整、后处理、泄漏清理等。</li>
-      <li>触发器「复制为脚本」、触发器转 Lua；对象局部轴缩放；复制对象保留高度；数据编辑器显示无敌建筑 HP；撤销栈上限提高（可近无限）。</li>
+    <div class="sec d-ed" data-page-node-id="La8VUirsk2KGdFT2zPxEoB">编辑器更新（大规模升级）</div>
+    <ul data-page-node-id="CPPF1B5xAQMO3EAXKmsn53">
+      <li data-page-node-id="Vc74krvJ231COjuxIcKKgY">新光照编辑器、电影编辑器。</li>
+      <li data-page-node-id="HZIojCWv8wFa5wW4k2UUqU">装饰物支持俯仰 / 滚转旋转；装饰物、物品可分配队伍颜色；可编辑泛光灯、阴影投射泛光灯；HD 阴影 / 雾查看。</li>
+      <li data-page-node-id="dSrHiMILOOCqH7NJR7d42w">HD 水面、装饰物贴花、水面装饰物、阴影阻挡装饰物；更多雾选项（高度雾 / 指数雾 / 覆盖天空）；实时编辑雾与 HD 水面。</li>
+      <li data-page-node-id="pyyzCGiYC8E1SXD8DDkQnY">透明瓦片、迷你地图多色绘制、镜头范围内动态生成迷你地图。</li>
+      <li data-page-node-id="aUYOOxVAaeEqryhIA56pbZ">装备类别、物品实例类别；HUD 皮肤按玩家选择（含被遗忘者 HUD）；自由镜头。</li>
+      <li data-page-node-id="DgBZEkx7NT0zXLmTaBMAu8">新原生函数：重置攻击冷却、设置技能剩余冷却、开关所有光环、AI 求援范围、字符串 ID 调整、后处理、泄漏清理等。</li>
+      <li data-page-node-id="36AgqfS6PZOUDOmJGVZ9ez" style="">触发器「复制为脚本」、触发器转 Lua；对象局部轴缩放；复制对象保留高度；数据编辑器显示无敌建筑 HP；撤销栈上限提高（近无限）。​​</li>
     </ul>
-    <div class="sec d-ed">编辑器新增 RPG 框架（源自《被遗忘者王国》战役）</div>
-    <ul>
-      <li>原生实现：新战役的背包 / 装备 / 天赋系统全部在世界编辑器中原生搭建（非第三方脚本），自定义地图可直接复用。</li>
-      <li>统一入口：三套系统共用主控能力 <code>[ASpc]</code>（对象编辑器中默认无名称），作为「背包 + 装备栏 + 天赋树 + 属性面板」的 UI 控制器。</li>
-      <li>背包：能力 <code>[AIni]</code> 提供第二个 30 格储物窗口；存入其中的物品不提供被动加成，可直接使用消耗品。</li>
-      <li>装备栏：能力 <code>[AEqu]</code> 提供 9 个装备槽（头 / 胸 / 手套 / 靴 / 戒指 ×2 / 主手 / 副手 / 饰品），拾取物品先落入背包，装入槽位后才结算加成。</li>
-      <li>天赋：天赋树 + 天赋点系统，可自定义天赋配置并在战役中自由加点。</li>
-      <li>物品转装备：对象编辑器新增 <code>Stats - Equipment Type</code> 字段，可将任意经典物品指定为某个装备槽类型。</li>
-      <li>载体与范围：官方战役以可拾取容器承载整套系统（如 <code>[ebua]</code> Anya's Backpack）；相关能力也可直接挂在英雄或普通单位上。</li>
+    <div class="sec d-ed" data-page-node-id="eoKNpQvjveynzy7z7PIjwD">编辑器新增 RPG 框架（源自《被遗忘者王国》战役）</div>
+    <ul data-page-node-id="MUFt1WG3bs2esPdmzjLuHq">
+      <li data-page-node-id="XNtw1NnHsuTBo66BBfBnPn">原生实现：新战役的背包 / 装备 / 天赋系统全部在世界编辑器中原生搭建（非第三方脚本），自定义地图可直接复用。</li>
+      <li data-page-node-id="raVGDzlIgnFo66SFbt8wLc">统一入口：三套系统共用主控能力 <code data-page-node-id="x4GXVSSn4zAFlhbQk8b77M">[ASpc]</code>（对象编辑器中默认无名称），作为「背包 + 装备栏 + 天赋树 + 属性面板」的 UI 控制器。</li>
+      <li data-page-node-id="9UZ7BmYHsU2VmObUfztXW4">背包：能力 <code data-page-node-id="eZA11V3zM3H1VHNQgLoNor">[AIni]</code> 提供第二个 30 格储物窗口；存入其中的物品不提供被动加成，可直接使用消耗品。</li>
+      <li data-page-node-id="b9SG5AYonDOTAZFqCGYCV7" style="">装备栏：能力 <code data-page-node-id="G9JXbzio4AqtAKANqyzzzX">[AEqu]</code> 提供 9 个装备槽（头 / 胸 / 手套 / 靴 / 戒指 ×2 / 主手 / 副手 / 饰品），装备先进入背包，装入槽位后才结算加成。</li>
+      <li data-page-node-id="4XDN8vtyHucEeEdr1t5x2B">天赋：天赋树 + 天赋点系统，可自定义天赋配置并在战役中自由加点。</li>
+      <li data-page-node-id="E4Ou4Hm3g4yJuomYu2tG5F">物品转装备：对象编辑器新增 <code data-page-node-id="4JsWpkdWvq249XOFsB6ud0">Stats - Equipment Type</code> 字段，可将任意经典物品指定为某个装备槽类型。</li>
+      <li data-page-node-id="teULZ3mUTYFMBIS2LlBHHX">载体与范围：官方战役以可拾取容器承载整套系统（如 <code data-page-node-id="BnGTgOpIC3eVE6sjDLq30p">[ebua]</code> Anya's Backpack）；相关能力也可直接挂在英雄或普通单位上。</li>
     </ul>
-    <div class="sec d-bug">BUG 修复</div>
-    <ul>
-      <li>修复各类 Lua 序列化存档 / 读档问题、迷你地图图标不随 HUD 缩放、地图种族徽章无法更改、非英文键盘登录输入等。</li>
+    <div class="sec d-bug" data-page-node-id="niLCHB7yrU2SS8TH9Vp28T">BUG 修复</div>
+    <ul data-page-node-id="HIUSdyejSX1ksTnc0bojci">
+      <li data-page-node-id="jNtnFwmuXNi8KJSDEecpgF">修复各类 Lua 序列化存档 / 读档问题、迷你地图图标不随 HUD 缩放、地图种族徽章无法更改、非英文键盘登录输入等。</li>
     </ul>
   </div>
 </div>
 
 <!-- ============ 3.0.1 ============ -->
-<div class="ver" id="v301">
-  <div class="ver-head"><span class="v">3.0.1</span><span class="d">2026-10-07（Build 24342）</span><span class="tag">美术 / 音频 / 编辑器修复</span></div>
-  <div class="ver-body">
-    <div class="hl"><b>核心：</b>美术与 VFX 修正、大量编辑器 / 自定义地图修复。因存档不兼容，2026-10-08 曾短暂回滚至 3.0.0，计划数周内重新部署。</div>
-    <div class="sec d-game">游戏功能性更新 / 美术音频</div>
-    <ul>
-      <li>画面：选项重新加入环境光遮蔽（可能降低性能）。</li>
-      <li>动画：熊猫人酒仙、兽人苦工重制动画；修复人类圣骑士 / 死亡守卫 / 药剂师穿模。</li>
-      <li>特效重调：秘法塔飞弹、暴风雪、神圣护盾、心灵之火、献祭、回春、星辰坠落、黑箭、叉状闪电、冰霜之箭等大量 VFX 按反馈调整。</li>
-      <li>模型：多种海龟 / 魔像 / 龙鹰 / 狼着色与缩放修正；HD 新增无雾气瀑布变体。</li>
-      <li>过场：FaceFX 唇同步、本地化字幕、过场音乐残留、重复单位修复；动态头像动画、唇同步改善。</li>
-      <li>音频：决定版画面使用经典音效。</li>
-      <li>新增物品：商人新增洗点书（《被遗忘者王国》战役）。</li>
+<div class="ver" id="v301" data-page-node-id="0xWxIUOweWS0Lm54Hkn6Nf"><div class="ver-title" data-page-node-id="flZ2yCcZ4GeCfHyDdxZK47"><span class="d" data-page-node-id="Wpyeq7j13aZWZUowFBgO6b" style="">2026-10-07​</span>
+
+<div class="ver-head" data-page-node-id="cMtqQfIP4QyFVhKFbyj2Pf"><span class="v" data-page-node-id="erTxdTcfF1quDoR12oQXm4">版本3.0.1</span></div></div>
+  <div class="ver-body" data-page-node-id="j7dDJRTj058l2i0tp5bJ02">
+    <div class="sec d-game" data-page-node-id="CUqvOjylSdXe5EwtzaoT2g">游戏功能性更新 / 美术音频</div>
+    <ul data-page-node-id="VOJVoGnTEL4zecOzMONuqn">
+      <li data-page-node-id="9pRIxBGAOaLhsJG0KRvaLi">画面：选项重新加入环境光遮蔽（可能降低性能）。</li>
+      <li data-page-node-id="hADA3lnlgf91ABqkcIRUgp">动画：熊猫人酒仙、兽人苦工重制动画；修复人类圣骑士 / 死亡守卫 / 药剂师穿模。</li>
+      <li data-page-node-id="Y1KGWfyNrGpk22EjFGg0nQ">特效重调：秘法塔飞弹、暴风雪、神圣护盾、心灵之火、献祭、回春、星辰坠落、黑箭、叉状闪电、冰霜之箭等大量 VFX 按反馈调整。</li>
+      <li data-page-node-id="bHJNPKcKFOMdb5QUqRqaov">模型：多种海龟 / 魔像 / 龙鹰 / 狼着色与缩放修正；HD 新增无雾气瀑布变体。</li>
+      <li data-page-node-id="mBqy82m0ayxfB8wVimnHJu">过场：FaceFX 唇同步、本地化字幕、过场音乐残留、重复单位修复；动态头像动画、唇同步改善。</li>
+      <li data-page-node-id="EVYbMWCXNvUr5ucagPANf6">音频：决定版画面使用经典音效。</li>
+      <li data-page-node-id="8HKdNG0mAASopiSfDPAuiO">新增物品：商人新增洗点书（《被遗忘者王国》战役）。</li>
     </ul>
-    <div class="sec d-ed">编辑器修复</div>
-    <ul>
-      <li>修复无面但有顶点的自定义模型崩溃。</li>
-      <li>修复自定义资源加载。</li>
-      <li>修复 SD/HD 装饰物损坏。</li>
-      <li>修复测试地图启动时自定义贴图加载失败。</li>
-      <li>修复多地图关闭丢光照。</li>
-      <li>修复后处理对话框滑块禁用等。</li>
+    <div class="sec d-ed" data-page-node-id="iw5UgliK3YMPJwSD4HofPB">编辑器修复</div>
+    <ul data-page-node-id="hqWnASLZbxmCF6NWNdHXc1">
+      <li data-page-node-id="wgVU4kGpxuID0JauCFBs8e">修复无面但有顶点的自定义模型崩溃。</li>
+      <li data-page-node-id="k7EojUXwdx2ghE1Ao8SzE1">修复自定义资源加载。</li>
+      <li data-page-node-id="o1P099KC4AxMMmetIQ42Ng">修复 SD/HD 装饰物损坏。</li>
+      <li data-page-node-id="hbGmG1XgHFgsRpEYO0krJA">修复测试地图启动时自定义贴图加载失败。</li>
+      <li data-page-node-id="WT91dDolEGJoZuWIs7Ftgd">修复多地图关闭丢光照。</li>
+      <li data-page-node-id="q2zKF1epH757eTpzlYVDbQ">修复后处理对话框滑块禁用等。</li>
     </ul>
-    <div class="sec d-bug">BUG 修复</div>
-    <ul>
-      <li>石像鬼 / 灵魂行者形态切换取消冷却；经典音效在重制 / 决定版模式正确播放；被遗忘者圣骑士加入酒馆热键。</li>
-      <li>主菜单主题背景即时显示；被遗忘者圣骑士其他语言正确播英文语音；被遗忘者光标替换人类光标；物品光照残留。</li>
-      <li>亡灵复仇激活读档崩溃；韩语区资源交易崩溃；Act 1 幽暗城 Boss 战 / 刷装备漏洞。</li>
+    <div class="sec d-bug" data-page-node-id="XyQHsAeMzuBRaPYvgOiSJL">BUG 修复</div>
+    <ul data-page-node-id="iHG6lW5MZ3EBSH8UsM7WEz">
+      <li data-page-node-id="7AHLAoO4ZAg2RT1KRky8ag">石像鬼 / 灵魂行者形态切换取消冷却；经典音效在重制 / 决定版模式正确播放；被遗忘者圣骑士加入酒馆热键。</li>
+      <li data-page-node-id="PwaR5WwOZ7FzTYnVFDj6Rx">主菜单主题背景即时显示；被遗忘者圣骑士其他语言正确播英文语音；被遗忘者光标替换人类光标；物品光照残留。</li>
+      <li data-page-node-id="64VWA7orphzMJQvPsrRSNv">亡灵复仇激活读档崩溃；韩语区资源交易崩溃；Act 1 幽暗城 Boss 战 / 刷装备漏洞。</li>
     </ul>
   </div>
 </div>
 
-<footer>
-  <p>配套文档：<a href="wc3-decade-narration.html">《外部环境时间线 —— 十年报告补充材料》</a></p>
-  <p>来源：暴雪官方补丁说明（news.blizzard.com / us.forums.blizzard.com）与 Wowpedia / Liquipedia / JudgeHype / Hive Workshop 交叉核对。</p>
+<h2 class="end" data-page-node-id="uxhnniozmrLSmBQe0slycS" style=""><span class="act" data-page-node-id="LNxBs4HsCm8mglbVAMpDee">结尾</span>另一条时间线</h2>
+<div class="lede" data-page-node-id="ypC9TNBO44VG8clSL11Tnu">
+  <p data-page-node-id="8BpkZsDsJ2T8u2Cm0K7A4y" style="white-space: pre-wrap;">本报告梳理的是补丁说明，是这款游戏本身在这十年里的变化。而变化的背后，是战网平台的变迁、国服运营的起落、社区与第三方平台的兴衰。这些外部环境的起落沉浮，是同样值得关注的另一条时间线。​​</p>
+  <p data-page-node-id="eYLBbPUmKSAmhW1ylCt9QS" style="white-space: pre-wrap;">外部大事件已另行整理为《外部环境时间线 —— 十年报告补充材料》，可与本报告对照阅读。​</p>
+</div>
+
+<footer data-page-node-id="YAsj9ZYVXlBZwkPSWtCU5T">
+  <p data-page-node-id="ZjWxDOigqGvU853BwpgfrS">配套文档：<a href="wc3-decade-narration.html" data-page-node-id="0hqQHL8IXDEj1t7X7a8Xh5">《外部环境时间线 —— 十年报告补充材料》</a></p>
+  <p data-page-node-id="uE1lznamd8wdBcjod5CLrp">来源：暴雪官方补丁说明（news.blizzard.com / us.forums.blizzard.com）与 Wowpedia / Liquipedia / JudgeHype / Hive Workshop 交叉核对。</p>
 </footer>
 
 </div>
-<script>
+<script data-page-node-id="l3ZCSlpXicCtwW35K0t1P2">
 (function(){var d=document,b=d.getElementById('themeBtn');
 function icon(){b.textContent=d.documentElement.getAttribute('data-theme')==='light'?'🌙':'☀️'}
 b.addEventListener('click',function(){var t=d.documentElement.getAttribute('data-theme')==='light'?'dark':'light';
@@ -876,5 +951,11 @@ icon()})();
   apply();
 })();
 </script>
+
+
+
+
+
+
 
 </body></html>
