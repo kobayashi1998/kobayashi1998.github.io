@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>页面不存在 · 世界编辑器中文站</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%2032%2032%22%3E%3Ctext%20x=%221%22%20y=%2225%22%20font-size=%2223%22%20font-family=%22Segoe%20UI%20Emoji,Apple%20Color%20Emoji,Noto%20Color%20Emoji,sans-serif%22%3E%F0%9F%93%9C%3C/text%3E%3C/svg%3E">
+<meta name="theme-color" content="#0d1117" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f6f4ef" media="(prefers-color-scheme: light)">
+<style>
+  :root{
+    --bg:#0d1117; --panel:#161b22; --panel2:#1c2129; --border:#2d333b;
+    --text:#e6edf3; --muted:#9aa4b2; --accent:#e3b341;
+  }
+  :root[data-theme="light"]{
+    --bg:#f6f4ef; --panel:#ffffff; --panel2:#f1eee7; --border:#ddd6c8;
+    --text:#2b2720; --muted:#6b6559; --accent:#806428;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;
+    padding:48px 20px;background:var(--bg);color:var(--text);
+    font:15px/1.9 -apple-system,BlinkMacSystemFont,"Microsoft YaHei","PingFang SC",sans-serif;
+    -webkit-font-smoothing:antialiased}
+  main{max-width:560px;width:100%;text-align:center}
+  .code{font-size:64px;font-weight:700;color:var(--accent);line-height:1;
+    letter-spacing:.06em;margin:0 0 10px}
+  h1{margin:0 0 12px;font-size:20px;font-weight:600}
+  p{margin:0 0 26px;color:var(--muted);font-size:14px}
+  nav{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+  nav a{display:inline-block;padding:6px 15px;border:1px solid var(--border);border-radius:20px;
+    background:var(--panel2);color:var(--text);text-decoration:none;font-size:13px;
+    transition:color .15s,border-color .15s}
+  nav a:hover{color:var(--accent);border-color:var(--accent)}
+  .theme-btn{position:fixed;top:14px;right:14px;width:30px;height:30px;border-radius:50%;
+    border:1px solid var(--border);background:var(--panel);color:var(--text);font-size:12px;
+    line-height:1;cursor:pointer}
+</style>
+<script>
+(function(){var t=null;try{t=localStorage.getItem('site-theme')}catch(e){}
+if(t!=='light'&&t!=='dark'){t=window.matchMedia&&matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'}
+document.documentElement.setAttribute('data-theme',t)})();
+</script>
+</head>
+<body>
+<button id="themeBtn" class="theme-btn" type="button" aria-label="切换日间/夜间模式" title="切换日间/夜间模式">☀️</button>
+<main>
+  <div class="code">404</div>
+  <h1>这个页面不存在</h1>
+  <p>链接可能已经失效，或者地址输错了。可以从下面的入口回到站内。</p>
+  <nav>
+    <a href="/">首页</a>
+    <a href="/hhbd.html">汉化补丁</a>
+    <a href="/how-to-buy.html">购买指引</a>
+    <a href="/patch-notes.html">补丁说明</a>
+    <a href="/wc3-decade-of-patches.html">十年报告</a>
+    <a href="/wc3-editor-glossary.html">词条表</a>
+  </nav>
+</main>
+<script>
+(function(){var d=document,b=d.getElementById('themeBtn');
+function icon(){b.textContent=d.documentElement.getAttribute('data-theme')==='light'?'🌙':'☀️'}
+b.addEventListener('click',function(){var t=d.documentElement.getAttribute('data-theme')==='light'?'dark':'light';
+d.documentElement.setAttribute('data-theme',t);try{localStorage.setItem('site-theme',t)}catch(e){}icon()});
+icon()})();
+</script>
+</body>
+</html>

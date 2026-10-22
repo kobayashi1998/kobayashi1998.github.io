@@ -12,6 +12,7 @@
 <meta property="og:title" content="编辑器汉化补丁">
 <meta property="og:description" content="重制版地图编辑器的纯净汉化补丁，含下载渠道与使用说明。">
 <meta property="og:url" content="https://worldeditor.cn/hhbd.html">
+<link rel="canonical" href="https://worldeditor.cn/hhbd.html">
 <style>
   :root{
     --bg:#0d1117; --panel:#161b22; --panel2:#1c2129; --border:#2d333b;
@@ -52,6 +53,16 @@
     border:1px solid var(--border);background:var(--panel);color:var(--text);font-size:12px;line-height:1;
     cursor:pointer;box-shadow:0 2px 10px var(--btn-shadow,rgba(0,0,0,.3));}
   .theme-btn:hover{border-color:var(--accent);}
+
+  @media print{
+    :root,:root[data-theme="light"]{--bg:#ffffff;--text:#000000;--muted:#3d3d3d;--strong:#000000;--border:#c8c8c8;--accent:#7a5f24;--accent-rgb:122,95,36;--btn-shadow:none;}
+    body{background:#fff;color:#000;}
+    .theme-btn,.noprint{display:none;}
+    a{color:#000;text-decoration:underline;}
+    a[href^="http"]:after{content:" (" attr(href) ")";font-size:.8em;color:#555;word-break:break-all;}
+    h2,h3,h4{page-break-after:avoid;}
+    li,tr,pre,code,table,blockquote,.card,.step{break-inside:avoid;}
+  }
 </style>
 <script>
 (function(){var t=null;try{t=localStorage.getItem('site-theme')}catch(e){}
@@ -71,7 +82,7 @@ document.documentElement.setAttribute('data-theme',t)})();
 
   <h2>下载渠道</h2>
   <p>
-    <a href="https://k12cs.cn/downloads/%E7%BC%96%E8%BE%91%E5%99%A8%E6%B1%89%E5%8C%96%E8%A1%A5%E4%B8%810.5.0.zip">直接下载</a> <span class="sep">|</span> <a href="https://github.com/kobayashi1998/worldeditor-zhcn/releases">Github 下载</a>
+    <a href="https://k12cs.cn/downloads/%E7%BC%96%E8%BE%91%E5%99%A8%E6%B1%89%E5%8C%96%E8%A1%A5%E4%B8%810.5.0.zip" target="_blank" rel="noopener">直接下载</a> <span class="sep">|</span> <a href="https://github.com/kobayashi1998/worldeditor-zhcn/releases" target="_blank" rel="noopener">Github 下载</a>
   </p>
 
   <h2>使用说明</h2>

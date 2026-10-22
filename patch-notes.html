@@ -12,6 +12,7 @@
 <meta property="og:title" content="补丁说明">
 <meta property="og:description" content="魔兽争霸III：重制版 1.32.0 — 3.0.1 正式服补丁与热修说明中文译文。">
 <meta property="og:url" content="https://worldeditor.cn/patch-notes.html">
+<link rel="canonical" href="https://worldeditor.cn/patch-notes.html">
 <style>
   :root{
     --bg:#0d1117; --panel:#161b22; --panel2:#1c2129; --border:#2d333b;
@@ -38,6 +39,8 @@
   .sub{margin:0;font-size:12.5px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
   .lede{margin:18px 0 0;font-size:14px;color:var(--muted);line-height:1.85}
   .lede b{color:var(--text);font-weight:600}
+  .pnote{margin:0 0 16px;padding:9px 14px;border-left:2px solid var(--accent);
+    background:var(--panel2);border-radius:0 6px 6px 0;color:var(--muted);font-size:13px;line-height:1.8}
 
   .tabwrap{position:relative;background:var(--bg);margin:26px 0 0;
     padding:12px 0 14px;border-bottom:1px solid var(--border)}
@@ -209,7 +212,7 @@ document.documentElement.setAttribute('data-theme',t)})();
       <button class="tab" type="button" role="tab" aria-selected="false" data-v="1.32.0">1.32.0</button>
   </nav><button class="tabmore" type="button" aria-controls="tabbar" aria-expanded="true">收起 ▴</button></div>
 
-<section class="panel on" id="v301" data-v="3.0.1" role="tabpanel"><div class="phead"><h2>版本 3.0.1</h2><div class="pmeta"><span class="d">2026-10-08</span><span class="b">构建 24342</span><span class="k">补丁</span></div></div><div class="pbody"><p>此补丁包含基于玩家反馈的各种错误修复和调整。</p>
+<section class="panel on" id="v301" data-v="3.0.1" role="tabpanel"><div class="phead"><h2>版本 3.0.1</h2><div class="pmeta"><span class="d">2026-10-07</span><span class="b">构建 24342</span><span class="k">补丁</span></div></div><div class="pbody"><p class="pnote">发布经过：3.0.1 于 2026-10-07 首发，因存档兼容问题于次日回滚；2026-10-19 重新发布。下方热修为重新发布后的修复。</p><p>此补丁包含基于玩家反馈的各种错误修复和调整。</p>
 <p>提醒：之前的存档文件将不再有效。章节和幕之间的战役进度仍会保存。</p>
 <p>对于地图制作者，如果在此补丁之后你们的任何自定义地图仍然损坏，请在论坛中向我们提供你们地图的链接，以及相较于 2.0 损坏内容的详细描述，我们也会查看。</p>
 <h3>主更改列表</h3>
@@ -776,9 +779,15 @@ document.documentElement.setAttribute('data-theme',t)})();
     });
   });
   document.addEventListener('keydown',function(e){
-    if(e.target.tagName==='INPUT') return;
-    if(e.key==='ArrowLeft') show(cur-1);
-    if(e.key==='ArrowRight') show(cur+1);
+    if(e.key!=='ArrowLeft'&&e.key!=='ArrowRight') return;
+    if(e.altKey||e.ctrlKey||e.metaKey||e.shiftKey) return;
+    var el=e.target;
+    if(!el||!el.closest) return;
+    if(el.tagName==='INPUT'||el.tagName==='TEXTAREA'||el.isContentEditable) return;
+    /* 只在版本标签栏或「上一/下一版本」按钮上响应，避免干扰正文滚动与文本选择 */
+    if(!el.closest('.tabbar')&&!el.closest('.nav')) return;
+    e.preventDefault();
+    show(cur+(e.key==='ArrowRight'?1:-1));
   });
   /* ---- 标签单行折叠 ---- */
   var tw=document.querySelector('.tabwrap'), tb=tw.querySelector('.tabbar'), more=tw.querySelector('.tabmore');

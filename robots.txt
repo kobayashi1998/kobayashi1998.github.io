@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /3.0.1/
+Disallow: /.workbuddy/
+
+Sitemap: https://worldeditor.cn/sitemap.xml
