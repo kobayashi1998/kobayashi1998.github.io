@@ -1,21 +1,20 @@
 <!DOCTYPE html>
-<html lang="zh-CN" data-theme="dark">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>世界编辑器中文站</title>
-    <meta name="description" content="魔兽争霸III 世界编辑器中文站：地图编辑器汉化补丁、国际服正版购买指引，以及 2016–2026 十年补丁演进报告与外部事件补充材料。">
-    <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%2032%2032%22%3E%3Ctext%20x=%221%22%20y=%2225%22%20font-size=%2223%22%20font-family=%22Segoe%20UI%20Emoji,Apple%20Color%20Emoji,Noto%20Color%20Emoji,sans-serif%22%3E%F0%9F%93%9C%3C/text%3E%3C/svg%3E">
-    <meta name="theme-color" content="#0d1117" media="(prefers-color-scheme: dark)">
-    <meta name="theme-color" content="#f6f4ef" media="(prefers-color-scheme: light)">
-    <meta property="og:type" content="website">
-    <meta property="og:site_name" content="世界编辑器中文站">
-    <meta property="og:title" content="世界编辑器中文站">
-    <meta property="og:description" content="魔兽争霸III 世界编辑器中文站：地图编辑器汉化补丁、国际服购买指引，以及 2016–2026 十年补丁演进报告与补充材料。">
-    <meta property="og:url" content="https://worldeditor.cn/">
-    <meta name="twitter:card" content="summary">
-    <link rel="canonical" href="https://worldeditor.cn/">
-<style>
+<html lang="zh-CN" data-theme="dark" data-page-node-id="4YqbsOiDbBVGmyjR0sxOjM"><head data-page-node-id="NbUojZuYHcvFRrRddgck7l">
+    <meta charset="UTF-8" data-page-node-id="g5u5PgM5PSvp4AlB9uSB4v">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" data-page-node-id="AdOZxJw3yJkhDV5BBGtMUK">
+    <title data-page-node-id="nwLbx9KFRIkqZ6EPKFw8Wy">世界编辑器中文站</title>
+    <meta name="description" content="魔兽争霸III 世界编辑器中文站：地图编辑器汉化补丁、国际服正版购买指引，以及 2016–2026 十年补丁演进报告与外部事件补充材料。" data-page-node-id="jXBhxV9qINqv8OVv3TIiLj">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%2032%2032%22%3E%3Ctext%20x=%221%22%20y=%2225%22%20font-size=%2223%22%20font-family=%22Segoe%20UI%20Emoji,Apple%20Color%20Emoji,Noto%20Color%20Emoji,sans-serif%22%3E%F0%9F%93%9C%3C/text%3E%3C/svg%3E" data-page-node-id="ujXcETlUgWEYG4reXjZiew">
+    <meta name="theme-color" content="#0d1117" media="(prefers-color-scheme: dark)" data-page-node-id="v98tCrg3p2oCFHLGx0bZih">
+    <meta name="theme-color" content="#f6f4ef" media="(prefers-color-scheme: light)" data-page-node-id="fDFFTQB1kd8VcUw27i5baI">
+    <meta property="og:type" content="website" data-page-node-id="lu7By0B0LcCreKaZBYJIfK">
+    <meta property="og:site_name" content="世界编辑器中文站" data-page-node-id="AlMLvVWofX6sRNhJLVCWqY">
+    <meta property="og:title" content="世界编辑器中文站" data-page-node-id="AXJvVHMY0NBxwEsG5s2JXZ">
+    <meta property="og:description" content="魔兽争霸III 世界编辑器中文站：地图编辑器汉化补丁、国际服购买指引，以及 2016–2026 十年补丁演进报告与补充材料。" data-page-node-id="VGgqAAMTVgHhxeMN0aQLRh">
+    <meta property="og:url" content="https://worldeditor.cn/" data-page-node-id="kH90ChaPv7NFntg3uGOfCH">
+    <meta name="twitter:card" content="summary" data-page-node-id="RhfcEYCDYYGRZ8tA5iqh4Z">
+    <link rel="canonical" href="https://worldeditor.cn/" data-page-node-id="Rp4GLJEyqVTQy4ICidTFzK">
+<style data-page-node-id="UML35h8FOb3vTvkbK068cL">
         :root {
             --bg: #0d1117;
             --panel: #161b22;
@@ -79,12 +78,13 @@
         .nav-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            grid-auto-rows: 1fr;
             gap: 14px;
         }
         .nav-card {
             display: grid;
             grid-template-columns: auto 1fr;
+            /* 内容一律顶部对齐：卡片被同行拉高时，图标/标题仍在左上，不被均摊下去 */
+            align-content: start;
             align-items: center;
             column-gap: 8px;
             row-gap: 8px;
@@ -104,30 +104,58 @@
         .nav-icon { font-size: 26px; line-height: 1; }
         .nav-card h3 { font-size: 16px; font-weight: 700; }
         .nav-card p { grid-column: 1 / -1; font-size: 13px; color: var(--muted); line-height: 1.55; }
-
-        /* 资源卡片 */
-        .resource-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 14px;
-        }
-        .resource-card {
-            display: block;
-            background: var(--panel);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 16px;
+        /* 邀请码：点击复制 */
+        .invite-code {
+            position: relative;
+            font-family: Consolas, "Courier New", monospace;
+            font-size: 12.5px;
             color: var(--text);
-            text-decoration: none;
-            transition: border-color .15s, transform .15s, box-shadow .15s;
+            background: var(--panel2);
+            border: 1px solid var(--border);
+            border-radius: 5px;
+            padding: 2px 7px;
+            word-break: break-all;
+            cursor: pointer;
+            transition: border-color .15s;
         }
-        .resource-card:hover {
-            border-color: var(--accent);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 22px var(--card-shadow);
+        .invite-code:hover,
+        .invite-code.copied,
+        .invite-code.copy-fail { border-color: var(--accent); }
+        .invite-code:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+        .invite-code::after {
+            content: "✓ 已复制";
+            position: absolute;
+            left: calc(100% + 8px);
+            top: 50%;
+            transform: translate(-4px, -50%);
+            padding: 3px 9px;
+            border-radius: 6px;
+            background: var(--accent);
+            color: var(--bg);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", "PingFang SC", sans-serif;
+            font-size: 11.5px;
+            font-weight: 600;
+            line-height: 1.5;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 5;
+            transition: opacity .15s, transform .15s;
         }
-        .resource-card h3 { font-size: 15px; font-weight: 700; margin: 0 0 6px; }
-        .resource-card p { font-size: 13px; color: var(--muted); line-height: 1.6; }
+        .invite-code.copy-fail::after { content: "复制失败，请手动选中"; }
+        .invite-code.copied::after,
+        .invite-code.copy-fail::after { opacity: 1; transform: translate(0, -50%); }
+        /* 窄屏：空间不足时提示改到邀请码下方居中 */
+        @media (max-width: 360px) {
+            .invite-code::after {
+                left: 50%;
+                top: calc(100% + 6px);
+                bottom: auto;
+                transform: translate(-50%, -4px);
+            }
+            .invite-code.copied::after,
+            .invite-code.copy-fail::after { transform: translate(-50%, 0); }
+        }
 
         /* 工具列表 */
         .tool-list { list-style: none; }
@@ -246,7 +274,7 @@
 
         /* 响应式 */
         @media (max-width: 720px) {
-            .nav-grid, .resource-grid { grid-template-columns: 1fr; }
+            .nav-grid { grid-template-columns: 1fr; }
             .qq-list { grid-template-columns: repeat(2, 1fr); }
             .site-header h1 { font-size: 25px; }
         }
@@ -274,152 +302,211 @@
     .theme-btn{display:none;}
   }
 </style>
-<script>
+<script data-page-node-id="Ka7l8teBV3FLgNo68h97Sn">
 (function(){var t=null;try{t=localStorage.getItem('site-theme')}catch(e){}
 if(t!=='light'&&t!=='dark'){t=window.matchMedia&&matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'}
 document.documentElement.setAttribute('data-theme',t)})();
 </script>
-</head>
-<body>
-<button id="themeBtn" class="theme-btn" type="button" aria-label="切换日间/夜间模式" title="切换日间/夜间模式">☀️</button>
-<div class="wrap">
+<style id="__dm_no_drag_style__">* { -webkit-user-drag: none !important; }</style><style id="__dm_bindable_badge_style__">[data-sp-bindable="database"]{outline:1px dashed #0088ff;outline-offset:2px;border-radius:4px;}[data-sp-bindable="database"] *{pointer-events:none !important;transition:none !important;animation:none !important;}[data-sp-bindable="database"]{transition:none !important;animation:none !important;}</style></head>
+<body data-page-node-id="Z1pUk5bYGWWImsNX30CDyQ" style="">
+<button id="themeBtn" class="theme-btn" type="button" aria-label="切换日间/夜间模式" title="切换日间/夜间模式" data-page-node-id="ib6ABZVupHlu9NbiHGajvP">☀️</button>
+<div class="wrap" data-page-node-id="QHzuHk8DvE7XAND2uhHGei">
 
-    <header class="site-header">
-        <h1>世界编辑器中文站</h1>
-        <p class="sub">WARCRAFT III · WorldEditor Chinese Site</p>
+    <header class="site-header" data-page-node-id="gQlKHrPBQvscKDnOIKr32M">
+        <h1 data-page-node-id="CJ112uVGnhrHL9ZFPuqGzR">世界编辑器中文站</h1>
+        <p class="sub" data-page-node-id="hAAd6RopTWpEeLEiU6cxzM">WARCRAFT III · WorldEditor Chinese Site</p>
     </header>
 
     <!-- 站内页面 -->
-    <section class="section">
-        <h2 class="section-h">站内页面</h2>
-        <div class="nav-grid">
-            <a class="nav-card" href="how-to-buy.html">
-                <span class="nav-icon">🛒</span>
-                <h3>国际服正版购买指引</h3>
-                <p>下载战网、注册国际服、付款流程与视频教程分步说明。</p>
+    <section class="section" data-page-node-id="6W7DNfkCgiYRvPf86NNwxV">
+        <h2 class="section-h" data-page-node-id="tgtg8Jai8jcGyeN82ooVtc">站内页面</h2>
+        <div class="nav-grid" data-page-node-id="2jLeWSjHGnLERZappGu00S">
+            <a class="nav-card" href="how-to-buy.html" data-page-node-id="Fm1DYEB9IoQkb4M36AyKNr">
+                <span class="nav-icon" data-page-node-id="N05BfkpYnp1lcgq8M2SV9q">🛒</span>
+                <h3 data-page-node-id="GsU8HmdCsVsfypcBf10NE5">国际服正版购买指引</h3>
+                <p data-page-node-id="u3H3SHYSi854WGoiuLHxO8">下载战网、注册国际服、付款流程与视频教程分步说明。</p>
             </a>
-            <a class="nav-card" href="patch-notes.html">
-                <span class="nav-icon">📰</span>
-                <h3>补丁说明</h3>
-                <p>魔兽争霸III：重制版 1.32.0 至 3.0.1 全部正式服补丁与热修说明的中文译文，按版本号分页，术语沿用编辑器汉化词条表。</p>
+            <a class="nav-card" href="patch-notes.html" data-page-node-id="WwpCNc1fkNHHRXK1iZF6iC">
+                <span class="nav-icon" data-page-node-id="49ttCTHDzowVWi03WM9exa">📰</span>
+                <h3 data-page-node-id="N91Qq5CwnD1oUy2TpNi4LH">补丁说明</h3>
+                <p data-page-node-id="5cmyM5jwjqRegHRLkbSD1L">魔兽争霸III：重制版 1.32.0 至 3.0.1 全部正式服补丁与热修说明的中文译文，按版本号分页，术语沿用编辑器汉化词条表。</p>
             </a>
-            <a class="nav-card" href="wc3-decade-of-patches.html">
-                <span class="nav-icon">📊</span>
-                <h3>十年补丁演进报告</h3>
-                <p>从 1.27a（2016.03）到 3.0.1（2026.10），逐版本梳理功能性更新、平衡性机制改动、编辑器调整及 BUG 修复。</p>
+            <a class="nav-card" href="wc3-decade-of-patches.html" data-page-node-id="gLBuXQUgYcDUB3DmAugPYR">
+                <span class="nav-icon" data-page-node-id="KtVVozFzh9eHBEbCJDrOaA">📊</span>
+                <h3 data-page-node-id="6NvNDL1snloGQQxrHY2M1i">十年补丁演进报告</h3>
+                <p data-page-node-id="lLMKG0ePFoQOFms0IQmFgN">从 1.27a（2016.03）到 3.0.1（2026.10），逐版本梳理功能性更新、平衡性机制改动、编辑器调整及 BUG 修复。</p>
             </a>
-            <a class="nav-card" href="wc3-decade-narration.html">
-                <span class="nav-icon">🧭</span>
-                <h3>报告补充材料</h3>
-                <p>与版本更新同期发生的外部事件时间线：平台更替、代理关系、公司并购与团队调整，逐条标注海外 / 国内归属。</p>
+            <a class="nav-card" href="wc3-decade-narration.html" data-page-node-id="6hfFn1GEeJkA5WBMuouSMs">
+                <span class="nav-icon" data-page-node-id="lly9fpnGcoGjFApmCLhPM1">🧭</span>
+                <h3 data-page-node-id="Upg0XSoN87fAxGi0S0UJyI">报告补充材料</h3>
+                <p data-page-node-id="xGxWVwduuEDUaoJwjFaKqd">与版本更新同期发生的外部事件时间线：平台更替、代理关系、公司并购与团队调整，逐条标注海外 / 国内归属。</p>
             </a>
-            <a class="nav-card" href="hhbd.html">
-                <span class="nav-icon">📜</span>
-                <h3>编辑器汉化补丁</h3>
-                <p>重制版地图编辑器的纯净汉化补丁，含下载渠道与使用说明。</p>
+            <a class="nav-card" href="hhbd.html" data-page-node-id="UghltcApvjsgHqRHnDfKrS">
+                <span class="nav-icon" data-page-node-id="FX838aFycpLwC7dH90S9s6">📜</span>
+                <h3 data-page-node-id="Buncn1GlCuwJUT5vnQsr0v">编辑器汉化补丁</h3>
+                <p data-page-node-id="JAsUfNHuxEGXjiNAwXx2RY">重制版地图编辑器的纯净汉化补丁，含下载渠道与使用说明。</p>
             </a>
-            <a class="nav-card" href="wc3-editor-glossary.html">
-                <span class="nav-icon">📖</span>
-                <h3>编辑器汉化词条表</h3>
-                <p>基于汉化补丁 0.5.0 的五个 UI 文件提取的中英对照词条，支持按中文 / 原文 / 键名搜索与分类筛选。</p>
+            <a class="nav-card" href="wc3-editor-glossary.html" data-page-node-id="IyhJCqGymYgqhtqqH4o5YV">
+                <span class="nav-icon" data-page-node-id="CnFqzCIb4RqGzEPZ4DMSHA">📖</span>
+                <h3 data-page-node-id="CGWFhFXsxAlQLXsN7IgRs5">编辑器汉化词条表</h3>
+                <p data-page-node-id="Rhxt1D2ltSQoZeDo30lcRf">基于汉化补丁 0.5.0 的五个 UI 文件提取的中英对照词条，支持按中文 / 原文 / 键名搜索与分类筛选。</p>
             </a>
         </div>
     </section>
 
     <!-- 综合站点 -->
-    <section class="section">
-        <h2 class="section-h">综合站点</h2>
-        <div class="resource-grid">
-            <a class="resource-card" href="https://hiveworkshop.com" target="_blank" rel="noopener noreferrer">
-                <h3>🌐 HIVEWORKSHOP</h3>
-                <p>全球最知名的魔兽地图编辑器英文社区。众多传奇作者在此建立项目专区，拥有海量地图制作资源与高阶技术讨论。</p>
+    <section class="section" data-page-node-id="4dWWOomRflwsWSh8jxsrNZ">
+        <h2 class="section-h" data-page-node-id="9zYTdKtBA6gdhFNeAWGL4y">综合站点</h2>
+        <div class="nav-grid" data-page-node-id="pe9o8acRKOFhUEIp25nr4R">
+            <a class="nav-card" href="https://qm.txzy.net/" target="_blank" rel="noopener noreferrer" data-page-node-id="pRcAJqaEzxrNNvaltD9VHU">
+                <span class="nav-icon" data-page-node-id="z7MGERk6hpd182MbPigmfv">🔥</span>
+                <h3 data-page-node-id="LtzVQdVZD5lTdGHAmPTqAZ">淬火社区</h3>
+                <p data-page-node-id="xLtQA7tow4Uc8ExEjQrpZn">国内魔兽争霸III 中文社区，覆盖模型贴图与图标资源、地图与 MOD 制作技术、战役成品分享、对战赛事，以及淬火 MOD 的安装使用与 BUG 反馈。<br data-page-node-id="0jFdssEf6ETubQsvHMmhGH">注册邀请码：<code class="invite-code" role="button" tabindex="0" title="点击复制邀请码" data-page-node-id="Gga3BdmxK6mvfg6G2V5Mc2">QM-CFF666CC6A44659F7E38705C</code></p>
             </a>
-            <a class="resource-card" href="https://World-Editor-Tutorials.Thehelper.net" target="_blank" rel="noopener noreferrer">
-                <h3>📘 World-Editor-Tutorials</h3>
-                <p>全面而系统的英文教程站，涵盖地形、物编、触发、模型、常见问题，适合新手入门系统学习。</p>
+            <a class="nav-card" href="https://hiveworkshop.com" target="_blank" rel="noopener noreferrer" data-page-node-id="xgJgnMXFOfy8C94nAoBr7k">
+                <span class="nav-icon" data-page-node-id="WR85jUgyv67O7CMoboFrNS">🌐</span>
+                <h3 data-page-node-id="YAVMufQuFreAWgtV6Ehtk5">蜂巢社区</h3>
+                <p data-page-node-id="BbKUIL4EDTH914MJf6uoqf" style="white-space: pre-wrap;">全球最知名的魔兽地图编辑器英文社区，拥有海量地图制作资源、工具、教程与技术讨论。很多社区项目在此建立专区，知名作者在此发布地图和战役。​​</p>
             </a>
-            <a class="resource-card" href="https://tieba.baidu.com/f?kw=%E9%AD%94%E5%85%BD%E5%9C%B0%E5%9B%BE%E7%BC%96%E8%BE%91%E5%99%A8" target="_blank" rel="noopener noreferrer">
-                <h3>🐉 百度魔兽地图编辑器吧</h3>
-                <p>流量最大的中文社区，YDWE、内置 JAPI 等工具开发者活跃于此，分享最新消息和前沿技术。</p>
+            <a class="nav-card" href="https://World-Editor-Tutorials.Thehelper.net" target="_blank" rel="noopener noreferrer" data-page-node-id="3TfRctJ5C1YilUQTLxiQ6n">
+                <span class="nav-icon" data-page-node-id="ny8VV1VPIUDSijfZ1X9i5U">📘</span>
+                <h3 data-page-node-id="Crc5naGISkTx6G1zXnlSvJ">World-Editor-Tutorials</h3>
+                <p data-page-node-id="fcVsRYCSfuxUzA0HJV2AJR">全面而系统的英文教程站，涵盖地形、物编、触发、模型、常见问题，适合新手入门系统学习。</p>
+            </a>
+            <a class="nav-card" href="https://tieba.baidu.com/f?kw=%E9%AD%94%E5%85%BD%E5%9C%B0%E5%9B%BE%E7%BC%96%E8%BE%91%E5%99%A8" target="_blank" rel="noopener noreferrer" data-page-node-id="0rqoL2DRUjX4saYepyUYh5">
+                <span class="nav-icon" data-page-node-id="5c3HlaqzohoBTKwpklOQvA">🐉</span>
+                <h3 data-page-node-id="KXGazoOPycIcEcBHwKstcg">百度魔兽地图编辑器吧</h3>
+                <p data-page-node-id="k2CB51K0RFydGUJqUtX5xy">流量最大的中文社区，YDWE、内置 JAPI 等工具开发者活跃于此，分享最新消息和前沿技术。</p>
             </a>
         </div>
     </section>
 
     <!-- 相关社群 -->
-    <section class="section">
-        <h2 class="section-h">相关社群</h2>
-        <ul class="qq-list">
-            <li><a class="qq-card" href="https://qm.qq.com/q/T58DrbF7O0" target="_blank" rel="noopener noreferrer"><strong>🏛️ 重制版作图交流群</strong><span class="num">群号：632204669</span></a></li>
-            <li><a class="qq-card" href="https://qm.qq.com/q/GkUTr17q0y" target="_blank" rel="noopener noreferrer"><strong>🌍 汉化地图群</strong><span class="num">群号：789662759</span></a></li>
-            <li><a class="qq-card" href="https://qm.qq.com/q/H7AjWKXX6o" target="_blank" rel="noopener noreferrer"><strong>🗿 GA模型交流群</strong><span class="num">群号：365626673</span></a></li>
-            <li><a class="qq-card" href="https://qm.qq.com/q/dav3xsYEM0" target="_blank" rel="noopener noreferrer"><strong>⚔️ 魔兽战役制作交流群</strong><span class="num">群号：946573495</span></a></li>
+    <section class="section" data-page-node-id="Yvcw1pZyWEy8tyAHgOHJHk">
+        <h2 class="section-h" data-page-node-id="j1DzFR2yqa1SI7YYRZFhEd">相关社群</h2>
+        <ul class="qq-list" data-page-node-id="uYnnGVlVsDzjDDwEsHub7Y">
+            <li data-page-node-id="BELfzlJwJluWHQBDYucmiL"><a class="qq-card" href="https://qm.qq.com/q/T58DrbF7O0" target="_blank" rel="noopener noreferrer" data-page-node-id="SaeO6AzJq3W3JLhlXFTJnW"><strong data-page-node-id="2u4AMG7nW6LxYwQywHlIu5">🏛️ 重制版作图交流群</strong><span class="num" data-page-node-id="JiSlu1n2GezfjgEg2aL4rJ">群号：632204669</span></a></li>
+            <li data-page-node-id="IQtLDr1yMYjYriqPRIHMVi"><a class="qq-card" href="https://qm.qq.com/q/GkUTr17q0y" target="_blank" rel="noopener noreferrer" data-page-node-id="Aq86xufLkawFDBXzQsuYAv"><strong data-page-node-id="OtSdcDGZAuChU6VEPcoYkP">🌍 汉化地图群</strong><span class="num" data-page-node-id="O61WlfgcHSF8jqLHG04NrM">群号：789662759</span></a></li>
+            <li data-page-node-id="64Mpd2b2Mrak0IjbycrEEo"><a class="qq-card" href="https://qm.qq.com/q/H7AjWKXX6o" target="_blank" rel="noopener noreferrer" data-page-node-id="Xxulk8jCHrkUI0uME6VSIW"><strong data-page-node-id="tCKvU21WElIzaLYGEFfNHc">🗿 GA模型交流群</strong><span class="num" data-page-node-id="3kHPVctgAPhAL9fUrlOIor">群号：365626673</span></a></li>
+            <li data-page-node-id="P8zdHbqXNquQBNUpI2i7B4"><a class="qq-card" href="https://qm.qq.com/q/dav3xsYEM0" target="_blank" rel="noopener noreferrer" data-page-node-id="yk7AMKh3dLJztt2dl5F0Co"><strong data-page-node-id="mXrInFjpd2LvFJNMpFvuOH">⚔️ 魔兽战役制作交流群</strong><span class="num" data-page-node-id="JkS5xh4nCo6ghZGgZ5uaDO">群号：946573495</span></a></li>
         </ul>
     </section>
 
     <!-- 常用工具 -->
-    <section class="section">
-        <h2 class="section-h">常用工具</h2>
-        <ul class="tool-list">
-            <li><strong>📦 <a href="http://www.zezula.net/en/casc/main.html" target="_blank" rel="noopener noreferrer">Ladik's Casc Viewer</a></strong> – 支持所有 CASC 存储暴雪游戏（版本 1.30+）的文件浏览与提取，有汉化版本。</li>
-            <li><strong>📦 <a href="http://www.zezula.net/en/mpq/main.html" target="_blank" rel="noopener noreferrer">MPQEditor</a></strong> – 经典 MPQ 数据提取工具（支持 1.30- 版本），也可以拆解地图文件，不分版本。</li>
-            <li><strong>🗿 <a href="https://www.hiveworkshop.com/threads/reteras-model-studio.316000/" target="_blank" rel="noopener noreferrer">Retera's Model Studio</a></strong> – 魔兽争霸III 模型编辑工具，有很多好用的脚本，支持经典 / 高清模型。</li>
-            <li><strong>🗿 <a href="https://www.blender.org" target="_blank" rel="noopener noreferrer">Blender</a></strong> – 免费且开源的 3D 模型制作软件，支持导入导出各种格式的模型。</li>
-            <li><strong>🎨 <a href="https://www.gimp.org" target="_blank" rel="noopener noreferrer">GIMP</a></strong> – 免费的图像处理软件，号称 Linux 下的 Photoshop，支持 DDS 格式。</li>
-            <li><strong>🎨 <a href="https://krita.org" target="_blank" rel="noopener noreferrer">Krita</a></strong> – 自由开源的免费绘画软件，支持数位板，适合绘制 3D 贴图和游戏图标，有支持 DDS 格式的插件。</li>
+    <section class="section" data-page-node-id="PC4ROf9YfCQdQDjdA8gs7P">
+        <h2 class="section-h" data-page-node-id="26F4dqDWnrMV5dhGVPfbFA">常用工具</h2>
+        <ul class="tool-list" data-page-node-id="0pv738DBDsf7nmgWtDpoLX">
+            <li data-page-node-id="DBUOiXyLHLpG7IOLFihp7D"><strong data-page-node-id="ZEYcrz9LNAjcBIi8sLZPnD">📦 <a href="http://www.zezula.net/en/casc/main.html" target="_blank" rel="noopener noreferrer" data-page-node-id="iG7YdShDvtwW5DPygrcTVv">Ladik's Casc Viewer</a></strong> – 支持所有 CASC 存储暴雪游戏（版本 1.30+）的文件浏览与提取，有汉化版本。</li>
+            <li data-page-node-id="8H2hlMOuWQ8Ih8gCWkGH67"><strong data-page-node-id="WBaIVs167BegFxjFUMosSp">📦 <a href="http://www.zezula.net/en/mpq/main.html" target="_blank" rel="noopener noreferrer" data-page-node-id="Qd9IU2xS2XGp7ia58FCXzk">MPQEditor</a></strong> – 经典 MPQ 数据提取工具（支持 1.30- 版本），也可以拆解地图文件，不分版本。</li>
+            <li data-page-node-id="2qrS0yVjGCh6M6RIErkr91"><strong data-page-node-id="JCQysesZNoY7il2O1S63Xo">🗿 <a href="https://www.hiveworkshop.com/threads/reteras-model-studio.316000/" target="_blank" rel="noopener noreferrer" data-page-node-id="02p10Foev4ma5E9sPSV1Wv">Retera's Model Studio</a></strong> – 魔兽争霸III 模型编辑工具，有很多好用的脚本，支持经典 / 高清模型。</li>
+            <li data-page-node-id="EZuMiUkoDFsPcdu5lFsh8j"><strong data-page-node-id="G2R5yKaE1Xq4uJNKPvbdKJ">🗿 <a href="https://www.blender.org" target="_blank" rel="noopener noreferrer" data-page-node-id="fdhVXiahXhCKjyPfsVNIVe">Blender</a></strong> – 免费且开源的 3D 模型制作软件，支持导入导出各种格式的模型。</li>
+            <li data-page-node-id="omvORSaUS7FXkzWn537QdP"><strong data-page-node-id="bXM8WbPtWXxccd1sqPGoBC">🎨 <a href="https://www.gimp.org" target="_blank" rel="noopener noreferrer" data-page-node-id="D3WXubwovinN8kMIPx5r8e">GIMP</a></strong> – 免费的图像处理软件，号称 Linux 下的 Photoshop，支持 DDS 格式。</li>
+            <li data-page-node-id="D20tMWMDY3nBBdxaSBQfBA"><strong data-page-node-id="Lozb0JDzsV3kdDHsRwssrO">🎨 <a href="https://krita.org" target="_blank" rel="noopener noreferrer" data-page-node-id="BB7hLPAeNuY85HiVswQ2q4">Krita</a></strong> – 自由开源的免费绘画软件，支持数位板，适合绘制 3D 贴图和游戏图标，有支持 DDS 格式的插件。</li>
         </ul>
-        <div class="tip">🧙 小提示：重制版作图生态不断进化，请确保编辑器版本与社区工具相匹配。</div>
+        <div class="tip" data-page-node-id="asEJrQSZE0Bb41p1r2Zu4t">🧙 小提示：重制版作图生态不断进化，请确保编辑器版本与社区工具相匹配。</div>
     </section>
 
     <!-- 常见问题 -->
-    <section class="section">
-        <h2 class="section-h">常见问题</h2>
-                <ul class="faq-list">
-            <li>
-                <div class="q">📌 如何获取破解的重制版？</div>
-                <div class="a">本站不传播盗版资源。请支持正版游戏，尊重创作者劳动成果，感谢理解。</div>
+    <section class="section" data-page-node-id="yi1VarloKhlE3fh5l9e8TC">
+        <h2 class="section-h" data-page-node-id="GF4Ds3DywmGMn2XGovDhy3">常见问题</h2>
+                <ul class="faq-list" data-page-node-id="gCCrHzdhf0fkdMoSiEuEaI">
+            <li data-page-node-id="s1Ip1Esn4eI3nruHHLGKyr">
+                <div class="q" data-page-node-id="KgvndCRUexcSFAncWfLe3L">📌 如何获取破解的重制版？</div>
+                <div class="a a-preview" style="display: none;" data-page-node-id="dSJ5BnAi8G8tmS6J3N1RO0"><span data-page-node-id="US2sYMtEMrYRyp0kw8YuBu"></span><button type="button" class="faq-more faq-more-inline" aria-expanded="false" aria-controls="faq-a0" style="display: none;" data-page-node-id="rBkJPV1n5JPpwRtLILeHIH">查看更多</button></div><div class="a" id="faq-a0" data-page-node-id="Bgyunc14iDszO0steNAmEr">本站不传播盗版资源。请支持正版游戏，尊重创作者劳动成果，感谢理解。</div>
             </li>
-            <li>
-                <div class="q">📌 重制版作图，有 YDWE / 网易启动器 可以用吗？</div>
-                <div class="a">YDWE 不支持重制版，网易编辑器已无人维护。推荐使用本站提供的<a href="hhbd.html">编辑器汉化补丁</a>。</div>
+            <li data-page-node-id="8HdaMK6O5odHxjJcoNAM7k">
+                <div class="q" data-page-node-id="B85kXHBuV6m0QvDxJmMab3">📌 重制版作图，有 YDWE / 网易启动器 可以用吗？</div>
+                <div class="a a-preview" style="display: none;" data-page-node-id="Q3CgIJ0Ii8G12rM7Lo69Cr"><span data-page-node-id="f68UWp9GOFTuBZu0jDzHFq"></span><button type="button" class="faq-more faq-more-inline" aria-expanded="false" aria-controls="faq-a1" style="display: none;" data-page-node-id="3QsDlGB7MRONmAgCZmO0bt">查看更多</button></div><div class="a" id="faq-a1" data-page-node-id="WAkXd1ibPdQc3lsyal73cp">YDWE 不支持重制版，网易编辑器已无人维护。推荐使用本站提供的<a href="hhbd.html" data-page-node-id="3HEJKbEuHOLNn2AEoXDJhd">编辑器汉化补丁</a>。</div>
             </li>
-            <li>
-                <div class="q">📌 输入内容时，编辑器卡住然后没有反应？</div>
-                <div class="a">多半是输入法兼容性问题。<br>打开 系统设置 → 时间和语言 → 语言和区域 → 微软拼音 → 常规 → 兼容性，开启「使用以前版本的微软拼音输入法」即可。</div>
+            <li data-page-node-id="CKNI6negK8oCnYH3Tp7zh4">
+                <div class="q" data-page-node-id="QRaFF7MGqEPReOb28LjHlG">📌 输入内容时，编辑器卡住然后没有反应？</div>
+                <div class="a a-preview" style="" data-page-node-id="ZAMom6joB0n698bbqRq6cN"><span data-page-node-id="kMHo2FqLCB3vKPOzqdq394">多半是输入法兼容性问题。 打开 系统设置 → 时间和语言 → 语言和区域 → 微软拼…</span><button type="button" class="faq-more faq-more-inline" aria-expanded="false" aria-controls="faq-a2" data-page-node-id="MlznrSllHvhSQqmrBnMYGA">查看更多</button></div><div class="a" id="faq-a2" style="display: none;" data-page-node-id="ura5cZZUHuE1teLRLBV1jD">多半是输入法兼容性问题。<br data-page-node-id="5m0TbmA6PfQro881CLc2ki">打开 系统设置 → 时间和语言 → 语言和区域 → 微软拼音 → 常规 → 兼容性，开启「使用以前版本的微软拼音输入法」即可。</div>
             </li>
-            <li>
-                <div class="q">📌 导入高清模型后，重新打开地图会崩编辑器？</div>
-                <div class="a"><b>原因：</b>1.32 时期（2020 年 1 月 ~ 2022 年 10 月）社区制作的高清模型，粒子效果可能存在兼容问题，放进 1.33 之后的编辑器就会崩溃。<br><b>解决：</b>把素材模式切换到「经典」，这样导入的高清模型就显示不出来，打开地图也就不会崩了。<br>之后可以考虑用 <a href="https://www.hiveworkshop.com/threads/reteras-model-studio.316000/" target="_blank" rel="noopener noreferrer">Retera's Model Studio</a> 去掉 / 替换 / 修复该模型的粒子效果，再重新导入。</div>
+            <li data-page-node-id="HhbLnjHz996j6FwtVKc5gI">
+                <div class="q" data-page-node-id="ERVrvGLVis9FfC1PddQzvV">📌 导入高清模型后，重新打开地图会崩编辑器？</div>
+                <div class="a a-preview" style="" data-page-node-id="aOENFmQDCrbvhJBw3blKbG"><span data-page-node-id="xPuyKCTe9XKdTdCPiv5zRR">原因：1.32 时期（2020 年 1 月 ~ 2022 年 10 月）社区制作的高清模型，粒子效果…</span><button type="button" class="faq-more faq-more-inline" aria-expanded="false" aria-controls="faq-a3" data-page-node-id="GwlaIDygIM02EZ083cHzC3">查看更多</button></div><div class="a" id="faq-a3" style="display: none;" data-page-node-id="ebZiu0PhdjmeaEZjNuV7PN"><b data-page-node-id="oXAYDsIoZsM0oQqyzac6iD">原因：</b>1.32 时期（2020 年 1 月 ~ 2022 年 10 月）社区制作的高清模型，粒子效果可能存在兼容问题，放进 1.33 之后的编辑器就会崩溃。<br data-page-node-id="YhBaAaIFyn9Eca6NMQkqXj"><b data-page-node-id="UKyvp6hyzNzjARfFZ75kRT">解决：</b>把素材模式切换到「经典」，这样导入的高清模型就显示不出来，打开地图也就不会崩了。<br data-page-node-id="wk3yA8obXj30Inv6HTENbp">之后可以考虑用 <a href="https://www.hiveworkshop.com/threads/reteras-model-studio.316000/" target="_blank" rel="noopener noreferrer" data-page-node-id="6H8f0U8Xe26sE82S6gKb4W">Retera's Model Studio</a> 去掉 / 替换 / 修复该模型的粒子效果，再重新导入。</div>
             </li>
-            <li>
-                <div class="q">📌 亮图标 / 暗图标（BTN / DISBTN）如何导入？</div>
-                <div class="a">亮图标命名为 BTN，暗图标命名为 DISBTN，格式为 DDS（如 <code>BTN***.dds</code>）。<br>亮图标放进 <code>ReplaceableTextures\CommandButtons\</code>，暗图标放进 <code>ReplaceableTextures\CommandButtonsDisabled\</code>。<br>具体可参考用 <a href="http://www.zezula.net/en/casc/main.html" target="_blank" rel="noopener noreferrer">Ladik's Casc Viewer</a> 查看游戏自带图标的存放方式。</div>
+            <li data-page-node-id="MbwQS3YkypCZDoeeZF3A5p">
+                <div class="q" data-page-node-id="lpIAyhHcDiwqoXeMER20bu">📌 亮图标 / 暗图标（BTN / DISBTN）如何导入？</div>
+                <div class="a a-preview" style="" data-page-node-id="yGuKKrs18CXnITh6fv7TlP"><span data-page-node-id="UbQv333qvhCOzaKhgNTUTf">亮图标命名为 BTN，暗图标命名为 DISBTN，格式为 DDS（如 BTN***.dds）。 亮图…</span><button type="button" class="faq-more faq-more-inline" aria-expanded="false" aria-controls="faq-a4" data-page-node-id="S9r0BHXABeFaw23zH5qzJR">查看更多</button></div><div class="a" id="faq-a4" style="display: none;" data-page-node-id="BHwHj6SNvxJXT7uX5PEfzR">亮图标命名为 BTN，暗图标命名为 DISBTN，格式为 DDS（如 <code data-page-node-id="SsCh1AtBoA3GaJdJOU0MnR">BTN***.dds</code>）。<br data-page-node-id="EZvpMjDF8YoAw3MECL5bXA">亮图标放进 <code data-page-node-id="J4dmg7KM8yQiF6bSl7k6xB">ReplaceableTextures\CommandButtons\</code>，暗图标放进 <code data-page-node-id="dQ4B8uUANyBHIUShzdfmYI">ReplaceableTextures\CommandButtonsDisabled\</code>。<br data-page-node-id="SBQHpcCfwUi67c4W8fEczK">具体可参考用 <a href="http://www.zezula.net/en/casc/main.html" target="_blank" rel="noopener noreferrer" data-page-node-id="EU6EcjYpvtAClTuqKR1ylE">Ladik's Casc Viewer</a> 查看游戏自带图标的存放方式。</div>
             </li>
-            <li>
-                <div class="q">📌 导入模型时，如何设置纹理文件的路径？</div>
-                <div class="a">模型是靠内部记录的一段路径文本来寻找对应纹理的。<br>HIVE 下载的模型，直接阅读附赠的 readme 即可。<br>其余模型可用 MDX Pather 查看模型内部引用的纹理路径，再按该路径导入贴图。</div>
+            <li data-page-node-id="LMHp9OzfPJTBQmBW646L02">
+                <div class="q" data-page-node-id="yGfRTXVBl7c6yqDG1HfqVm">📌 导入模型时，如何设置纹理文件的路径？</div>
+                <div class="a a-preview" style="" data-page-node-id="cdNZgmt6bBEN2jDWO44qr9"><span data-page-node-id="wqLvejfk9bKTtQGCY9JOjB">模型是靠内部记录的一段路径文本来寻找对应纹理的。 蜂巢社区下载的模型，直接…</span><button type="button" class="faq-more faq-more-inline" aria-expanded="false" aria-controls="faq-a5" data-page-node-id="GFupzUT2gBXAzu92chmbaU">查看更多</button></div><div class="a" id="faq-a5" style="display: none;" data-page-node-id="T9ObvNnxv89IDsnRs8gIvi">模型是靠内部记录的一段路径文本来寻找对应纹理的。<br data-page-node-id="oQGRyuR9Mjeum2YpxU8D5l">蜂巢社区下载的模型，直接阅读附赠的 readme 即可。<br data-page-node-id="7y3lsda1hUyWrEectqrhp7">其余模型可用 MDX Pather 查看模型内部引用的纹理路径，再按该路径导入贴图。</div>
             </li>
-            <li>
-                <div class="q">📌 修改官方地图/战役后游戏内文本不显示？</div>
-                <div class="a">重制版官方地图使用带地区标识的 wts 文件实现文本翻译。<br>物编修改的粉字文本在 wts 文件里没有对应翻译，所以游戏内不会显示。<br>可在素材（导入）管理器里找到这些 wts 文件。<br>若地图面向全球玩家，应在地图里写英文，并在 wts 文件里写对应翻译。<br>若仅面向简中玩家，在素材管理器删除所有 wts 文件，直接在地图写中文即可。<br>修改官方战役请参考重制版作图交流群 - 群文件 - 常见问题 -「重制版修改官方战役的两个技巧」。</div>
+            <li data-page-node-id="N3BDMydarxgxFav2Z7gwIO">
+                <div class="q" data-page-node-id="IyWLW7iS34vPudbHxyBB5l">📌 修改官方地图/战役后游戏内文本不显示？</div>
+                <div class="a a-preview" style="" data-page-node-id="twAyqnpxQpcGepf2aLu10g"><span data-page-node-id="hcCn8cZKMoL1hQ1mriCZRP">重制版官方地图使用带地区标识的 wts 文件实现文本翻译。 物编修改的粉字文本在…</span><button type="button" class="faq-more faq-more-inline" aria-expanded="false" aria-controls="faq-a6" data-page-node-id="Hpktt7za2wMJ8tYFvqRsnE">查看更多</button></div><div class="a" id="faq-a6" style="display: none;" data-page-node-id="rM7BKwyTuhYac6eDHfxxHu">重制版官方地图使用带地区标识的 wts 文件实现文本翻译。<br data-page-node-id="yLgO8aWJPLVWcZ7ZjHXWFc">物编修改的粉字文本在 wts 文件里没有对应翻译，所以游戏内不会显示。<br data-page-node-id="ZzXGt7zhS7NikA6C3Pb9Dm">可在素材（导入）管理器里找到这些 wts 文件。<br data-page-node-id="XdLfbsx5SO30fEEByNYLiF">若地图面向全球玩家，应在地图里写英文，并在 wts 文件里写对应翻译。<br data-page-node-id="y9UjCOBnzKIwhEZaijQfuf">若仅面向简中玩家，在素材管理器删除所有 wts 文件，直接在地图写中文即可。<br data-page-node-id="pcUAjxEGgv8TPEVsOcu3Zw">修改官方战役请参考重制版作图交流群 - 群文件 - 常见问题 -「重制版修改官方战役的两个技巧」。</div>
             </li>
         </ul>
-        <div class="tip">🧙 小提示：更多问题请加重制版作图交流群 632204669。</div>
+        <div class="tip" data-page-node-id="mKq0yA6LHy7YSYBdQPNq6C">🧙 小提示：更多问题请加重制版作图交流群 632204669。</div>
     </section>
 
-    <div class="footer">
-        ✧ worldeditor.cn ✧<br>
-        <span>信息来源于互联网</span>
+    <div class="footer" data-page-node-id="T0pCjPJDZV6pj3WUn1JSUa">
+        ✧ worldeditor.cn ✧<br data-page-node-id="V4ee1NGXaccytC2tq9nhAW">
+        <span data-page-node-id="ssmsKwfOEJAX4GXXhu4OrT">信息来源于互联网</span>
     </div>
 
 </div>
-<script>
+<script data-page-node-id="1aNIMMLRxwZpqJdVfbGaoD">
 (function(){var d=document,b=d.getElementById('themeBtn');
 function icon(){b.textContent=d.documentElement.getAttribute('data-theme')==='light'?'🌙':'☀️'}
 b.addEventListener('click',function(){var t=d.documentElement.getAttribute('data-theme')==='light'?'dark':'light';
 d.documentElement.setAttribute('data-theme',t);try{localStorage.setItem('site-theme',t)}catch(e){}icon()});
 icon()})();
 </script>
-<script>
+<script data-page-node-id="Vifhy9CQcVCjHxYaNSDIsl">
+/* 邀请码：点击 / 回车复制，短暂提示「已复制」 */
+(function(){
+    var chip = document.querySelector('.invite-code');
+    if(!chip) return;
+    var text = (chip.textContent || '').replace(/\s+/g, '');
+    var timer = null;
+
+    function flash(ok){
+        chip.classList.remove('copied', 'copy-fail');
+        chip.classList.add(ok ? 'copied' : 'copy-fail');
+        clearTimeout(timer);
+        timer = setTimeout(function(){ chip.classList.remove('copied', 'copy-fail'); }, 1600);
+    }
+
+    function fallback(){
+        var ta = document.createElement('textarea');
+        ta.value = text;
+        ta.setAttribute('readonly', '');
+        ta.style.cssText = 'position:fixed;top:0;left:-9999px;opacity:0;';
+        document.body.appendChild(ta);
+        ta.select();
+        ta.setSelectionRange(0, text.length);
+        var ok = false;
+        try { ok = document.execCommand('copy'); } catch(e) { ok = false; }
+        document.body.removeChild(ta);
+        flash(ok);
+    }
+
+    function copy(){
+        if(navigator.clipboard && navigator.clipboard.writeText){
+            navigator.clipboard.writeText(text).then(function(){ flash(true); }, fallback);
+        } else {
+            fallback();
+        }
+    }
+
+    chip.addEventListener('click', function(e){
+        e.preventDefault();   // 阻止卡片链接跳转
+        e.stopPropagation();
+        copy();
+    });
+    chip.addEventListener('keydown', function(e){
+        if(e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar'){
+            e.preventDefault();
+            e.stopPropagation();
+            copy();
+        }
+    });
+})();
+</script>
+<script data-page-node-id="IIW9ja3X4FdHFe9haIaLTB">
 (function(){
     // 清掉上一次被编辑器写进 HTML 的摘要节点与按钮，避免重复
     Array.prototype.forEach.call(
@@ -549,6 +636,8 @@ icon()})();
         timer = setTimeout(measure, 150);
     });
 })();
-</script>
+</script><span id="faq-meas" style="position: absolute; left: -9999px; top: 0px; visibility: hidden; white-space: pre; font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, &quot;Microsoft YaHei&quot;, &quot;PingFang SC&quot;, sans-serif; font-size: 14px; font-weight: 400; letter-spacing: normal;" data-page-node-id="oHA0L8UgYtccxrLmimiDZW">重制版官方地图使用带地区标识的 wts 文件实现文本翻译。 物编修改的粉字文本在 </span>
+
+
 
 </body></html>
