@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>常用工具 &amp; 常见问题</title>
+<meta name="description" content="魔兽争霸III 重制版世界编辑器常用工具与常见问题：正版购买、YDWE 与网易启动器现状、触发器界面汉化、输入法卡顿、高清模型崩溃、BTN / DISBTN 图标导入、纹理路径设置、战役文本不显示。含作图常用工具（CASCView、MPQEditor、Retera's Model Studio、Blender、GIMP、Krita）。支持分类浏览与全文搜索。">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%2032%2032%22%3E%3Ctext%20x=%221%22%20y=%2225%22%20font-size=%2223%22%20font-family=%22Segoe%20UI%20Emoji,Apple%20Color%20Emoji,Noto%20Color%20Emoji,sans-serif%22%3E%F0%9F%93%9C%3C/text%3E%3C/svg%3E">
+<meta name="theme-color" content="#0d1117" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f6f4ef" media="(prefers-color-scheme: light)">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="世界编辑器中文站">
+<meta property="og:title" content="常用工具 &amp; 常见问题">
+<meta property="og:description" content="魔兽争霸III 重制版世界编辑器作图常用工具与常见问题速查，按分类浏览，支持全文搜索。">
+<meta property="og:url" content="https://worldeditor.cn/tools-faq.html">
+<link rel="canonical" href="https://worldeditor.cn/tools-faq.html">
+<link rel="stylesheet" href="theme.css">
+<style>
+  *{box-sizing:border-box}
+  body{
+    margin:0;padding:64px 20px 72px;
+    background:var(--bg);color:var(--text);
+    font:15px/1.9 -apple-system,BlinkMacSystemFont,"Microsoft YaHei","PingFang SC",sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  main{max-width:760px;margin:0 auto}
+  .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  .back{margin:0 0 24px}
+  .back a{display:inline-block;font-size:13px;color:var(--muted);text-decoration:none;
+    border:1px solid var(--border);background:var(--panel2);border-radius:20px;padding:3px 13px;
+    transition:color .15s,border-color .15s}
+  .back a:hover{color:var(--accent);border-color:var(--accent);}
+
+  header h1{margin:0 0 6px;font-size:22px;font-weight:600}
+  header .sub{margin:0;font-size:12px;color:var(--muted);letter-spacing:.16em;text-transform:uppercase}
+  .lede{margin:14px 0 0;font-size:13.5px;color:var(--muted);line-height:1.8}
+
+  /* ===== 工具栏：搜索 + 分类 ===== */
+  .toolbar{background:var(--panel);border:1px solid var(--border);border-radius:11px;
+    margin:22px 0 26px;padding:13px 16px}
+  .searchrow{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+  input[type=search]{flex:1;min-width:200px;background:var(--panel2);border:1px solid var(--border);
+    color:var(--text);padding:9px 14px;border-radius:9px;font-size:14px;font-family:inherit;
+    outline:none;transition:border-color .2s,box-shadow .2s}
+  input[type=search]:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(var(--accent-rgb),.14)}
+  input[type=search]::placeholder{color:var(--muted)}
+  .count{color:var(--muted);font-size:12px;white-space:nowrap;font-variant-numeric:tabular-nums}
+  .clr{background:none;border:1px solid var(--border);color:var(--muted);border-radius:7px;
+    padding:4px 10px;font-size:12px;font-family:inherit;cursor:pointer;line-height:1.6}
+  .clr:hover{color:var(--text);border-color:var(--text)}
+  .clr[hidden]{display:none}
+  .cats{display:flex;gap:7px;flex-wrap:wrap;margin-top:11px}
+  .chip{padding:5px 13px;border-radius:20px;border:1px solid var(--border);background:var(--panel2);
+    color:var(--soft-text);font-size:12.5px;cursor:pointer;transition:.18s;user-select:none;
+    font-family:inherit;line-height:1.6;appearance:none;text-align:center}
+  .chip:hover{border-color:var(--accent);color:var(--text)}
+  .chip.on{background:var(--c);border-color:var(--c);color:var(--chip-on-fg);font-weight:600}
+
+  /* ===== 分类分组 ===== */
+  .cat-sec{margin:0 0 30px;scroll-margin-top:24px}
+  .cat-sec[hidden]{display:none}
+  .cat-h{display:flex;align-items:center;gap:9px;margin:0 0 4px;padding:0 0 10px;
+    font-size:15px;font-weight:700;color:var(--c);border-bottom:2px solid var(--border)}
+  .cat-h .ico{font-size:16px;line-height:1}
+  .cat-h .n{margin-left:auto;font-size:11.5px;font-weight:400;color:var(--muted);
+    font-variant-numeric:tabular-nums;white-space:nowrap}
+
+  /* ===== 条目（折叠） ===== */
+  .item{border-bottom:1px dashed var(--border)}
+  .item[hidden]{display:none}
+  .item:last-child{border-bottom:none}
+  .fq{display:flex;align-items:flex-start;gap:10px;width:100%;text-align:left;
+    background:none;border:0;padding:13px 2px;font:inherit;color:var(--text);cursor:pointer;
+    line-height:1.65;border-radius:6px}
+  .fq:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  .fq .qi{flex:0 0 auto;font-size:13px;line-height:1.65;color:var(--c);opacity:.9}
+  .fq .qt{flex:1;font-size:14.5px;font-weight:600;color:var(--text);transition:color .15s}
+  .fq:hover .qt{color:var(--accent)}
+  .fq .chev{flex:0 0 auto;width:16px;text-align:center;line-height:1.8;font-size:10px;
+    color:var(--muted);transition:transform .18s}
+  .fq .chev::after{content:"\25BE"}
+  .fq[aria-expanded="true"] .chev{transform:rotate(180deg)}
+
+  .faq-a{margin:0 0 0 23px;padding:2px 0 14px 13px;border-left:3px solid var(--border);
+    font-size:14px;color:var(--soft-text)}
+  .faq-a[hidden]{display:none}
+  .faq-a a{color:var(--text);text-decoration:none;border-bottom:1px solid var(--border);white-space:nowrap}
+  .faq-a .lksep{color:var(--muted);margin:0 6px}
+  .faq-a a:hover{border-bottom-color:var(--text)}
+  .faq-a code{font-family:Consolas,"Courier New",monospace;font-size:12.5px;
+    background:var(--panel2);border:1px solid var(--border);border-radius:5px;padding:1px 6px}
+  .faq-a b{color:var(--text);font-weight:600}
+  mark{background:var(--mark-bg);color:var(--mark-fg);border-radius:3px;padding:0 2px}
+
+  @keyframes flash{0%,55%{background:rgba(var(--accent-rgb),.16)}100%{background:transparent}}
+  .item.flash{border-radius:8px;animation:flash 1.7s ease}
+
+  .empty{text-align:center;padding:46px 20px;color:var(--muted)}
+  .empty[hidden]{display:none}
+  .empty .big{font-size:32px;opacity:.5;margin-bottom:8px}
+  .empty .hint{font-size:12.5px}
+
+  .pfoot{margin:30px 0 0;padding:10px 14px;border-radius:10px;background:var(--accent-soft);
+    font-size:13px;color:var(--muted)}
+  /* 常用工具分组末尾的小提示 */
+  .tool-note{margin:16px 0 0;padding:10px 14px;border-radius:10px;background:var(--accent-soft);
+    font-size:13px;color:var(--muted);line-height:1.8}
+  footer{margin-top:36px;padding-top:20px;border-top:1px solid var(--border);
+    color:var(--muted);font-size:12.5px;text-align:center;line-height:1.9}
+
+  /* ===== 日/夜切换按钮 ===== */
+  .theme-btn{position:fixed;top:14px;right:14px;z-index:99;width:30px;height:30px;border-radius:50%;
+    border:1px solid var(--border);background:var(--panel);color:var(--text);font-size:12px;line-height:1;
+    cursor:pointer;box-shadow:0 2px 10px var(--btn-shadow,rgba(0,0,0,.3));}
+  .theme-btn:hover{border-color:var(--accent);}
+
+  @media (max-width:620px){
+    body{padding:44px 16px 60px}
+    header h1{font-size:20px}
+    .toolbar{padding:12px 14px}
+    .fq .qt{font-size:14px}
+    .faq-a{font-size:13.5px}
+  }
+
+  @media print{
+    :root,:root[data-theme="light"]{
+      --bg:#ffffff;--panel:#ffffff;--panel2:#ffffff;--border:#c8c8c8;
+      --text:#000000;--muted:#444444;--soft-text:#222222;--accent:#7a5f24;
+      --mark-bg:#f3e3c0;--mark-fg:#000000;--btn-shadow:none;
+    }
+    body{background:#fff;color:#000;padding:0}
+    .theme-btn,.back,.toolbar,.pfoot{display:none !important}
+    .faq-a[hidden]{display:block !important}
+    .fq .chev{display:none}
+    .fq{color:#000}
+    .item{break-inside:avoid}
+    .cat-sec{break-inside:auto}
+    .cat-h{border-bottom-color:#999;margin-bottom:6px}
+    a{color:#000;text-decoration:underline}
+  }
+</style>
+<script>
+(function(){var t=null;try{t=localStorage.getItem('site-theme')}catch(e){}
+if(t!=='light'&&t!=='dark'){t=window.matchMedia&&matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'}
+document.documentElement.setAttribute('data-theme',t)})();
+</script>
+</head>
+<body>
+<button id="themeBtn" class="theme-btn" type="button" aria-label="切换日间/夜间模式" title="切换日间/夜间模式">☀️</button>
+<main>
+
+  <div class="back"><a href="index.html">← 返回主页</a></div>
+
+  <header>
+    <h1>常用工具 &amp; 常见问题</h1>
+    <p class="sub">TOOLS &amp; FAQ · 重制版作图与工具</p>
+    <p class="lede">作图常用工具清单，以及正版购买、编辑器与工具、模型与图标、地图与文本四类问题速查。工具默认展开，问题点击展开答案；也可以直接搜索关键词，问题、答案与工具说明全文都会参与匹配。</p>
+  </header>
+
+  <div class="toolbar">
+    <div class="searchrow">
+      <label class="sr-only" for="q">搜索问题与答案</label>
+      <input type="search" id="q" placeholder="搜索问题与答案，如：输入法、BTN、wts…（按 / 聚焦）" autocomplete="off">
+      <span class="count" id="cnt" role="status" aria-live="polite">显示 6 / 17 条</span>
+      <button type="button" class="clr" id="clear" hidden="">清除</button>
+    </div>
+    <div class="cats" id="cats" role="group" aria-label="按分类筛选"><button type="button" class="chip" data-cat="" aria-pressed="false" style="--c: var(--accent);">全部 (17)</button><button type="button" class="chip" data-cat="buy" aria-pressed="false" style="--c: var(--accent);">购买与授权 (1)</button><button type="button" class="chip" data-cat="tool" aria-pressed="false" style="--c: var(--accent2);">编辑器与工具 (6)</button><button type="button" class="chip" data-cat="model" aria-pressed="false" style="--c: var(--purple);">模型与图标 (3)</button><button type="button" class="chip" data-cat="text" aria-pressed="false" style="--c: var(--green);">地图与文本 (1)</button><button type="button" class="chip on" data-cat="tools" aria-pressed="true" style="--c: var(--hot);">常用工具 (6)</button></div>
+  </div>
+
+  <div id="list">
+
+    <section class="cat-sec" data-cat="tools" style="--c:var(--hot)">
+      <h2 class="cat-h"><span class="ico" aria-hidden="true">🧰</span><span class="name">常用工具</span><span class="n">6 个工具</span></h2>
+      <article class="item" id="tool-cascview" data-cat="tools">
+        <button class="fq" type="button" aria-expanded="true" aria-controls="a-tool-cascview">
+          <span class="qi" aria-hidden="true">📦</span>
+          <span class="qt">Ladik's Casc Viewer</span>
+          <span class="chev" aria-hidden="true"></span>
+        </button>
+        <div class="faq-a" id="a-tool-cascview"><div class="ans">支持所有以 CASC 存储的暴雪游戏（游戏 1.30 及以上）的文件浏览与提取，有汉化版本。<span class="lksep" aria-hidden="true">·</span><a href="http://www.zezula.net/en/casc/main.html" target="_blank" rel="noopener noreferrer">官网下载 →</a></div></div>
+      </article>
+      <article class="item" id="tool-mpqeditor" data-cat="tools">
+        <button class="fq" type="button" aria-expanded="true" aria-controls="a-tool-mpqeditor">
+          <span class="qi" aria-hidden="true">📦</span>
+          <span class="qt">MPQEditor</span>
+          <span class="chev" aria-hidden="true"></span>
+        </button>
+        <div class="faq-a" id="a-tool-mpqeditor"><div class="ans">经典 MPQ 数据提取工具（适用于 1.30 之前的版本）；也可以拆解地图文件，不分版本。<span class="lksep" aria-hidden="true">·</span><a href="http://www.zezula.net/en/mpq/main.html" target="_blank" rel="noopener noreferrer">官网下载 →</a></div></div>
+      </article>
+      <article class="item" id="tool-rms" data-cat="tools">
+        <button class="fq" type="button" aria-expanded="true" aria-controls="a-tool-rms">
+          <span class="qi" aria-hidden="true">🗿</span>
+          <span class="qt">Retera's Model Studio</span>
+          <span class="chev" aria-hidden="true"></span>
+        </button>
+        <div class="faq-a" id="a-tool-rms"><div class="ans">魔兽争霸III 模型编辑工具，内置很多好用的脚本，支持经典 / 高清模型。<span class="lksep" aria-hidden="true">·</span><a href="https://www.hiveworkshop.com/threads/reteras-model-studio.316000/" target="_blank" rel="noopener noreferrer">蜂巢社区发布页 →</a></div></div>
+      </article>
+      <article class="item" id="tool-blender" data-cat="tools">
+        <button class="fq" type="button" aria-expanded="true" aria-controls="a-tool-blender">
+          <span class="qi" aria-hidden="true">🗿</span>
+          <span class="qt">Blender</span>
+          <span class="chev" aria-hidden="true"></span>
+        </button>
+        <div class="faq-a" id="a-tool-blender"><div class="ans">免费且开源的 3D 模型制作软件，支持导入导出各种格式的模型。<span class="lksep" aria-hidden="true">·</span><a href="https://www.blender.org" target="_blank" rel="noopener noreferrer">官网下载 →</a></div></div>
+      </article>
+      <article class="item" id="tool-gimp" data-cat="tools">
+        <button class="fq" type="button" aria-expanded="true" aria-controls="a-tool-gimp">
+          <span class="qi" aria-hidden="true">🎨</span>
+          <span class="qt">GIMP</span>
+          <span class="chev" aria-hidden="true"></span>
+        </button>
+        <div class="faq-a" id="a-tool-gimp"><div class="ans">免费的图像处理软件，号称 Linux 下的 Photoshop，支持 DDS 格式。<span class="lksep" aria-hidden="true">·</span><a href="https://www.gimp.org" target="_blank" rel="noopener noreferrer">官网下载 →</a></div></div>
+      </article>
+      <article class="item" id="tool-krita" data-cat="tools">
+        <button class="fq" type="button" aria-expanded="true" aria-controls="a-tool-krita">
+          <span class="qi" aria-hidden="true">🎨</span>
+          <span class="qt">Krita</span>
+          <span class="chev" aria-hidden="true"></span>
+        </button>
+        <div class="faq-a" id="a-tool-krita"><div class="ans">自由开源的免费绘画软件，支持数位板，适合绘制 3D 贴图和游戏图标，有支持 DDS 格式的插件。<span class="lksep" aria-hidden="true">·</span><a href="https://krita.org" target="_blank" rel="noopener noreferrer">官网下载 →</a></div></div>
+      </article>
+      <p class="tool-note">🧙 小提示：重制版作图生态不断进化，请确保编辑器版本与社区工具相匹配。</p>
+    </section>
+
+    <section class="cat-sec" data-cat="buy" style="--c:var(--accent)">
+      <h2 class="cat-h"><span class="ico" aria-hidden="true">📌</span><span class="name">购买与授权</span><span class="n">1 个问题</span></h2>
+      <article class="item" id="crack" data-cat="buy">
+        <button class="fq" type="button" aria-expanded="false" aria-controls="a-crack">
+          <span class="qi" aria-hidden="true">📌</span>
+          <span class="qt">如何获取破解的重制版？</span>
+          <span class="chev" aria-hidden="true"></span>
+        </button>
+        <div class="faq-a" id="a-crack" hidden=""><div class="ans">本站不传播盗版资源。请支持正版游戏，尊重创作者劳动成果，感谢理解。</div></div>
+      </article>
+    </section>
+
+    <section class="cat-sec" data-cat="tool" style="--c:var(--accent2)">
+      <h2 class="cat-h"><span class="ico" aria-hidden="true">🛠️</span><span class="name">编辑器与工具</span><span class="n">6 个问题</span></h2>
+      <article class="item" id="ydwe" data-cat="tool">
+        <button class="fq" type="button" aria-expanded="false" aria-controls="a-ydwe">
+          <span class="qi" aria-hidden="true">🛠️</span>
+          <span class="qt">重制版有 YDWE 可以用吗？</span>
+          <span class="chev" aria-hidden="true"></span>
+        </button>
+        <div class="faq-a" id="a-ydwe" hidden=""><div class="ans">YDWE 仅适用于游戏 1.27a 版本，重制版没有 YDWE 可以使用。</div></div>
+      </article>
+      <article class="item" id="netease" data-cat="tool">
+        <button class="fq" type="button" aria-expanded="false" aria-controls="a-netease">
+          <span class="qi" aria-hidden="true">🛠️</span>
+          <span class="qt">网易启动器（World Editor 启动器）可以用吗？</span>
+          <span class="chev" aria-hidden="true"></span>
+        </button>
+        <div class="faq-a" id="a-netease" hidden=""><div class="ans">该启动器仅用于兼容打开老地图，且无人维护，不建议用来作图。<br>使用该启动器可能会缺失新版本的触发组件，以及编辑器组件的翻译。</div></div>
+      </article>
+      <article class="item" id="why-no-ydwe" data-cat="tool">
+        <button class="fq" type="button" aria-expanded="false" aria-controls="a-why-no-ydwe">
+          <span class="qi" aria-hidden="true">🛠️</span>
+          <span class="qt">为什么不开发重制版可以用的 YDWE（魔改编辑器 / 编辑器 Mod）？</span>
+          <span class="chev" aria-hidden="true"></span>
+        </button>
+        <div class="faq-a" id="a-why-no-ydwe" hidden=""><div class="ans">新版本编辑器增加了新的触发器和原生函数，不太需要额外新内容了。<br>现在已经没有 return bug 和暴露在外的 game.dll 文件，能做的新功能较少。<br>轻易地开一个新的编辑器 Mod 项目会带来地图兼容问题，不利于社区发展。</div></div>
+      </article>
+      <article class="item" id="trig-zh" data-cat="tool">
+        <button class="fq" type="button" aria-expanded="false" aria-controls="a-trig-zh">
+          <span class="qi" aria-hidden="true">🛠️</span>
+          <span class="qt">触发器打开都是英文，我该如何汉化？</span>
+          <span class="chev" aria-hidden="true"></span>
+        </button>
+        <div class="faq-a" id="a-trig-zh" hidden=""><div class="ans">本站提供适用于最新版本的<a href="hhbd.html">纯净汉化补丁</a>，足够满足作图多数需求。</div></div>
+      </article>
+      <article class="item" id="codemap" data-cat="tool">
+        <button class="fq" type="button" aria-expanded="false" aria-controls="a-codemap">
+          <span class="qi" aria-hidden="true">🛠️</span>
+          <span class="qt">原版编辑器没有 YDWE 的相关功能，如何作图？</span>
+          <span class="chev" aria-hidden="true"></span>
+        </button>
+        <div class="faq-a" id="a-codemap" hidden=""><div class="ans">学习 Jass 和 Lua 作图，借助代码高亮插件和 AI 工具，能更好地管理地图。</div></div>
+      </article>
+      <article class="item" id="ime" data-cat="tool">
+        <button class="fq" type="button" aria-expanded="false" aria-controls="a-ime">
+          <span class="qi" aria-hidden="true">🛠️</span>
+          <span class="qt">输入内容时，编辑器卡住然后没有反应？</span>
+          <span class="chev" aria-hidden="true"></span>
+        </button>
+        <div class="faq-a" id="a-ime" hidden=""><div class="ans">原因：可能是win10/win11输入法兼容性有问题。<br>解决方法：系统设置 → 时间和语言 → 语言和区域 → 微软拼音 → 常规 → 兼容性，开启「使用以前版本的微软拼音输入法」即可。</div></div>
+      </article>
+    </section>
+
+    <section class="cat-sec" data-cat="model" style="--c:var(--purple)">
+      <h2 class="cat-h"><span class="ico" aria-hidden="true">🧊</span><span class="name">模型与图标</span><span class="n">3 个问题</span></h2>
+      <article class="item" id="hd-model" data-cat="model">
+        <button class="fq" type="button" aria-expanded="false" aria-controls="a-hd-model">
+          <span class="qi" aria-hidden="true">🧊</span>
+          <span class="qt">导入蜂巢社区下载的高清模型后，重新打开地图会崩编辑器？</span>
+          <span class="chev" aria-hidden="true"></span>
+        </button>
+        <div class="faq-a" id="a-hd-model" hidden=""><div class="ans"><b>原因：</b>1.32 时期（2020 年 1 月 ~ 2022 年 10 月）社区制作的高清模型，粒子效果可能存在兼容问题，放进 1.33 之后的编辑器就会崩溃。<br><b>解决：</b>编辑器左上角 文件 → 参数设置 → 综合 → 素材模式，选「经典」，再打开地图，高清模型不显示，也就不会崩了。<br>之后可以考虑用 <a href="https://www.hiveworkshop.com/threads/reteras-model-studio.316000/" target="_blank" rel="noopener noreferrer">Retera's Model Studio</a> 去掉 / 替换 / 修复该模型的粒子效果，再重新导入。</div></div>
+      </article>
+      <article class="item" id="icon-btn" data-cat="model">
+        <button class="fq" type="button" aria-expanded="false" aria-controls="a-icon-btn">
+          <span class="qi" aria-hidden="true">🧊</span>
+          <span class="qt">亮图标 / 暗图标（BTN / DISBTN）如何导入？</span>
+          <span class="chev" aria-hidden="true"></span>
+        </button>
+        <div class="faq-a" id="a-icon-btn" hidden=""><div class="ans">亮图标命名为 BTN，暗图标命名为 DISBTN，格式为 DDS（如 <code>BTN***.dds</code>）。<br>亮图标放进 <code>ReplaceableTextures\CommandButtons\</code>，暗图标放进 <code>ReplaceableTextures\CommandButtonsDisabled\</code>。<br>具体可参考用 <a href="http://www.zezula.net/en/casc/main.html" target="_blank" rel="noopener noreferrer">Ladik's Casc Viewer</a> 查看游戏自带图标的存放方式。</div></div>
+      </article>
+      <article class="item" id="texture" data-cat="model">
+        <button class="fq" type="button" aria-expanded="false" aria-controls="a-texture">
+          <span class="qi" aria-hidden="true">🧊</span>
+          <span class="qt">导入模型时，如何设置纹理文件的路径？</span>
+          <span class="chev" aria-hidden="true"></span>
+        </button>
+        <div class="faq-a" id="a-texture" hidden=""><div class="ans">模型是靠内部记录的一段路径文本来寻找对应纹理的。<br>蜂巢社区下载的模型，直接阅读附赠的 readme 即可。<br>其余模型可用 MDX Pather 查看模型内部引用的纹理路径，再按该路径导入贴图。</div></div>
+      </article>
+    </section>
+
+    <section class="cat-sec" data-cat="text" style="--c:var(--green)">
+      <h2 class="cat-h"><span class="ico" aria-hidden="true">📝</span><span class="name">地图与文本</span><span class="n">1 个问题</span></h2>
+      <article class="item" id="wts" data-cat="text">
+        <button class="fq" type="button" aria-expanded="false" aria-controls="a-wts">
+          <span class="qi" aria-hidden="true">📝</span>
+          <span class="qt">修改官方地图 / 战役后游戏内文本不显示？</span>
+          <span class="chev" aria-hidden="true"></span>
+        </button>
+        <div class="faq-a" id="a-wts" hidden=""><div class="ans">重制版官方地图使用带地区标识的 wts 文件实现文本翻译。<br>物编修改的粉字文本在 wts 文件里没有对应翻译，所以游戏内不会显示。<br>可在素材（导入）管理器里找到这些 wts 文件。<br>若地图面向全球玩家，应在地图里写英文，并在 wts 文件里写对应翻译。<br>若仅面向简中玩家，在素材管理器删除所有 wts 文件，直接在地图写中文即可。<br>修改官方战役请参考重制版作图交流群 - 群文件 - 常见问题 -「重制版修改官方战役的两个技巧」。</div></div>
+      </article>
+    </section>
+
+    
+
+  </div>
+
+  <div class="empty" id="empty" hidden="">
+    <div class="big" aria-hidden="true">🔍</div>
+    <div>没有找到匹配的问题</div>
+    <div class="hint">试试更短的关键词，或点「全部」查看所有分类。</div>
+  </div>
+
+  <p class="pfoot">🧙 以上未覆盖的问题，欢迎加入重制版作图交流群 632204669 交流。</p>
+
+  <footer>
+    ✧ worldeditor.cn ✧<br>
+    <span>信息来源于互联网</span>
+  </footer>
+
+</main>
+<script>
+(function(){var d=document,b=d.getElementById('themeBtn');
+function icon(){b.textContent=d.documentElement.getAttribute('data-theme')==='light'?'🌙':'☀️'}
+b.addEventListener('click',function(){var t=d.documentElement.getAttribute('data-theme')==='light'?'dark':'light';
+d.documentElement.setAttribute('data-theme',t);try{localStorage.setItem('site-theme',t)}catch(e){}icon()});
+icon()})();
+</script>
+<script>
+/* ===== 常见问题：分类筛选 + 全文搜索（问题与答案） ===== */
+(function(){
+  var inp = document.getElementById('q'),
+      cnt = document.getElementById('cnt'),
+      clr = document.getElementById('clear'),
+      catsBox = document.getElementById('cats'),
+      emptyBox = document.getElementById('empty'),
+      secs = [].slice.call(document.querySelectorAll('.cat-sec')),
+      state = { cat: '', q: '' };
+
+  function esc(s){ return String(s).replace(/[&<>"]/g, function(c){
+    return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+
+  function txt(el){ return (el.textContent || '').replace(/\s+/g,' ').trim(); }
+
+  /* 建立索引 */
+  var items = [].slice.call(document.querySelectorAll('.item')).map(function(el){
+    var ansEl = el.querySelector('.ans');
+    var qEl = el.querySelector('.qt');
+    var it = {
+      el: el,
+      sec: el.parentNode,
+      cat: el.getAttribute('data-cat'),
+      fq: el.querySelector('.fq'),
+      q: qEl,
+      pane: el.querySelector('.faq-a'),
+      ans: ansEl,
+      qText: txt(qEl),
+      origHtml: ansEl.innerHTML,
+      open: el.querySelector('.fq').getAttribute('aria-expanded') === 'true',
+      closedQ: null,
+      hl: false
+    };
+    it.hay = (it.qText + ' ' + txt(ansEl)).toLowerCase();
+    return it;
+  });
+
+  /* 分类表：名称与颜色取自各分组 */
+  var cats = secs.map(function(s){
+    var c = s.getAttribute('data-cat');
+    var n = [].filter.call(items, function(it){ return it.cat === c; }).length;
+    return { key: c, name: txt(s.querySelector('.cat-h .name')), n: n,
+             color: (s.style.getPropertyValue('--c') || 'var(--accent)').trim() };
+  });
+
+  /* 分组计数 */
+  cats.forEach(function(c){
+    var n = secs.filter(function(s){ return s.getAttribute('data-cat') === c.key; })[0]
+            .querySelector('.cat-h .n');
+    if(n) n.textContent = c.n + (c.key === 'tools' ? ' 个工具' : ' 个问题');
+  });
+
+  /* 分类 chips */
+  var chips = [];
+  function addChip(key, label, color){
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'chip' + (key === '' ? ' on' : '');
+    b.style.setProperty('--c', color);
+    b.setAttribute('data-cat', key);
+    b.setAttribute('aria-pressed', key === '' ? 'true' : 'false');
+    b.textContent = label;
+    b.addEventListener('click', function(){
+      state.cat = key;
+      chips.forEach(function(x){
+        var on = x === b;
+        x.classList.toggle('on', on);
+        x.setAttribute('aria-pressed', on ? 'true' : 'false');
+      });
+      render();
+    });
+    catsBox.appendChild(b);
+    chips.push(b);
+  }
+  catsBox.innerHTML = '';
+  addChip('', '全部 (' + items.length + ')', 'var(--accent)');
+  cats.forEach(function(c){ addChip(c.key, c.name + ' (' + c.n + ')', c.color); });
+
+  /* 高亮工具 */
+  function reOf(tokens){
+    var list = tokens.slice().sort(function(a,b){ return b.length - a.length; })
+      .map(function(t){ return t.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'); });
+    return new RegExp('(' + list.join('|') + ')', 'gi');
+  }
+  function hlStr(s, re){
+    var parts = String(s).split(re), out = '';
+    for(var i = 0; i < parts.length; i++){
+      if(!parts[i]) continue;
+      out += (i % 2) ? '<mark>' + esc(parts[i]) + '</mark>' : esc(parts[i]);
+    }
+    return out;
+  }
+  function hlIn(root, re){
+    var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null, false);
+    var nodes = [], n;
+    while((n = walker.nextNode())){
+      re.lastIndex = 0;
+      if(n.nodeValue && re.test(n.nodeValue)) nodes.push(n);
+    }
+    nodes.forEach(function(node){
+      var parts = node.nodeValue.split(re);
+      if(parts.length < 2) return;
+      var frag = document.createDocumentFragment();
+      for(var i = 0; i < parts.length; i++){
+        if(!parts[i]) continue;
+        if(i % 2){
+          var m = document.createElement('mark');
+          m.textContent = parts[i];
+          frag.appendChild(m);
+        } else {
+          frag.appendChild(document.createTextNode(parts[i]));
+        }
+      }
+      node.parentNode.replaceChild(frag, node);
+    });
+  }
+  function clearHL(it){
+    if(!it.hl) return;
+    it.ans.innerHTML = it.origHtml;
+    it.q.textContent = it.qText;
+    it.hl = false;
+  }
+  function paint(it, tokens){
+    it.ans.innerHTML = it.origHtml;
+    it.q.textContent = it.qText;
+    var re = reOf(tokens);
+    hlIn(it.ans, re);
+    it.q.innerHTML = hlStr(it.qText, re);
+    it.hl = true;
+  }
+
+  function setOpen(it, v){
+    it.fq.setAttribute('aria-expanded', v ? 'true' : 'false');
+    it.pane.hidden = !v;
+  }
+
+  function render(){
+    var q = state.q.trim();
+    var tokens = q ? q.toLowerCase().split(/\s+/).filter(Boolean) : [];
+    var shown = 0;
+
+    items.forEach(function(it){
+      var okCat = !state.cat || it.cat === state.cat;
+      var okQ = !tokens.length || tokens.every(function(t){ return it.hay.indexOf(t) > -1; });
+      var show = okCat && okQ;
+
+      it.el.hidden = !show;
+      if(show){
+        shown++;
+        setOpen(it, tokens.length ? it.closedQ !== q : it.open);
+      }
+      /* 未命中或已清空查询时一律还原原文，避免高亮残留 */
+      if(tokens.length && show) paint(it, tokens); else clearHL(it);
+    });
+
+    secs.forEach(function(s){
+      var any = [].some.call(s.querySelectorAll('.item'), function(x){ return !x.hidden; });
+      s.hidden = !any;
+    });
+
+    emptyBox.hidden = shown > 0;
+    clr.hidden = !q;
+
+    if(!q && !state.cat){
+      cnt.textContent = '共 ' + items.length + ' 条 · ' + cats.length + ' 个分类';
+    } else if(shown === 0){
+      cnt.textContent = '无匹配';
+    } else {
+      cnt.textContent = '显示 ' + shown + ' / ' + items.length + ' 条';
+    }
+  }
+
+  /* 点击问题：展开 / 收起；搜索态下记住“被收起”的查询词 */
+  items.forEach(function(it){
+    it.fq.addEventListener('click', function(){
+      var q = state.q.trim();
+      if(q){
+        it.closedQ = (it.closedQ === q) ? null : q;
+        setOpen(it, it.closedQ !== q);
+      } else {
+        it.open = !it.open;
+        setOpen(it, it.open);
+      }
+    });
+  });
+
+  /* 输入 */
+  var timer = 0;
+  inp.addEventListener('input', function(){
+    clearTimeout(timer);
+    timer = setTimeout(function(){ state.q = inp.value; render(); }, 80);
+  });
+
+  function reset(){
+    inp.value = '';
+    state.q = '';
+    render();
+  }
+  clr.addEventListener('click', function(){ reset(); inp.focus(); });
+
+  /* 快捷键：/ 聚焦，Esc 清空 */
+  document.addEventListener('keydown', function(e){
+    var tag = (e.target.tagName || '').toLowerCase();
+    var typing = tag === 'input' || tag === 'textarea' || e.target.isContentEditable;
+    if(e.key === '/' && !typing){
+      e.preventDefault();
+      inp.focus();
+      inp.select();
+    } else if(e.key === 'Escape' && (typing || state.q)){
+      if(inp.value || state.q){ reset(); }
+      inp.blur();
+    }
+  });
+
+  /* 深链：#条目 id 直接展开定位 */
+  function fromHash(){
+    var id = (location.hash || '').replace('#', '');
+    if(!id) return;
+    var it = items.filter(function(x){ return x.el.id === id; })[0];
+    if(!it) return;
+    it.open = true;
+    render();
+    it.el.scrollIntoView({ block: 'center' });
+    it.el.classList.remove('flash');
+    void it.el.offsetWidth;
+    it.el.classList.add('flash');
+  }
+  window.addEventListener('hashchange', fromHash);
+
+  render();
+  fromHash();
+})();
+</script>
+
+</body></html>

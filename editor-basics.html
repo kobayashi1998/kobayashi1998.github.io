@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>从零开始地图编辑器</title>
+<meta name="description" content="魔兽争霸III 世界编辑器入门教程：认识各功能模块，从零做一张双人对战地图，并与好友联机分享。译自暴雪官方文章。">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%2032%2032%22%3E%3Ctext%20x=%221%22%20y=%2225%22%20font-size=%2223%22%20font-family=%22Segoe%20UI%20Emoji,Apple%20Color%20Emoji,Noto%20Color%20Emoji,sans-serif%22%3E%F0%9F%97%BA%EF%B8%8F%3C/text%3E%3C/svg%3E">
+<meta name="theme-color" content="#0d1117" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f6f4ef" media="(prefers-color-scheme: light)">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="世界编辑器中文站">
+<meta property="og:title" content="从零开始地图编辑器">
+<meta property="og:description" content="魔兽争霸III 世界编辑器入门教程：认识各功能模块，从零做一张双人对战地图，并与好友联机分享。">
+<meta property="og:url" content="https://worldeditor.cn/editor-basics.html">
+<link rel="canonical" href="https://worldeditor.cn/editor-basics.html">
+<link rel="stylesheet" href="theme.css">
+<style>
+  body{
+    margin:0;padding:64px 20px;
+    background:var(--bg);color:var(--text);
+    font:15px/1.9 -apple-system,BlinkMacSystemFont,"Microsoft YaHei","PingFang SC",sans-serif;
+  }
+  main{max-width:760px;margin:0 auto}
+  .back{margin:0 0 24px}
+  .back a{display:inline-block;font-size:13px;color:var(--muted);text-decoration:none;
+    border:1px solid var(--border);background:var(--panel2);border-radius:20px;padding:3px 13px;
+    transition:color .15s,border-color .15s}
+  .back a:hover{color:var(--accent);border-color:var(--accent);}
+  h1{margin:0 0 20px;font-size:22px;font-weight:600}
+  h2{margin:36px 0 12px;font-size:15px;font-weight:600;padding-left:10px;border-left:3px solid var(--accent)}
+  p{margin:0 0 12px}
+  a{color:var(--text);text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--border)}
+  a:hover{color:var(--text);text-decoration-color:var(--text)}
+  ul.plain{margin:0;padding-left:20px}
+  ul.plain li{margin:0 0 8px}
+  ul.plain li strong{font-weight:600}
+  code{font-family:Consolas,Menlo,monospace;font-size:13.5px;color:var(--code)}
+  .fnote{color:var(--muted);font-size:12.5px;margin:0 0 12px}
+  .tip{color:var(--muted);font-size:13.5px}
+  figure{margin:0 0 16px}
+  figure img{display:block;width:100%;height:auto;border:1px solid var(--border);border-radius:10px}
+  figcaption{font-size:12.5px;color:var(--muted);margin-top:5px;text-align:center}
+  .src{color:var(--muted);font-size:13.5px}
+
+  /* ===== 日/夜切换按钮 ===== */
+  .theme-btn{position:fixed;top:14px;right:14px;z-index:99;width:30px;height:30px;border-radius:50%;
+    border:1px solid var(--border);background:var(--panel);color:var(--text);font-size:12px;line-height:1;
+    cursor:pointer;box-shadow:0 2px 10px var(--btn-shadow,rgba(0,0,0,.3));}
+  .theme-btn:hover{border-color:var(--accent);}
+
+  @media print{
+    :root,:root[data-theme="light"]{--bg:#ffffff;--text:#000000;--muted:#3d3d3d;--strong:#000000;--border:#c8c8c8;--accent:#7a5f24;--accent-rgb:122,95,36;--btn-shadow:none;}
+    body{background:#fff;color:#000;}
+    .theme-btn,.noprint{display:none;}
+    a{color:#000;text-decoration:underline;}
+    a[href^="http"]:after{content:" (" attr(href) ")";font-size:.8em;color:#555;word-break:break-all;}
+    h2,h3,h4{page-break-after:avoid;}
+    li,tr,pre,code,table,blockquote,.card,.step,figure{break-inside:avoid;}
+  }
+</style>
+<script>
+(function(){var t=null;try{t=localStorage.getItem('site-theme')}catch(e){}
+if(t!=='light'&&t!=='dark'){t=window.matchMedia&&matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'}
+document.documentElement.setAttribute('data-theme',t)})();
+</script>
+</head>
+<body>
+<button id="themeBtn" class="theme-btn" type="button" aria-label="切换日间/夜间模式" title="切换日间/夜间模式">☀️</button>
+<main>
+
+  <div class="back"><a href="index.html">← 返回主页</a></div>
+
+  <h1>从零开始地图编辑器</h1>
+
+  <p>不论这是不是你人生中的初次体验，都欢迎一起来认识《魔兽争霸III》编辑器，了解一下制作地图的基本知识。在看完这篇文章之后，你应该能有以下收获……</p>
+  <ul class="plain">
+    <li>了解所有编辑器的主要<strong>模块</strong>；</li>
+    <li>懂得如何使用<strong>地形编辑器</strong>制作出基本地图；</li>
+    <li>对于如何调整<strong>单位属性</strong>有基本认知；</li>
+    <li>懂得如何制作<strong>自定义游戏</strong>并与好友分享自制的地图。</li>
+  </ul>
+
+  <h2>第一部分：导览介绍</h2>
+
+  <figure>
+    <img src="https://bnetcmsus-a.akamaihd.net/cms/page_media/QLPCWU7QXSAR1586905917613.jpg" alt="编辑器默认界面" loading="lazy">
+    <figcaption>编辑器默认界面</figcaption>
+  </figure>
+
+  <p>如果你已经安装了《魔兽争霸III》，只要前往暴雪战网客户端的游戏页面，即可启动编辑器。</p>
+  <p>在我们正式开始之前，需要先做点准备。</p>
+  <ul class="plain">
+    <li><strong>调整镜头的裁剪平面。</strong>如果你在缩小显示的时候，画面会变成黑色，那就代表裁剪平面切掉了你的镜头。按住 Ctrl 并将鼠标滚轮向下滚动，即可调整裁剪平面。</li>
+    <li><strong>调整默认音量。</strong>如果你使用的是耳机，建议你前往「File Preferences」里面的「Sound」页面，把编辑器的音量调低一点。</li>
+    <li><strong>调整界面颜色。</strong>你可以在调整偏好设置的页面中，顺便在「Visual and Text Colors」页面中调整用户界面的色调，让编辑器变得更容易使用。</li>
+  </ul>
+  <p>《魔兽争霸III》编辑器的主要工具都能通过「模块」菜单使用，它们分别是：</p>
+  <ul class="plain">
+    <li><strong>地形编辑器：</strong>修改地图的地形、放置单位与装饰物、定义各个区域。</li>
+    <li><strong>触发编辑器：</strong>管理地图脚本、自定义事件和触发器。</li>
+    <li><strong>声音编辑器：</strong>导出／导入音效与音乐，并管理音效素材。</li>
+    <li><strong>物体编辑器：</strong>负责处理游戏内单位、技能、建筑，并让你能够创建自定义单位。</li>
+  </ul>
+  <p>本篇文章不会提及的其他编辑器功能包括：</p>
+  <ul class="plain">
+    <li><strong>AI编辑器：</strong>让你能够针对地图和剧情战役自定义电脑玩家（AI）的设置。</li>
+    <li><strong>物体管理器：</strong>管理地图里面的所有东西，单位、脚本、音效、镜头等无所不包。</li>
+    <li><strong>素材管理器：</strong>导入／导出自定义素材，例如：图标、模型、音效等。</li>
+  </ul>
+
+  <h2>第二部分：动手做一张对战地图</h2>
+
+  <p>我们来制作一张非常简单的双人对战地图。</p>
+
+  <figure>
+    <img src="https://bnetcmsus-a.akamaihd.net/cms/page_media/MRNC8YCYTHFS1586905917628.jpg" alt="新建地图对话框" loading="lazy">
+    <figcaption>新建地图对话框</figcaption>
+  </figure>
+
+  <ul class="plain">
+    <li><strong>创建新地图：</strong>在「File」菜单中，选择「New Map」，这次先暂时将所有设置值保留在默认状态。</li>
+    <li><strong>地形：</strong>通过添加悬崖来修改地形。在 <a href="https://bnetcmsus-a.akamaihd.net/cms/page_media/A05DHLTV9ZVN1586905917573.jpg" target="_blank" rel="noopener noreferrer">Terrain Palette</a> 页面里，开启「Apply Cliff」并勾选「Decrease One」，在地图正中间画一条沟渠。</li>
+    <li><strong>起始位置：</strong>接下来，切换至 <a href="https://bnetcmsus-a.akamaihd.net/cms/page_media/CURE3509G2WE1586905917785.jpg" target="_blank" rel="noopener noreferrer">Unit Palette</a>。选择「Start Location」单位，将其放置在你想要的 1 号玩家起始位置；然后改成选取 2 号玩家，并按照同样方式放置第二个起始位置。</li>
+    <li><strong>地图设置：</strong>在「Scenario」菜单中，选择 <a href="https://bnetcmsus-a.akamaihd.net/cms/page_media/ON0MT48TFBAB1586905919017.jpg" target="_blank" rel="noopener noreferrer">Player Options</a>，并同时开启 1 号玩家与 2 号玩家，让这张地图变成双人地图。</li>
+  </ul>
+  <p>点击工具栏的「测试地图」，启动你自制的《魔兽争霸III》地图。在游戏的刚开始，你拥有城镇大厅和几名苦工类型的单位，但除此之外什么都没有。让我们来把这张地图变得更有趣。每一张对战地图都应该在玩家的起始位置附近摆放一个金矿和几棵树木。</p>
+
+  <figure>
+    <img src="https://bnetcmsus-a.akamaihd.net/cms/page_media/RUTS81Z466II1586905918039.jpg" alt="放置树木后的地图" loading="lazy">
+    <figcaption>放置树木后的地图</figcaption>
+  </figure>
+
+  <ul class="plain">
+    <li><strong>新增树木：</strong>从 Unit Palette 切换至 Doodad Palette，并从装饰物列表中选取「Summer Tree Wall」（汉化界面中为「夏天树墙」）。接着，点击地图即可放置树木。你可以在调色板里调整笔刷的大小与形状。</li>
+    <li><strong>新增金矿：</strong>回到 Unit Palette，并选取「Neutral Passive」，然后放置两个金矿。点击工具栏里面的 <a href="https://bnetcmsus-a.akamaihd.net/cms/page_media/V6J9UYB6V5QM1586905918028.jpg" target="_blank" rel="noopener noreferrer">「Selection Brush」</a>，或按下空格键并连点两下金矿，即可从放置模式切换成选取模式，并<a href="https://bnetcmsus-a.akamaihd.net/cms/page_media/FFA0A44L829I1586905918187.jpg" target="_blank" rel="noopener noreferrer">调整金矿的数量或其他属性</a>，然后再次测试这张地图。</li>
+  </ul>
+  <p>你看，好到不行！只设一道传送门好像有点不公平，所以我们再造第二道传送门，然后把它连接到另一个出口区域。</p>
+  <p class="fnote">注：原文在此处没有给出放置「区域」与传送门的具体步骤，直接跳到了连接出口区域；英文原文同样如此，按原样保留。</p>
+
+  <h2>第三部分：「嘿，你有空帮我测点东西吗？」</h2>
+
+  <p>是时候邀请好友（或是网上随便一位路人）一起来看看你打造的成果了。</p>
+  <ul class="plain">
+    <li><strong>保存地图：</strong>首先，你必须先把地图保存在游戏能够读取的地方；如果你使用的是 Windows 系统，可以把文件保存在「Documents」文件夹里，路径为：<code>Documents\Warcraft III\Maps</code></li>
+    <li><strong>创建自定义游戏：</strong>从游戏的主菜单中，选取「自定义游戏」。点击「创建」，为自定义游戏命名，然后往地图列表下方滚动，直到你找到自己的地图。点击「创建」（同样的名字，但不同的按钮），即可使用这张地图创建游戏大厅。</li>
+    <li><strong>添加好友：</strong>如果你有好友在线，只要点击大厅里面的空位并选择「邀请至游戏」，即可邀请他们前来一起同乐。或者你也可以把空位留着，然后点击「开始游戏」，让 Battle.net 帮你自动搜寻对战，或帮你加入电脑玩家。</li>
+  </ul>
+
+  <h2>对战地图诀窍</h2>
+
+  <p>以下提供几个诀窍和最佳的实战演练方式，帮助你起步并设计出有趣且公平的对战地图。</p>
+  <ul class="plain">
+    <li><strong>空间很重要。</strong>每个玩家的起始位置跟距离最近的金矿之间必须要有足够的空间；但除此之外，空间在其他许多不同的场合中也都是重要的考量因素。你必须要提供足够宽敞的空间给地面单位移动，要不然它们可能会卡在地图的某个地方；也建议你多去留意地图的哪几个地方是空间狭窄的隘口。</li>
+    <li><strong>选择正确的地图尺寸。</strong>针对地图的最大玩家人数，选择合适的地图尺寸。如果只有两个玩家，但地图却很巨大，场面会变得很尴尬；同理，如果把许多玩家塞进一张很小的地图，则会导致场面变得相当混乱，并不是每个玩家都喜欢这样。</li>
+    <li><strong>思考地图的对称性。</strong>玩家彼此之间的处境应该要公平，这样才算得上是优秀的对战地图；换言之也就是，每个起始地点的优劣势必须完全相同。这一点也跟刚才提到的空间有关：如果其中一个玩家有许多天然屏障保护，但另一个玩家的基地却相当空旷毫无掩护遮蔽，那么游戏的公平性就会大受影响。</li>
+    <li><strong>记得添加中立建筑。</strong>游戏中有许多中立建筑（例如：地精商人和旅店），这些建筑可以让任何一张地图的策略变得更丰富多变且有趣。你可以思考看看哪种中立建筑比较适合你的地图，但是请记得，在放置这些建筑的时候，一定要维持玩家之间的竞争公平性。</li>
+  </ul>
+
+  <h2>结语</h2>
+
+  <p>介绍到这里，你应该已经了解该如何使用《魔兽争霸III》编辑器制作出简易地图，也知道该怎么跟好友一起同乐了。但这还只不过是《魔兽争霸III》编辑器最最基本的功能而已。你可以创建自定义游戏类型并与好友同乐，也可以制作动画影片，或是使用脚本来创造动态的单人游戏地图，甚至可以做出完整的剧情战役，或是导入自定义素材来改变自制游戏内容的外观和气氛。卷起袖子开始挥洒创意吧！</p>
+
+  
+
+  <p class="tip" style="margin-top:36px;padding-top:20px;border-top:1px solid var(--border);text-align:center;">✧ worldeditor.cn ✧<br>信息来源于互联网</p>
+
+</main>
+
+<script>
+(function(){var d=document,b=d.getElementById('themeBtn');
+function icon(){b.textContent=d.documentElement.getAttribute('data-theme')==='light'?'🌙':'☀️'}
+b.addEventListener('click',function(){var t=d.documentElement.getAttribute('data-theme')==='light'?'dark':'light';
+d.documentElement.setAttribute('data-theme',t);try{localStorage.setItem('site-theme',t)}catch(e){}icon()});
+icon()})();
+</script>
+
+</body></html>

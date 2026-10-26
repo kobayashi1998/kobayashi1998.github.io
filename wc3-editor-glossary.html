@@ -18,23 +18,10 @@
 if(t!=='light'&&t!=='dark'){t=window.matchMedia&&matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'}
 document.documentElement.setAttribute('data-theme',t)})();
 </script>
+<link rel="stylesheet" href="theme.css">
 <style>
-:root{
-  --bg:#0d1117; --bg2:#161b22; --bg3:#1c2129; --line:#2d333b;
-  --fg:#e6edf3; --fg2:#9aa4b2; --fg3:#7d8896; --accent:#e3b341;
-  --accent-rgb:227,179,65; --chip-on-fg:#0d1117;
-  --rowline:rgba(45,51,59,.7); --rowhover:rgba(227,179,65,.045);
-  --mark-bg:rgba(227,179,65,.24); --mark-fg:#ffe9b0;
-  --head-glow:rgba(227,179,65,.05); --btn-shadow:rgba(0,0,0,.35);
-}
-:root[data-theme="light"]{
-  --bg:#f6f4ef; --bg2:#ffffff; --bg3:#f1eee7; --line:#ddd6c8;
-  --fg:#2b2720; --fg2:#6b6559; --fg3:#776e5f; --accent:#806428;
-  --accent-rgb:128,100,40; --chip-on-fg:#ffffff;
-  --rowline:rgba(221,214,200,.9); --rowhover:rgba(128,100,40,.05);
-  --mark-bg:#f3e3c0; --mark-fg:#4a3708;
-  --head-glow:rgba(128,100,40,.05); --btn-shadow:rgba(0,0,0,.12);
-}
+
+
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--fg);

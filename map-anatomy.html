@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>地图文件解剖</title>
+<meta name="description" content="用 MPQEditor 打开魔兽争霸III 地图文件，逐个讲清 war3map 系列文件的数据格式与内容作用。">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%2032%2032%22%3E%3Ctext%20x=%221%22%20y=%2225%22%20font-size=%2223%22%20font-family=%22Segoe%20UI%20Emoji,Apple%20Color%20Emoji,Noto%20Color%20Emoji,sans-serif%22%3E%F0%9F%93%9C%3C/text%3E%3C/svg%3E">
+<meta name="theme-color" content="#0d1117" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f6f4ef" media="(prefers-color-scheme: light)">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="世界编辑器中文站">
+<meta property="og:title" content="地图文件解剖">
+<meta property="og:description" content="用 MPQEditor 拆开魔兽争霸III 地图包，逐个讲清 war3map 系列文件的数据格式与内容作用。">
+<meta property="og:url" content="https://worldeditor.cn/map-anatomy.html">
+<link rel="canonical" href="https://worldeditor.cn/map-anatomy.html">
+<link rel="stylesheet" href="theme.css">
+<style>
+  
+  body{
+    margin:0;padding:64px 20px;
+    background:var(--bg);color:var(--text);
+    font:15px/1.9 -apple-system,BlinkMacSystemFont,"Microsoft YaHei","PingFang SC",sans-serif;
+  }
+  main{max-width:720px;margin:0 auto}
+  .back{margin:0 0 24px}
+  .back a{display:inline-block;font-size:13px;color:var(--muted);text-decoration:none;
+    border:1px solid var(--border);background:var(--panel2);border-radius:20px;padding:3px 13px;
+    transition:color .15s,border-color .15s}
+  .back a:hover{color:var(--accent);border-color:var(--accent)}
+  h1{margin:0 0 20px;font-size:22px;font-weight:600}
+  h2{margin:36px 0 12px;font-size:15px;font-weight:600;padding-left:10px;border-left:3px solid var(--accent)}
+  h3{margin:22px 0 8px;font-size:14px;font-weight:600;color:var(--accent-bright)}
+  p{margin:0 0 12px}
+  a{color:var(--accent);text-decoration:underline;text-underline-offset:3px}
+  a:hover{color:var(--accent-bright)}
+  .sep{color:var(--muted);margin:0 10px}
+  ol,ul{margin:0;padding-left:22px}
+  ol li,ul li{margin:0 0 8px}
+  code{font-family:Consolas,Menlo,monospace;font-size:13.5px;color:var(--code)}
+  .tip{color:var(--muted);font-size:13.5px}
+  table{width:100%;border-collapse:collapse;margin:0 0 14px;font-size:13.5px}
+  th,td{text-align:left;vertical-align:top;padding:7px 10px;border:1px solid var(--border)}
+  th{background:var(--panel);font-weight:600}
+  td{background:var(--panel2)}
+  td:first-child{white-space:nowrap}
+  .fname{font-family:Consolas,Menlo,monospace;font-size:12.5px;color:var(--code);word-break:break-all;white-space:normal}
+
+  /* ===== 日间（浅色）令牌 ===== */
+  
+
+  /* ===== 日/夜切换按钮 ===== */
+  .theme-btn{position:fixed;top:14px;right:14px;z-index:99;width:30px;height:30px;border-radius:50%;
+    border:1px solid var(--border);background:var(--panel);color:var(--text);font-size:12px;line-height:1;
+    cursor:pointer;box-shadow:0 2px 10px var(--btn-shadow,rgba(0,0,0,.3));}
+  .theme-btn:hover{border-color:var(--accent);}
+
+  @media print{
+    :root,:root[data-theme="light"]{--bg:#ffffff;--text:#000000;--muted:#3d3d3d;--strong:#000000;--border:#c8c8c8;--accent:#7a5f24;--accent-rgb:122,95,36;--btn-shadow:none;}
+    body{background:#fff;color:#000;}
+    .theme-btn,.noprint{display:none;}
+    a{color:#000;text-decoration:underline;}
+    a[href^="http"]:after{content:" (" attr(href) ")";font-size:.8em;color:#555;word-break:break-all;}
+    h2,h3,h4{page-break-after:avoid;}
+    li,tr,pre,code,table,blockquote,.card,.step{break-inside:avoid;}
+  }
+</style>
+<script>
+(function(){var t=null;try{t=localStorage.getItem('site-theme')}catch(e){}
+if(t!=='light'&&t!=='dark'){t=window.matchMedia&&matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'}
+document.documentElement.setAttribute('data-theme',t)})();
+</script>
+</head>
+<body>
+<button id="themeBtn" class="theme-btn" type="button" aria-label="切换日间/夜间模式" title="切换日间/夜间模式">☀️</button>
+<main>
+
+  <div class="back"><a href="index.html">← 返回主页</a></div>
+
+  <h1>地图文件解剖</h1>
+
+  <p>一张 <code>.w3m</code> / <code>.w3x</code> 地图，本质是一个加了 512 字节头的 MPQ 压缩档案包。用 MPQEditor 把它打开，就能看到地图的全部家当：地形、单位、触发、物编修改、导入素材，各占一个文件。本页逐个讲清这些文件（夹）的数据格式与内容作用。</p>
+
+  <h2>工具：MPQEditor</h2>
+  <p>
+    <a href="http://www.zezula.net/en/mpq/main.html" target="_blank" rel="noopener">Ladik's MPQ Editor</a>（下称 MPQEditor）是经典的 MPQ 档案查看与编辑工具，免费、免安装。游戏本体在 1.30+ 已改用 CASC 存储资源（需用 <a href="http://www.zezula.net/en/casc/main.html" target="_blank" rel="noopener">Ladik's Casc Viewer</a>），但地图文件至今仍是 MPQ 格式，所以拆地图不分新旧版本，一律用 MPQEditor。游戏本体的 CASC 分层结构与各数据文件格式，见姊妹篇 <a href="game-files.html">游戏文件解剖</a>。
+  </p>
+  <ol>
+    <li>运行 MPQEditor，菜单 <code>MPQ → Open File</code>，选择任意一张地图（.w3m / .w3x 都可以）。</li>
+    <li>左侧列表即是包内全部文件，双击可直接查看（文本类文件会以纯文本打开），右键 <code>Extract</code> 可导出单个文件或整个目录。</li>
+    <li>改动后用 <code>MPQ → Compact / Save</code> 回写保存。<b>动手前务必备份原地图。</b></li>
+  </ol>
+  <p class="tip">战役文件 .w3n 同样是 MPQ 包，内含多张地图，也可以用同样方式打开。</p>
+
+  <h2>地图头部（头 512 字节）</h2>
+  <p>MPQ 数据之前有一个 512 字节的固定头部，游戏靠它识别文件类型：</p>
+  <ul>
+    <li>4 字节魔数：<code>HM3W</code>（.w3m，冰封王座之前）或倒写的 <code>SIGN</code>（.w3x，冰封王座起，紧跟 256 字节数字签名）。</li>
+    <li>其后依次是：地图名称、地图标志位（是否对战图、是否自定义科技 / 技能 / 升级、是否迷雾部分可见等）、最大玩家数，剩余补零。</li>
+  </ul>
+  <p>用十六进制编辑器打开地图，开头就能看到这些信息；而 MPQEditor 只展示 MPQ 部分，不显示这段头。</p>
+
+  <h2>MPQ 系统文件</h2>
+  <p>任何 MPQ 包内都有三个以括号命名的内部文件，它们不是地图数据，而是档案自身的管理信息：</p>
+  <table>
+    <tr><th>文件</th><th>作用</th></tr>
+    <tr><td><span class="fname">(listfile)</span></td><td>包内全部文件路径的清单。加密地图常删掉它，此时 MPQEditor 里看不到文件名，但文件其实还在。</td></tr>
+    <tr><td><span class="fname">(attributes)</span></td><td>各文件的校验值与时间戳，用于完整性校验。</td></tr>
+    <tr><td><span class="fname">(signature)</span></td><td>地图的数字签名（.w3x 由头部 SIGN 区引用）。</td></tr>
+  </table>
+
+  <h2>文件速查表</h2>
+  <table>
+    <tr><th>文件</th><th>对应编辑器面板</th><th>内容</th></tr>
+    <tr><td><span class="fname">war3map.w3i</span></td><td>地图属性</td><td>地图基本信息总表</td></tr>
+    <tr><td><span class="fname">war3map.w3e</span></td><td>地形面板</td><td>地形格点数据</td></tr>
+    <tr><td><span class="fname">war3map.shd</span></td><td>—</td><td>地形阴影图</td></tr>
+    <tr><td><span class="fname">war3map.wpm</span></td><td>—</td><td>路径贴图（通行 / 建造判定）</td></tr>
+    <tr><td><span class="fname">war3map.mmp</span></td><td>—</td><td>小地图标记</td></tr>
+    <tr><td><span class="fname">war3mapUnits.doo</span></td><td>单位面板摆放</td><td>预置单位与物品</td></tr>
+    <tr><td><span class="fname">war3map.doo</span></td><td>装饰物面板摆放</td><td>装饰物 / 可破坏物摆放</td></tr>
+    <tr><td><span class="fname">war3map.w3u / w3t / w3b / w3d / w3a / w3h / w3q</span></td><td>物体编辑器七个子面板</td><td>单位 / 物品 / 可破坏物 / 装饰物 / 技能 / 特效(增益) / 升级 的自定义数据</td></tr>
+    <tr><td><span class="fname">war3map.wtg</span></td><td>触发编辑器</td><td>触发器完整数据（类别 / 变量 / ECA）</td></tr>
+    <tr><td><span class="fname">war3map.wct</span></td><td>触发编辑器</td><td>自定义 JASS 文本触发</td></tr>
+    <tr><td><span class="fname">war3map.wts</span></td><td>—</td><td>字符串表（地图内所有引用文本）</td></tr>
+    <tr><td><span class="fname">war3map.j</span> 或 <span class="fname">war3map.lua</span></td><td>—</td><td>编译后的地图脚本（游戏真正执行的东西）</td></tr>
+    <tr><td><span class="fname">war3map.w3r / w3c / w3s</span></td><td>区域 / 镜头 / 声音面板</td><td>区域 / 镜头 / 声音定义</td></tr>
+    <tr><td><span class="fname">war3map.imp</span></td><td>导入管理器</td><td>导入文件清单</td></tr>
+    <tr><td><span class="fname">war3mapSkin.txt / Misc.txt / Extra.txt</span></td><td>界面 / 高级 / 杂项</td><td>界面自定义、平衡常数、杂项设置</td></tr>
+    <tr><td><span class="fname">war3mapMap.blp / .tga</span></td><td>—</td><td>游戏中显示的小地图图像</td></tr>
+    <tr><td><span class="fname">war3mapPreview.tga / .blp</span></td><td>—</td><td>创建游戏界面右侧的地图预览图</td></tr>
+  </table>
+
+  <h2>逐项详解</h2>
+
+  <h3>war3map.w3i —— 地图基本信息</h3>
+  <p>地图的「户口本」：地图名、作者、描述、推荐玩家数、加载画面、游戏模式与语音设置、玩家与势力配置、可用种族、科技树限制等。触发里用到的全部自定义文本也登记在它的字符串引用表中。物编与触发里凡出现 <code>TRIGSTR_xxx</code> 占位符，实际文本都存放在 <span class="fname">war3map.wts</span>。整张地图的玩家、联盟、胜利条件初始设定都由它确定。</p>
+
+  <h3>war3map.w3e —— 地形数据</h3>
+  <p>环境 / 地形文件，以 <code>W3E!</code> 魔数开头，记录地形主题（如洛丹伦夏天、艾泽拉斯）与使用的地面、悬崖贴图 ID 表。主体是逐格点的地形格数据：一张 N×N 格的地图有 (N+1)×(N+1) 个格点，每个格点固定 8 字节，包含高度、水面高度、标志位（斜坡、变黑、盲区等）、地面贴图、贴图细节与悬崖贴图。改高度图、批量换贴图等「外科手术」，改的都是这个文件。</p>
+
+  <h3>war3map.shd / wpm / mmp —— 三张辅助图</h3>
+  <ul>
+    <li><span class="fname">war3map.shd</span>：阴影位图。按地形网格分块的单字节位图，每一位记录一小块地面是否处于阴影中，对应装饰物、悬崖投下的静态阴影。</li>
+    <li><span class="fname">war3map.wpm</span>：路径贴图。与地形同尺寸的网格，逐格标记可通行、可建造、不可见等属性，是寻路与建造判定的依据。</li>
+    <li><span class="fname">war3map.mmp</span>：小地图标记。记录小地图上显示的矩形标记（如中立建筑图标、不可见区域），含坐标与镜头 / 边界标志。</li>
+  </ul>
+
+  <h3>war3mapUnits.doo 与 war3map.doo —— 摆放数据</h3>
+  <p>两个文件名字相近，分工明确：</p>
+  <ul>
+    <li><span class="fname">war3mapUnits.doo</span>：单位面板里摆上去的所有预置单位与物品——类型 ID、位置、朝向、缩放、所属玩家、生命 / 魔法值、掉落物表、金币木材等，全部逐条记录。</li>
+    <li><span class="fname">war3map.doo</span>：装饰物面板的摆放数据——装饰物与可破坏物的类型、位置、变体、生命值，以及地图上放置的特效。</li>
+  </ul>
+  <p class="tip">游戏开局后，这两份「摆放清单」会被编译进地图脚本逐条创建；所以删除它们后地图仍能玩（脚本里的单位还在），但用编辑器再打开就「空了」。</p>
+
+  <h3>war3map.w3u / w3t / w3b / w3d / w3a / w3h / w3q —— 物编七件套</h3>
+  <p>物体编辑器七个面板的数据各存一个文件，格式完全统一：文件头（版本 + 条目数）之后，每条记录为「原始 ID + 新 ID + 修改项列表」，修改项再细分为「属性 ID + 类型（整数 / 实数 / 布尔 / 字符串……）+ 值」。只改了一项属性，记录里就只有那一项，其余全部继承原版数据：</p>
+  <table>
+    <tr><th>文件</th><th>面板</th><th>内容</th></tr>
+    <tr><td><span class="fname">war3map.w3u</span></td><td>单位</td><td>自定义单位与单位修改</td></tr>
+    <tr><td><span class="fname">war3map.w3t</span></td><td>物品</td><td>自定义物品与物品修改</td></tr>
+    <tr><td><span class="fname">war3map.w3b</span></td><td>可破坏物</td><td>自定义可破坏物（树、金矿、箱子等）</td></tr>
+    <tr><td><span class="fname">war3map.w3d</span></td><td>装饰物</td><td>自定义装饰物</td></tr>
+    <tr><td><span class="fname">war3map.w3a</span></td><td>技能</td><td>自定义技能与技能修改</td></tr>
+    <tr><td><span class="fname">war3map.w3h</span></td><td>特效（增益）</td><td>自定义魔法效果与增益</td></tr>
+    <tr><td><span class="fname">war3map.w3q</span></td><td>升级</td><td>自定义科技升级</td></tr>
+  </table>
+  <p class="tip">在物体编辑器里「导出物体数据」得到的 .w3o 文件，就是这七个文件按固定顺序拼在一起的合集，可以整包再导入另一张地图。</p>
+
+  <h3>war3map.wtg / wct / wts —— 触发与文本</h3>
+  <ul>
+    <li><span class="fname">war3map.wtg</span>：触发编辑器的完整原始数据——触发类别、全局变量，以及每个触发的注释、开关状态和事件 / 条件 / 动作（ECA）列表。1.31 起重制版编辑器改用了新版 wtg 格式，但内容结构一致。</li>
+    <li><span class="fname">war3map.wct</span>：触发编辑器里的自定义 JASS 文本区（地图头代码与各触发的自定义脚本段）。</li>
+    <li><span class="fname">war3map.wts</span>：字符串表，纯文本，UTF-8 编码。物编、触发里所有 <code>TRIGSTR_xxx</code> 占位符对应的实际文本都在这里，一条一段。给地图汉化，改的主要就是它——本站<a href="wc3-editor-glossary.html">汉化词条表</a>核对名词时用的也是同一套机制。</li>
+  </ul>
+  <p class="tip">wtg / wct 只是给编辑器「看」的原始工程数据；游戏运行时并不读它们。删掉后地图照常运行，但再用编辑器打开会丢失全部触发工程。</p>
+
+  <h3>war3map.j / war3map.lua —— 地图脚本</h3>
+  <p>保存地图时，编辑器把触发的图形化数据、区域、镜头等编译成一个可执行脚本，这才是游戏真正运行的东西：JASS 地图是 <span class="fname">war3map.j</span>（纯文本，可在根目录，也常被挪到 <span class="fname">Scripts\war3map.j</span>）；1.31 起新建地图可选 Lua，对应 <span class="fname">war3map.lua</span>。游戏读取地图后先执行 <code>config</code> 函数配置玩家槽位，再执行 <code>main</code> 函数开始一局游戏。改图进阶操作（反加密、定制逻辑）大多落在这个文件上。</p>
+
+  <h3>war3map.w3r / w3c / w3s —— 区域、镜头、声音</h3>
+  <ul>
+    <li><span class="fname">war3map.w3r</span>：区域面板定义的矩形区域——坐标、名称、天气效果、环境音效、是否作为变量导出等。</li>
+    <li><span class="fname">war3map.w3c</span>：镜头面板定义的镜头——目标点、旋转角、攻击角、视距与各类距离 / 视野参数。</li>
+    <li><span class="fname">war3map.w3s</span>：声音面板定义的声音——引用的音效路径、音量、衰减距离等。</li>
+  </ul>
+  <p>这三个面板的数据同样会被编译进地图脚本，属「编辑器原始数据」，删了不影响已编译地图运行。</p>
+
+  <h3>war3map.imp 与导入素材</h3>
+  <p><span class="fname">war3map.imp</span> 是导入管理器的清单：记录每个导入文件在包内的完整路径与标志位。模型、贴图、图标、音效等素材本体则散落在包内各文件夹中（见下节）。路径必须与模型内部引用的路径一致，贴图才能被正确找到——这也是改图常见「贴图丢失」问题的根源。</p>
+
+  <h3>war3mapSkin.txt / Misc.txt / Extra.txt —— 三个设置文件</h3>
+  <ul>
+    <li><span class="fname">war3mapSkin.txt</span>：界面自定义。替换游戏界面元素（计分板、资源图标、按钮框等）、自定义界面提示文本。</li>
+    <li><span class="fname">war3mapMisc.txt</span>：平衡常数。英雄最高等级、经验获得系数、英雄复活时间等全局数值规则。</li>
+    <li><span class="fname">war3mapExtra.txt</span>：杂项设置，如地图使用的游戏数据集（冰封王座 / 重制版）与编辑器版本信息。</li>
+  </ul>
+
+  <h3>war3mapMap.blp / war3mapPreview.tga —— 两张图片</h3>
+  <ul>
+    <li><span class="fname">war3mapMap.blp</span>（旧图亦见 .tga / .b00）：游戏中显示的小地图图像。</li>
+    <li><span class="fname">war3mapPreview.tga</span>（重制版亦见 .blp）：创建游戏界面右侧的地图预览图，在地图属性里设置。</li>
+  </ul>
+
+  <h2>常见的文件夹</h2>
+  <p>地图包里除上述数据文件外，其余基本是导入的素材，按用途落在这些目录：</p>
+  <ul>
+    <li><span class="fname">war3mapImported\</span>：在导入管理器里不手动改路径时，新导入文件的默认落点。</li>
+    <li><span class="fname">ReplaceableTextures\</span>：游戏约定的贴图目录，最常用的是 <code>ReplaceableTextures\CommandButtons\</code>（亮图标 BTN）与 <code>CommandButtonsDisabled\</code>（暗图标 DISBTN）。</li>
+    <li><span class="fname">Sound\</span>、<span class="fname">Music\</span>：导入的音效与音乐。</li>
+    <li><span class="fname">Scripts\</span>：存放编译脚本（如被挪进来的 <code>Scripts\war3map.j</code>）。</li>
+    <li><span class="fname">Units\</span>：slk 拆分型地图的标志——物编数据被拆成一堆 .slk / .txt 表格放在这里（如 Unit.slk、Ability.slk），用于精简 / 加密地图数据。</li>
+  </ul>
+
+  <h2>看懂文件列表，就能看懂加密</h2>
+  <p>社区所谓「加密地图」，多数只是在 MPQ 层面做手脚。对照上面的速查表，一眼就能认出常见手法：</p>
+  <ul>
+    <li>删 <span class="fname">(listfile)</span>：MPQEditor 里文件名不可见，需靠特征恢复或暴力列名。</li>
+    <li>删 <span class="fname">war3map.wtg / wct</span>：触发工程被抹掉，地图能玩但无法还原原始触发——这也是加密最不可逆的一刀。</li>
+    <li>把 <span class="fname">war3map.j</span> 挪到 <span class="fname">Scripts\</span> 或改名：藏起核心脚本。</li>
+    <li>slk 拆分：物编数据整体搬进 <span class="fname">Units\</span> 下的 slk 表，原 w3u / w3a 等文件消失。</li>
+  </ul>
+  <p class="tip">本页只讲文件结构，用于学习与研究。请尊重地图作者：未经许可不要修改、传播他人地图。</p>
+
+</main>
+
+<script>
+(function(){var d=document,b=d.getElementById('themeBtn');
+function icon(){b.textContent=d.documentElement.getAttribute('data-theme')==='light'?'🌙':'☀️'}
+b.addEventListener('click',function(){var t=d.documentElement.getAttribute('data-theme')==='light'?'dark':'light';
+d.documentElement.setAttribute('data-theme',t);try{localStorage.setItem('site-theme',t)}catch(e){}icon()});
+icon()})();
+</script>
+</body></html>

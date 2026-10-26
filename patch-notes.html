@@ -13,13 +13,9 @@
 <meta property="og:description" content="魔兽争霸III：重制版 1.32.0 — 3.0.1 正式服补丁与热修说明中文译文。">
 <meta property="og:url" content="https://worldeditor.cn/patch-notes.html">
 <link rel="canonical" href="https://worldeditor.cn/patch-notes.html">
+<link rel="stylesheet" href="theme.css">
 <style>
-  :root{
-    --bg:#0d1117; --panel:#161b22; --panel2:#1c2129; --border:#2d333b;
-    --text:#e6edf3; --muted:#9aa4b2; --accent:#e3b341; --accent-rgb:227,179,65;
-    --code:#ffd479; --accent-bright:#f0d68a; --strong:#ffffff; --btn-shadow:rgba(0,0,0,.35);
-    --hot:#e08b5c;
-  }
+  
   *{box-sizing:border-box}
   body{
     margin:0;padding:56px 20px 72px;
@@ -102,6 +98,7 @@
 
   .pfoot{display:flex;justify-content:space-between;gap:12px;margin:34px 0 0;padding-top:18px;
     border-top:1px solid var(--border)}
+  .pfoot[hidden]{display:none}
   .nav{font-size:13px;color:var(--muted);background:none;border:0;padding:0;cursor:pointer;text-decoration:none}
   .nav:hover{color:var(--accent)}
   .nav[disabled]{opacity:.35;cursor:default}
@@ -112,11 +109,8 @@
   footer p:last-child{margin-bottom:0}
 
   /* ===== 日间（浅色）令牌 ===== */
-  :root[data-theme="light"]{
-    --bg:#f6f4ef; --panel:#ffffff; --panel2:#f1eee7; --border:#ddd6c8;
-    --text:#2b2720; --muted:#6b6559; --accent:#806428; --accent-rgb:128,100,40;
-    --code:#785c12; --accent-bright:#6a5119; --strong:#000000; --btn-shadow:rgba(0,0,0,.12);
-    --hot:#a8522a;
+:root[data-theme="light"]{
+    --strong:#000000;
   }
 
   .theme-btn{position:fixed;top:14px;right:14px;z-index:99;width:30px;height:30px;border-radius:50%;
@@ -134,6 +128,34 @@
     .pbody li,.pbody p{font-size:14px}
   }
 
+  /* ===== 全文搜索 ===== */
+  .srch{display:flex;gap:10px;align-items:center;margin:26px 0 0}
+  .srch input[type=search]{flex:1;min-width:200px;background:var(--panel2);border:1px solid var(--border);
+    color:var(--text);padding:9px 14px;border-radius:9px;font-size:14px;font-family:inherit;
+    outline:none;transition:border-color .2s,box-shadow .2s}
+  .srch input[type=search]:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(var(--accent-rgb),.14)}
+  .srch input[type=search]::placeholder{color:var(--muted)}
+  .scount{color:var(--muted);font-size:12px;white-space:nowrap;font-variant-numeric:tabular-nums}
+  mark{background:rgba(var(--accent-rgb),.26);color:var(--accent-bright);border-radius:3px;padding:0 2px}
+  #sres{margin:22px 0 0}
+  .sgrp{margin:0 0 24px}
+  .sgrp-h{display:flex;flex-wrap:wrap;align-items:baseline;gap:10px;padding-bottom:8px;margin-bottom:8px;
+    border-bottom:2px solid rgba(var(--accent-rgb),.35)}
+  .sgrp-h b{font-size:15px;font-weight:650;letter-spacing:.04em}
+  .sgrp-h .sd{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
+  .sgrp-h .sn{margin-left:auto;font-size:12px;color:var(--muted);white-space:nowrap}
+  .sitem{display:block;width:100%;text-align:left;background:none;border:0;padding:7px 10px;margin:0 0 2px;
+    border-radius:8px;cursor:pointer;font:inherit;color:var(--text);line-height:1.75}
+  .sitem:hover{background:var(--panel2)}
+  .sitem:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  .sitem .ctx{display:inline-block;font-size:11.5px;color:var(--muted);border:1px solid var(--border);
+    border-radius:4px;padding:1px 7px;margin-right:8px;vertical-align:1px;white-space:nowrap}
+  .sitem .txt{font-size:13.5px;color:var(--muted);overflow-wrap:anywhere}
+  .sitem .txt mark{color:var(--text)}
+  .shint{padding:14px 2px;color:var(--muted);font-size:12.5px}
+  @keyframes hitflash{0%,55%{background:rgba(var(--accent-rgb),.2)}100%{background:transparent}}
+  .shit{animation:hitflash 1.7s ease;border-radius:4px}
+
   @media print{
     @page{size:A4;margin:14mm 13mm}
     :root, :root[data-theme="light"]{
@@ -142,7 +164,7 @@
       --code:#4a3a10; --accent-bright:#3d2e0c; --strong:#000000; --hot:#7d3a19;
     }
     body{padding:0;background:#fff;color:#111;font-size:10.5pt}
-    .theme-btn,.back,.tabwrap,.pfoot{display:none !important}
+    .theme-btn,.back,.tabwrap,.pfoot,.srch,#sres{display:none !important}
     /* 打印只出当前版本：其余面板保持隐藏，不做展开 */
     .panel[hidden]{display:none !important}
     .panel{margin-top:0}
@@ -180,7 +202,7 @@ document.documentElement.setAttribute('data-theme',t)})();
 
   <header>
     <h1>补丁说明</h1>
-    <p class="sub" style="white-space: pre-wrap;">PATCH NOTES · 3.0.1 — 1.32.0</p>
+    <p class="sub">PATCH NOTES · 3.0.1 — 1.32.0</p>
   </header>
 
   
@@ -211,6 +233,12 @@ document.documentElement.setAttribute('data-theme',t)})();
       <button class="tab" type="button" role="tab" aria-selected="false" data-v="1.32.1">1.32.1</button>
       <button class="tab" type="button" role="tab" aria-selected="false" data-v="1.32.0">1.32.0</button>
   </nav><button class="tabmore" type="button" aria-controls="tabbar" aria-expanded="true">收起 ▴</button></div>
+
+  <div class="srch">
+    <input type="search" id="q" aria-label="全文搜索所有版本" placeholder="全文搜索所有版本，如：静滞陷阱、Blz、匹配…（按 / 聚焦）" autocomplete="off">
+    <span class="scount" id="scount" role="status" aria-live="polite"></span>
+  </div>
+  <div id="sres" hidden></div>
 
 <section class="panel on" id="v301" data-v="3.0.1" role="tabpanel"><div class="phead"><h2>版本 3.0.1</h2><div class="pmeta"><span class="d">2026-10-07</span><span class="b">构建 24342</span><span class="k">补丁</span></div></div><div class="pbody"><p class="pnote">发布经过：3.0.1 于 2026-10-07 首发，因存档兼容问题于次日回滚；2026-10-19 重新发布。下方热修为重新发布后的修复。</p><p>此补丁包含基于玩家反馈的各种错误修复和调整。</p>
 <p>提醒：之前的存档文件将不再有效。章节和幕之间的战役进度仍会保存。</p>
@@ -824,6 +852,160 @@ document.documentElement.setAttribute('data-theme',t)})();
     var i=tabs.findIndex(function(t){return t.getAttribute('data-v')===k});
     if(i>-1&&i!==cur) show(i,false);
   });
+})();
+</script>
+<script>
+/* ===== 全文搜索：跨全部版本检索正文，结果按版本分组，点击跳转并闪烁定位 ===== */
+(function(){
+  var inp=document.getElementById('q'),
+      cnt=document.getElementById('scount'),
+      res=document.getElementById('sres'),
+      tw=document.querySelector('.tabwrap'),
+      pfoot=document.querySelector('.pfoot'),
+      tabs=[].slice.call(document.querySelectorAll('.tab')),
+      panels=[].slice.call(document.querySelectorAll('.panel')),
+      mode=false, timer=0, LAST=[];
+
+  function esc(s){return String(s).replace(/[&<>"]/g,function(c){
+    return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+
+  /* li 的自身文本：去掉嵌套列表，避免父级因子文本匹配而重复计中 */
+  function ownText(el){
+    var t;
+    if(el.tagName==='LI'){
+      var c=el.cloneNode(true);
+      [].forEach.call(c.querySelectorAll('ul,ol'),function(x){
+        if(x.parentNode) x.parentNode.removeChild(x)});
+      t=c.textContent;
+    }else{ t=el.textContent; }
+    return t.replace(/\s+/g,' ').trim();
+  }
+
+  /* 最近的上级小节标题（h3/h4 或热修块标题）作为上下文标签 */
+  function ctxOf(el,pbody){
+    var e=el;
+    while(e&&e!==pbody){
+      var s=e.previousElementSibling;
+      while(s){
+        if(s.tagName==='H3'||s.tagName==='H4') return s.textContent.trim();
+        if(s.classList&&s.classList.contains('hx-h')) return s.textContent.trim();
+        s=s.previousElementSibling;
+      }
+      e=e.parentElement;
+    }
+    return '';
+  }
+
+  function markHtml(text,q){
+    var re=new RegExp('('+q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','i');
+    var parts=text.split(re), out='';
+    for(var i=0;i<parts.length;i++){
+      out+=(i%2)?'<mark>'+esc(parts[i])+'</mark>':esc(parts[i]);
+    }
+    return out;
+  }
+
+  function snippet(text,q){
+    var i=text.toLowerCase().indexOf(q.toLowerCase());
+    if(i<0){ var s0=esc(text.slice(0,140)); return s0+(text.length>140?'…':''); }
+    var start=Math.max(0,i-60), end=Math.min(text.length,i+q.length+90);
+    return (start>0?'…':'')+markHtml(text.slice(start,end),q)+(end<text.length?'…':'');
+  }
+
+  function collect(q){
+    var lq=q.toLowerCase(), groups=[], total=0;
+    panels.forEach(function(p){
+      var pb=p.querySelector('.pbody'); if(!pb) return;
+      var items=[], els=pb.querySelectorAll('li,p,h3,h4');
+      for(var k=0;k<els.length;k++){
+        var t=ownText(els[k]);
+        if(t&&t.toLowerCase().indexOf(lq)>-1)
+          items.push({el:els[k],t:t,ctx:ctxOf(els[k],pb)});
+      }
+      if(items.length){ total+=items.length;
+        groups.push({v:p.getAttribute('data-v'),
+          d:(p.querySelector('.phead .d')||{textContent:''}).textContent,
+          items:items}); }
+    });
+    return {groups:groups,total:total};
+  }
+
+  var MAX=400;
+  function render(q){
+    var r=collect(q); LAST=r.groups;
+    if(!r.total){
+      cnt.textContent='无匹配';
+      res.innerHTML='<div class="shint">没有找到「'+esc(q)+'」，试试更短的关键词。</div>';
+      return;
+    }
+    cnt.textContent='匹配 '+r.total+' 处 · 涉及 '+r.groups.length+' 个版本';
+    var html='', shown=0;
+    r.groups.forEach(function(g,gi){
+      html+='<div class="sgrp"><div class="sgrp-h"><b>版本 '+esc(g.v)+'</b>'
+          +'<span class="sd">'+esc(g.d)+'</span>'
+          +'<span class="sn">'+g.items.length+' 处匹配</span></div>';
+      g.items.forEach(function(it,ii){
+        if(shown>=MAX) return;
+        shown++;
+        html+='<button type="button" class="sitem" data-g="'+gi+'" data-i="'+ii+'">'
+            +(it.ctx?'<span class="ctx">'+esc(it.ctx)+'</span>':'')
+            +'<span class="txt">'+snippet(it.t,q)+'</span></button>';
+      });
+      html+='</div>';
+    });
+    if(r.total>MAX) html+='<div class="shint">匹配较多，仅显示前 '+MAX+' 处，请尝试更具体的关键词。</div>';
+    res.innerHTML=html;
+  }
+
+  function enter(){
+    if(mode) return; mode=true;
+    tw.hidden=true; if(pfoot) pfoot.hidden=true;
+    panels.forEach(function(p){p.hidden=true});
+    res.hidden=false;
+  }
+  function exit(){
+    if(!mode) return; mode=false;
+    tw.hidden=false; if(pfoot) pfoot.hidden=false;
+    res.hidden=true; res.innerHTML='';
+    cnt.textContent='';
+    panels.forEach(function(p){p.hidden=!p.classList.contains('on')});
+  }
+  function go(v){ enter(); render(v); }
+
+  inp.addEventListener('input',function(){
+    clearTimeout(timer);
+    var v=inp.value.trim();
+    timer=setTimeout(function(){ v?go(v):exit(); },180);
+  });
+  inp.addEventListener('keydown',function(e){
+    if(e.key==='Enter'){ clearTimeout(timer); var v=inp.value.trim(); v?go(v):exit(); }
+    else if(e.key==='Escape'){ inp.value=''; exit(); }
+  });
+
+  res.addEventListener('click',function(e){
+    var b=e.target.closest('.sitem'); if(!b) return;
+    var g=LAST[+b.getAttribute('data-g')]; if(!g) return;
+    var it=g.items[+b.getAttribute('data-i')]; if(!it) return;
+    exit();
+    var idx=-1;
+    for(var i=0;i<tabs.length;i++)
+      if(tabs[i].getAttribute('data-v')===g.v){ idx=i; break; }
+    if(idx>-1) tabs[idx].click();
+    var el=it.el;
+    try{ el.scrollIntoView({block:'center',behavior:'auto'}); }catch(err){ el.scrollIntoView(); }
+    el.classList.remove('shit'); void el.offsetWidth; el.classList.add('shit');
+    setTimeout(function(){ el.classList.remove('shit'); },1900);
+  });
+
+  /* 按 / 快速聚焦搜索框（输入框内不响应） */
+  document.addEventListener('keydown',function(e){
+    if(e.key!=='/'||mode) return;
+    var t=e.target;
+    if(t&&(t.tagName==='INPUT'||t.tagName==='TEXTAREA'||t.isContentEditable)) return;
+    e.preventDefault(); inp.focus();
+  });
+  /* 地址栏 hash 变化（前进/后退）时退出搜索态，交还标签栏控制 */
+  window.addEventListener('hashchange',function(){ if(mode) exit(); });
 })();
 </script>
 <script>
