@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN" data-theme="dark"><head>
+<html lang="zh-CN"><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>游戏文件解剖</title>
@@ -95,8 +95,8 @@ document.documentElement.setAttribute('data-theme',t)})();
   <h2 id="mpq-casc">两代档案格式：MPQ 与 CASC</h2>
   <p>游戏文件从不以散装文件形式躺在硬盘上，而是打包在档案（archive）里：</p>
   <ul>
-    <li>MPQ：1.31 之前的老档案格式。旧版安装目录下的 <code>war3.mpq</code>、<code>war3x.mpq</code>、<code>war3patch.mpq</code>、<code>war3local.mpq</code>、<code>war3xlocal.mpq</code> 都是 MPQ。</li>
-    <li>CASC（Core Asset Storage System）：1.32（重制版）起全面启用的新格式，取代 MPQ。所有资源统一存进一个 CASC 存储，不再按补丁拆包。</li>
+    <li>MPQ：1.30 之前的老档案格式。旧版安装目录下的 <code>war3.mpq</code>、<code>war3x.mpq</code>、<code>war3patch.mpq</code>、<code>war3local.mpq</code>、<code>war3xlocal.mpq</code> 都是 MPQ。</li>
+    <li>CASC（Core Asset Storage System）：1.30 起全面启用的新格式，取代 MPQ。所有资源统一存进一个 CASC 存储，不再按补丁拆包。</li>
   </ul>
   <p class="tip">两代共同的顶层是 <code>本地文件 &gt; 地图包</code>：往地图里导入的同名资源会盖掉游戏自带的。再往下才轮到游戏档案——MPQ 时代按 <code>war3patch.mpq &gt; war3xlocal.mpq &gt; war3x.mpq &gt; war3local.mpq &gt; war3.mpq</code> 逐层回退（补丁包级别最高，<code>x</code> 为冰封王座专用，<code>local</code> 为语言层；此外每张地图还会按地形额外加载一个地形包，如 <code>A.mpq</code>）；重制版把这些层压成一个 CASC 存储。这也是「启用本地文件」能覆盖游戏数据的原因，见文末。</p>
 

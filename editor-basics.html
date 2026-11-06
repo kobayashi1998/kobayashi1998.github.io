@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="zh-CN" data-theme="dark"><head>
+<html lang="zh-CN"><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>从零开始地图编辑器</title>
-<meta name="description" content="魔兽争霸III 世界编辑器入门教程：认识各功能模块，从零做一张双人对战地图，并与好友联机分享。译自暴雪官方文章。">
+<meta name="description" content="魔兽争霸III 世界编辑器入门教程：认清各功能模块，从零做一张双人对战地图，再和好友联机试玩。">
     <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%2032%2032%22%3E%3Ctext%20x=%221%22%20y=%2225%22%20font-size=%2223%22%20font-family=%22Segoe%20UI%20Emoji,Apple%20Color%20Emoji,Noto%20Color%20Emoji,sans-serif%22%3E%F0%9F%97%BA%EF%B8%8F%3C/text%3E%3C/svg%3E">
 <meta name="theme-color" content="#0d1117" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#f6f4ef" media="(prefers-color-scheme: light)">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="世界编辑器中文站">
 <meta property="og:title" content="从零开始地图编辑器">
-<meta property="og:description" content="魔兽争霸III 世界编辑器入门教程：认识各功能模块，从零做一张双人对战地图，并与好友联机分享。">
+<meta property="og:description" content="魔兽争霸III 世界编辑器入门教程：认清各功能模块，从零做一张双人对战地图，再和好友联机试玩。">
 <meta property="og:url" content="https://worldeditor.cn/editor-basics.html">
 <link rel="canonical" href="https://worldeditor.cn/editor-basics.html">
 <link rel="stylesheet" href="theme.css">
@@ -34,12 +34,38 @@
   ul.plain{margin:0;padding-left:20px}
   ul.plain li{margin:0 0 8px}
   ul.plain li strong{font-weight:600}
+  ol.steps{margin:0 0 12px;padding-left:24px}
+  ol.steps>li{margin:0 0 12px;padding-left:2px}
+  ol.steps>li::marker{color:var(--accent);font-weight:600}
+  .tip{margin:0 0 16px;padding:11px 15px;border-left:2px solid var(--accent);
+    background:var(--accent-soft);border-radius:0 8px 8px 0;font-size:13.5px;line-height:1.8;color:var(--soft-text)}
+  .tip p{margin:0}
+  .tip p+p{margin-top:7px}
   code{font-family:Consolas,Menlo,monospace;font-size:13.5px;color:var(--code)}
   .fnote{color:var(--muted);font-size:12.5px;margin:0 0 12px}
   figure{margin:0 0 16px}
   figure img{display:block;width:100%;height:auto;border:1px solid var(--border);border-radius:10px;box-sizing:border-box}
   figcaption{font-size:12.5px;color:var(--muted);margin-top:5px;text-align:center}
-  .src{color:var(--muted);font-size:13.5px}
+  .psrc{margin:34px 0 0;padding-top:14px;border-top:1px solid var(--border);
+    font-size:12.5px;color:var(--muted);line-height:1.9}
+  .psrc-k{margin-right:10px;letter-spacing:.06em;font-size:11.5px;text-transform:uppercase}
+  .psrc a{color:var(--text);text-decoration:none;border-bottom:1px dotted var(--muted);
+    transition:color .15s,border-color .15s}
+  .psrc a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+
+  /* ===== 图片占位符（截图待补）===== */
+  .ph-box{position:relative;display:flex;align-items:center;justify-content:center;
+    box-sizing:border-box;min-height:150px;padding:34px 26px;text-align:center;
+    border:1px dashed var(--border);border-radius:10px;
+    background:repeating-linear-gradient(45deg,transparent 0 9px,rgba(var(--accent-rgb),.05) 9px 18px)}
+  .ph-tag{position:absolute;top:8px;left:10px;font-size:11px;line-height:1.6;letter-spacing:.04em;
+    color:var(--muted);background:var(--panel);border:1px solid var(--border);border-radius:4px;padding:0 6px}
+  .ph-txt{margin:0;max-width:36em;font-size:13px;line-height:1.8;color:var(--muted)}
+  .ph-box.small{min-height:100px;padding:26px 20px}
+  .ph-box.small .ph-txt{font-size:12.5px}
+  li .ph-box{margin-top:10px}
+  ol.steps>li>figure{margin:12px 0 0}
+  ol.steps>li>figure .ph-box{margin-top:0}
 
   /* ===== 日/夜切换按钮 ===== */
   .theme-btn{position:fixed;top:14px;right:14px;z-index:99;width:30px;height:30px;border-radius:50%;
@@ -51,6 +77,11 @@
     :root,:root[data-theme="light"]{--bg:#ffffff;--text:#000000;--muted:#3d3d3d;--strong:#000000;--border:#c8c8c8;--accent:#7a5f24;--accent-rgb:122,95,36;--btn-shadow:none;}
     body{background:#fff;color:#000;}
     .theme-btn,.noprint{display:none;}
+    .ph-box{background:none;border-color:#999;}
+    .ph-tag{background:#fff;color:#444;border-color:#999;}
+    .tip{background:none;border-left-color:#999;}
+    figcaption{font-size:8.5pt;color:#444;}
+    .psrc{font-size:8.5pt;color:#444;}
     a{color:#000;text-decoration:underline;}
     a[href^="http"]:after{content:" (" attr(href) ")";font-size:.8em;color:#555;word-break:break-all;}
     h2,h3,h4{page-break-after:avoid;}
@@ -71,93 +102,223 @@ document.documentElement.setAttribute('data-theme',t)})();
 
   <h1>从零开始地图编辑器</h1>
 
-  <p>不论这是不是你人生中的初次体验，都欢迎一起来认识《魔兽争霸III》编辑器，了解一下制作地图的基本知识。在看完这篇文章之后，你应该能有以下收获……</p>
+  <p>不管你是第一次打开编辑器，还是想把基础再顺一遍，这篇教程都按新手的顺序来：先打开编辑器认清界面，再做一张能玩的地图，最后把它发给朋友一起测。读完之后，你应该能：</p>
+
   <ul class="plain">
-    <li>了解所有编辑器的主要<strong>模块</strong>；</li>
-    <li>懂得如何使用<strong>地形编辑器</strong>制作出基本地图；</li>
-    <li>对于如何调整<strong>单位属性</strong>有基本认知；</li>
+    <li>了解编辑器里都有哪些<strong>模块</strong>；</li>
+    <li>懂得如何用<strong>地形编辑器</strong>做出一张基本地图；</li>
+    <li>懂得如何放置单位与装饰物，也能调整它们的<strong>属性</strong>；</li>
     <li>懂得如何制作<strong>自定义游戏</strong>并与好友分享自制的地图。</li>
   </ul>
 
   <h2>第一部分：导览介绍</h2>
 
+  <p>先别急着动手。这一节先打开编辑器、认清界面上哪块区域管什么，再调好三处影响手感的设置，最后过一遍「模块」菜单里都有什么。</p>
+
+  <p>如果你已经安装了《魔兽争霸III》，去暴雪战网客户端的《魔兽争霸III》游戏页面，点「开始游戏」右边的「编辑器」即可，按钮位置如下图。还没装游戏的话，先看<a href="how-to-buy.html">购买指引</a>。</p>
+
   <figure>
-    <img src="https://bnetcmsus-a.akamaihd.net/cms/page_media/QLPCWU7QXSAR1586905917613.jpg" alt="编辑器默认界面" loading="lazy">
+    <div class="ph-box">
+      <span class="ph-tag">截图 01</span>
+      <p class="ph-txt">战网客户端的《魔兽争霸III》游戏页面：「开始游戏」按钮右侧的「编辑器」下拉按钮，用红框标出需要点击的位置。</p>
+    </div>
+    <figcaption>战网客户端的编辑器入口</figcaption>
+  </figure>
+
+  <p>打开之后，先认下这张图里的五块区域——后面的每一步操作，都得在这里面找位置。</p>
+
+  <figure>
+    <div class="ph-box">
+      <span class="ph-tag">截图 02</span>
+      <p class="ph-txt">编辑器默认界面：顶部为菜单栏与工具栏，左侧依次是地形、单位、装饰物面板，中间为视口，右下角为小地图。</p>
+    </div>
     <figcaption>编辑器默认界面</figcaption>
   </figure>
 
-  <p>如果你已经安装了《魔兽争霸III》，只要前往暴雪战网客户端的游戏页面，即可启动编辑器。</p>
-  <p>在我们正式开始之前，需要先做点准备。</p>
   <ul class="plain">
-    <li><strong>调整镜头的裁剪平面。</strong>如果你在缩小显示的时候，画面会变成黑色，那就代表裁剪平面切掉了你的镜头。按住 Ctrl 并将鼠标滚轮向下滚动，即可调整裁剪平面。</li>
-    <li><strong>调整默认音量。</strong>如果你使用的是耳机，建议你前往「File Preferences」里面的「Sound」页面，把编辑器的音量调低一点。</li>
-    <li><strong>调整界面颜色。</strong>你可以在调整偏好设置的页面中，顺便在「Visual and Text Colors」页面中调整用户界面的色调，让编辑器变得更容易使用。</li>
+    <li><strong>顶部菜单栏：</strong>新建、保存、各种设置，以及下面要讲的「模块」菜单，都从这里进。</li>
+    <li><strong>菜单栏下方的工具栏：</strong>一排常用按钮，测试地图也在这里。</li>
+    <li><strong>左侧面板区：</strong>地形、单位、装饰物、区域都在这块，用面板底部的一排标签互相切换。</li>
+    <li><strong>中间的视口：</strong>地图本体，面积最大的一块，画地形、摆东西都在这里做。</li>
+    <li><strong>右下角小地图：</strong>点一下就能把镜头跳到地图上的任意位置。</li>
   </ul>
-  <p>《魔兽争霸III》编辑器的主要工具都能通过「模块」菜单使用，它们分别是：</p>
+
+  <p>下面三处会直接影响用起来顺不顺手：第一条是出问题时的应急处理，不一定碰得到；后两条建议现在就设好。</p>
+
+  <ol class="steps">
+    <li><strong>视图缩小后边缘发黑：</strong>那是镜头被「裁剪平面」切掉了。按住 Ctrl 的同时把鼠标滚轮向下滚，视野就会重新拉开。</li>
+    <li><strong>默认音量偏大：</strong>戴耳机的话，先去「文件 → 参数设置」里的「声音」选项卡把音量调低一点。
+      <div class="ph-box small">
+        <span class="ph-tag">截图 03</span>
+        <p class="ph-txt">参数设置对话框：左侧选项卡列表中的「声音」页，右侧是音量滑杆与音效开关。</p>
+      </div>
+    </li>
+    <li><strong>界面配色不顺眼：</strong>同一个对话框里的「视觉与文本颜色」选项卡，能逐项调整界面的文字与背景颜色。看得吃力的时候，多半能在这里救回来。
+      <div class="ph-box small">
+        <span class="ph-tag">截图 04</span>
+        <p class="ph-txt">参数设置对话框的「视觉与文本颜色」选项卡：一组可逐项改色的界面元素条目，以及右下角的取色按钮。</p>
+      </div>
+    </li>
+  </ol>
+
+  <p class="fnote">这些随时都能改回来，改完立刻生效，不用重启编辑器。</p>
+
+  <p>界面之外，编辑器的主要工具都在顶部菜单栏的「模块」菜单里，常用的有四个，这篇教程会反复用到：</p>
+
   <ul class="plain">
     <li><strong>地形编辑器：</strong>修改地图的地形、放置单位与装饰物、定义各个区域。</li>
     <li><strong>触发编辑器：</strong>管理地图脚本、自定义事件和触发器。</li>
     <li><strong>声音编辑器：</strong>导出／导入音效与音乐，并管理音效素材。</li>
     <li><strong>物体编辑器：</strong>负责处理游戏内单位、技能、建筑，并让你能够创建自定义单位。</li>
   </ul>
-  <p>本篇文章不会提及的其他编辑器功能包括：</p>
+
+  <figure>
+    <div class="ph-box">
+      <span class="ph-tag">截图 05</span>
+      <p class="ph-txt">「模块」菜单展开后的下拉列表：地形编辑器、触发编辑器、声音编辑器、物体编辑器、AI 编辑器、物体管理器、素材管理器。</p>
+    </div>
+    <figcaption>「模块」菜单</figcaption>
+  </figure>
+
+  <p>另外三个功能这篇教程用不到，但你会在别人的教程和成品地图里经常碰到：</p>
+
   <ul class="plain">
-    <li><strong>AI编辑器：</strong>让你能够针对地图和剧情战役自定义电脑玩家（AI）的设置。</li>
+    <li><strong>AI 编辑器：</strong>让你能够针对地图和剧情战役自定义电脑玩家（AI）的设置。</li>
     <li><strong>物体管理器：</strong>管理地图里面的所有东西，单位、脚本、音效、镜头等无所不包。</li>
     <li><strong>素材管理器：</strong>导入／导出自定义素材，例如：图标、模型、音效等。</li>
   </ul>
 
   <h2>第二部分：动手做一张对战地图</h2>
 
-  <p>我们来制作一张非常简单的双人对战地图。</p>
+  <p>这一节要做一张两人对战的对称小地图：新建地图、画地形、放起始点、开好两个玩家位，测一遍；确认能进游戏之后，再补上金矿和树林。</p>
+
+  <ol class="steps">
+    <li><strong>创建新地图：</strong>「文件 → 创建新地图…」，弹出的对话框这次全部保持默认，直接点「确定」。
+      <figure>
+        <div class="ph-box">
+          <span class="ph-tag">截图 06</span>
+          <p class="ph-txt">新建地图对话框：「地图尺寸」「地形」「玩家数量」等设置项，右下角为「确定」按钮。</p>
+        </div>
+        <figcaption>新建地图对话框</figcaption>
+      </figure>
+    </li>
+    <li><strong>在地图中间挖一条沟渠：</strong>新建地图后默认就停在地形面板上。悬崖会形成一道高低差，地面单位跨不过崖壁，正好拿来当两家的分界线。在面板里开启「应用悬崖」、勾选「降低一层」，然后在地图正中间拖一条线。
+      <div class="ph-box small">
+        <span class="ph-tag">截图 07</span>
+        <p class="ph-txt">地形面板的悬崖区块：「应用悬崖」复选框、「降低一层」单选按钮，以及下方的悬崖类型下拉框。</p>
+      </div>
+    </li>
+    <li><strong>放两个起始点：</strong>起始点决定每位玩家开局时城镇大厅的位置。切到「单位面板」，顶部玩家下拉框选 1 号，在左上角放一个「起始地点」；再把玩家切到 2 号，在右下角放第二个，两边尽量对称。
+      <div class="ph-box small">
+        <span class="ph-tag">截图 08</span>
+        <p class="ph-txt">单位面板：顶部玩家下拉框选「玩家 1」，下方单位分类里的「起始地点」，右侧是放置区域。</p>
+      </div>
+    </li>
+    <li><strong>开启两个玩家位：</strong>「情节 → 玩家设置…」，把 1 号和 2 号玩家的「使用中」都勾上。这一步漏掉，地图就只有一个人能玩。
+      <div class="ph-box small">
+        <span class="ph-tag">截图 09</span>
+        <p class="ph-txt">玩家设置对话框：玩家 1 与玩家 2 的「使用中」栏位，以及右侧的种族、控制者等选项。</p>
+      </div>
+    </li>
+  </ol>
+
+  <p>地形和玩家位都齐了，先测一遍。点工具栏的「测试地图」，游戏会用这张地图直接开一局。</p>
 
   <figure>
-    <img src="https://bnetcmsus-a.akamaihd.net/cms/page_media/MRNC8YCYTHFS1586905917628.jpg" alt="新建地图对话框" loading="lazy">
-    <figcaption>新建地图对话框</figcaption>
+    <div class="ph-box">
+      <span class="ph-tag">截图 10</span>
+      <p class="ph-txt">工具栏上的「测试地图」按钮：位于工具栏左端，与新建、打开、保存同组，按下即启动游戏测试当前地图。</p>
+    </div>
+    <figcaption>工具栏上的「测试地图」按钮</figcaption>
   </figure>
 
-  <ul class="plain">
-    <li><strong>创建新地图：</strong>在「File」菜单中，选择「New Map」，这次先暂时将所有设置值保留在默认状态。</li>
-    <li><strong>地形：</strong>通过添加悬崖来修改地形。在 <a href="https://bnetcmsus-a.akamaihd.net/cms/page_media/A05DHLTV9ZVN1586905917573.jpg" target="_blank" rel="noopener noreferrer">Terrain Palette</a> 页面里，开启「Apply Cliff」并勾选「Decrease One」，在地图正中间画一条沟渠。</li>
-    <li><strong>起始位置：</strong>接下来，切换至 <a href="https://bnetcmsus-a.akamaihd.net/cms/page_media/CURE3509G2WE1586905917785.jpg" target="_blank" rel="noopener noreferrer">Unit Palette</a>。选择「Start Location」单位，将其放置在你想要的 1 号玩家起始位置；然后改成选取 2 号玩家，并按照同样方式放置第二个起始位置。</li>
-    <li><strong>地图设置：</strong>在「Scenario」菜单中，选择 <a href="https://bnetcmsus-a.akamaihd.net/cms/page_media/ON0MT48TFBAB1586905919017.jpg" target="_blank" rel="noopener noreferrer">Player Options</a>，并同时开启 1 号玩家与 2 号玩家，让这张地图变成双人地图。</li>
-  </ul>
-  <p>点击工具栏的「测试地图」，启动你自制的《魔兽争霸III》地图。在游戏的刚开始，你拥有城镇大厅和几名苦工类型的单位，但除此之外什么都没有。让我们来把这张地图变得更有趣。每一张对战地图都应该在玩家的起始位置附近摆放一个金矿和几棵树木。</p>
+  <div class="tip">
+    <p>测试地图不需要先保存，编辑器会自动生成一份临时地图交给游戏运行。测完直接关掉游戏窗口，就回到编辑器。</p>
+  </div>
+
+  <p>进游戏后你手上只有一座城镇大厅和几个农夫，别的什么都没有——这不是游戏出了问题，而是地图上还没放资源。每张对战地图都要在起始点旁边配一座金矿和一片树林，补的就是这两样：</p>
+
+  <ol class="steps">
+    <li><strong>种一圈树墙：</strong>切到「装饰物面板」，从列表里选「夏天树墙」，沿着起始点摆一圈。树墙既是木材来源，也是基地的围栏，摆密一点，别留能让单位钻过去的缝。刷子大小和形状可以在面板里调。
+      <div class="ph-box small">
+        <span class="ph-tag">截图 11</span>
+        <p class="ph-txt">面板底部的一排标签按钮：地形、单位、装饰物、区域、镜头等，其中「装饰物」处于点选状态。</p>
+      </div>
+    </li>
+    <li><strong>放金矿：</strong>回到「单位面板」，分类选「中立被动」，在每个起始点旁边放一座金矿。农夫只能从金矿采黄金，没有它这局根本打不起来。</li>
+    <li><strong>选中金矿改数值：</strong>放置模式下直接点地图，选中的是刷子而不是已有单位。点工具栏的「选择刷子」（或按空格键），再双击金矿，就能在属性面板里改黄金数量。
+      <div class="ph-box small">
+        <span class="ph-tag">截图 12</span>
+        <p class="ph-txt">工具栏上的「选择刷子」按钮：与各类放置刷子同组，图标为一个箭头指针。</p>
+      </div>
+
+      <div class="ph-box small">
+        <span class="ph-tag">截图 13</span>
+        <p class="ph-txt">选取金矿后弹出的属性面板：「黄金数量」等字段，可直接修改数值。</p>
+      </div>
+    </li>
+  </ol>
+
+  <p>补完之后整张地图大概长这样，两家各有一圈树、一座金矿，中间隔着那条沟渠：</p>
 
   <figure>
-    <img src="https://bnetcmsus-a.akamaihd.net/cms/page_media/RUTS81Z466II1586905918039.jpg" alt="放置树木后的地图" loading="lazy">
-    <figcaption>放置树木后的地图</figcaption>
+    <div class="ph-box">
+      <span class="ph-tag">截图 14</span>
+      <p class="ph-txt">补完资源的整张地图：两个起始点周围各围一圈树墙、各摆一座金矿，中央一条沟渠把两家隔开，镜头俯视全图。</p>
+    </div>
+    <figcaption>补上树墙与金矿之后的地图</figcaption>
   </figure>
 
-  <ul class="plain">
-    <li><strong>新增树木：</strong>从 Unit Palette 切换至 Doodad Palette，并从装饰物列表中选取「Summer Tree Wall」（汉化界面中为「夏天树墙」）。接着，点击地图即可放置树木。你可以在调色板里调整笔刷的大小与形状。</li>
-    <li><strong>新增金矿：</strong>回到 Unit Palette，并选取「Neutral Passive」，然后放置两个金矿。点击工具栏里面的 <a href="https://bnetcmsus-a.akamaihd.net/cms/page_media/V6J9UYB6V5QM1586905918028.jpg" target="_blank" rel="noopener noreferrer">「Selection Brush」</a>，或按下空格键并连点两下金矿，即可从放置模式切换成选取模式，并<a href="https://bnetcmsus-a.akamaihd.net/cms/page_media/FFA0A44L829I1586905918187.jpg" target="_blank" rel="noopener noreferrer">调整金矿的数量或其他属性</a>，然后再次测试这张地图。</li>
-  </ul>
-  <p>你看，好到不行！只设一道传送门好像有点不公平，所以我们再造第二道传送门，然后把它连接到另一个出口区域。</p>
-  <p class="fnote">注：原文在此处没有给出放置「区域」与传送门的具体步骤，直接跳到了连接出口区域；英文原文同样如此，按原样保留。</p>
+  <p>形状对不对先看这张图，然后点一次工具栏的「测试地图」，确认双方开局都有树、有金矿，位置也对称。</p>
+
+  <div class="tip">
+    <p>原文在这里跳了一大步：它紧接着说「只设一道传送门好像有点不公平」，可前面从没教过怎么放区域和传送门，读者到这儿必然断线。</p>
+
+    <p>补一句它们是什么：先用「区域面板」在地图上框出一块矩形并命名，再用传送门单位把两个区域连起来，单位走进去就会被送到另一端。这一步本教程不展开——做到这里，一张能玩的双人对战地图已经完成了。</p>
+  </div>
 
   <h2>第三部分：「嘿，你有空帮我测点东西吗？」</h2>
 
-  <p>是时候邀请好友（或是网上随便一位路人）一起来看看你打造的成果了。</p>
-  <ul class="plain">
-    <li><strong>保存地图：</strong>首先，你必须先把地图保存在游戏能够读取的地方；如果你使用的是 Windows 系统，可以把文件保存在「Documents」文件夹里，路径为：<code>Documents\Warcraft III\Maps</code></li>
-    <li><strong>创建自定义游戏：</strong>从游戏的主菜单中，选取「自定义游戏」。点击「创建」，为自定义游戏命名，然后往地图列表下方滚动，直到你找到自己的地图。点击「创建」（同样的名字，但不同的按钮），即可使用这张地图创建游戏大厅。</li>
-    <li><strong>添加好友：</strong>如果你有好友在线，只要点击大厅里面的空位并选择「邀请至游戏」，即可邀请他们前来一起同乐。或者你也可以把空位留着，然后点击「开始游戏」，让 Battle.net 帮你自动搜寻对战，或帮你加入电脑玩家。</li>
-  </ul>
+  <p>地图做完了，剩下的事只有两件：先让游戏找到这张图，再开个房间把朋友叫来。</p>
 
-  <h2>对战地图诀窍</h2>
+  <ol class="steps">
+    <li><strong>保存到游戏认识的目录：</strong>游戏只会扫描固定目录里的地图，Windows 下是「文档」文件夹里的 <code>Documents\Warcraft III\Maps</code>。用「文件 → 保存地图」存进去，否则下一步的地图列表里根本不会出现它。
+      <div class="ph-box small">
+        <span class="ph-tag">截图 15</span>
+        <p class="ph-txt">「文件 → 保存地图」的另存为对话框：左侧导航栏选中「文档」，地址栏显示 Warcraft III\Maps，下方为文件名输入框。</p>
+      </div>
+    </li>
+    <li><strong>进建房界面：</strong>回到游戏主菜单选「自定义游戏」，点左下角的「创建」，进入建房界面。
+      <div class="ph-box small">
+        <span class="ph-tag">截图 16</span>
+        <p class="ph-txt">游戏主菜单的「自定义游戏」界面：地图列表、左下角「创建」按钮，以及右上角的游戏名称输入框。</p>
+      </div>
+    </li>
+    <li><strong>填名字、选中自己的地图：</strong>先在右上角给房间起个名字，再往下滚地图列表找到刚保存的那张并选中，最后点一次「创建」确认。两个按钮同名、位置不同——前一个进建房界面，后一个才真正开房。</li>
+    <li><strong>叫人，或者直接开工：</strong>大厅右侧是玩家席位，有好友在线就点空位选「邀请至游戏」；没人来也可以直接点「开始游戏」，让 Battle.net 帮你找人或者补上电脑玩家。
+      <div class="ph-box small">
+        <span class="ph-tag">截图 17</span>
+        <p class="ph-txt">自定义游戏大厅：右侧玩家席位列表，点击空位后弹出的「邀请至游戏」菜单项。</p>
+      </div>
+    </li>
+  </ol>
 
-  <p>以下提供几个诀窍和最佳的实战演练方式，帮助你起步并设计出有趣且公平的对战地图。</p>
+  <h2>附录：对战地图诀窍</h2>
+
+  <p>下面几条是设计对战地图时最常被提到的判断标准，起步阶段照着走就不容易出问题。</p>
+
   <ul class="plain">
-    <li><strong>空间很重要。</strong>每个玩家的起始位置跟距离最近的金矿之间必须要有足够的空间；但除此之外，空间在其他许多不同的场合中也都是重要的考量因素。你必须要提供足够宽敞的空间给地面单位移动，要不然它们可能会卡在地图的某个地方；也建议你多去留意地图的哪几个地方是空间狭窄的隘口。</li>
-    <li><strong>选择正确的地图尺寸。</strong>针对地图的最大玩家人数，选择合适的地图尺寸。如果只有两个玩家，但地图却很巨大，场面会变得很尴尬；同理，如果把许多玩家塞进一张很小的地图，则会导致场面变得相当混乱，并不是每个玩家都喜欢这样。</li>
-    <li><strong>思考地图的对称性。</strong>玩家彼此之间的处境应该要公平，这样才算得上是优秀的对战地图；换言之也就是，每个起始地点的优劣势必须完全相同。这一点也跟刚才提到的空间有关：如果其中一个玩家有许多天然屏障保护，但另一个玩家的基地却相当空旷毫无掩护遮蔽，那么游戏的公平性就会大受影响。</li>
-    <li><strong>记得添加中立建筑。</strong>游戏中有许多中立建筑（例如：地精商人和旅店），这些建筑可以让任何一张地图的策略变得更丰富多变且有趣。你可以思考看看哪种中立建筑比较适合你的地图，但是请记得，在放置这些建筑的时候，一定要维持玩家之间的竞争公平性。</li>
+    <li><strong>空间很重要。</strong>起始点和最近的金矿之间必须留够空间，让农夫有路可走；除此之外，几乎所有设计问题最后都会绕回空间。地面单位需要足够宽的通道，太窄的地方会堵成一团，所以摆完地形最好亲自走一遍，看看哪几个隘口卡人。</li>
+    <li><strong>选择正确的地图尺寸。</strong>按最大玩家人数挑尺寸。两个人配一张巨图，跑半天遇不上对手；反过来把一群人塞进巴掌大的地图，又容易乱成一锅粥，不是每个玩家都喜欢这样。</li>
+    <li><strong>思考地图的对称性。</strong>公平是优秀对战地图的前提：每个起始点的优劣势必须完全对等。这条也跟空间有关——如果一家有天然屏障护着，另一家的基地却空空荡荡毫无遮蔽，胜负在开局之前就偏了。</li>
+    <li><strong>记得添加中立建筑。</strong>中立建筑（比如地精商人和旅店）能让一张图的打法丰富很多。想想哪种建筑适合你的地图，但放置时要顾着两边的竞争公平——别只在一家的门口摆商店。</li>
   </ul>
 
   <h2>结语</h2>
 
-  <p>介绍到这里，你应该已经了解该如何使用《魔兽争霸III》编辑器制作出简易地图，也知道该怎么跟好友一起同乐了。但这还只不过是《魔兽争霸III》编辑器最最基本的功能而已。你可以创建自定义游戏类型并与好友同乐，也可以制作动画影片，或是使用脚本来创造动态的单人游戏地图，甚至可以做出完整的剧情战役，或是导入自定义素材来改变自制游戏内容的外观和气氛。卷起袖子开始挥洒创意吧！</p>
+  <p>读到这里，你已经能用《魔兽争霸III》编辑器做出一张简易地图，也知道怎么拉朋友一起玩。而这只是编辑器最基本的功能：还能自定义游戏类型，做动画影片，用脚本创造动态的单人地图，甚至做出完整的剧情战役，或者导入自定义素材来改变地图的外观和气氛。接下来，卷起袖子开始挥洒创意吧！</p>
+
+  <div class="psrc"><span class="psrc-k">来源</span><a href="https://news.blizzard.com/en-us/article/23395649/revisiting-the-warcraft-iii-editor" target="_blank" rel="noopener noreferrer">Blizzard News · Revisiting the Warcraft III Editor</a></div>
 
 </main>
 
