@@ -1,1 +1,316 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>杜隆塔尔的建立 · 兽王战役重制图鉴</title>
+<meta name="description" content="《魔兽争霸III：重制版》兽王战役重制「杜隆塔尔的建立」玩家专题：改造装备、技能天赋、商店货架、敌对单位四册图鉴。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="杜隆塔尔的建立 · 兽王战役重制图鉴">
+<meta property="og:description" content="《魔兽争霸III：重制版》兽王战役重制「杜隆塔尔的建立」玩家专题：改造装备、技能天赋、商店货架、敌对单位四册图鉴。">
+<meta property="og:url" content="https://worldeditor.cn/durotar/">
+<meta name="theme-color" content="#17120c" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f6f1e6" media="(prefers-color-scheme: light)">
+<style>
+/* ============ 玩家站主题（专题首页 + 四册图鉴共用，独立于世界编辑器中文站） ============ */
+:root{
+  --bg:#17120c; --panel:#211a12; --panel2:#2a2117; --border:#3a2f22;
+  --text:#efe4cf; --muted:#b3a488; --accent:#d8b063; --accent-soft:rgba(216,176,99,.14);
+  --strong:#fff8ea; --card-shadow:rgba(0,0,0,.5); --btn-shadow:rgba(0,0,0,.4);
+  --frame-hi:#4a3521; --frame-mid:#2b1d12; --frame-lo:#1a110a;
+}
+:root[data-theme="light"]{
+  --bg:#f6f1e6; --panel:#fffdf7; --panel2:#f2ead9; --border:#ddd0b8;
+  --text:#2b2116; --muted:#6b5c47; --accent:#8a6a2f; --accent-soft:rgba(138,106,47,.12);
+  --strong:#1f1a12; --card-shadow:rgba(92,66,30,.16); --btn-shadow:rgba(92,66,30,.2);
+  --frame-hi:#f5efe1; --frame-mid:#eae0cd; --frame-lo:#dccfb5;
+}
+/* 日/夜切换按钮：五个页面同一位置、同一套样式 */
+.theme-btn{position:fixed; top:14px; right:14px; z-index:99; width:32px; height:32px;
+  border-radius:50%; border:1px solid var(--border); background:var(--panel); color:var(--text);
+  font-size:13px; line-height:1; cursor:pointer; box-shadow:0 2px 10px var(--btn-shadow);
+  padding:0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif;
+  -webkit-print-color-adjust:exact; print-color-adjust:exact}
+.theme-btn:hover{border-color:var(--accent); color:var(--accent)}
+.theme-btn:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+@media (max-width:640px){ .theme-btn{width:28px; height:28px; top:10px; right:10px; font-size:12px} }
 
+/* 日间（浅纸深墨）的纸面 / 墨色令牌**不在这里重复**：真源是 gen_codex.py 的
+   `:root`（也是各生成器单独打开时的默认值）。这里只写「非日间」这一套整组覆盖，
+   令牌名必须与那边一一对应。 */
+:root:not([data-theme="light"]){
+  --ink0:#f7ecd4; --ink1:#e6d7b6; --ink:#f0e4c8; --ink2:#d8c7a4; --ink3:#b49c7c;
+  --link:#e0c184; --gold:#d8b063; --gold-deep:#e8c47a;
+  --warn:#e08a6a; --seal:#d97261; --mech:#7cc0cc;
+  --gray:#9a9488; --green:#8fbf6a; --blue:#7ba6dd; --purple:#b58cd8; --orange:#dda05a;
+  --tag-boss:#e59a78; --tag-quest:#a6d488; --tag-start:#c0a4e6;
+  --paper-1:#352a1e; --paper-2:#2b2118; --paper-3:#2f2519; --paper-4:#241c13;
+  --paper-glow:rgba(255,238,205,.06); --paper-warm:rgba(0,0,0,.20);
+  --paper-cool:rgba(255,220,160,.04); --paper-rim:rgba(230,192,134,.22);
+  --paper-inset:rgba(0,0,0,.32); --paper-vig:rgba(0,0,0,.42);
+  --paper-hi:rgba(255,240,205,.06); --paper-fold-d:rgba(0,0,0,.22);
+  --paper-fold-l:rgba(255,240,200,.05);
+  --wash-1:rgba(255,236,196,.045); --wash-2:rgba(255,236,196,.07);
+  --wash-3:rgba(255,236,196,.12); --wash-hi:rgba(255,240,205,.05);
+  --tint-1:rgba(255,226,178,.05); --tint-2:rgba(255,226,178,.09); --tint-3:rgba(255,226,178,.15);
+  --line:rgba(226,190,134,.26); --line2:rgba(226,190,134,.14); --line3:rgba(226,190,134,.30);
+  --line4:rgba(226,190,134,.40); --gold-line:rgba(216,176,99,.42);
+  --img-bd:rgba(228,196,140,.32); --img-bg:rgba(0,0,0,.30); --img-sh:rgba(0,0,0,.42);
+  --chip-bg:#e3c078; --chip-fg:#241a10;
+}
+/* 暗底上的小徽章：原来那套「深彩色描边 + 极淡同色底」在暗纸上看不见，
+   统一改成 currentColor 描边（颜色本身已随 --tag-* / --purple / --blue 换过）。 */
+:root:not([data-theme="light"]) .pitag,
+:root:not([data-theme="light"]) .mg-tag,
+:root:not([data-theme="light"]) .sgbadge,
+:root:not([data-theme="light"]) .mg-ab i,
+:root:not([data-theme="light"]) .mg-dp i,
+:root:not([data-theme="light"]) .mg-lv,
+:root:not([data-theme="light"]) .tagsrc{border-color:currentColor; background:var(--tint-1)}
+
+/* ============ 图鉴页：页面外框 + 纸面 ============ */
+body{background:radial-gradient(ellipse at 50% -10%, var(--frame-hi) 0%, var(--frame-mid) 45%, var(--frame-lo) 100%) fixed, var(--frame-lo)}
+:root[data-theme="light"] .sheet{
+  box-shadow:0 26px 56px rgba(84,58,26,.30), 0 2px 0 rgba(255,255,255,.55) inset,
+             0 0 0 1px rgba(70,45,16,.38), 0 0 90px rgba(120,88,40,.12) inset}
+/* 日间的卷轴木杆换成浅木色：否则只有外框变浅，切换看着像没生效 */
+:root[data-theme="light"] .rod{
+  background:linear-gradient(90deg,#a98449,#d3ad72 35%,#e5c795 52%,#bd9459 78%,#96703a);
+  box-shadow:0 6px 16px rgba(90,62,26,.38), inset 0 0 6px rgba(255,246,224,.65)}
+:root[data-theme="light"] .rod::before,
+:root[data-theme="light"] .rod::after{
+  background:linear-gradient(90deg,#8a6432,#c9a468 45%,#a37c46)}
+
+/* 页头 · 图鉴导航 */
+.booknav{display:flex; flex-wrap:wrap; justify-content:center; gap:7px;
+  margin:18px auto 0; padding:0 2px; max-width:860px}
+.booknav a{display:inline-flex; align-items:center; gap:6px; padding:5px 13px;
+  font-size:13px; letter-spacing:.06em; text-decoration:none; color:var(--ink3);
+  border:1px solid var(--line); border-radius:2px; background:var(--wash-1);
+  transition:background .15s, border-color .15s, transform .15s, color .15s; white-space:nowrap}
+.booknav a:hover{border-color:var(--gold); background:var(--wash-3); transform:translateY(-1px)}
+.booknav a[aria-current="page"]{background:var(--chip-bg); border-color:var(--chip-bg);
+  color:var(--chip-fg); box-shadow:0 2px 8px var(--img-sh)}
+.booknav a[aria-current="page"] .bn-n{opacity:.85}
+.booknav .bn-n{font-family:ui-monospace,Consolas,monospace; font-size:10.5px; opacity:.72;
+  letter-spacing:.04em}
+.booknav .bn-home{border-style:dashed}
+
+/* 页尾 */
+footer.foot .foot-src{max-width:820px; margin:0 auto; line-height:1.75}
+footer.foot .foot-src b{display:block; font-size:11px; letter-spacing:.3em; color:var(--gold);
+  margin-bottom:6px; font-weight:700}
+footer.foot .foot-nav{display:flex; gap:20px; justify-content:center; flex-wrap:wrap;
+  margin:14px 0 0; font-size:12px}
+footer.foot .foot-nav a{text-decoration:none; border-bottom:1px solid var(--gold-line)}
+footer.foot .foot-nav a:hover{border-bottom-color:var(--link)}
+
+/* 打印：白纸黑字，去掉装饰层与浮动控件 */
+@media print{
+  :root, :root[data-theme="light"], :root:not([data-theme="light"]){
+    --bg:#fff; --panel:#fff; --panel2:#fff; --border:#bbb; --text:#000; --muted:#444;
+    --accent:#6b4a18; --strong:#000;
+    --frame-hi:#fff; --frame-mid:#fff; --frame-lo:#fff;
+    --ink0:#000; --ink1:#000; --ink:#000; --ink2:#222; --ink3:#444; --link:#000; --gold:#6b4a18;
+    --gold-deep:#000; --warn:#000; --seal:#000; --mech:#333;
+    --paper-1:#fff; --paper-2:#fff; --paper-3:#fff; --paper-4:#fff;
+    --paper-glow:transparent; --paper-warm:transparent; --paper-cool:transparent;
+    --paper-rim:transparent; --paper-inset:transparent; --paper-vig:transparent;
+    --paper-hi:transparent; --paper-fold-d:transparent; --paper-fold-l:transparent;
+    --wash-1:transparent; --wash-2:transparent; --wash-3:transparent; --wash-hi:transparent;
+    --tint-1:transparent; --tint-2:transparent; --tint-3:transparent;
+    --line:#bbb; --line2:#ddd; --line3:#ccc; --line4:#bbb; --gold-line:#bbb;
+    --img-bd:#bbb; --img-bg:#fff; --img-sh:transparent;
+    --chip-bg:#eee; --chip-fg:#000;
+    --tag-boss:#000; --tag-quest:#000; --tag-start:#000;
+    --gray:#000; --green:#000; --blue:#000; --purple:#000; --orange:#000;
+  }
+  body{background:#fff !important; color:#000; padding:0 0 8px !important}
+  body::before{display:none !important}
+  .theme-btn, .rod{display:none !important}
+  .sheet{background:#fff !important; box-shadow:none !important; padding:0 !important}
+  .sheet::before, .sheet::after{display:none !important}
+  .booknav a, footer.foot .foot-nav a{background:none !important; color:#000 !important;
+    border-color:#bbb !important; box-shadow:none !important}
+  .booknav a[aria-current="page"]{background:#eee !important; color:#000 !important}
+  a{color:#000 !important}
+  section.chapter, .hero, .node, article.card, .layer, tr{break-inside:avoid}
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; padding:56px 20px 72px; color:var(--text);
+  font-family:"Noto Serif SC","Source Han Serif SC","Songti SC",SimSun,"STSong",serif;
+  font-size:15px; line-height:1.75; -webkit-font-smoothing:antialiased;
+  background:radial-gradient(ellipse at 50% -18%, var(--panel2) 0%, var(--bg) 52%, var(--bg) 100%) fixed, var(--bg);
+}
+.wrap{max-width:1020px; margin:0 auto}
+
+/* 页头 */
+.hero{text-align:center; padding:0 0 8px}
+.crest{width:88px; height:88px; color:var(--accent); margin:0 auto 16px; display:block; opacity:.92}
+h1{font-family:"STKaiti","KaiTi","Noto Serif SC",serif; font-weight:700;
+  font-size:clamp(32px,5vw,52px); letter-spacing:.18em; margin:0 0 8px; color:var(--strong);
+  text-shadow:0 2px 18px var(--accent-soft)}
+.hero .sub{font-size:12.5px; letter-spacing:.34em; color:var(--muted); margin:0}
+.hero .lede{max-width:740px; margin:26px auto 0; font-size:15.5px; color:var(--text); opacity:.92}
+.hero .lede b{color:var(--accent)}
+.badge{display:inline-flex; align-items:center; gap:7px; margin-top:22px; padding:4px 13px;
+  font-size:12px; letter-spacing:.1em; color:var(--muted);
+  border:1px solid var(--border); border-radius:2px; background:var(--panel)}
+.badge i{width:6px; height:6px; border-radius:50%; background:var(--accent); display:block}
+
+/* 章节 */
+section{margin-top:58px}
+h2.sec{display:flex; align-items:baseline; gap:12px; margin:0 0 6px;
+  font-family:"STKaiti","KaiTi","Noto Serif SC",serif; font-size:24px; letter-spacing:.14em;
+  color:var(--strong); font-weight:700}
+h2.sec small{font-family:inherit; font-size:12px; letter-spacing:.2em; color:var(--muted); font-weight:400}
+h2.sec::after{content:""; flex:1; height:1px; translate:0 -2px;
+  background:linear-gradient(90deg,var(--border),transparent)}
+.sec-lede{color:var(--muted); font-size:13.5px; margin:0 0 20px}
+
+/* 四册卡片 */
+.books{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px}
+.book{position:relative; display:flex; flex-direction:column; padding:24px 24px 20px;
+  background:var(--panel); border:1px solid var(--border); border-radius:3px;
+  text-decoration:none; color:var(--text); overflow:hidden;
+  transition:border-color .18s, transform .18s, box-shadow .18s, background .18s}
+.book::before{content:""; position:absolute; left:0; top:0; bottom:0; width:3px;
+  background:var(--accent); opacity:.28; transition:opacity .18s}
+.book:hover{border-color:var(--accent); transform:translateY(-3px);
+  box-shadow:0 14px 34px var(--card-shadow); background:var(--panel2)}
+.book:hover::before{opacity:.85}
+.book .no{position:absolute; top:16px; right:18px; font-family:ui-monospace,Consolas,monospace;
+  font-size:11px; letter-spacing:.14em; color:var(--muted); opacity:.65}
+.book h3{margin:0 0 3px; font-family:"STKaiti","KaiTi","Noto Serif SC",serif;
+  font-size:22px; letter-spacing:.1em; font-weight:700; color:var(--strong)}
+.book .kick{margin:0 0 12px; font-size:11.5px; letter-spacing:.16em; color:var(--accent)}
+.book p{flex:1; margin:0 0 16px; font-size:13.4px; color:var(--muted); line-height:1.72}
+.book .nums{display:flex; gap:9px; flex-wrap:wrap; margin-bottom:14px}
+.book .num{display:flex; align-items:baseline; gap:6px; padding:3px 10px;
+  border:1px solid var(--border); border-radius:2px; background:var(--accent-soft)}
+.book .num b{font-family:"STKaiti","KaiTi",serif; font-size:16px; color:var(--accent); font-weight:700}
+.book .num span{font-size:11px; letter-spacing:.08em; color:var(--muted)}
+.book .go{font-size:12.5px; letter-spacing:.12em; color:var(--accent)}
+.book .go::after{content:" →"; transition:margin .18s}
+.book:hover .go::after{margin-left:5px}
+
+/* 改动概览 */
+.what{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:2px;
+  border:1px solid var(--border); background:var(--border)}
+.what > div{padding:22px 24px; background:var(--panel)}
+.what h3{margin:0 0 6px; font-size:15.5px; letter-spacing:.06em; color:var(--strong)}
+.what h3 em{font-style:normal; color:var(--accent); font-size:12px; letter-spacing:.14em;
+  margin-left:8px; font-family:inherit}
+.what p{margin:0; font-size:13.2px; color:var(--muted); line-height:1.72}
+
+/* 阅读提示 */
+.notes{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px}
+.note{border-left:2px solid var(--accent); padding:2px 0 2px 14px}
+.note b{display:block; font-size:13.4px; color:var(--strong); margin-bottom:3px; letter-spacing:.05em}
+.note p{margin:0; font-size:12.8px; color:var(--muted); line-height:1.7}
+
+/* 页尾 */
+.foot{margin-top:64px; padding-top:22px; border-top:1px solid var(--border);
+  text-align:center; font-size:12.2px; color:var(--muted); line-height:1.8}
+.foot-src{max-width:820px; margin:0 auto}
+.foot-src b{display:block; font-size:11px; letter-spacing:.3em; color:var(--accent); margin-bottom:7px}
+.foot code{font-family:ui-monospace,Consolas,monospace; font-size:.94em; color:var(--accent);
+  background:var(--accent-soft); padding:0 4px; border-radius:2px; word-break:break-all}
+.foot .qq{display:inline-block; margin:18px auto 0; padding:7px 20px; font-size:13px;
+  letter-spacing:.08em; color:var(--text); border:1px solid var(--border); border-radius:2px;
+  background:var(--panel)}
+.foot .qq b{color:var(--accent); font-size:15px; letter-spacing:.1em; margin-left:6px}
+.foot-nav{display:flex; gap:20px; justify-content:center; flex-wrap:wrap; margin:16px 0 0; font-size:12px}
+.foot-nav a{color:var(--muted); text-decoration:none; border-bottom:1px solid var(--border)}
+.foot-nav a:hover{color:var(--accent); border-bottom-color:var(--accent)}
+.foot .sig{margin-top:18px; font-size:11.5px; letter-spacing:.22em; opacity:.7}
+
+@media (max-width:860px){
+  .books, .what{grid-template-columns:1fr}
+  .notes{grid-template-columns:1fr}
+  body{padding:34px 14px 56px}
+  section{margin-top:44px}
+}
+@media (max-width:520px){
+  .book{padding:20px 18px 16px}
+  h1{letter-spacing:.1em}
+}
+@media print{
+  .theme-btn{display:none !important}
+  body{background:#fff !important; color:#000; padding:0}
+  .book, .what > div, .badge, .foot .qq{background:#fff !important; border-color:#bbb !important}
+  .book, .what, .what > div{break-inside:avoid}
+  a{color:#000 !important}
+}
+</style>
+<script>
+(function(){var t=null;try{t=localStorage.getItem('durotar-theme')}catch(e){}
+if(t!=='light'&&t!=='dark'){t=(window.matchMedia&&matchMedia('(prefers-color-scheme: light)').matches)?'light':'dark'}
+document.documentElement.setAttribute('data-theme',t)})();
+</script></head>
+<body id="top"><button id="themeBtn" class="theme-btn" type="button" aria-label="切换日间/夜间模式" title="切换日间/夜间模式">☀️</button>
+<div class="wrap">
+<header class="hero">
+<svg class="crest" viewBox="0 0 100 100" fill="none" stroke="currentColor"
+ stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+ <circle cx="50" cy="50" r="45" opacity=".5"/>
+ <circle cx="50" cy="50" r="38" opacity=".26"/>
+ <path d="M50 20 L59 43 L82 50 L59 57 L50 80 L41 57 L18 50 L41 43 Z" opacity=".85"/>
+ <circle cx="50" cy="50" r="4.5"/>
+ <path d="M26 28 L35 37 M74 28 L65 37 M26 72 L35 63 M74 72 L65 63" opacity=".5"/>
+</svg>
+<h1>杜隆塔尔的建立</h1>
+<p class="sub">WARCRAFT III · 兽王战役重制 · 三幕十七图</p>
+<p class="lede">那场横跨卡利姆多的兽王战役，按 <b>3.0 重制版</b> 的规矩重做了一遍：
+装备换成九槽五档的改造件，技能长出六层天赋，商店重新配货，敌人保留原版骨架、只补首领的排面与掉落。
+四册图鉴把这一版的<b>每一件装备、每一个天赋、每一格货架、每一种敌人</b>都摊开摆出来——数字全部从战役包里现算，不是估的。</p>
+<div class="badge"><i></i>最近更新 2026-11-08</div>
+</header>
+
+<section>
+<h2 class="sec">四册图鉴 <small>点卡进入</small></h2>
+<p class="sec-lede">四册各管一块，互相查得到：装备页写着哪家店卖、商店页列着卖多少钱、敌人页写着谁掉。</p>
+<div class="books"><a class="book" href="items.html"><span class="no">01</span><h3>改造装备</h3><p class="kick">九槽 · 五档 · 词条池</p><p>九槽位、五档位、一套只引用原生技能的词条池。每件都写清从哪来、卖多少钱、加了哪几条词条——文末还有游戏里那段趣闻。</p><div class="nums"><div class="num"><b>156</b><span>件装备</span></div><div class="num"><b>300–10800</b><span>金价区间</span></div></div><span class="go">进入图鉴</span></a><a class="book" href="talents.html"><span class="no">02</span><h3>技能天赋</h3><p class="kick">六层 · 每层三选一</p><p>一块面板、六层、每层三选一，单英雄封顶六点。四棵树各 18 个节点，其中 8 条是整条换技，键位不会空。</p><div class="nums"><div class="num"><b>24</b><span>全作天赋之书</span></div><div class="num"><b>8</b><span>换技节点</span></div></div><span class="go">进入图鉴</span></a><a class="book" href="shops.html"><span class="no">03</span><h3>商店货架</h3><p class="kick">三幕十七图 · 在架货位</p><p>三幕十七图，每家店按游戏内 4 列 × 3 行面板逐格摆出来：谁在卖、卖什么、几个钱、第几格。右下角那格是引擎的「选一个单位」按钮，不卖东西。</p><div class="nums"><div class="num"><b>28</b><span>在架商店</span></div><div class="num"><b>225</b><span>在售货位</span></div></div><span class="go">进入图鉴</span></a><a class="book" href="units.html"><span class="no">04</span><h3>敌对单位</h3><p class="kick">野怪 · 敌人 · 领主</p><p>全战役十七图的野怪、敌人与领主：属性、血量、DPS、技能、掉落、所在地图，连脚本运行时才创建的单位也在册。</p><div class="nums"><div class="num"><b>449</b><span>单位种类</span></div><div class="num"><b>17</b><span>所在地图</span></div></div><span class="go">进入图鉴</span></a></div>
+</section>
+
+<section>
+<h2 class="sec">这一版重了什么 <small>四条主线</small></h2>
+<div class="what">
+ <div><h3>装备<em>九槽 · 五档</em></h3><p>九个装备槽是唯一算属性的地方，躺在扩展背包里的只是一件道具。156 件里 148 件从原生素材改造，另外 8 件由旧的永久宝物重做并入（保留原生 ID）。词条只引用原生技能，数值按预算配平算出来。</p></div>
+ <div><h3>天赋<em>六层 · 三选一</em></h3><p>层数、每层数量、每点开一层，全是引擎原生行为——不用写一条触发器。四棵树各 18 个节点，层 1 与层 6 是属性，中间四层是 Q / W / E / R 各一个方向。</p></div>
+ <div><h3>商店<em>按组摆</em></h3><p>每家店按游戏内 4 列 × 3 行面板铺货，件数只出现 4 / 8 / 11：两件组必须凑成一行、四件组不许拆行、三件组只放末行。货架只卖改造件，原生池一件不上。</p></div>
+ <div><h3>敌人<em>骨架不动</em></h3><p>原版数值原样保留，只补首领的排面与掉落。旧永久宝物的掉落全部下线，随机池里只剩改造件——捡到的每件装备都能在图鉴里查到出处。</p></div>
+</div>
+</section>
+
+<section>
+<h2 class="sec">怎么读 <small>三条口径</small></h2>
+<div class="notes">
+ <div class="note"><b>数字都是真的</b><p>金价取物品的 <code>igol</code>、说明取 <code>utub</code>、天赋方向取 <code>atp1</code>，全是游戏内真实落盘的那段文本，不是宣传页的估计值。</p></div>
+ <div class="note"><b>只讲有什么，不讲怎么打</b><p>图鉴不写攻略：走位、开荒顺序、配装思路都留给你自己。这里只负责把东西摆清楚。</p></div>
+ <div class="note"><b>图标按游戏内顺序取</b><p>战役包导入的 Reforged 新图优先，缺的回落本地 CASC 3.0.1 导出；少数没有图标的对象是引擎占位技能，只显示文字。</p></div>
+</div>
+</section>
+
+<footer class="foot">
+<div class="foot-src"><b>数据来源</b>
+四册图鉴均读战役包 <code>HD3.0_OrcX.w3n</code> 现包真值：战役级物编（<code>war3campaign.w3t</code> / <code>.w3a</code> /
+<code>*.Skin.*</code>）、十七张内嵌图的 <code>war3map.*</code> 与字符串表。件数、金价、货位、单位数值由
+<code>tools/</code> 下的生成器现算，页内不手抄。图标取战役包导入的 Reforged 新图，其余取本地 CASC 3.0.1 导出。
+</div>
+<div class="qq">[QQ群]杜隆塔尔的建立 <b>838476146</b></div>
+<nav class="foot-nav"><a href="#top">↑ 回到顶部</a><a href="https://worldeditor.cn/">世界编辑器中文站</a></nav>
+<div class="sig">◆ 杜隆塔尔 · 兽王战役 ◆</div>
+</footer>
+</div>
+<script>
+(function(){var d=document,b=d.getElementById('themeBtn');if(!b)return;
+function ic(){b.textContent=d.documentElement.getAttribute('data-theme')==='light'?'🌙':'☀️';
+b.title=b.textContent==='☀️'?'切换到日间模式':'切换到夜间模式'}
+b.addEventListener('click',function(){
+ var r=d.documentElement,t=r.getAttribute('data-theme')==='light'?'dark':'light';
+ r.setAttribute('data-theme',t);try{localStorage.setItem('durotar-theme',t)}catch(e){}ic()});
+ic()})();
+</script>
+</body></html>
