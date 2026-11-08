@@ -13,7 +13,15 @@
   --link:#6d4a18; --gold:#8a6a2f; --gold-deep:#7d4d0b;
   --warn:#8c3b23; --seal:#9c2f21; --mech:#2f5f6b;
   --gray:#6f6f68; --green:#41702f; --blue:#2f5794; --purple:#6b3a8c; --orange:#a1550f;
-  --tag-boss:#7d2f18; --tag-quest:#2c5e2a; --tag-start:#55406b;
+  --tag-boss:#7d2f18; --tag-quest:#2c5e2a;
+  /* 天赋六类方向：圆点底色 + 圆点里那枚字（夜里两枚都换浅，见 site_nav） */
+  --dir-1:#8c3b23; --dir-2:#2f5f6b; --dir-3:#5c3f7a;
+  --dir-4:#3f6b2f; --dir-5:#7c5f28; --dir-6:#7a2f4a; --dir-fg:#fdf6e6;
+  /* 商店货架：面板与货位边框。白纸上用亮黄铜，12 个格子才分得开 */
+  --slot-a:#4a3720; --slot-b:#221809; --slot-bg:#140e07;
+  --slot-bd:#c2a05a; --slot-bd-hi:#ffd97a;
+  --slot-empty-bd:rgba(194,160,90,.62); --slot-dyn-bd:#e0bd72;
+  --slot-sel-bd:#c2a05a; --slot-sel-a:#54401f; --slot-sel-b:#161009;
   /* 纸面：四段渐层 + 高光 / 暖晕 / 顶晕 / 外框 / 内压 / 折痕 */
   --paper-1:#fdf7e8; --paper-2:#f7edd8; --paper-3:#fbf3e2; --paper-4:#efe2c6;
   --paper-glow:rgba(255,255,250,.6); --paper-warm:rgba(150,110,50,.18);
@@ -173,7 +181,6 @@ h1{
 .pitag-quest{color:var(--tag-quest); border-color:rgba(44,94,42,.5); background:rgba(44,94,42,.07)}
 .pitag-shop{color:var(--ink3); border-color:rgba(107,74,18,.5); background:rgba(107,74,18,.07)}
 .pitag-world{color:var(--mech); border-color:rgba(47,95,107,.5); background:rgba(47,95,107,.07)}
-.pitag-start{color:var(--tag-start); border-color:rgba(85,64,107,.45); background:rgba(85,64,107,.06)}
 .pitag-random{color:var(--ink3); border-color:rgba(107,82,53,.45); background:var(--tint-1)}
 .pitag-none{color:var(--ink3); border-color:var(--line2); background:var(--tint-1)}
 .srcs{margin:8px 0 0; padding:7px 9px 6px; border-left:2px solid var(--line3);
@@ -248,7 +255,7 @@ h2.sec::after{content:""; flex:1; height:1px; background:
 .layer .lvl{text-align:center; padding-top:3px; border-right:1px dotted var(--line2)}
 .layer .lvl b{display:block; font-family:"STKaiti","KaiTi",serif; font-size:24px;
   color:var(--ink1); line-height:1.1}
-.layer .lvl span{display:block; font-size:13px; letter-spacing:.1em; color:#6b4a1d;
+.layer .lvl span{display:block; font-size:13px; letter-spacing:.1em; color:var(--ink2);
   margin-top:5px; font-weight:700}
 .layer .lvl i{display:block; font-style:normal; font-size:10.4px; color:var(--ink3);
   margin-top:4px; padding-top:4px; border-top:1px dotted var(--line2); line-height:1.45}
@@ -260,9 +267,9 @@ h2.sec::after{content:""; flex:1; height:1px; background:
   box-shadow:0 2px 5px var(--img-sh)}
 .node .txt{min-width:0}
 .node h4{margin:0 0 3px; font-size:14.5px; letter-spacing:.02em; color:var(--ink0); line-height:1.35}
-.node h4 .dir{display:inline-block; width:16px; height:16px; line-height:15px; text-align:center;
-  font-size:10.5px; border-radius:50%; color:var(--chip-fg); margin-right:5px; vertical-align:1px;
-  font-family:ui-monospace,Consolas,monospace}
+.dir{display:inline-block; width:16px; height:16px; line-height:15px; text-align:center;
+  font-size:10.5px; border-radius:50%; color:var(--dir-fg); margin-right:5px; vertical-align:1px;
+  font-family:ui-monospace,Consolas,monospace; font-weight:400}
 .node h4 .swapmark{display:inline-block; margin-left:6px; font-size:9.5px; letter-spacing:.08em;
   color:var(--warn); border:1px solid var(--warn); padding:0 3px; border-radius:2px;
   vertical-align:1px; font-weight:400}
@@ -276,6 +283,7 @@ h2.sec::after{content:""; flex:1; height:1px; background:
 .note{border-left:2px solid var(--gold); padding:4px 0 4px 12px; font-size:13.2px;
   color:var(--ink2)}
 .note b{color:var(--ink2); display:block; font-size:13.6px; margin-bottom:2px; letter-spacing:.05em}
+.note b .dir{vertical-align:-2px; margin-right:7px; letter-spacing:0; font-size:10.5px}
 
 footer.foot{margin-top:46px; padding-top:20px; border-top:1px solid var(--line);
   font-size:12px; color:var(--ink3); text-align:center; letter-spacing:.04em}
@@ -332,7 +340,7 @@ a{color:var(--link)}
   --link:#e0c184; --gold:#d8b063; --gold-deep:#e8c47a;
   --warn:#e08a6a; --seal:#d97261; --mech:#7cc0cc;
   --gray:#9a9488; --green:#8fbf6a; --blue:#7ba6dd; --purple:#b58cd8; --orange:#dda05a;
-  --tag-boss:#e59a78; --tag-quest:#a6d488; --tag-start:#c0a4e6;
+  --tag-boss:#e59a78; --tag-quest:#a6d488;
   --paper-1:#352a1e; --paper-2:#2b2118; --paper-3:#2f2519; --paper-4:#241c13;
   --paper-glow:rgba(255,238,205,.06); --paper-warm:rgba(0,0,0,.20);
   --paper-cool:rgba(255,220,160,.04); --paper-rim:rgba(230,192,134,.22);
@@ -346,16 +354,26 @@ a{color:var(--link)}
   --line4:rgba(226,190,134,.40); --gold-line:rgba(216,176,99,.42);
   --img-bd:rgba(228,196,140,.32); --img-bg:rgba(0,0,0,.30); --img-sh:rgba(0,0,0,.42);
   --chip-bg:#e3c078; --chip-fg:#241a10;
+  /* 天赋六类方向：圆点底色只微提亮（圆点里那枚字恒浅，不能提太亮） */
+  --dir-1:#a94c30; --dir-2:#3a7180; --dir-3:#6f4d8f;
+  --dir-4:#4d7d38; --dir-5:#7d6128; --dir-6:#8f3f5c; --dir-fg:#fdf6e6;
+  /* 商店货架：暗纸上的货位边框收暗，只留一圈青铜 */
+  --slot-a:#2c2115; --slot-b:#150f08; --slot-bg:#120c06;
+  --slot-bd:#7a5c28; --slot-bd-hi:#e6c268;
+  --slot-empty-bd:rgba(122,90,40,.58); --slot-dyn-bd:#a9884a;
+  --slot-sel-bd:#7a5c28; --slot-sel-a:#3a2c16; --slot-sel-b:#140e07;
 }
 /* 暗底上的小徽章：原来那套「深彩色描边 + 极淡同色底」在暗纸上看不见，
-   统一改成 currentColor 描边（颜色本身已随 --tag-* / --purple / --blue 换过）。 */
+   统一改成 currentColor 描边（颜色本身已随 --tag-* / --purple / --blue 换过）。
+   注意用 background-color 而不是 background 简写——简写会把 `.icN` 的
+   background-image 一起冲掉，敌对册技能 / 掉落芯片的 16px 图标就是这么消失的。 */
 :root:not([data-theme="light"]) .pitag,
 :root:not([data-theme="light"]) .mg-tag,
 :root:not([data-theme="light"]) .sgbadge,
 :root:not([data-theme="light"]) .mg-ab i,
 :root:not([data-theme="light"]) .mg-dp i,
 :root:not([data-theme="light"]) .mg-lv,
-:root:not([data-theme="light"]) .tagsrc{border-color:currentColor; background:var(--tint-1)}
+:root:not([data-theme="light"]) .tagsrc{border-color:currentColor; background-color:var(--tint-1)}
 
 /* ============ 图鉴页：页面外框 + 纸面 ============ */
 body{background:radial-gradient(ellipse at 50% -10%, var(--frame-hi) 0%, var(--frame-mid) 45%, var(--frame-lo) 100%) fixed, var(--frame-lo)}
@@ -411,8 +429,15 @@ footer.foot .foot-nav a:hover{border-bottom-color:var(--link)}
     --line:#bbb; --line2:#ddd; --line3:#ccc; --line4:#bbb; --gold-line:#bbb;
     --img-bd:#bbb; --img-bg:#fff; --img-sh:transparent;
     --chip-bg:#eee; --chip-fg:#000;
-    --tag-boss:#000; --tag-quest:#000; --tag-start:#000;
+    --tag-boss:#000; --tag-quest:#000;
     --gray:#000; --green:#000; --blue:#000; --purple:#000; --orange:#000;
+    /* 方向圆点在纸上只留黑字；货架面板印白底细网格，别糊一整块墨 */
+    --dir-1:transparent; --dir-2:transparent; --dir-3:transparent;
+    --dir-4:transparent; --dir-5:transparent; --dir-6:transparent; --dir-fg:#000;
+    --slot-a:#fff; --slot-b:#fff; --slot-bg:#fff;
+    --slot-bd:#666; --slot-bd-hi:#000;
+    --slot-empty-bd:#aaa; --slot-dyn-bd:#000;
+    --slot-sel-bd:#666; --slot-sel-a:#fff; --slot-sel-b:#fff;
   }
   body{background:#fff !important; color:#000; padding:0 0 8px !important}
   body::before{display:none !important}
@@ -428,10 +453,6 @@ footer.foot .foot-nav a:hover{border-bottom-color:var(--link)}
 
 /* ---- 图鉴：敌对单位 ---- */
 .mg-map code,.mg-note code,.lede code{white-space:nowrap}
-.mg-idline{margin:9px 0 0;font-size:11.5px;color:var(--ink3);letter-spacing:.02em}
-.mg-idline code{font-family:ui-monospace,Consolas,monospace;font-size:11px;
-  color:var(--ink2);background:var(--tint-2);border:1px solid var(--line2);
-  padding:1px 5px;border-radius:2px}
 .mg-map{margin:30px 0 0;padding:18px 20px 20px;border:1px solid var(--line);
   background:var(--wash-1);position:relative}
 .mg-map::after{content:"";position:absolute;inset:5px;border:1px solid var(--line2);pointer-events:none}
@@ -454,10 +475,10 @@ table.mg-t td.dp{width:27%;min-width:190px}
   border:1px solid;border-radius:2px;white-space:nowrap}
 .mg-tag.boss,.mg-tag.lord{color:var(--tag-boss);border-color:rgba(125,47,24,.55);background:rgba(125,47,24,.07)}
 .chip small{font-size:10px;opacity:.72;margin-left:2px;font-family:ui-monospace,Consolas,monospace}
-.mg-tag.creep{color:#41702f;border-color:rgba(65,112,47,.5);background:rgba(65,112,47,.06)}
-.mg-tag.enemy{color:#2f5794;border-color:rgba(47,87,148,.5);background:rgba(47,87,148,.06)}
-.mg-tag.event{color:#2f5794;border-color:rgba(47,87,148,.5);background:rgba(47,87,148,.06)}
-.mg-tag.script{color:#6b3a8c;border-color:rgba(107,58,140,.5);background:rgba(107,58,140,.06)}
+.mg-tag.creep{color:var(--green);border-color:rgba(65,112,47,.5);background:rgba(65,112,47,.06)}
+.mg-tag.enemy{color:var(--blue);border-color:rgba(47,87,148,.5);background:rgba(47,87,148,.06)}
+.mg-tag.event{color:var(--blue);border-color:rgba(47,87,148,.5);background:rgba(47,87,148,.06)}
+.mg-tag.script{color:var(--purple);border-color:rgba(107,58,140,.5);background:rgba(107,58,140,.06)}
 .mg-sub{display:block;font-size:10.5px;color:var(--ink3);margin-top:2px}
 .mg-attr{display:block;font-size:10.2px;color:var(--ink3);margin-top:2px;line-height:1.45;
   letter-spacing:.01em}
@@ -471,13 +492,13 @@ table.mg-t td.dp{width:27%;min-width:190px}
 .mg-ab i{font-style:normal;font-size:10.6px;line-height:1.35;padding:0 5px;
   border:1px solid var(--line3);background-color:var(--tint-1);
   color:var(--ink2);border-radius:2px;white-space:nowrap}
-.mg-ab i.hero{border-color:rgba(107,58,140,.5);color:#6b3a8c;
+.mg-ab i.hero{border-color:rgba(107,58,140,.5);color:var(--purple);
   background-color:rgba(107,58,140,.06)}
 .mg-dp{display:flex;flex-wrap:wrap;gap:4px;line-height:1.55}
 .mg-dp i{font-style:normal;font-size:10.8px;padding:1px 6px;border:1px solid rgba(90,62,26,.32);
   background-color:var(--tint-2);color:var(--ink2);border-radius:2px;white-space:nowrap}
-.mg-dp i b{color:#a1550f;font-weight:600}
-.mg-dp i.evt{border-color:rgba(47,87,148,.4);color:#2f5794;
+.mg-dp i b{color:var(--orange);font-weight:600}
+.mg-dp i.evt{border-color:rgba(47,87,148,.4);color:var(--blue);
   background-color:rgba(47,87,148,.06)}
 .mg-none{color:var(--ink3)}
 .mg-facets{margin:26px 0 22px;padding:11px 16px 13px;border-top:1px solid var(--line);
@@ -896,7 +917,6 @@ document.documentElement.setAttribute('data-theme',t)})();
  <svg width="46" height="12" viewBox="0 0 46 12" fill="#6b4a1d"><path d="M23 0l4 6-4 6-4-6z" opacity=".8"/>
  <circle cx="11" cy="6" r="2"/><circle cx="35" cy="6" r="2"/></svg><i></i></div>
 <p class="lede">全战役 17 张内嵌图的敌对单位（含 <code>war3map.j</code> 运行时创建、无预置实例的单位）与脚本固定发放，只列 <b>属性 / 血量 / DPS / 技能 / 物品掉落 / 所在地图</b>。触发器固定发放并入对应单位行的掉落列（标「固定」），只有对应多只单位的群体事件才单独成行；数值全部读 <code>HD3.0_OrcX.w3n</code> 现包实算。</p>
-<p class="mg-idline">显示名 <code>图鉴：敌对单位</code>　·　文件名 <code>units.html</code>　·　旧文件名 <code>图鉴_单位总览.html</code>（保留旧版）</p>
 <div class="stats"><div class="stat"><b>17</b><span>所在地图</span></div><div class="stat"><b>449</b><span>单位种类</span></div><div class="stat"><b>112</b><span>带掉落单位</span></div><div class="stat"><b>2</b><span>群体事件</span></div><div class="stat"><b>38</b><span>事件掉落件</span></div></div></header>
 <div class="mg-facets">
 <div class="mg-frow" data-g="cat"><em>类别</em><div class="mg-chips"><button class="chip mg-fch on" data-v="" title="清空本行筛选，显示全部类别">不限 <small>451</small></button><button class="chip mg-fch" data-v="creep" title="owner 24 中立敌对、非首领">野怪 <small>259</small></button><button class="chip mg-fch" data-v="enemy" title="剧情对立阵营、非首领">敌人 <small>162</small></button><button class="chip mg-fch" data-v="lord" title="领主册全部：具名 / 野点首领单位 + 脚本固定发放">首领 <small>30</small></button></div></div>
@@ -1424,9 +1444,9 @@ document.documentElement.setAttribute('data-theme',t)})();
 <tr data-k="enemy" data-c="enemy" data-p="preset" data-d="" data-s="奥秘宝库 hvlt 塞拉摩城 塞拉摩城  塞拉摩城 orcx03b 护甲 5（城墙） · 攻击类型 普通  " data-map="orcx03b"><td class="nm"><div class="mg-nmwrap"><span class="mg-face ic359" title="hvlt 的图标：BTNArcaneVault.blp（原生 Art）"></span><div class="mg-nmtxt"><b>奥秘宝库</b><span class="mg-tag enemy">敌人</span><br><span class="uid" title="基底 hvlt">hvlt</span><span class="mg-lv none" title="CASC level 为 -（无等级），排在同段末">Lv.—</span><span class="mg-attr">护甲 5（城墙） · 攻击类型 普通</span></div></div></td><td class="num" title="护甲 5（城墙） · 攻击类型 普通 · 视野 1000 ｜ CASC HP（基底 hvlt）= 485">485</td><td class="num" title="无普通攻击（基底 hvlt 无武器 / 伤害为 0）">—</td><td class="ab"><span class="mg-none">—</span></td><td class="dp"><span class="mg-none">—</span></td></tr>
 <tr data-k="enemy" data-c="enemy" data-p="preset" data-d="" data-s="哨塔 hwtw 塞拉摩城 塞拉摩城 魔法岗哨 adts 塞拉摩城 orcx03b 攻击类型 普通  " data-map="orcx03b"><td class="nm"><div class="mg-nmwrap"><span class="mg-face ic360" title="hwtw 的图标：BTNHumanWatchTower.blp（原生 Art）"></span><div class="mg-nmtxt"><b>哨塔</b><span class="mg-tag enemy">敌人</span><br><span class="uid" title="基底 hwtw">hwtw</span><span class="mg-lv none" title="CASC level 为 -（无等级），排在同段末">Lv.—</span><span class="mg-attr">攻击类型 普通</span></div></div></td><td class="num" title="攻击类型 普通 · 视野 1600 ｜ CASC HP（基底 hwtw）= 300">300</td><td class="num" title="无普通攻击（基底 hwtw 无武器 / 伤害为 0）">—</td><td class="ab"><span class="mg-ab"><i class="has-ic ic53" title="Adts · 单位技能 · 图标 PASBTNMagicalSentry.blp">魔法岗哨</i></span></td><td class="dp"><span class="mg-none">—</span></td></tr>
 </tbody></table></div></section>
-<div class="mg-note"><h3>口径与来源</h3><ul><li><b>所在地图</b>：按包内地图文件名排序分节，节头给出关卡中文名、<code>*.w3x</code> 文件名与包内图号；同一单位在多图出现时按图分别实算，不跨图串名（同一 ID 在不同图可有不同名称与数值）。</li><li><b>排列与等级</b>：每张图内先 <b>首领</b>、再 <b>敌人</b>、最后 <b>野怪</b>；段内按等级 <b>由高到低</b>，同级再按血量 / DPS / ID 递减。群体事件行按它代表单位的等级插入首领段。等级 = 图内 / 战役层 <code>w3u.ulev</code> 覆盖优先，回落 CASC <code>unitbalance.slk</code> 的 <code>level</code>（3.0.1 该表按 <code>unitBalanceID</code> 索引；<code>-</code> 记为无等级，显示 <code>Lv.—</code>）。单位 ID 后的 <code>Lv.N</code> 徽记即该排序值，悬停可见口径。</li><li><b>属性</b>：单位名下的小字是 <b>护甲（护甲类型）· 移速 · 魔法 · 攻击类型 · 射程</b>；悬停血量格还能看到回血 / 初始魔法 / 回魔 / 视野 / 武器类型 / 英雄三围 / 主属性，以及哪些字段被图内或战役层覆盖。字段映射逐条实查 CASC <code>unitmetadata.slk</code>（<code>udef→def</code>、<code>umvs→spd</code>、<code>ua1r→rangeN1</code> 等），枚举中文名取自 zhcn <code>worldeditstrings.txt</code>；层次与血量实算一致（原生基底 → 战役层对基底 → 图内对象自己），CASC 里的空值 <code>-</code> / <code>_</code> 与 0 值不显示。</li><li><b>血量</b>：图内 / 战役层 <code>w3u.uhpm</code>（→ <code>HP</code>）覆盖优先；未覆盖的非英雄取 CASC <code>unitbalance.slk</code> 的 <code>HP</code>，英雄取 <code>realHP</code>（含属性加成）。自定义对象 = 原生基底 + 基底的战役层覆盖 + 自己的 mods，不叠加战役层对同 ID 原生对象的修改。悬停数值可看来源。</li><li><b>DPS</b>：普通攻击 <code>(dmgplus1 + dice1 × (1 + sides1) / 2) / cool1</code>，覆盖字段 <code>ua1b / ua1d / ua1s / ua1c</code> 优先，回落 CASC <code>unitweapons.slk</code> 的原生基底。不含技能伤害、法球与触发脚本加成；无普通攻击显示「—」。悬停可看计算明细与基底 ID。</li><li><b>技能</b>：图内 <code>uabi</code> → 战役层 <code>uabi</code> → CASC <code>unitabilities.slk</code> 的 <code>abilList</code>，<code>heroAbilList</code> 恒定附加（紫色标签）；25 个引擎占位技能已过滤。悬停标签可看 4 字符 ID。</li><li><b>英雄光晕</b>：战役层 <code>HeGo</code>（基底 <code>ACnr</code>，挂 <code>GeneralHeroGlow.mdx</code>，纯视觉无数值）已补挂到 28 个首领单位（按 图×ID 计），图内有对象的写图内 <code>uabi</code>、只在战役层定义的写战役层；原本就是英雄模板的 4 个首领（<code>Udre</code> 恐惧魔王、<code>H009</code> 圣骑士模板、<code>H00A</code> 大法师模板、<code>Hapm</code> 海军上将）由引擎自己画英雄光晕，不挂 <code>HeGo</code>。首领行头像一律带金色外发光。「鹰身女妖偷猎者」这类群体事件给代表它的女王 <code>nhrq</code> 挂；不是单一首领单位的杂兵群（考哥尔）仍不挂。</li><li><b>物品掉落</b>：单位行 = <code>war3mapUnits.doo</code> 掉落表实存值（带百分比）+ <code>war3map.j</code> 触发器固定发放（标「固定」、无百分比）；同一只怪只占一行，不再因为「既是单位又有固定发放」重复两条。只有对应多只单位的群体事件（考哥尔 / 鹰身女妖偷猎者）单独成行，掉落列只写该事件固定发放的物品。空值显示「—」。</li><li><b>原生装备已全部清掉</b>：3.0 官方 <code>Equipment</code> 池里<b>没有被改造</b>的件（<code>itemdata.slk</code> 324 件 − 图内 / 战役层 <code>icla=Equipment</code> 的改造件）不再从任何渠道掉落——① <code>doo</code> 掉落表清空；② 触发器写死的发放（<code>CreateItemLoc</code> / <code>UnitAddItemByIdSwapped</code>，<code>wtg</code> 与 <code>j</code> 同源双写）删除；③ 随机装备池的 <code>iprn</code>（可作为随机物品）置 0，随机池只剩 123 件改造件。三件竞技场赐福（贪婪 <code>ergg</code> / 暴怒 <code>ergw</code> / 傲慢 <code>ergp</code>）按指定保留。改造件、套装、消耗品、任务物品不动。</li><li><b>脚本创建的单位</b>：<code>war3mapUnits.doo</code> 之外，<code>war3map.j</code> 的 <code>Trig_*</code> 函数还会在运行时创建敌对单位。单位类型既可能是 <code>CreateNUnitsAtLoc(1, 'h002', ...)</code> 这样的字面量，也可能是刷怪包的变量：<code>set udg_SpawnPackUnitTypeArray[i] = 'h000'</code> 配置、再由通用函数 <code>CreateNUnitsAtLoc(1, udg_SpawnPackUnitTypeArray[...], Player(PLAYER_NEUTRAL_AGGRESSIVE), ...)</code> 创建。本页先收全图的 <code>set udg_* = 'xxxx'</code> 映射再展开变量，所以雷霆凤凰 <code>h000</code> / 小雷霆凤凰 <code>h001</code> / 大雷霆凤凰 <code>h002</code> 三种形态、以及各图刷怪包的野怪都能进表。这些单位一律按同一口径实算属性 / 血量 / DPS / 技能，带「脚本创建」徽记，悬停可看创建它的触发器名；友军英雄、中立被动、建筑、船只、米莎 / 小提米等场景件不计。</li><li><b>群体事件行</b>：只用于对应多只单位的事件（清场 / 竞技场三轮 / 多只杂兵），它们没法并进某一只单位的行。<code>war3map.j</code> 的条件（<code>GetUnitTypeId(GetDyingUnit())</code>）、<code>udg_</code> 变量赋值链和 <code>gg_rct_*</code> 区域都能反查到对应敌对单位（区域用 <code>war3mapUnits.doo</code> 的实例坐标筛）。事件行据此补齐代表单位的等级 / 属性 / 血量 / DPS / 技能，单位名下的红字「对应单位」给出全部名称与 ID；掉落列只写该事件固定发放的物品，不冒充单位的预置掉落表。</li><li><b>已删除</b>：两条非生物事件（任务事件、固定坐标拾取点）不是敌对生物，整条不进图鉴；它们关联的敌对生物仍按单位行进表。</li><li><b>四行多选筛选</b>：同一行可点选多个值＝「或」，行与行之间＝「与」，点每行的「不限」清空该行；按钮数字是该值的总行数，地图节在无可见行时整节隐藏。<b>类别</b>：野怪 259 / 敌人 162 / 首领 30（互斥，合计覆盖全部行）；<b>放置</b>：预放置 390（<code>war3mapUnits.doo</code> 预置单位）/ 触发放置 61（<code>Trig_*</code> 运行时创建的单位 + 触发器固定发放行）；<b>掉落</b>：预掉落 96（<code>doo</code> 掉落表带百分比）/ 触发掉落 18（触发器固定物品）；<b>地图</b>：17 张图按<b>关卡中文名 + 文件名</b>多选（中文名在前、<code>orcx01</code> 这类文件名字干在后；悬停可看 <code>*.w3x</code> 全名与包内图号），只做过滤、不再跳转。按钮数字 = 该值的总行数（地图按钮含该图的群体事件行，所以比节头「单位 N 种」略大；「不限」为全表行数）。启用「掉落」行时无掉落的行不显示；技能名 / ID 用搜索框查找。中立被动、场景件、纯建筑不计；本页独立生成，不改动其它图鉴页面。</li><li><b>图标</b>：单位 / 技能 / 物品分别取生效 <code>uico</code> / <code>aart</code> / <code>iico</code>（图内主表与 Skin、战役层主表与 Skin）；未覆盖时按自定义对象的 <code>old</code> 基底回落 CASC <code>unitskin.txt</code> / <code>abilityskin.txt</code> / <code>itemfunc.txt</code> 的 <code>Art:hd</code>（3.0.1 HD 变体优先，再回落 <code>Art</code> / <code>Art:sd</code>；雷霆凤凰、枭兽这类单位只有 HD 变体有图标）。战役包导入的 DDS 优先于本地 CASC HD 导出，压成 32px WebP 内嵌，同名只存一份 CSS 类；现共 361 张唯一图标（包内 6 / CASC 355 / 缺图 0）。悬停单位头像、技能与掉落标签可看图标文件名；7 个无图标对象（引擎占位技能）只显示文字，不摆占位图。</li><li>包 <code>HD3.0_OrcX.w3n</code> sha1 <code>e88c83862747</code> · 生成 2026-11-08 18:20 · 本页只读生成，未改动包、<code>campaign/</code>、<code>maps/</code> 与任何既有脚本。重新生成：<code>python tools/gen_bestiary_merged.py</code>。</li></ul></div>
+<div class="mg-note"><h3>口径与来源</h3><ul><li><b>所在地图</b>：按包内地图文件名排序分节，节头给出关卡中文名、<code>*.w3x</code> 文件名与包内图号；同一单位在多图出现时按图分别实算，不跨图串名（同一 ID 在不同图可有不同名称与数值）。</li><li><b>排列与等级</b>：每张图内先 <b>首领</b>、再 <b>敌人</b>、最后 <b>野怪</b>；段内按等级 <b>由高到低</b>，同级再按血量 / DPS / ID 递减。群体事件行按它代表单位的等级插入首领段。等级 = 图内 / 战役层 <code>w3u.ulev</code> 覆盖优先，回落 CASC <code>unitbalance.slk</code> 的 <code>level</code>（3.0.1 该表按 <code>unitBalanceID</code> 索引；<code>-</code> 记为无等级，显示 <code>Lv.—</code>）。单位 ID 后的 <code>Lv.N</code> 徽记即该排序值，悬停可见口径。</li><li><b>属性</b>：单位名下的小字是 <b>护甲（护甲类型）· 移速 · 魔法 · 攻击类型 · 射程</b>；悬停血量格还能看到回血 / 初始魔法 / 回魔 / 视野 / 武器类型 / 英雄三围 / 主属性，以及哪些字段被图内或战役层覆盖。字段映射逐条实查 CASC <code>unitmetadata.slk</code>（<code>udef→def</code>、<code>umvs→spd</code>、<code>ua1r→rangeN1</code> 等），枚举中文名取自 zhcn <code>worldeditstrings.txt</code>；层次与血量实算一致（原生基底 → 战役层对基底 → 图内对象自己），CASC 里的空值 <code>-</code> / <code>_</code> 与 0 值不显示。</li><li><b>血量</b>：图内 / 战役层 <code>w3u.uhpm</code>（→ <code>HP</code>）覆盖优先；未覆盖的非英雄取 CASC <code>unitbalance.slk</code> 的 <code>HP</code>，英雄取 <code>realHP</code>（含属性加成）。自定义对象 = 原生基底 + 基底的战役层覆盖 + 自己的 mods，不叠加战役层对同 ID 原生对象的修改。悬停数值可看来源。</li><li><b>DPS</b>：普通攻击 <code>(dmgplus1 + dice1 × (1 + sides1) / 2) / cool1</code>，覆盖字段 <code>ua1b / ua1d / ua1s / ua1c</code> 优先，回落 CASC <code>unitweapons.slk</code> 的原生基底。不含技能伤害、法球与触发脚本加成；无普通攻击显示「—」。悬停可看计算明细与基底 ID。</li><li><b>技能</b>：图内 <code>uabi</code> → 战役层 <code>uabi</code> → CASC <code>unitabilities.slk</code> 的 <code>abilList</code>，<code>heroAbilList</code> 恒定附加（紫色标签）；25 个引擎占位技能已过滤。悬停标签可看 4 字符 ID。</li><li><b>英雄光晕</b>：战役层 <code>HeGo</code>（基底 <code>ACnr</code>，挂 <code>GeneralHeroGlow.mdx</code>，纯视觉无数值）已补挂到 28 个首领单位（按 图×ID 计），图内有对象的写图内 <code>uabi</code>、只在战役层定义的写战役层；原本就是英雄模板的 4 个首领（<code>Udre</code> 恐惧魔王、<code>H009</code> 圣骑士模板、<code>H00A</code> 大法师模板、<code>Hapm</code> 海军上将）由引擎自己画英雄光晕，不挂 <code>HeGo</code>。首领行头像一律带金色外发光。「鹰身女妖偷猎者」这类群体事件给代表它的女王 <code>nhrq</code> 挂；不是单一首领单位的杂兵群（考哥尔）仍不挂。</li><li><b>物品掉落</b>：单位行 = <code>war3mapUnits.doo</code> 掉落表实存值（带百分比）+ <code>war3map.j</code> 触发器固定发放（标「固定」、无百分比）；同一只怪只占一行，不再因为「既是单位又有固定发放」重复两条。只有对应多只单位的群体事件（考哥尔 / 鹰身女妖偷猎者）单独成行，掉落列只写该事件固定发放的物品。空值显示「—」。</li><li><b>原生装备已全部清掉</b>：3.0 官方 <code>Equipment</code> 池里<b>没有被改造</b>的件（<code>itemdata.slk</code> 324 件 − 图内 / 战役层 <code>icla=Equipment</code> 的改造件）不再从任何渠道掉落——① <code>doo</code> 掉落表清空；② 触发器写死的发放（<code>CreateItemLoc</code> / <code>UnitAddItemByIdSwapped</code>，<code>wtg</code> 与 <code>j</code> 同源双写）删除；③ 随机装备池的 <code>iprn</code>（可作为随机物品）置 0，随机池只剩 123 件改造件。三件竞技场赐福（贪婪 <code>ergg</code> / 暴怒 <code>ergw</code> / 傲慢 <code>ergp</code>）按指定保留。改造件、套装、消耗品、任务物品不动。</li><li><b>脚本创建的单位</b>：<code>war3mapUnits.doo</code> 之外，<code>war3map.j</code> 的 <code>Trig_*</code> 函数还会在运行时创建敌对单位。单位类型既可能是 <code>CreateNUnitsAtLoc(1, 'h002', ...)</code> 这样的字面量，也可能是刷怪包的变量：<code>set udg_SpawnPackUnitTypeArray[i] = 'h000'</code> 配置、再由通用函数 <code>CreateNUnitsAtLoc(1, udg_SpawnPackUnitTypeArray[...], Player(PLAYER_NEUTRAL_AGGRESSIVE), ...)</code> 创建。本页先收全图的 <code>set udg_* = 'xxxx'</code> 映射再展开变量，所以雷霆凤凰 <code>h000</code> / 小雷霆凤凰 <code>h001</code> / 大雷霆凤凰 <code>h002</code> 三种形态、以及各图刷怪包的野怪都能进表。这些单位一律按同一口径实算属性 / 血量 / DPS / 技能，带「脚本创建」徽记，悬停可看创建它的触发器名；友军英雄、中立被动、建筑、船只、米莎 / 小提米等场景件不计。</li><li><b>群体事件行</b>：只用于对应多只单位的事件（清场 / 竞技场三轮 / 多只杂兵），它们没法并进某一只单位的行。<code>war3map.j</code> 的条件（<code>GetUnitTypeId(GetDyingUnit())</code>）、<code>udg_</code> 变量赋值链和 <code>gg_rct_*</code> 区域都能反查到对应敌对单位（区域用 <code>war3mapUnits.doo</code> 的实例坐标筛）。事件行据此补齐代表单位的等级 / 属性 / 血量 / DPS / 技能，单位名下的红字「对应单位」给出全部名称与 ID；掉落列只写该事件固定发放的物品，不冒充单位的预置掉落表。</li><li><b>已删除</b>：两条非生物事件（任务事件、固定坐标拾取点）不是敌对生物，整条不进图鉴；它们关联的敌对生物仍按单位行进表。</li><li><b>四行多选筛选</b>：同一行可点选多个值＝「或」，行与行之间＝「与」，点每行的「不限」清空该行；按钮数字是该值的总行数，地图节在无可见行时整节隐藏。<b>类别</b>：野怪 259 / 敌人 162 / 首领 30（互斥，合计覆盖全部行）；<b>放置</b>：预放置 390（<code>war3mapUnits.doo</code> 预置单位）/ 触发放置 61（<code>Trig_*</code> 运行时创建的单位 + 触发器固定发放行）；<b>掉落</b>：预掉落 96（<code>doo</code> 掉落表带百分比）/ 触发掉落 18（触发器固定物品）；<b>地图</b>：17 张图按<b>关卡中文名 + 文件名</b>多选（中文名在前、<code>orcx01</code> 这类文件名字干在后；悬停可看 <code>*.w3x</code> 全名与包内图号），只做过滤、不再跳转。按钮数字 = 该值的总行数（地图按钮含该图的群体事件行，所以比节头「单位 N 种」略大；「不限」为全表行数）。启用「掉落」行时无掉落的行不显示；技能名 / ID 用搜索框查找。中立被动、场景件、纯建筑不计；本页独立生成，不改动其它图鉴页面。</li><li><b>图标</b>：单位 / 技能 / 物品分别取生效 <code>uico</code> / <code>aart</code> / <code>iico</code>（图内主表与 Skin、战役层主表与 Skin）；未覆盖时按自定义对象的 <code>old</code> 基底回落 CASC <code>unitskin.txt</code> / <code>abilityskin.txt</code> / <code>itemfunc.txt</code> 的 <code>Art:hd</code>（3.0.1 HD 变体优先，再回落 <code>Art</code> / <code>Art:sd</code>；雷霆凤凰、枭兽这类单位只有 HD 变体有图标）。战役包导入的 DDS 优先于本地 CASC HD 导出，压成 32px WebP 内嵌，同名只存一份 CSS 类；现共 361 张唯一图标（包内 6 / CASC 355 / 缺图 0）。悬停单位头像、技能与掉落标签可看图标文件名；7 个无图标对象（引擎占位技能）只显示文字，不摆占位图。</li><li>包 <code>HD3.0_OrcX.w3n</code> sha1 <code>e88c83862747</code> · 生成 2026-11-08 18:53 · 本页只读生成，未改动包、<code>campaign/</code>、<code>maps/</code> 与任何既有脚本。重新生成：<code>python tools/gen_bestiary_merged.py</code>。</li></ul></div>
 <p class="mg-foot">◆ 杜隆塔尔的建立 · 图鉴：敌对单位 ◆</p>
-<footer class="foot"><div class="foot-src"><b>数据来源</b><span>全战役 17 张内嵌图的单位数值、技能与掉落直读 <code>HD3.0_OrcX.w3n</code> 现包实算（包 sha1 <code>e88c83862747</code>）；图标按生效 <code>uico</code> / <code>aart</code> 取，战役包导入 6 / 本地 CASC 355 / 缺图 0；敌我判定用 JASS 同盟表，刷怪包按 <code>udg_SpawnPackUnitTypeArray</code> 展开。<br>由 <code>tools/gen_bestiary_merged.py</code> 生成 · 2026-11-08 18:20 · 只读生成，未改动包与工作区</span></div><div class="qq">[QQ群]杜隆塔尔的建立 <b>838476146</b></div><nav class="foot-nav"><a href="index.html">← 专题首页</a><a href="#top">↑ 回到顶部</a></nav></footer>
+<footer class="foot"><div class="foot-src"><b>数据来源</b><span>全战役 17 张内嵌图的单位数值、技能与掉落直读 <code>HD3.0_OrcX.w3n</code> 现包实算（包 sha1 <code>e88c83862747</code>）；图标按生效 <code>uico</code> / <code>aart</code> 取，战役包导入 6 / 本地 CASC 355 / 缺图 0；敌我判定用 JASS 同盟表，刷怪包按 <code>udg_SpawnPackUnitTypeArray</code> 展开。<br>由 <code>tools/gen_bestiary_merged.py</code> 生成 · 2026-11-08 18:53 · 只读生成，未改动包与工作区</span></div><div class="qq">[QQ群]杜隆塔尔的建立 <b>838476146</b></div><nav class="foot-nav"><a href="index.html">← 专题首页</a><a href="#top">↑ 回到顶部</a></nav></footer>
 </div></div>
 <script>
 (function(){var d=document,b=d.getElementById('themeBtn');if(!b)return;

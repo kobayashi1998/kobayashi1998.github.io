@@ -41,7 +41,7 @@
   --link:#e0c184; --gold:#d8b063; --gold-deep:#e8c47a;
   --warn:#e08a6a; --seal:#d97261; --mech:#7cc0cc;
   --gray:#9a9488; --green:#8fbf6a; --blue:#7ba6dd; --purple:#b58cd8; --orange:#dda05a;
-  --tag-boss:#e59a78; --tag-quest:#a6d488; --tag-start:#c0a4e6;
+  --tag-boss:#e59a78; --tag-quest:#a6d488;
   --paper-1:#352a1e; --paper-2:#2b2118; --paper-3:#2f2519; --paper-4:#241c13;
   --paper-glow:rgba(255,238,205,.06); --paper-warm:rgba(0,0,0,.20);
   --paper-cool:rgba(255,220,160,.04); --paper-rim:rgba(230,192,134,.22);
@@ -55,16 +55,26 @@
   --line4:rgba(226,190,134,.40); --gold-line:rgba(216,176,99,.42);
   --img-bd:rgba(228,196,140,.32); --img-bg:rgba(0,0,0,.30); --img-sh:rgba(0,0,0,.42);
   --chip-bg:#e3c078; --chip-fg:#241a10;
+  /* 天赋六类方向：圆点底色只微提亮（圆点里那枚字恒浅，不能提太亮） */
+  --dir-1:#a94c30; --dir-2:#3a7180; --dir-3:#6f4d8f;
+  --dir-4:#4d7d38; --dir-5:#7d6128; --dir-6:#8f3f5c; --dir-fg:#fdf6e6;
+  /* 商店货架：暗纸上的货位边框收暗，只留一圈青铜 */
+  --slot-a:#2c2115; --slot-b:#150f08; --slot-bg:#120c06;
+  --slot-bd:#7a5c28; --slot-bd-hi:#e6c268;
+  --slot-empty-bd:rgba(122,90,40,.58); --slot-dyn-bd:#a9884a;
+  --slot-sel-bd:#7a5c28; --slot-sel-a:#3a2c16; --slot-sel-b:#140e07;
 }
 /* 暗底上的小徽章：原来那套「深彩色描边 + 极淡同色底」在暗纸上看不见，
-   统一改成 currentColor 描边（颜色本身已随 --tag-* / --purple / --blue 换过）。 */
+   统一改成 currentColor 描边（颜色本身已随 --tag-* / --purple / --blue 换过）。
+   注意用 background-color 而不是 background 简写——简写会把 `.icN` 的
+   background-image 一起冲掉，敌对册技能 / 掉落芯片的 16px 图标就是这么消失的。 */
 :root:not([data-theme="light"]) .pitag,
 :root:not([data-theme="light"]) .mg-tag,
 :root:not([data-theme="light"]) .sgbadge,
 :root:not([data-theme="light"]) .mg-ab i,
 :root:not([data-theme="light"]) .mg-dp i,
 :root:not([data-theme="light"]) .mg-lv,
-:root:not([data-theme="light"]) .tagsrc{border-color:currentColor; background:var(--tint-1)}
+:root:not([data-theme="light"]) .tagsrc{border-color:currentColor; background-color:var(--tint-1)}
 
 /* ============ 图鉴页：页面外框 + 纸面 ============ */
 body{background:radial-gradient(ellipse at 50% -10%, var(--frame-hi) 0%, var(--frame-mid) 45%, var(--frame-lo) 100%) fixed, var(--frame-lo)}
@@ -120,8 +130,15 @@ footer.foot .foot-nav a:hover{border-bottom-color:var(--link)}
     --line:#bbb; --line2:#ddd; --line3:#ccc; --line4:#bbb; --gold-line:#bbb;
     --img-bd:#bbb; --img-bg:#fff; --img-sh:transparent;
     --chip-bg:#eee; --chip-fg:#000;
-    --tag-boss:#000; --tag-quest:#000; --tag-start:#000;
+    --tag-boss:#000; --tag-quest:#000;
     --gray:#000; --green:#000; --blue:#000; --purple:#000; --orange:#000;
+    /* 方向圆点在纸上只留黑字；货架面板印白底细网格，别糊一整块墨 */
+    --dir-1:transparent; --dir-2:transparent; --dir-3:transparent;
+    --dir-4:transparent; --dir-5:transparent; --dir-6:transparent; --dir-fg:#000;
+    --slot-a:#fff; --slot-b:#fff; --slot-bg:#fff;
+    --slot-bd:#666; --slot-bd-hi:#000;
+    --slot-empty-bd:#aaa; --slot-dyn-bd:#000;
+    --slot-sel-bd:#666; --slot-sel-a:#fff; --slot-sel-b:#fff;
   }
   body{background:#fff !important; color:#000; padding:0 0 8px !important}
   body::before{display:none !important}
@@ -205,7 +222,7 @@ h2.sec::after{content:""; flex:1; height:1px; translate:0 -2px;
 .what p{margin:0; font-size:13.2px; color:var(--muted); line-height:1.72}
 
 /* 阅读提示 */
-.notes{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px}
+.notes{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:16px}
 .note{border-left:2px solid var(--accent); padding:2px 0 2px 14px}
 .note b{display:block; font-size:13.4px; color:var(--strong); margin-bottom:3px; letter-spacing:.05em}
 .note p{margin:0; font-size:12.8px; color:var(--muted); line-height:1.7}
@@ -285,11 +302,10 @@ document.documentElement.setAttribute('data-theme',t)})();
 </section>
 
 <section>
-<h2 class="sec">怎么读 <small>三条口径</small></h2>
+<h2 class="sec">怎么读 <small>两条口径</small></h2>
 <div class="notes">
  <div class="note"><b>数字都是真的</b><p>金价取物品的 <code>igol</code>、说明取 <code>utub</code>、天赋方向取 <code>atp1</code>，全是游戏内真实落盘的那段文本，不是宣传页的估计值。</p></div>
  <div class="note"><b>只讲有什么，不讲怎么打</b><p>图鉴不写攻略：走位、开荒顺序、配装思路都留给你自己。这里只负责把东西摆清楚。</p></div>
- <div class="note"><b>图标按游戏内顺序取</b><p>战役包导入的 Reforged 新图优先，缺的回落本地 CASC 3.0.1 导出；少数没有图标的对象是引擎占位技能，只显示文字。</p></div>
 </div>
 </section>
 

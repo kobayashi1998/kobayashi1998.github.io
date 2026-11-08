@@ -12,7 +12,15 @@
   --link:#6d4a18; --gold:#8a6a2f; --gold-deep:#7d4d0b;
   --warn:#8c3b23; --seal:#9c2f21; --mech:#2f5f6b;
   --gray:#6f6f68; --green:#41702f; --blue:#2f5794; --purple:#6b3a8c; --orange:#a1550f;
-  --tag-boss:#7d2f18; --tag-quest:#2c5e2a; --tag-start:#55406b;
+  --tag-boss:#7d2f18; --tag-quest:#2c5e2a;
+  /* 天赋六类方向：圆点底色 + 圆点里那枚字（夜里两枚都换浅，见 site_nav） */
+  --dir-1:#8c3b23; --dir-2:#2f5f6b; --dir-3:#5c3f7a;
+  --dir-4:#3f6b2f; --dir-5:#7c5f28; --dir-6:#7a2f4a; --dir-fg:#fdf6e6;
+  /* 商店货架：面板与货位边框。白纸上用亮黄铜，12 个格子才分得开 */
+  --slot-a:#4a3720; --slot-b:#221809; --slot-bg:#140e07;
+  --slot-bd:#c2a05a; --slot-bd-hi:#ffd97a;
+  --slot-empty-bd:rgba(194,160,90,.62); --slot-dyn-bd:#e0bd72;
+  --slot-sel-bd:#c2a05a; --slot-sel-a:#54401f; --slot-sel-b:#161009;
   /* 纸面：四段渐层 + 高光 / 暖晕 / 顶晕 / 外框 / 内压 / 折痕 */
   --paper-1:#fdf7e8; --paper-2:#f7edd8; --paper-3:#fbf3e2; --paper-4:#efe2c6;
   --paper-glow:rgba(255,255,250,.6); --paper-warm:rgba(150,110,50,.18);
@@ -172,7 +180,6 @@ h1{
 .pitag-quest{color:var(--tag-quest); border-color:rgba(44,94,42,.5); background:rgba(44,94,42,.07)}
 .pitag-shop{color:var(--ink3); border-color:rgba(107,74,18,.5); background:rgba(107,74,18,.07)}
 .pitag-world{color:var(--mech); border-color:rgba(47,95,107,.5); background:rgba(47,95,107,.07)}
-.pitag-start{color:var(--tag-start); border-color:rgba(85,64,107,.45); background:rgba(85,64,107,.06)}
 .pitag-random{color:var(--ink3); border-color:rgba(107,82,53,.45); background:var(--tint-1)}
 .pitag-none{color:var(--ink3); border-color:var(--line2); background:var(--tint-1)}
 .srcs{margin:8px 0 0; padding:7px 9px 6px; border-left:2px solid var(--line3);
@@ -247,7 +254,7 @@ h2.sec::after{content:""; flex:1; height:1px; background:
 .layer .lvl{text-align:center; padding-top:3px; border-right:1px dotted var(--line2)}
 .layer .lvl b{display:block; font-family:"STKaiti","KaiTi",serif; font-size:24px;
   color:var(--ink1); line-height:1.1}
-.layer .lvl span{display:block; font-size:13px; letter-spacing:.1em; color:#6b4a1d;
+.layer .lvl span{display:block; font-size:13px; letter-spacing:.1em; color:var(--ink2);
   margin-top:5px; font-weight:700}
 .layer .lvl i{display:block; font-style:normal; font-size:10.4px; color:var(--ink3);
   margin-top:4px; padding-top:4px; border-top:1px dotted var(--line2); line-height:1.45}
@@ -259,9 +266,9 @@ h2.sec::after{content:""; flex:1; height:1px; background:
   box-shadow:0 2px 5px var(--img-sh)}
 .node .txt{min-width:0}
 .node h4{margin:0 0 3px; font-size:14.5px; letter-spacing:.02em; color:var(--ink0); line-height:1.35}
-.node h4 .dir{display:inline-block; width:16px; height:16px; line-height:15px; text-align:center;
-  font-size:10.5px; border-radius:50%; color:var(--chip-fg); margin-right:5px; vertical-align:1px;
-  font-family:ui-monospace,Consolas,monospace}
+.dir{display:inline-block; width:16px; height:16px; line-height:15px; text-align:center;
+  font-size:10.5px; border-radius:50%; color:var(--dir-fg); margin-right:5px; vertical-align:1px;
+  font-family:ui-monospace,Consolas,monospace; font-weight:400}
 .node h4 .swapmark{display:inline-block; margin-left:6px; font-size:9.5px; letter-spacing:.08em;
   color:var(--warn); border:1px solid var(--warn); padding:0 3px; border-radius:2px;
   vertical-align:1px; font-weight:400}
@@ -275,6 +282,7 @@ h2.sec::after{content:""; flex:1; height:1px; background:
 .note{border-left:2px solid var(--gold); padding:4px 0 4px 12px; font-size:13.2px;
   color:var(--ink2)}
 .note b{color:var(--ink2); display:block; font-size:13.6px; margin-bottom:2px; letter-spacing:.05em}
+.note b .dir{vertical-align:-2px; margin-right:7px; letter-spacing:0; font-size:10.5px}
 
 footer.foot{margin-top:46px; padding-top:20px; border-top:1px solid var(--line);
   font-size:12px; color:var(--ink3); text-align:center; letter-spacing:.04em}
@@ -331,7 +339,7 @@ a{color:var(--link)}
   --link:#e0c184; --gold:#d8b063; --gold-deep:#e8c47a;
   --warn:#e08a6a; --seal:#d97261; --mech:#7cc0cc;
   --gray:#9a9488; --green:#8fbf6a; --blue:#7ba6dd; --purple:#b58cd8; --orange:#dda05a;
-  --tag-boss:#e59a78; --tag-quest:#a6d488; --tag-start:#c0a4e6;
+  --tag-boss:#e59a78; --tag-quest:#a6d488;
   --paper-1:#352a1e; --paper-2:#2b2118; --paper-3:#2f2519; --paper-4:#241c13;
   --paper-glow:rgba(255,238,205,.06); --paper-warm:rgba(0,0,0,.20);
   --paper-cool:rgba(255,220,160,.04); --paper-rim:rgba(230,192,134,.22);
@@ -345,16 +353,26 @@ a{color:var(--link)}
   --line4:rgba(226,190,134,.40); --gold-line:rgba(216,176,99,.42);
   --img-bd:rgba(228,196,140,.32); --img-bg:rgba(0,0,0,.30); --img-sh:rgba(0,0,0,.42);
   --chip-bg:#e3c078; --chip-fg:#241a10;
+  /* 天赋六类方向：圆点底色只微提亮（圆点里那枚字恒浅，不能提太亮） */
+  --dir-1:#a94c30; --dir-2:#3a7180; --dir-3:#6f4d8f;
+  --dir-4:#4d7d38; --dir-5:#7d6128; --dir-6:#8f3f5c; --dir-fg:#fdf6e6;
+  /* 商店货架：暗纸上的货位边框收暗，只留一圈青铜 */
+  --slot-a:#2c2115; --slot-b:#150f08; --slot-bg:#120c06;
+  --slot-bd:#7a5c28; --slot-bd-hi:#e6c268;
+  --slot-empty-bd:rgba(122,90,40,.58); --slot-dyn-bd:#a9884a;
+  --slot-sel-bd:#7a5c28; --slot-sel-a:#3a2c16; --slot-sel-b:#140e07;
 }
 /* 暗底上的小徽章：原来那套「深彩色描边 + 极淡同色底」在暗纸上看不见，
-   统一改成 currentColor 描边（颜色本身已随 --tag-* / --purple / --blue 换过）。 */
+   统一改成 currentColor 描边（颜色本身已随 --tag-* / --purple / --blue 换过）。
+   注意用 background-color 而不是 background 简写——简写会把 `.icN` 的
+   background-image 一起冲掉，敌对册技能 / 掉落芯片的 16px 图标就是这么消失的。 */
 :root:not([data-theme="light"]) .pitag,
 :root:not([data-theme="light"]) .mg-tag,
 :root:not([data-theme="light"]) .sgbadge,
 :root:not([data-theme="light"]) .mg-ab i,
 :root:not([data-theme="light"]) .mg-dp i,
 :root:not([data-theme="light"]) .mg-lv,
-:root:not([data-theme="light"]) .tagsrc{border-color:currentColor; background:var(--tint-1)}
+:root:not([data-theme="light"]) .tagsrc{border-color:currentColor; background-color:var(--tint-1)}
 
 /* ============ 图鉴页：页面外框 + 纸面 ============ */
 body{background:radial-gradient(ellipse at 50% -10%, var(--frame-hi) 0%, var(--frame-mid) 45%, var(--frame-lo) 100%) fixed, var(--frame-lo)}
@@ -410,8 +428,15 @@ footer.foot .foot-nav a:hover{border-bottom-color:var(--link)}
     --line:#bbb; --line2:#ddd; --line3:#ccc; --line4:#bbb; --gold-line:#bbb;
     --img-bd:#bbb; --img-bg:#fff; --img-sh:transparent;
     --chip-bg:#eee; --chip-fg:#000;
-    --tag-boss:#000; --tag-quest:#000; --tag-start:#000;
+    --tag-boss:#000; --tag-quest:#000;
     --gray:#000; --green:#000; --blue:#000; --purple:#000; --orange:#000;
+    /* 方向圆点在纸上只留黑字；货架面板印白底细网格，别糊一整块墨 */
+    --dir-1:transparent; --dir-2:transparent; --dir-3:transparent;
+    --dir-4:transparent; --dir-5:transparent; --dir-6:transparent; --dir-fg:#000;
+    --slot-a:#fff; --slot-b:#fff; --slot-bg:#fff;
+    --slot-bd:#666; --slot-bd-hi:#000;
+    --slot-empty-bd:#aaa; --slot-dyn-bd:#000;
+    --slot-sel-bd:#666; --slot-sel-a:#fff; --slot-sel-b:#fff;
   }
   body{background:#fff !important; color:#000; padding:0 0 8px !important}
   body::before{display:none !important}
@@ -561,15 +586,15 @@ document.documentElement.setAttribute('data-theme',t)})();
  </div>
 </section>
 <section class="chapter">
- <h2 class="sec">来源怎么读 <small>六类渠道 · 关卡与掉落者写真名</small></h2>
+ <h2 class="sec">来源怎么读 <small>五类渠道 · 关卡与掉落者写真名</small></h2>
  <div class="notes">
   <div class="note"><b>首领掉落</b>打掉指定首领必掉。关卡名取地图自己的章节名（<code>war3map.w3i</code>），后面写首领名。</div>
   <div class="note"><b>任务奖励</b>任务结算时给，含三选一。写任务名而不是触发器名。</div>
   <div class="note"><b>商店出售</b>货架真摆出来、玩家能打开的店；价签就是左侧那个金价。没摆出来的旧货架不算。</div>
   <div class="note"><b>地图摆放</b>开局就摆在地上（或塞在可破坏物里），走过去捡——生锈的矿镐、蛛丝胸针这类。</div>
-  <div class="note"><b>开局配发</b>章节开始自动进背包（跨章防丢兜底），不算独立获取途径，所以不单列筛选项，只在来源块里标出来。</div>
+  <div class="note"><b>无固定来源</b>上面几条一条都不命中的件（含原先只靠「开局配发」进包的）——没有固定出处，来源块里就写这四个字。筛选项里单列这一档，共 20 件。</div>
   <div class="note"><b>随机掉落</b>两种都归这里：某只怪的单位掉落表里点名塞的（不受物品等级限制）；脚本里查不到具体 ID、只能靠野怪随机池按等级抽的——后者只有 1~6 级、且标了 <code>Droppable</code> 的件进池。</div>
-  <div class="note"><b>标签只标主渠道</b>标题旁那枚是主渠道标签，按「首领掉落 &gt; 任务奖励 &gt; 商店出售 &gt; 地图摆放 &gt; 开局配发 &gt; 随机掉落」取第一条；一件可能同时有多条来源，以下方来源块为准。</div>
+  <div class="note"><b>标签只标主渠道</b>标题旁那枚是主渠道标签，按「首领掉落 &gt; 任务奖励 &gt; 商店出售 &gt; 地图摆放 &gt; 随机掉落」取第一条；一件可能同时有多条来源，以下方来源块为准。</div>
  </div>
 </section>
 <section class="chapter">
@@ -577,7 +602,7 @@ document.documentElement.setAttribute('data-theme',t)})();
  <div class="toolbar">
   <div class="fgroup"><em>档位 · 可多选</em><button class="chip on" data-tier="">全部</button><button class="chip" data-tier="普通" style="color:#6f6f68">普通 37</button><button class="chip" data-tier="精良" style="color:#41702f">精良 30</button><button class="chip" data-tier="稀有" style="color:#2f5794">稀有 33</button><button class="chip" data-tier="史诗" style="color:#6b3a8c">史诗 30</button><button class="chip" data-tier="传说" style="color:#a1550f">传说 26</button></div>
   <div class="fgroup"><em>槽位 · 可多选</em><button class="chip on" data-slot="">全部槽位</button><button class="chip" data-slot="头部">头部 9</button><button class="chip" data-slot="胸部">胸部 13</button><button class="chip" data-slot="手部">手部 9</button><button class="chip" data-slot="足部">足部 3</button><button class="chip" data-slot="戒指">戒指 8</button><button class="chip" data-slot="主手">主手 39</button><button class="chip" data-slot="副手">副手 40</button><button class="chip" data-slot="饰品">饰品 35</button></div>
-  <div class="fgroup"><em>来源 · 可多选</em><button class="chip on" data-kind="">全部来源</button><button class="chip" data-kind="boss">首领掉落 27</button><button class="chip" data-kind="quest">任务奖励 7</button><button class="chip" data-kind="shop">商店出售 57</button><button class="chip" data-kind="world">地图摆放 7</button><button class="chip" data-kind="random">随机掉落 58</button></div>
+  <div class="fgroup"><em>来源 · 可多选</em><button class="chip on" data-kind="">全部来源</button><button class="chip" data-kind="boss">首领掉落 27</button><button class="chip" data-kind="quest">任务奖励 7</button><button class="chip" data-kind="shop">商店出售 57</button><button class="chip" data-kind="world">地图摆放 7</button><button class="chip" data-kind="random">随机掉落 58</button><button class="chip" data-kind="none" title="没有任何固定获取凭据：首领 / 任务 / 商店 / 摆放 / 随机池都不命中">无固定来源 20</button></div>
   <div class="fgroup viewsw"><em>视图</em>
    <button class="chip vchip on" data-view="grid">网格</button>
    <button class="chip vchip" data-view="list">列表</button></div>
@@ -1128,15 +1153,15 @@ document.documentElement.setAttribute('data-theme',t)})();
   <div class="srcs"><div class="sitem"><span class="skind">商店出售</span><span class="sloc">第一幕：征服大地</span></div><div class="swho">伐木机尊享版v800</div><div class="sitem"><span class="skind">随机掉落</span><span class="sloc">第二幕 · 莫高雷</span></div><div class="swho">可破坏物</div></div>
   <p class="flavor" title="点击展开／收起">药量配得比上一支准，打出去的声音也更闷。</p>
  </div></article><article class="card" data-tier="精良" data-slot="主手"
- data-src="自造" data-prim="start" data-kinds="start"
- data-key="治疗权杖schl自造杖身缠着褪色的布条，布条上有旧血迹。开局配发每章开局洛坎 开局自动配发 +6点智力 英雄和周围单位的生命恢复速度提高2%。"
+ data-src="自造" data-prim="" data-kinds=""
+ data-key="治疗权杖schl自造杖身缠着褪色的布条，布条上有旧血迹。 +6点智力 英雄和周围单位的生命恢复速度提高2%。"
  style="--c:#41702f">
  <div class="iconwrap"><img src="data:image/webp;base64,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" alt="" loading="lazy"></div>
  <div class="body">
-  <h3 style="color:#41702f" title="治疗权杖">治疗权杖<span class="tagswap">特效</span><span class="pitag pitag-start" title="主渠道：开局配发">开局配发</span><span class="oid">schl</span></h3>
+  <h3 style="color:#41702f" title="治疗权杖">治疗权杖<span class="tagswap">特效</span><span class="oid">schl</span></h3>
   <p class="meta"><span>精良主手武器 · <b>1,450</b> 金 ·</span><span>需 3 级 · PU 6.0</span></p>
   <div class="affix"><div class="line">+6点智力</div><div class="mech">英雄和周围单位的生命恢复速度提高2%。</div></div>
-  <div class="srcs"><div class="sitem"><span class="skind">开局配发</span><span class="sloc">第三幕 · 每章开局</span></div><div class="swho">洛坎 开局自动配发</div></div>
+  <div class="srcs"><span class="skind">无固定来源</span></div>
   <p class="flavor" title="点击展开／收起">杖身缠着褪色的布条，布条上有旧血迹。</p>
  </div></article><article class="card" data-tier="精良" data-slot="主手"
  data-src="自造" data-prim="shop" data-kinds="shop"
@@ -1216,15 +1241,15 @@ document.documentElement.setAttribute('data-theme',t)})();
   <div class="srcs"><div class="sitem"><span class="skind">任务奖励</span><span class="sloc">第一幕：征服大地</span></div><div class="swho">鹰身女妖之患 · 任务三选一</div></div>
   <p class="flavor" title="点击展开／收起">金层薄得像纸，可敲上去还是盾的声音。</p>
  </div></article><article class="card" data-tier="精良" data-slot="副手"
- data-src="自造" data-prim="start" data-kinds="start"
- data-key="寒冰护卫者frgd自造盾面永远结着一层薄霜，擦干净下一息又有了。开局配发每章开局凯恩 开局自动配发 +5点护甲 攻击附带冰霜效果，使目标的移动与攻击速度下降。"
+ data-src="自造" data-prim="" data-kinds=""
+ data-key="寒冰护卫者frgd自造盾面永远结着一层薄霜，擦干净下一息又有了。 +5点护甲 攻击附带冰霜效果，使目标的移动与攻击速度下降。"
  style="--c:#41702f">
  <div class="iconwrap"><img src="data:image/webp;base64,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" alt="" loading="lazy"></div>
  <div class="body">
-  <h3 style="color:#41702f" title="寒冰护卫者">寒冰护卫者<span class="tagswap">特效</span><span class="pitag pitag-start" title="主渠道：开局配发">开局配发</span><span class="oid">frgd</span></h3>
+  <h3 style="color:#41702f" title="寒冰护卫者">寒冰护卫者<span class="tagswap">特效</span><span class="oid">frgd</span></h3>
   <p class="meta"><span>精良副手武器 · <b>1,050</b> 金 ·</span><span>需 3 级 · PU 5.0</span></p>
   <div class="affix"><div class="line">+5点护甲</div><div class="mech">攻击附带冰霜效果，使目标的移动与攻击速度下降。</div></div>
-  <div class="srcs"><div class="sitem"><span class="skind">开局配发</span><span class="sloc">第三幕 · 每章开局</span></div><div class="swho">凯恩 开局自动配发</div></div>
+  <div class="srcs"><span class="skind">无固定来源</span></div>
   <p class="flavor" title="点击展开／收起">盾面永远结着一层薄霜，擦干净下一息又有了。</p>
  </div></article><article class="card" data-tier="精良" data-slot="副手"
  data-src="自造" data-prim="" data-kinds=""
@@ -1348,15 +1373,15 @@ document.documentElement.setAttribute('data-theme',t)})();
   <div class="srcs"><div class="sitem"><span class="skind">商店出售</span><span class="sloc">第二幕 · 塞拉摩岛</span></div><div class="swho">塞拉摩市集</div><div class="sitem"><span class="skind">商店出售</span><span class="sloc">第二幕 · 狂潮湾</span></div><div class="swho">维兹班的岛屿珍宝店</div></div>
   <p class="flavor" title="点击展开／收起">面甲打磨得极亮，戴上后视野只剩一条缝。</p>
  </div></article><article class="card" data-tier="稀有" data-slot="头部"
- data-src="自造" data-prim="start" data-kinds="start"
- data-key="艺人面罩rwiz自造半张脸的面具，画着夸张的笑，只露出眼睛。开局配发每章开局凯恩 开局自动配发 +50%法力恢复效果 +5点智力"
+ data-src="自造" data-prim="" data-kinds=""
+ data-key="艺人面罩rwiz自造半张脸的面具，画着夸张的笑，只露出眼睛。 +50%法力恢复效果 +5点智力"
  style="--c:#2f5794">
  <div class="iconwrap"><img src="data:image/webp;base64,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" alt="" loading="lazy"></div>
  <div class="body">
-  <h3 style="color:#2f5794" title="艺人面罩">艺人面罩<span class="pitag pitag-start" title="主渠道：开局配发">开局配发</span><span class="oid">rwiz</span></h3>
+  <h3 style="color:#2f5794" title="艺人面罩">艺人面罩<span class="oid">rwiz</span></h3>
   <p class="meta"><span>稀有头盔 · <b>1,550</b> 金 ·</span><span>需 5 级 · PU 7.0</span></p>
   <div class="affix"><div class="line">+50%法力恢复效果</div><div class="line">+5点智力</div></div>
-  <div class="srcs"><div class="sitem"><span class="skind">开局配发</span><span class="sloc">第三幕 · 每章开局</span></div><div class="swho">凯恩 开局自动配发</div></div>
+  <div class="srcs"><span class="skind">无固定来源</span></div>
   <p class="flavor" title="点击展开／收起">半张脸的面具，画着夸张的笑，只露出眼睛。</p>
  </div></article><article class="card" data-tier="稀有" data-slot="胸部"
  data-src="并入" data-prim="" data-kinds=""
@@ -1392,15 +1417,15 @@ document.documentElement.setAttribute('data-theme',t)})();
   <div class="srcs"><div class="sitem"><span class="skind">商店出售</span><span class="sloc">第二幕 · 魔导神殿</span></div><div class="swho">黑市</div></div>
   <p class="flavor" title="点击展开／收起">每根脊刺都朝外，撞上来的人先疼的是自己。</p>
  </div></article><article class="card" data-tier="稀有" data-slot="胸部"
- data-src="自造" data-prim="quest" data-kinds="quest start"
- data-key="折刃护甲blba自造甲片上全是崩口，每一道都替主人挡过一下。任务奖励第一幕：征服大地鹰身女妖之患 · 任务三选一 每章开局雷克萨 开局自动配发 +7点护甲 获得虔诚光环，为附近友方单位提升1.5点护甲。"
+ data-src="自造" data-prim="quest" data-kinds="quest"
+ data-key="折刃护甲blba自造甲片上全是崩口，每一道都替主人挡过一下。任务奖励第一幕：征服大地鹰身女妖之患 · 任务三选一 +7点护甲 获得虔诚光环，为附近友方单位提升1.5点护甲。"
  style="--c:#2f5794">
  <div class="iconwrap"><img src="data:image/webp;base64,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" alt="" loading="lazy"></div>
  <div class="body">
   <h3 style="color:#2f5794" title="折刃护甲">折刃护甲<span class="tagswap">机制</span><span class="pitag pitag-quest" title="主渠道：任务奖励">任务奖励</span><span class="oid">blba</span></h3>
   <p class="meta"><span>稀有护甲 · <b>2,200</b> 金 ·</span><span>需 5 级 · PU 7.0</span></p>
   <div class="affix"><div class="line">+7点护甲</div><div class="mech">获得虔诚光环，为附近友方单位提升1.5点护甲。</div></div>
-  <div class="srcs"><div class="sitem"><span class="skind">任务奖励</span><span class="sloc">第一幕：征服大地</span></div><div class="swho">鹰身女妖之患 · 任务三选一</div><div class="sitem"><span class="skind">开局配发</span><span class="sloc">第二幕、第三幕 · 每章开局</span></div><div class="swho">雷克萨 开局自动配发</div></div>
+  <div class="srcs"><div class="sitem"><span class="skind">任务奖励</span><span class="sloc">第一幕：征服大地</span></div><div class="swho">鹰身女妖之患 · 任务三选一</div></div>
   <p class="flavor" title="点击展开／收起">甲片上全是崩口，每一道都替主人挡过一下。</p>
  </div></article><article class="card" data-tier="稀有" data-slot="手部"
  data-src="自造" data-prim="shop" data-kinds="random shop"
@@ -1546,15 +1571,15 @@ document.documentElement.setAttribute('data-theme',t)})();
   <div class="srcs"><div class="sitem"><span class="skind">随机掉落</span><span class="sloc"></span></div><div class="swho">野怪随机池（6 级抽取）</div></div>
   <p class="flavor" title="点击展开／收起">刀锋极薄，对着月看能透出后面的影子。</p>
  </div></article><article class="card" data-tier="稀有" data-slot="主手"
- data-src="自造" data-prim="start" data-kinds="start"
- data-key="心灵法杖mnsf自造杖头的宝石会随呼吸明暗，据说它在听。开局配发每章开局洛坎 开局自动配发 +200点法力 获得辉煌光环，每秒为附近友方单位恢复0.5点法力。"
+ data-src="自造" data-prim="" data-kinds=""
+ data-key="心灵法杖mnsf自造杖头的宝石会随呼吸明暗，据说它在听。 +200点法力 获得辉煌光环，每秒为附近友方单位恢复0.5点法力。"
  style="--c:#2f5794">
  <div class="iconwrap"><img src="data:image/webp;base64,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" alt="" loading="lazy"></div>
  <div class="body">
-  <h3 style="color:#2f5794" title="心灵法杖">心灵法杖<span class="tagswap">特效</span><span class="pitag pitag-start" title="主渠道：开局配发">开局配发</span><span class="oid">mnsf</span></h3>
+  <h3 style="color:#2f5794" title="心灵法杖">心灵法杖<span class="tagswap">特效</span><span class="oid">mnsf</span></h3>
   <p class="meta"><span>稀有主手武器 · <b>2,050</b> 金 ·</span><span>需 5 级 · PU 5.0</span></p>
   <div class="affix"><div class="line">+200点法力</div><div class="mech">获得辉煌光环，每秒为附近友方单位恢复0.5点法力。</div></div>
-  <div class="srcs"><div class="sitem"><span class="skind">开局配发</span><span class="sloc">第二幕、第三幕 · 每章开局</span></div><div class="swho">洛坎 开局自动配发</div></div>
+  <div class="srcs"><span class="skind">无固定来源</span></div>
   <p class="flavor" title="点击展开／收起">杖头的宝石会随呼吸明暗，据说它在听。</p>
  </div></article><article class="card" data-tier="稀有" data-slot="副手"
  data-src="自造" data-prim="random" data-kinds="random"
@@ -1722,15 +1747,15 @@ document.documentElement.setAttribute('data-theme',t)})();
   <div class="srcs"><div class="sitem"><span class="skind">地图摆放</span><span class="sloc">第二幕 · 塞拉摩岛</span></div><div class="swho">地图上直接摆放</div></div>
   <p class="flavor" title="点击展开／收起">披风的料子不是织出来的，是从一头元素身上剥下来的火，缝的时候得两个人轮流按住。穿过它的人多半活不长——不是因为敌人，是因为它从不肯让人在同一个地方待太久；夜里靠着墙睡，先烧起来的总是那面墙。所以穿过它的人最后都学会了在空地上过夜，哪怕外头正在下雪。</p>
  </div></article><article class="card" data-tier="史诗" data-slot="手部"
- data-src="自造" data-prim="start" data-kinds="start"
- data-key="法术掌握手套gvsm自造指节处磨出白痕，是常年捏诀留下的。开局配发每章开局雷克萨 开局自动配发 +6点智力 +10%技能速度"
+ data-src="自造" data-prim="" data-kinds=""
+ data-key="法术掌握手套gvsm自造指节处磨出白痕，是常年捏诀留下的。 +6点智力 +10%技能速度"
  style="--c:#6b3a8c">
  <div class="iconwrap"><img src="data:image/webp;base64,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" alt="" loading="lazy"></div>
  <div class="body">
-  <h3 style="color:#6b3a8c" title="法术掌握手套">法术掌握手套<span class="pitag pitag-start" title="主渠道：开局配发">开局配发</span><span class="oid">gvsm</span></h3>
+  <h3 style="color:#6b3a8c" title="法术掌握手套">法术掌握手套<span class="oid">gvsm</span></h3>
   <p class="meta"><span>史诗手套 · <b>2,200</b> 金 ·</span><span>需 7 级 · PU 16.0</span></p>
   <div class="affix"><div class="line">+6点智力</div><div class="line">+10%技能速度</div></div>
-  <div class="srcs"><div class="sitem"><span class="skind">开局配发</span><span class="sloc">第三幕 · 每章开局</span></div><div class="swho">雷克萨 开局自动配发</div></div>
+  <div class="srcs"><span class="skind">无固定来源</span></div>
   <p class="flavor" title="点击展开／收起">指节处磨出白痕，是常年捏诀留下的。</p>
  </div></article><article class="card" data-tier="史诗" data-slot="手部"
  data-src="自造" data-prim="quest" data-kinds="quest"
@@ -1832,15 +1857,15 @@ document.documentElement.setAttribute('data-theme',t)})();
   <div class="srcs"><div class="sitem"><span class="skind">商店出售</span><span class="sloc">第二幕 · 塞拉摩岛</span></div><div class="swho">魔杖法杖专卖店</div><div class="sitem"><span class="skind">商店出售</span><span class="sloc">第二幕 · 狂潮湾</span></div><div class="swho">维兹班的岛屿珍宝店</div><div class="sitem"><span class="skind">商店出售</span><span class="sloc">第三幕 · 塞拉摩城</span></div><div class="swho">金吉尔的魔法小屋</div></div>
   <p class="flavor" title="点击展开／收起">书里夹着一张空书签，翻到它就会停住。</p>
  </div></article><article class="card" data-tier="史诗" data-slot="副手"
- data-src="自造" data-prim="start" data-kinds="random start"
- data-key="荣誉护盾shhn自造一名库尔提拉斯海军指挥官的盾牌。开局配发每章开局洛坎 开局自动配发 第一幕：征服大地骑士 +8点护甲 获得命令光环，使附近友方单位的攻击力提升10%。 +10%技能增强"
+ data-src="自造" data-prim="random" data-kinds="random"
+ data-key="荣誉护盾shhn自造一名库尔提拉斯海军指挥官的盾牌。随机掉落第一幕：征服大地骑士 +8点护甲 获得命令光环，使附近友方单位的攻击力提升10%。 +10%技能增强"
  style="--c:#6b3a8c">
  <div class="iconwrap"><img src="data:image/webp;base64,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" alt="" loading="lazy"></div>
  <div class="body">
-  <h3 style="color:#6b3a8c" title="荣誉护盾">荣誉护盾<span class="pitag pitag-start" title="主渠道：开局配发">开局配发</span><span class="oid">shhn</span></h3>
+  <h3 style="color:#6b3a8c" title="荣誉护盾">荣誉护盾<span class="pitag pitag-random" title="主渠道：随机掉落">随机掉落</span><span class="oid">shhn</span></h3>
   <p class="meta"><span>史诗副手武器 · <b>2,800</b> 金 ·</span><span>需 7 级 · PU 27.0</span></p>
   <div class="affix"><div class="line">+8点护甲</div><div class="mech">获得命令光环，使附近友方单位的攻击力提升10%。</div><div class="line">+10%技能增强</div></div>
-  <div class="srcs"><div class="sitem"><span class="skind">开局配发</span><span class="sloc">第二幕、第三幕 · 每章开局</span></div><div class="swho">洛坎 开局自动配发</div><div class="sitem"><span class="skind">随机掉落</span><span class="sloc">第一幕：征服大地</span></div><div class="swho">骑士</div></div>
+  <div class="srcs"><div class="sitem"><span class="skind">随机掉落</span><span class="sloc">第一幕：征服大地</span></div><div class="swho">骑士</div></div>
   <p class="flavor" title="点击展开／收起">一名库尔提拉斯海军指挥官的盾牌。</p>
  </div></article><article class="card" data-tier="史诗" data-slot="副手"
  data-src="自造" data-prim="shop" data-kinds="shop"
@@ -1909,15 +1934,15 @@ document.documentElement.setAttribute('data-theme',t)})();
   <div class="srcs"><div class="sitem"><span class="skind">首领掉落</span><span class="sloc">第二幕：旧日的仇恨</span></div><div class="swho">死亡领主（夏尔）</div></div>
   <p class="flavor" title="点击展开／收起">黑得看不见底，光线在它边缘拐了弯。</p>
  </div></article><article class="card" data-tier="史诗" data-slot="副手"
- data-src="自造" data-prim="start" data-kinds="random start"
- data-key="火焰宝珠ofir自造内部有一团火在慢慢转，摸上去却是凉的。开局配发每章开局凯恩 开局自动配发 塞拉摩岛山丘之王 携带时英雄的攻击附加5点额外火焰伤害。英雄在攻击空中单位时会变成远程攻击，并对周围的敌方单位造成溅射伤害。"
+ data-src="自造" data-prim="random" data-kinds="random"
+ data-key="火焰宝珠ofir自造内部有一团火在慢慢转，摸上去却是凉的。随机掉落塞拉摩岛山丘之王 携带时英雄的攻击附加5点额外火焰伤害。英雄在攻击空中单位时会变成远程攻击，并对周围的敌方单位造成溅射伤害。"
  style="--c:#6b3a8c">
  <div class="iconwrap"><img src="data:image/webp;base64,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" alt="" loading="lazy"></div>
  <div class="body">
-  <h3 style="color:#6b3a8c" title="火焰宝珠">火焰宝珠<span class="pitag pitag-start" title="主渠道：开局配发">开局配发</span><span class="oid">ofir</span></h3>
+  <h3 style="color:#6b3a8c" title="火焰宝珠">火焰宝珠<span class="pitag pitag-random" title="主渠道：随机掉落">随机掉落</span><span class="oid">ofir</span></h3>
   <p class="meta"><span>史诗副手武器 · <b>2,500</b> 金 ·</span><span>需 7 级 · PU 2.5</span></p>
   <div class="affix"><div class="line">携带时英雄的攻击附加5点额外火焰伤害。英雄在攻击空中单位时会变成远程攻击，并对周围的敌方单位造成溅射伤害。</div></div>
-  <div class="srcs"><div class="sitem"><span class="skind">开局配发</span><span class="sloc">第三幕 · 每章开局</span></div><div class="swho">凯恩 开局自动配发</div><div class="sitem"><span class="skind">随机掉落</span><span class="sloc">第二幕 · 塞拉摩岛</span></div><div class="swho">山丘之王</div></div>
+  <div class="srcs"><div class="sitem"><span class="skind">随机掉落</span><span class="sloc">第二幕 · 塞拉摩岛</span></div><div class="swho">山丘之王</div></div>
   <p class="flavor" title="点击展开／收起">内部有一团火在慢慢转，摸上去却是凉的。</p>
  </div></article><article class="card" data-tier="史诗" data-slot="副手"
  data-src="自造" data-prim="boss" data-kinds="boss"
@@ -1953,15 +1978,15 @@ document.documentElement.setAttribute('data-theme',t)})();
   <div class="srcs"><div class="sitem"><span class="skind">随机掉落</span><span class="sloc">第一幕 · 兽穴</span></div><div class="swho">萨特唤魔者</div></div>
   <p class="flavor" title="点击展开／收起">半透明的绿珠，里面浮着几丝游动的东西。</p>
  </div></article><article class="card" data-tier="史诗" data-slot="饰品"
- data-src="自造" data-prim="boss" data-kinds="boss start"
- data-key="血羽之心bfhr自造血羽的心。首领掉落第一幕：征服大地血羽（鹰身女妖首领） 每章开局洛坎 开局自动配发 +10点敏捷 +6点攻击力 +10%技能增强"
+ data-src="自造" data-prim="boss" data-kinds="boss"
+ data-key="血羽之心bfhr自造血羽的心。首领掉落第一幕：征服大地血羽（鹰身女妖首领） +10点敏捷 +6点攻击力 +10%技能增强"
  style="--c:#6b3a8c">
  <div class="iconwrap"><img src="data:image/webp;base64,UklGRvYFAABXRUJQVlA4IOoFAAAwGACdASpIAEgAPmEokEUkIqGVzHa8QAYEtQBjdjlG+ks2r/K8E2ZWFrtwvMB5yvot/xO+w+gB0rc/K5u/hklgsAf+uv1lg1TyZvqGh9J9cG7xOLm7ZwTGFgG6Z4lbI4XjEz00m7tHk46Y5azkxtaqcVUzoYqCyQM41Fd7GiBhG6QnxjqMvvKTk0gybdWaXBPsL06rZJdGVwUAROVYtKh5nq8GpQJeRC4g30LTZjJfy8u4OAHK505012F8RGDo5j7EKB/345qgcnwAAPw//qiOuZZ/GL/k0n4t7lySCT8+Jh+1XI+1H9jrJCX6fglbKQSLFGenrwdKM6lbrIbofP3gcZY/LM/+v9qiI3CZd38/sM+C4N0k9m+9nDMBooZeSpqH1zE/YI+x8eJh/WiZ0nX6iyqCu1y66wQa+qept+X9d/M8XHQjXH6BEiuBjYapbtgBNIewykQ26xgsKB0125DHaNWXDZCwIbDea0AxRHDL0NMEde8bgeUPbrmWzulhcyTFQRb2OP9yxznEth1Q1fzkm6PtJkaOqLCpT9G9GMEW+SXRBYFv7a9XXBw9llypJQSDdeHtuuQrCFvWsGN7XRYbBX8Mbj2rqhS+/Mz0dUauNW/j+PsT9ufi/u12WMcf038yOsue48fP2pf+nLR/LhpNWECc+FuSOs3dI5ASflahVJZddd0d/JjSNQ1Brl4VKbmVj5NIpi3oUxa2+SyLrOBJ8K+CBxia8iI3HyA8dWaAxASsJ6r6Sxu2Qnq4kz/Fb2CNlfVH9XkNNitsgu7jfprIhMWRxti5h+ik63tCY6EtG5xwJ2GDMYKI5kNmjJG69VVfZpzv1dazAhu+Uudd+iVJymOrbWai7VmD/XeICXFrNUYEiLlmAs3Xs1z1cYjDNZSvlJWsE5MyyM501xdQB+0WCMpADrXWhdNoRMIchp2HqPXQgbcZrO/Bj2Z7qiqHzwIqMYdW3IkBP6/K1clJIN6hKFgspY7dj2s9/cR9dJpW8x/yNVHrPcof9OwXnapB4dblSA5cEpM4Gj8f8/8f8q6ThN1DnfutIiKUpXiXAbeCGgnwlGpYfJEwVsufAKZf0WkD+/jfGjgBRmX4/4E9h6vRV8J/WF8AiJBlXHpx+Sz/hc6jFzrt75hfhWCUzxzpy3JvF7W9wNYmUBWgRmCJ2pyKJGY5m3L5ypXuZ/xnHI0CTHoFeG8/NNBwfB4j02g12NWM8kk1jGwn+roEiMPDSM/YLr8zMjX37iMmd1aoxyrg1mk8501UGfnVoqycqkIjRqdeeONM3P9p/IsMKILW9dTR3/28+RnC8gbph0+BQrnLmoxtkqCUq7SWKhxEVJzyRsNvTxETTy8+UHetrRKLhRo5OeCp8EnX2Md65uFwndpl71ouhpLCC/N3GMoMocOku9lKuxHuxEz21PWE629trLMaNqxDVOX1mKTB4Rnk7iHB1f8kwp1io8I0mIY8bnJJDBGF+rNV/BHWaQnpjd+y5y6vyWX1tOPWTQog9oTgp9wQZLcMfS2uQySzTa4dt2OkFF+IH4U5U3lx13vLIifQP7giUDX5QhN7ChW1GGNLao/mXGymrRk/FAYekT75hRAt6fMHHE0F9cEsM79ZSZB87Ks2RrFXXuctxvDSJZWdzQFbMEPE8wSakyz6yeF9iUd8qsMMmNCHSJ37cclHkQ+n95efPeqxLZz15It2Gzmbm2TfOThievaKnvd7+veWzSxsCYnFlLlGy4GRQXIZ9JOE6yYgu3XPcx/iR5z+e3n0gq8+3Gu26RbW+AR5X7Iqg548/QU+KEaqeI0FU+wUZwVak49zVvEuvzc5tUK0HcsV43o+5dI+HCVtC+aUtHeHsxJQJppe8kLHyTNY0L88R27air5g+vxqvH17ZopMajOG/NvitLuvuIvYF8Tvx/z7fO8URx6ElfjGFbPo8jhVaLikls0gA0UxNqTyMPo3/DBpj0EKhAKPug2wo7y2MrNrf3LwMzosu8kR1lj/6no7vk8g6Fokj77AJ78HeAAAAA==" alt="" loading="lazy"></div>
  <div class="body">
   <h3 style="color:#6b3a8c" title="血羽之心">血羽之心<span class="pitag pitag-boss" title="主渠道：首领掉落">首领掉落</span><span class="oid">bfhr</span></h3>
   <p class="meta"><span>史诗饰品 · <b>2,500</b> 金 ·</span><span>需 7 级 · PU 23.0</span></p>
   <div class="affix"><div class="line">+10点敏捷</div><div class="line">+6点攻击力</div><div class="line">+10%技能增强</div></div>
-  <div class="srcs"><div class="sitem"><span class="skind">首领掉落</span><span class="sloc">第一幕：征服大地</span></div><div class="swho">血羽（鹰身女妖首领）</div><div class="sitem"><span class="skind">开局配发</span><span class="sloc">第二幕、第三幕 · 每章开局</span></div><div class="swho">洛坎 开局自动配发</div></div>
+  <div class="srcs"><div class="sitem"><span class="skind">首领掉落</span><span class="sloc">第一幕：征服大地</span></div><div class="swho">血羽（鹰身女妖首领）</div></div>
   <p class="flavor" title="点击展开／收起">血羽的心。</p>
  </div></article><article class="card" data-tier="史诗" data-slot="饰品"
  data-src="自造" data-prim="" data-kinds=""
@@ -2030,15 +2055,15 @@ document.documentElement.setAttribute('data-theme',t)})();
   <div class="srcs"><div class="sitem"><span class="skind">首领掉落</span><span class="sloc">第二幕：旧日的仇恨</span></div><div class="swho">死亡领主（夏尔）</div></div>
   <p class="flavor" title="点击展开／收起">诅咒神教在瘟疫田边把它发给每一个自愿的祭司，面具内侧先刷上一层暗红，说是为了不让新来的人看见自己的脸。戴得越久，那红色越往布里吃；等到分不清那是谁的血，就说明这一位已经不需要再摘下来了。神教散了以后，这样的面具在洛丹伦的田里被犁出来过好几副，土抖干净了，里面还是红的。</p>
  </div></article><article class="card" data-tier="传说" data-slot="头部"
- data-src="自造" data-prim="start" data-kinds="random start"
- data-key="死亡领主之冠crdt自造据说死亡领主们曾一度是强大的圣骑士。他们中的一员开局配发每章开局雷克萨 开局自动配发 回音群岛深海领主亡魂 +150点生命 +100点法力 +6%技能增强 +12%斗志"
+ data-src="自造" data-prim="random" data-kinds="random"
+ data-key="死亡领主之冠crdt自造据说死亡领主们曾一度是强大的圣骑士。他们中的一员随机掉落回音群岛深海领主亡魂 +150点生命 +100点法力 +6%技能增强 +12%斗志"
  style="--c:#a1550f">
  <div class="iconwrap"><img src="data:image/webp;base64,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" alt="" loading="lazy"></div>
  <div class="body">
-  <h3 style="color:#a1550f" title="死亡领主之冠">死亡领主之冠<span class="pitag pitag-start" title="主渠道：开局配发">开局配发</span><span class="oid">crdt</span></h3>
+  <h3 style="color:#a1550f" title="死亡领主之冠">死亡领主之冠<span class="pitag pitag-random" title="主渠道：随机掉落">随机掉落</span><span class="oid">crdt</span></h3>
   <p class="meta"><span>传说头盔 · <b>5,075</b> 金 ·</span><span>需 8 级 · PU 23.5</span></p>
   <div class="affix"><div class="line">+150点生命</div><div class="line">+100点法力</div><div class="line">+6%技能增强</div><div class="line">+12%斗志</div></div>
-  <div class="srcs"><div class="sitem"><span class="skind">开局配发</span><span class="sloc">第二幕、第三幕 · 每章开局</span></div><div class="swho">雷克萨 开局自动配发</div><div class="sitem"><span class="skind">随机掉落</span><span class="sloc">第一幕 · 回音群岛</span></div><div class="swho">深海领主亡魂</div></div>
+  <div class="srcs"><div class="sitem"><span class="skind">随机掉落</span><span class="sloc">第一幕 · 回音群岛</span></div><div class="swho">深海领主亡魂</div></div>
   <p class="flavor" title="点击展开／收起">据说死亡领主们曾一度是强大的圣骑士。他们中的一员背弃了圣光，把屠刀挥向了自己的家人，只因他认为他们是不洁者。</p>
  </div></article><article class="card" data-tier="传说" data-slot="头部"
  data-src="自造" data-prim="random" data-kinds="random"
@@ -2085,37 +2110,37 @@ document.documentElement.setAttribute('data-theme',t)})();
   <div class="srcs"><div class="sitem"><span class="skind">商店出售</span><span class="sloc">第三幕 · 塞拉摩城</span></div><div class="swho">魔法戒指杂货铺</div></div>
   <p class="flavor" title="点击展开／收起">内侧刻着埃瑟里克斯·纳拉辛的名字，字口很深。他垂涎永恒之井的那年，这枚戒指还只是块石头。</p>
  </div></article><article class="card" data-tier="传说" data-slot="主手"
- data-src="自造" data-prim="start" data-kinds="random start"
- data-key="血杀斧klmm自造德瑟林发现他的女友阿鲁拉娜投入了别人的怀抱，便跑开局配发每章开局雷克萨 开局自动配发 回音群岛海巨人巨怪 +20点攻击力 攻击造成的伤害有8%转化为生命。 +15%技能增强"
+ data-src="自造" data-prim="random" data-kinds="random"
+ data-key="血杀斧klmm自造德瑟林发现他的女友阿鲁拉娜投入了别人的怀抱，便跑随机掉落回音群岛海巨人巨怪 +20点攻击力 攻击造成的伤害有8%转化为生命。 +15%技能增强"
  style="--c:#a1550f">
  <div class="iconwrap"><img src="data:image/webp;base64,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" alt="" loading="lazy"></div>
  <div class="body">
-  <h3 style="color:#a1550f" title="血杀斧">血杀斧<span class="pitag pitag-start" title="主渠道：开局配发">开局配发</span><span class="oid">klmm</span></h3>
+  <h3 style="color:#a1550f" title="血杀斧">血杀斧<span class="pitag pitag-random" title="主渠道：随机掉落">随机掉落</span><span class="oid">klmm</span></h3>
   <p class="meta"><span>传说主手武器 · <b>5,800</b> 金 ·</span><span>需 8 级 · PU 45.0</span></p>
   <div class="affix"><div class="line">+20点攻击力</div><div class="mech">攻击造成的伤害有8%转化为生命。</div><div class="line">+15%技能增强</div></div>
-  <div class="srcs"><div class="sitem"><span class="skind">开局配发</span><span class="sloc">第二幕、第三幕 · 每章开局</span></div><div class="swho">雷克萨 开局自动配发</div><div class="sitem"><span class="skind">随机掉落</span><span class="sloc">第一幕 · 回音群岛</span></div><div class="swho">海巨人巨怪</div></div>
+  <div class="srcs"><div class="sitem"><span class="skind">随机掉落</span><span class="sloc">第一幕 · 回音群岛</span></div><div class="swho">海巨人巨怪</div></div>
   <p class="flavor" title="点击展开／收起">德瑟林发现他的女友阿鲁拉娜投入了别人的怀抱，便跑到贫瘠之地痛哭了一场。这时，仿佛神仙显灵一般，一把战斧突然破土而出。于是德瑟林用这把斧子斩杀了阿鲁拉娜和她的情人，然后用全身的力量把它投入了黑暗的海底。</p>
  </div></article><article class="card" data-tier="传说" data-slot="主手"
- data-src="自造" data-prim="boss" data-kinds="boss start"
- data-key="塞拉希尔srtl自造这把武器出产自德拉诺，专为卡什德拉克打造。他带着首领掉落尘泥沼泽考哥尔 每章开局凯恩 开局自动配发 +18%攻击速度 +15点攻击力 +15%技能增强"
+ data-src="自造" data-prim="boss" data-kinds="boss"
+ data-key="塞拉希尔srtl自造这把武器出产自德拉诺，专为卡什德拉克打造。他带着首领掉落尘泥沼泽考哥尔 +18%攻击速度 +15点攻击力 +15%技能增强"
  style="--c:#a1550f">
  <div class="iconwrap"><img src="data:image/webp;base64,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" alt="" loading="lazy"></div>
  <div class="body">
   <h3 style="color:#a1550f" title="塞拉希尔">塞拉希尔<span class="pitag pitag-boss" title="主渠道：首领掉落">首领掉落</span><span class="oid">srtl</span></h3>
   <p class="meta"><span>传说主手武器 · <b>5,800</b> 金 ·</span><span>需 8 级 · PU 26.1</span></p>
   <div class="affix"><div class="line">+18%攻击速度</div><div class="line">+15点攻击力</div><div class="line">+15%技能增强</div></div>
-  <div class="srcs"><div class="sitem"><span class="skind">首领掉落</span><span class="sloc">第二幕 · 尘泥沼泽</span></div><div class="swho">考哥尔</div><div class="sitem"><span class="skind">开局配发</span><span class="sloc">第三幕 · 每章开局</span></div><div class="swho">凯恩 开局自动配发</div></div>
+  <div class="srcs"><div class="sitem"><span class="skind">首领掉落</span><span class="sloc">第二幕 · 尘泥沼泽</span></div><div class="swho">考哥尔</div></div>
   <p class="flavor" title="点击展开／收起">这把武器出产自德拉诺，专为卡什德拉克打造。他带着这把武器参与了导致暗疤氏族灭亡的血河之战。而纳兹格雷尔是卡什德拉克唯一在世的亲属。</p>
  </div></article><article class="card" data-tier="传说" data-slot="主手"
- data-src="自造" data-prim="world" data-kinds="start world"
- data-key="先祖法杖axas自造杖上刻满了一代代人的名字，最新的那个还没刻完。地图摆放回音群岛地图上直接摆放 每章开局雷克萨 开局自动配发 +8点力量 +8点智力 英雄和周围单位的攻击速度提高3.5%，移动速度提高7.5%。 攻击速度提高20%。"
+ data-src="自造" data-prim="world" data-kinds="world"
+ data-key="先祖法杖axas自造杖上刻满了一代代人的名字，最新的那个还没刻完。地图摆放回音群岛地图上直接摆放 +8点力量 +8点智力 英雄和周围单位的攻击速度提高3.5%，移动速度提高7.5%。 攻击速度提高20%。"
  style="--c:#a1550f">
  <div class="iconwrap"><img src="data:image/webp;base64,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" alt="" loading="lazy"></div>
  <div class="body">
   <h3 style="color:#a1550f" title="先祖法杖">先祖法杖<span class="tagswap">机制</span><span class="pitag pitag-world" title="主渠道：地图摆放">地图摆放</span><span class="oid">axas</span></h3>
   <p class="meta"><span>传说主手武器 · <b>4,700</b> 金 ·</span><span>需 8 级 · PU 20.0</span></p>
   <div class="affix"><div class="line">+8点力量</div><div class="line">+8点智力</div><div class="line">英雄和周围单位的攻击速度提高3.5%，移动速度提高7.5%。</div><div class="mech">攻击速度提高20%。</div></div>
-  <div class="srcs"><div class="sitem"><span class="skind">地图摆放</span><span class="sloc">第一幕 · 回音群岛</span></div><div class="swho">地图上直接摆放</div><div class="sitem"><span class="skind">开局配发</span><span class="sloc">第二幕、第三幕 · 每章开局</span></div><div class="swho">雷克萨 开局自动配发</div></div>
+  <div class="srcs"><div class="sitem"><span class="skind">地图摆放</span><span class="sloc">第一幕 · 回音群岛</span></div><div class="swho">地图上直接摆放</div></div>
   <p class="flavor" title="点击展开／收起">杖上刻满了一代代人的名字，最新的那个还没刻完。</p>
  </div></article><article class="card" data-tier="传说" data-slot="主手"
  data-src="自造" data-prim="shop" data-kinds="shop"
@@ -2206,15 +2231,15 @@ document.documentElement.setAttribute('data-theme',t)})();
   <div class="srcs"><div class="sitem"><span class="skind">首领掉落</span><span class="sloc">第二幕 · 尘泥沼泽</span></div><div class="swho">力量试炼（死亡擂台通关）</div></div>
   <p class="flavor" title="点击展开／收起">肯瑞托的大法师们一共铸过四枚这样的戒指，前三枚都在达拉然陷落的那天化成了灰，只有第四枚被一个不肯离开书库的学徒戴在手上带走了。环里的光并不是附魔留下的，是那道没来得及散尽的禁咒——每当它自己晃一下，就有一个咒语在别处被念完了。</p>
  </div></article><article class="card" data-tier="传说" data-slot="副手"
- data-src="自造" data-prim="quest" data-kinds="quest start"
- data-key="德雷克塔尔的法术书dtsb自造德雷克塔尔的老旧法术书里塞满了从阵亡肯瑞托法师手任务奖励雷霆山雷霆草药 · 凤凰蛋任务 每章开局洛坎 开局自动配发 +100点法力 +8%技能增强 +4点智力"
+ data-src="自造" data-prim="quest" data-kinds="quest"
+ data-key="德雷克塔尔的法术书dtsb自造德雷克塔尔的老旧法术书里塞满了从阵亡肯瑞托法师手任务奖励雷霆山雷霆草药 · 凤凰蛋任务 +100点法力 +8%技能增强 +4点智力"
  style="--c:#a1550f">
  <div class="iconwrap"><img src="data:image/webp;base64,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" alt="" loading="lazy"></div>
  <div class="body">
   <h3 style="color:#a1550f" title="德雷克塔尔的法术书">德雷克塔尔的法术书<span class="pitag pitag-quest" title="主渠道：任务奖励">任务奖励</span><span class="oid">dtsb</span></h3>
   <p class="meta"><span>传说副手武器 · <b>4,000</b> 金 ·</span><span>需 8 级 · PU 14.5</span></p>
   <div class="affix"><div class="line">+100点法力</div><div class="line">+8%技能增强</div><div class="line">+4点智力</div></div>
-  <div class="srcs"><div class="sitem"><span class="skind">任务奖励</span><span class="sloc">第一幕 · 雷霆山</span></div><div class="swho">雷霆草药 · 凤凰蛋任务</div><div class="sitem"><span class="skind">开局配发</span><span class="sloc">第二幕、第三幕 · 每章开局</span></div><div class="swho">洛坎 开局自动配发</div></div>
+  <div class="srcs"><div class="sitem"><span class="skind">任务奖励</span><span class="sloc">第一幕 · 雷霆山</span></div><div class="swho">雷霆草药 · 凤凰蛋任务</div></div>
   <p class="flavor" title="点击展开／收起">德雷克塔尔的老旧法术书里塞满了从阵亡肯瑞托法师手中窃取的书页。</p>
  </div></article><article class="card" data-tier="传说" data-slot="副手"
  data-src="自造" data-prim="boss" data-kinds="boss"
@@ -2239,15 +2264,15 @@ document.documentElement.setAttribute('data-theme',t)})();
   <div class="srcs"><div class="sitem"><span class="skind">首领掉落</span><span class="sloc">第三幕：荣光</span></div><div class="swho">血海战列舰</div></div>
   <p class="flavor" title="点击展开／收起">号口包着旧铜，吹一次，整条线的人都直起腰。</p>
  </div></article><article class="card" data-tier="传说" data-slot="饰品"
- data-src="自造" data-prim="quest" data-kinds="quest start"
- data-key="天界灵魂宝珠cosl自造珠子里浮着一个闭眼的人影，一直没睁开。任务奖励第二幕：旧日的仇恨石槌食人魔 · 任务奖励 每章开局凯恩 开局自动配发 +150点生命值 +4点智力 +15%技能增强"
+ data-src="自造" data-prim="quest" data-kinds="quest"
+ data-key="天界灵魂宝珠cosl自造珠子里浮着一个闭眼的人影，一直没睁开。任务奖励第二幕：旧日的仇恨石槌食人魔 · 任务奖励 +150点生命值 +4点智力 +15%技能增强"
  style="--c:#a1550f">
  <div class="iconwrap"><img src="data:image/webp;base64,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" alt="" loading="lazy"></div>
  <div class="body">
   <h3 style="color:#a1550f" title="天界灵魂宝珠">天界灵魂宝珠<span class="pitag pitag-quest" title="主渠道：任务奖励">任务奖励</span><span class="oid">cosl</span></h3>
   <p class="meta"><span>传说饰品 · <b>4,000</b> 金 ·</span><span>需 8 级 · PU 22.0</span></p>
   <div class="affix"><div class="line">+150点生命值</div><div class="line">+4点智力</div><div class="line">+15%技能增强</div></div>
-  <div class="srcs"><div class="sitem"><span class="skind">任务奖励</span><span class="sloc">第二幕：旧日的仇恨</span></div><div class="swho">石槌食人魔 · 任务奖励</div><div class="sitem"><span class="skind">开局配发</span><span class="sloc">第三幕 · 每章开局</span></div><div class="swho">凯恩 开局自动配发</div></div>
+  <div class="srcs"><div class="sitem"><span class="skind">任务奖励</span><span class="sloc">第二幕：旧日的仇恨</span></div><div class="swho">石槌食人魔 · 任务奖励</div></div>
   <p class="flavor" title="点击展开／收起">珠子里浮着一个闭眼的人影，一直没睁开。</p>
  </div></article><article class="card" data-tier="传说" data-slot="饰品"
  data-src="自造" data-prim="boss" data-kinds="boss"
@@ -2323,8 +2348,11 @@ function matchGroup(c,g){
   const s=sel[g];
   if(!s.size)return true;
   if(g==='kind'){
-    const kinds=' '+c.dataset.kinds+' ';
-    for(const k of s)if(kinds.includes(' '+k+' '))return true;
+    const kd=c.dataset.kinds||'';
+    for(const k of s){
+      if(k==='none'){ if(!kd)return true; continue; }   /* 无固定来源＝一条凭据都没有 */
+      if((' '+kd+' ').includes(' '+k+' '))return true;
+    }
     return false;
   }
   return s.has(c.dataset[g]);
