@@ -567,6 +567,7 @@ icon()})();
     it.open = true;
     render();
     it.el.scrollIntoView({ block: 'center' });
+    try{ it.el.setAttribute('tabindex','-1'); it.el.focus({preventScroll:true}); }catch(e){}
     it.el.classList.remove('flash');
     void it.el.offsetWidth;
     it.el.classList.add('flash');
