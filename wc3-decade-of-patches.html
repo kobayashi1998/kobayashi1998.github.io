@@ -208,6 +208,37 @@
   html[data-hide-ed] .sec.d-ed, html[data-hide-ed] .sec.d-ed + ul{display:none;}
   html[data-hide-bug] .sec.d-bug, html[data-hide-bug] .sec.d-bug + ul{display:none;}
 
+  h2[id],h3[id]{scroll-margin-top:24px}   /* 页首目录原生锚点与滑杆跳转落到同一位置 */
+
+  /* ===== 右侧刻度滑杆（宽屏） ===== */
+  .rail{display:none}
+  @media (min-width:1240px){
+    h2#toc,.toc{display:none}   /* 宽屏改由右侧滑杆替代，原索引仅窄屏显示 */
+    .rail{display:block;position:fixed;top:50%;right:14px;transform:translateY(-50%);
+      width:144px;height:60vh;z-index:50;
+      user-select:none;-webkit-user-select:none;touch-action:none}
+    .rail-track{position:absolute;right:0;top:0;bottom:0;width:2px;border-radius:1px;
+      background:var(--muted);opacity:.28}
+    .rail-fill{position:absolute;right:0;top:0;width:2px;border-radius:1px;height:0;
+      background:var(--accent);opacity:.8;transition:height .1s linear}
+    .rail-marks{position:absolute;inset:0}
+    .mark{position:absolute;right:0;transform:translateY(-50%);
+      display:flex;align-items:center;justify-content:flex-end;gap:8px;
+      padding:2px 0;text-decoration:none}
+    .mk-dot{flex:0 0 auto;width:6px;height:6px;border-radius:50%;
+      background:var(--soft-text);opacity:.85;margin-right:-2px;
+      transition:width .15s,height .15s,background .15s,opacity .15s,box-shadow .15s}
+    .mk-lb{font-size:11.5px;line-height:1.5;color:var(--muted);white-space:nowrap;
+      max-width:108px;overflow:hidden;text-overflow:ellipsis;
+      background:var(--bg);padding:0 4px 0 6px;border-radius:3px;
+      transition:color .15s}
+    .mark:hover .mk-lb{color:var(--text)}
+    .mark:hover .mk-dot{width:8px;height:8px;opacity:1;background:var(--text)}
+    .mark.on .mk-lb{color:var(--accent);font-weight:600}
+    .mark.on .mk-dot{width:9px;height:9px;opacity:1;background:var(--accent);
+      box-shadow:0 0 0 3px var(--accent-soft)}
+  }
+
   /* ===== 日/夜切换按钮 ===== */
   .theme-btn{position:fixed;top:14px;right:14px;z-index:99;width:30px;height:30px;border-radius:50%;
     border:1px solid var(--border);background:var(--panel);color:var(--text);font-size:12px;line-height:1;
@@ -240,7 +271,14 @@ document.documentElement.setAttribute('data-theme',t)})();
   </div>
 </header>
 
-<h2><span class="act">开场</span>补丁说明的重新梳理</h2>
+<nav class="rail noprint" id="railNav" aria-label="页内位置">
+  <div class="rail-track"></div>
+  <i class="rail-fill" id="railFill"></i>
+  <div class="rail-marks" id="railMarks"></div>
+</nav>
+
+
+<h2 id="intro"><span class="act">开场</span>补丁说明的重新梳理</h2>
 <div class="lede">
   <p>十年的补丁说明累积了数以千计的条目，逐条阅读只能看到零散的数值增减与功能增补，难以看出更新背后的走向。本报告把它们按版本重新梳理，是为了从繁多的更新内容中理出脉络。</p>
   <p>梳理的切入点是四个部分——游戏功能、平衡性机制、地图编辑器、BUG 修复。这并非随意切分：补丁文字之下，对应的是暴雪对引擎的升级与现代化改造、对比赛平衡性的持续关注、对地图制作社区的潜力挖掘，以及对逐渐复杂的游戏系统的问题修补。这四条主线彼此交织，贯穿了这十年的每一份补丁说明。</p>
@@ -253,7 +291,7 @@ document.documentElement.setAttribute('data-theme',t)})();
 </div>
 
 <!-- ============ 时间轴（速览） ============ -->
-<h2><span class="act">速览</span>版本与里程碑时间轴</h2>
+<h2 id="timeline"><span class="act">速览</span>版本与里程碑时间轴</h2>
 
 <div class="htl-wrap">
 <div class="htl" style="height:368px">
@@ -895,7 +933,7 @@ document.documentElement.setAttribute('data-theme',t)})();
   </div>
 </div>
 
-<h2 class="end"><span class="act">结尾</span>另一条时间线</h2>
+<h2 class="end" id="end"><span class="act">结尾</span>另一条时间线</h2>
 <div class="lede">
   <p>本报告梳理的是补丁说明，是这款游戏本身在这十年里的变化。而变化的背后，是战网平台的变迁、国服运营的起落、社区与第三方平台的兴衰。这些外部环境的起落沉浮，是同样值得关注的另一条时间线。</p>
   <p>外部大事件已另行整理为《外部环境时间线 —— 十年报告补充材料》，可与本报告对照阅读。</p>
@@ -926,6 +964,7 @@ icon()})();
       else{doc.documentElement.setAttribute(attr,'1');}
     });
     try{localStorage.setItem('site-filter',btns.map(function(b){return b.classList.contains('on')?'1':'0'}).join(''));}catch(e){}
+    if(window.__railLayout) window.__railLayout();   /* 筛选改变段落高度，刻度必须重算 */
   }
   btns.forEach(function(b){b.addEventListener('click',function(){
     b.classList.toggle('on'); apply();
@@ -948,5 +987,100 @@ icon()})();
 
 
 
+
+<script>
+/* ===== 页内目录 + 右侧刻度滑杆 ===== */
+(function(){
+  var d=document,
+      heads=[].slice.call(d.querySelectorAll('.wrap h2[id],.wrap .ver')),
+      marksBox=d.getElementById('railMarks'),
+      fill=d.getElementById('railFill'),
+      rail=d.getElementById('railNav'),
+      marks=[];
+  if(!heads.length||!rail) return;
+
+  function label(h){ if(h.className.indexOf('ver')>=0){var v=h.querySelector('.v');return v?v.textContent.replace(/^版本/,'').split('（')[0].trim():''}
+    var a=h.querySelector('.act');
+    return a?a.textContent.trim():h.textContent.replace(/\s+/g,' ').trim();}
+  var hs=[];
+  heads.forEach(function(h){
+    var lb=label(h); if(!lb) return; hs.push(h);
+    var m=d.createElement('a'); m.className='mark'; m.href='#'+h.id; m.title=lb;
+    var t=d.createElement('span'); t.className='mk-lb'; t.textContent=lb;
+    var dt=d.createElement('i'); dt.className='mk-dot';
+    m.appendChild(t); m.appendChild(dt); marksBox.appendChild(m); marks.push(m);
+  });
+  heads=hs;
+
+  function shown(h){return h.getClientRects().length>0;}
+  function layout(){
+    var hh=marksBox.clientHeight||1,
+        docH=Math.max(1,d.documentElement.scrollHeight),
+        st=window.pageYOffset||d.documentElement.scrollTop,
+        GAP=22,ys=[],idx=[];
+    heads.forEach(function(h,i){
+      if(!shown(h)){marks[i].style.display='none';return;}
+      idx.push(i);
+      ys.push(Math.min(1,Math.max(0,(h.getBoundingClientRect().top+st)/docH))*hh);
+    });
+    if(hh>80){
+      for(var i=1;i<ys.length;i++) if(ys[i]-ys[i-1]<GAP) ys[i]=ys[i-1]+GAP;
+      if(ys.length&&ys[ys.length-1]>hh){          /* 累计下推溢出末端，反向回压 */
+        ys[ys.length-1]=hh;
+        for(var j=ys.length-2;j>=0;j--) if(ys[j+1]-ys[j]<GAP) ys[j]=ys[j+1]-GAP;
+      }
+    }
+    idx.forEach(function(k,n){
+      var m=marks[k];
+      if(ys[n]<-1){m.style.display='none';return;}
+      m.style.display=''; m.style.top=(ys[n]/hh*100)+'%';
+    });
+  }
+  var ticking=false;
+  function upd(){
+    ticking=false;
+    var st=window.pageYOffset||d.documentElement.scrollTop,
+        max=d.documentElement.scrollHeight-window.innerHeight,
+        ratio=max>0?Math.min(1,Math.max(0,st/max)):0,
+        line=window.innerHeight*0.35,cur=-1;
+    fill.style.height=(ratio*100)+'%';
+    heads.forEach(function(h,i){if(shown(h)&&h.getBoundingClientRect().top<=line) cur=i;});
+    marks.forEach(function(a,i){a.classList.toggle('on',i===cur);});
+  }
+  function onScroll(){if(!ticking){ticking=true;(window.requestAnimationFrame||function(f){setTimeout(f,16)})(upd);}}
+
+  /* 点刻度跳章节；按住滑杆拖动整页 */
+  var downY=0,moved=false;
+  function jumpTo(cy){
+    var r=rail.getBoundingClientRect(),
+        p=Math.min(1,Math.max(0,(cy-r.top)/r.height)),
+        max=d.documentElement.scrollHeight-window.innerHeight;
+    window.scrollTo(0,p*max);
+  }
+  rail.addEventListener('pointerdown',function(e){
+    downY=e.clientY;moved=false;
+    try{rail.setPointerCapture(e.pointerId);}catch(err){}
+  });
+  rail.addEventListener('pointermove',function(e){
+    if(!e.buttons) return;
+    if(Math.abs(e.clientY-downY)>6) moved=true;
+    if(moved){e.preventDefault();jumpTo(e.clientY);}
+  });
+  rail.addEventListener('click',function(e){
+    e.preventDefault();
+    if(moved) return;
+    var a=e.target.closest?e.target.closest('.mark'):null;
+    if(!a) return;
+    var el=d.getElementById(a.getAttribute('href').slice(1));
+    if(el) window.scrollTo(0,el.getBoundingClientRect().top+window.pageYOffset-24);
+  });
+
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',function(){layout();upd();});
+  window.addEventListener('load',function(){layout();upd();});
+  layout();upd();
+  window.__railLayout=function(){layout();upd();};
+})();
+</script>
 
 </body></html>

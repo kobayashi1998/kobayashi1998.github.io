@@ -15,7 +15,6 @@
 <link rel="canonical" href="https://worldeditor.cn/game-anatomy.html">
 <link rel="stylesheet" href="theme.css">
 <style>
-  
   body{
     margin:0;padding:64px 20px;
     background:var(--bg);color:var(--text);
@@ -27,39 +26,154 @@
     border:1px solid var(--border);background:var(--panel2);border-radius:20px;padding:3px 13px;
     transition:color .15s,border-color .15s}
   .back a:hover{color:var(--accent);border-color:var(--accent)}
-  h1{margin:0 0 20px;font-size:22px;font-weight:600}
+  h1{margin:0 0 24px;font-size:22px;font-weight:600}
   h2{margin:36px 0 12px;font-size:15px;font-weight:600;padding-left:10px;border-left:3px solid var(--accent)}
-  h3{margin:22px 0 8px;font-size:14px;font-weight:600}
+  h3{margin:24px 0 12px;font-size:14px;font-weight:600}
   p{margin:0 0 12px}
   a{color:var(--accent);text-decoration:underline;text-underline-offset:3px}
   a:hover{color:var(--accent-bright)}
-  .sep{color:var(--muted);margin:0 10px}
-  ol,ul{margin:0;padding-left:22px}
-  ol li,ul li{margin:0 0 8px}
+  ol,ul{margin:0 0 12px;padding-left:22px}
+  ol li,ul li{margin:0 0 6px}
+  ol li:last-child,ul li:last-child{margin-bottom:0}
   code{font-family:Consolas,Menlo,monospace;font-size:13.5px;color:var(--code);overflow-wrap:anywhere}
-  .tip{color:var(--muted);font-size:13.5px}
-  .fnote{margin:0 0 12px;font-size:12.5px;color:var(--muted);line-height:1.75}
-  .toc{border:1px solid var(--border);background:var(--panel);border-radius:8px;padding:12px 18px;margin:0 0 8px}
-  .toc-title{font-size:13px;color:var(--muted);margin:0 0 6px}
-  .toc ol{margin:0;padding-left:20px;font-size:13.5px;line-height:2}
-  .toc a{color:var(--text);text-decoration:none;border-bottom:1px dotted var(--border)}
-  .toc a:hover{color:var(--accent);border-bottom-color:var(--accent)}
 
-  table{width:100%;border-collapse:collapse;margin:8px 0 16px;font-size:13.5px}
+  /* ===== 导语 ===== */
+  .lede{border:1px solid var(--border);background:var(--panel);border-radius:8px;padding:12px 16px;margin:0 0 24px}
+  .lede p{display:flex;gap:12px;margin:0;font-size:13.5px;line-height:1.9}
+  .lede b{flex:0 0 5.6em;color:var(--muted);font-weight:600}
+
+  /* ===== 表格 ===== */
+  table{width:100%;border-collapse:collapse;margin:0 0 12px;font-size:13.5px}
   th,td{border:1px solid var(--border);padding:6px 10px;text-align:left;vertical-align:top;line-height:1.7}
   th{background:var(--panel2);font-weight:600;white-space:nowrap}
   td:first-child{white-space:nowrap}
+  .tbl-wrap{overflow-x:auto}
   table.dirs td.sub{padding-left:22px}
   table.dirs td.sub2{padding-left:44px}
   table.dirs td.sub3{padding-left:66px}
-  .tbl-wrap{overflow-x:auto}
+
+  /* ===== 示意图 ===== */
+  figure{margin:0 0 12px}
+  .fig-cap{margin:12px 0 0;font-size:12.5px;color:var(--muted);line-height:1.7}
+  /* 层叠图：四层由外到内叠放 */
+  .lz-r{position:relative;display:flex;gap:14px;align-items:baseline;
+    padding:24px 14px 12px;margin:0 0 -8px;
+    border:1px solid var(--border);border-radius:7px;background:var(--panel);
+    font-size:13.5px;line-height:1.7;
+    box-shadow:0 4px 0 -1px var(--border),inset 0 1px 0 var(--panel2)}
+  .lz-r:last-of-type{margin-bottom:0}
+  .lz-1{z-index:4;margin-right:36px;padding-top:12px}
+  .lz-2{z-index:3;margin-right:24px}
+  .lz-3{z-index:2;margin-right:12px}
+  .lz-4{z-index:1}
+  .lz-k{flex:0 0 96px;font-weight:600}
+  .lz-v{flex:1 1 auto;min-width:0;color:var(--muted)}
+  /* 组合图：三类文本拼成对象数据 */
+  .mix-in{display:flex;gap:8px}
+  .mix-b{flex:1 1 0;min-width:0;border:1px solid var(--border);background:var(--panel);
+    border-radius:6px;padding:8px 10px;text-align:center;font-size:12.5px;line-height:1.7}
+  .mix-b b{display:block;font-family:Consolas,Menlo,monospace;font-size:13px;font-weight:600;color:var(--code)}
+  .mix-b span{display:block;color:var(--muted)}
+  .mix-ar{margin:6px 0;text-align:center;font-size:11.5px;color:var(--muted);letter-spacing:.05em}
+  .mix-out{border:1px solid var(--border);background:var(--panel2);border-radius:6px;
+    padding:9px 12px;text-align:center;font-size:12.5px;line-height:1.7}
+  .mix-out b{display:block;font-size:13.5px;font-weight:600}
+  .mix-out span{display:block;color:var(--muted)}
+  /* 流程图：三步 */
+  .flow{display:flex;align-items:stretch;gap:8px}
+  .fl{flex:1 1 0;min-width:0;border:1px solid var(--border);background:var(--panel);
+    border-radius:6px;padding:8px 10px;text-align:center;font-size:12.5px;line-height:1.7}
+  .fl b{display:block;font-size:13px;font-weight:600}
+  .fl span{display:block;color:var(--muted)}
+  .fl-ar{flex:0 0 auto;align-self:center;color:var(--muted);font-size:13px}
+  /* 截图占位 */
+  .shot{margin:0 0 12px}
+  .shot .ph{display:flex;align-items:center;justify-content:center;
+    min-height:150px;padding:12px 16px;text-align:center;
+    border:1px dashed var(--border);border-radius:8px;background:var(--panel);
+    font-size:12.5px;line-height:1.8;color:var(--muted)}
+  .shot .ph b{display:block;margin-bottom:2px;font-size:13px;line-height:1.7;font-weight:600;color:var(--text)}
+  .shot figcaption{margin:12px 0 0;font-size:12.5px;color:var(--muted);line-height:1.7}
+
+  /* ===== 提示 ===== */
+  .note{margin:0 0 12px;padding:12px 14px;font-size:13.5px;line-height:1.9;
+    color:var(--soft-text);background:var(--panel);border-left:2px solid var(--border);border-radius:0 6px 6px 0}
+  .note b{color:var(--text);font-weight:600}
+  .warn{margin:0 0 12px;padding:12px 14px;font-size:13.5px;line-height:1.9;
+    color:var(--text);background:var(--panel);border-left:2px solid var(--red);border-radius:0 6px 6px 0}
+  .warn b{color:var(--red);font-weight:600}
+  .tip{margin:0 0 12px;font-size:13.5px;color:var(--muted)}
 
   pre{background:var(--panel);border:1px solid var(--border);border-radius:8px;
     padding:12px 14px;overflow-x:auto;font:13px/1.7 Consolas,Menlo,monospace;margin:0 0 12px}
-  pre code{color:var(--text);font-size:13px;background:none}
+  pre code{color:var(--text);font-size:13px;background:none;overflow-wrap:normal}
 
-  /* ===== 日间（浅色）令牌 ===== */
-  
+  /* ===== 姊妹篇链接卡 ===== */
+  .pair{display:block;margin:0 0 12px;padding:12px 16px;text-decoration:none;
+    border:1px solid var(--border);background:var(--panel);border-radius:8px;transition:border-color .15s}
+  .pair:hover{border-color:var(--accent)}
+  .pair .pt{display:block;font-size:13.5px;font-weight:600;color:var(--accent)}
+  .pair .pd{display:block;font-size:12.5px;color:var(--muted);line-height:1.7;margin-top:2px}
+
+  /* ===== 右侧浮动目录 ===== */
+  .side-toc{position:relative;margin:0 0 24px;padding:12px 0 12px 16px;
+    border-left:1px solid var(--border)}
+  .toc-h{font-size:12px;color:var(--muted);letter-spacing:.04em;margin:0 0 8px}
+  .side-toc ol{list-style:none;margin:0;padding:0;font-size:13px;line-height:1.65}
+  .side-toc li{margin:0 0 6px}
+  .side-toc a{color:var(--muted);text-decoration:none;display:block;
+    padding:1px 0 1px 10px;border-left:2px solid transparent;margin-left:-11px;
+    transition:color .15s,border-color .15s}
+  .side-toc a:hover{color:var(--text)}
+  .side-toc a.on{color:var(--accent);border-left-color:var(--accent);font-weight:600}
+  h2[id],h3[id]{scroll-margin-top:24px}   /* 页首目录原生锚点与滑杆跳转落到同一位置 */
+  .side-toc li.sub a{padding-left:22px;font-size:13px}
+
+  /* ===== 宽屏右侧刻度滑杆 ===== */
+  .rail{display:none}
+  @media (min-width:1200px){
+    .side-toc{display:none}
+    .rail{display:block;position:fixed;top:50%;right:20px;transform:translateY(-50%);
+      width:210px;height:60vh;z-index:50;cursor:pointer;
+      user-select:none;-webkit-user-select:none;touch-action:none}
+    .rail-track{position:absolute;right:0;top:0;bottom:0;width:2px;border-radius:1px;
+      background:var(--muted);opacity:.28}
+    .rail-fill{position:absolute;right:0;top:0;width:2px;border-radius:1px;height:0;
+      background:var(--accent);opacity:.8;transition:height .1s linear}
+    .rail-marks{position:absolute;inset:0}
+    .mark{position:absolute;right:-3px;transform:translateY(-50%);
+      display:flex;align-items:center;justify-content:flex-end;gap:8px;
+      text-decoration:none}
+    .mk-lb{font-size:11.5px;line-height:1.5;color:var(--muted);white-space:nowrap;
+      max-width:148px;overflow:hidden;text-overflow:ellipsis;
+      background:var(--bg);padding:0 4px 0 6px;border-radius:3px;
+      transition:color .15s}
+    .mk-dot{flex:0 0 auto;width:6px;height:6px;border-radius:50%;
+      background:var(--soft-text);opacity:.85;margin-right:-2px;
+      transition:width .15s,height .15s,background .15s,opacity .15s,box-shadow .15s}
+    .mark:hover .mk-lb{color:var(--text)}
+    .mark:hover .mk-dot{width:8px;height:8px;opacity:1;background:var(--text)}
+    .mark.on .mk-lb{color:var(--accent);font-weight:600}
+    .mark.on .mk-dot{width:9px;height:9px;opacity:1;background:var(--accent);
+      box-shadow:0 0 0 3px var(--accent-soft)}
+  }
+  @media (max-width:560px){
+    body{padding:48px 14px}
+    table{font-size:13px}
+    th,td{padding:6px 8px}
+    table.dirs td.sub{padding-left:16px}
+    table.dirs td.sub2{padding-left:28px}
+    table.dirs td.sub3{padding-left:40px}
+    .side-toc{margin:0 0 4px}
+  }
+  @media (max-width:520px){
+    .lz-r{flex-wrap:wrap;gap:2px 12px;padding:16px 12px 12px}
+    .lz-r.lz-1,.lz-r.lz-2,.lz-r.lz-3,.lz-r.lz-4{margin-right:0}
+    .lz-k{flex:0 0 auto}
+    .lz-v{flex:1 1 100%}
+    .mix-in,.flow{flex-direction:column}
+    .fl-ar{transform:rotate(90deg)}
+  }
 
   /* ===== 日/夜切换按钮 ===== */
   .theme-btn{position:fixed;top:14px;right:14px;z-index:99;width:30px;height:30px;border-radius:50%;
@@ -70,11 +184,11 @@
   @media print{
     :root,:root[data-theme="light"]{--bg:#ffffff;--text:#000000;--muted:#3d3d3d;--strong:#000000;--border:#c8c8c8;--accent:#7a5f24;--accent-rgb:122,95,36;--btn-shadow:none;}
     body{background:#fff;color:#000;}
-    .theme-btn,.noprint{display:none;}
+    .theme-btn,.noprint,.side-toc{display:none;}
     a{color:#000;text-decoration:underline;}
     a[href^="http"]:after{content:" (" attr(href) ")";font-size:.8em;color:#555;word-break:break-all;}
     h2,h3{page-break-after:avoid;}
-    li,tr,pre,code,table,.toc{break-inside:avoid;}
+    li,tr,pre,code,table,.lede,.lz-r,.mix-in,.flow,.shot{break-inside:avoid;}
     td:first-child{white-space:normal;}
   }
 </style>
@@ -86,217 +200,412 @@ document.documentElement.setAttribute('data-theme',t)})();
 </head>
 <body>
 <button id="themeBtn" class="theme-btn" type="button" aria-label="切换日间/夜间模式" title="切换日间/夜间模式">☀️</button>
+
 <main>
 
   <div class="back"><a href="index.html">← 返回主页</a></div>
 
   <h1>游戏文件解剖</h1>
 
-  <h2 id="mpq-casc">两代档案格式：MPQ 与 CASC</h2>
-  <p>游戏文件从不以散装文件形式躺在硬盘上，而是打包在档案（archive）里：</p>
-  <ul>
-    <li>MPQ：1.30 之前的老档案格式。旧版安装目录下的 <code>war3.mpq</code>、<code>war3x.mpq</code>、<code>war3patch.mpq</code>、<code>war3local.mpq</code>、<code>war3xlocal.mpq</code> 都是 MPQ。</li>
-    <li>CASC（Core Asset Storage System）：1.30 起全面启用的新格式，取代 MPQ。所有资源统一存进一个 CASC 存储，不再按补丁拆包。</li>
-  </ul>
-  <p class="tip">两代共同的顶层是 <code>本地文件 &gt; 地图包</code>：往地图里导入的同名资源会盖掉游戏自带的。再往下才轮到游戏档案——MPQ 时代按 <code>war3patch.mpq &gt; war3xlocal.mpq &gt; war3x.mpq &gt; war3local.mpq &gt; war3.mpq</code> 逐层回退（补丁包级别最高，<code>x</code> 为冰封王座专用，<code>local</code> 为语言层；此外每张地图还会按地形额外加载一个地形包，如 <code>A.mpq</code>）；重制版把这些层压成一个 CASC 存储。这也是「启用本地文件」能覆盖游戏数据的原因，见文末。</p>
+  <div class="lede">
+    <p><b>这页讲什么</b>游戏本体的文件全被打包在档案里，硬盘上看不到。这页拆开包装，讲清里面分几层、每层放什么。</p>
+    <p><b>你需要</b>装了重制版的电脑，加一个 CASCView（下载见下）。</p>
+    <p><b>读完你会</b>会用工具导出任意文件；知道改动该放哪个目录；能让改动生效而不碰本体。</p>
+  </div>
 
-  <h2 id="cascview">工具：CASCView</h2>
-  <p>CASC 格式社区通用的浏览、提取工具是 <a href="https://www.zezula.net/en/casc/main.html" target="_blank" rel="noopener noreferrer">Ladik 的 CASCView</a>（Ladislav Zezula，免费），旧版 MPQ 则用他家的 <a href="https://www.zezula.net/en/mpq/main.html" target="_blank" rel="noopener noreferrer">MPQ Editor</a>。</p>
+  <nav class="side-toc noprint" id="sideToc" aria-label="页内目录">
+    <div class="toc-h">本页目录</div>
+    <ol id="tocList"></ol>
+  </nav>
+
+  <nav class="rail noprint" id="railNav" aria-label="页内位置">
+    <div class="rail-track"></div>
+    <i class="rail-fill" id="railFill"></i>
+    <div class="rail-marks" id="railMarks"></div>
+  </nav>
+
+  <h2 id="formats">两代档案格式：MPQ 与 CASC</h2>
+  <p>游戏文件不在硬盘上散着放，而是打包进档案（archive）。1.30 之前用 MPQ，之后换成 CASC。</p>
+
+  <div class="tbl-wrap">
+  <table>
+    <thead><tr><th>档案格式</th><th>从哪版起</th><th>形态</th></tr></thead>
+    <tbody>
+      <tr><td>MPQ</td><td>1.30 前</td><td>多个独立包，按补丁与语言拆开</td></tr>
+      <tr><td>CASC</td><td>1.30 起</td><td>所有资源统一存进一个 CASC 存储，不再按补丁拆包</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <p>不管哪一代，游戏找文件的顺序都是固定的：从上往下找，上面有同名文件就用上面的。</p>
+
+  <figure class="fig" role="img" aria-label="四层叠放：本地文件在最上，其下依次是地图包、CASC 覆盖层、war3.w3mod 基础层">
+    <div class="lz-r lz-1"><span class="lz-k">本地文件</span><span class="lz-v">游戏根目录下的散装文件，需开启 Allow Local Files</span></div>
+    <div class="lz-r lz-2"><span class="lz-k">地图包</span><span class="lz-v">地图内导入的同名资源，只对这一张图生效</span></div>
+    <div class="lz-r lz-3"><span class="lz-k">CASC 覆盖层</span><span class="lz-v"><code>_locales\</code> · <code>_hd.w3mod\</code> · <code>_tilesets\</code> · <code>_Balance\</code> 等</span></div>
+    <div class="lz-r lz-4"><span class="lz-k">基础层</span><span class="lz-v"><code>war3.w3mod\</code>，SD 美术、对象数据、脚本都在这</span></div>
+    <p class="fig-cap">图 1　四层由外到内叠放，越往下文件越多：同名文件在哪一层先找到就用哪一层，四层都没有才算缺文件。</p>
+  </figure>
+
+  <p class="tip">这也是「启用本地文件」能覆盖游戏数据的原因——它把自己放进了最上面一层。</p>
+
+  <div class="note"><b>MPQ 时代的多包覆盖</b>　老版本把内容拆在几个包里，读的时候按 <code>war3patch.mpq</code> → <code>war3xlocal.mpq</code> → <code>war3x.mpq</code> → <code>war3local.mpq</code> → <code>war3.mpq</code> 逐层回退：补丁包级别最高，<code>x</code> 为冰封王座专用，<code>local</code> 为语言层。此外每张地图还会额外加载一个地形包（如 <code>A.mpq</code>）。重制版把这些层压成了一个 CASC 存储。</div>
+
+  <h2 id="tool">工具：CASCView</h2>
+  <p>看 CASC 用 Ladislav Zezula 的 CASCView（免费）。看旧版 MPQ 用同一家的 MPQ Editor。</p>
   <ol>
-    <li>下载并运行 CascView，菜单 <code>Storage → Open Storage</code>（打开存储）。</li>
-    <li>选择游戏根目录——即包含 <code>.build.info</code> 的那个文件夹（通常是 <code>Warcraft III\_retail_\</code>），程序会自动识别 CASC 存储。</li>
-    <li>左侧文件树展开 <code>war3.w3mod</code> 等节点，右键 <code>Extract / Export</code> 即可导出单个文件或整个目录。</li>
+    <li>从 <a href="https://www.zezula.net/en/casc/main.html" target="_blank" rel="noopener noreferrer">zezula.net 的 CASCView 页面</a>下载并运行，选菜单 <code>Storage → Open Storage</code>（打开存储）。</li>
+    <li>选中游戏根目录（含 <code>.build.info</code> 的 <code>Warcraft III\_retail_\</code>），等它认出 CASC 存储。</li>
+    <li>展开左侧 <code>war3.w3mod</code> 等节点，右键 <code>Extract / Export</code>（导出）取走单个文件或整个目录。</li>
   </ol>
-  <p class="tip">两点提示：① 文件树里大量出现的 <code>.w3mod</code> 后缀只是虚拟目录标记，不是真实文件夹；② CascView 是只读工具，想改动请先导出，再走文末的本地文件覆盖流程。</p>
+
+  <!-- 截图待补：替换时把整个 .ph 换成 <img src="…" alt="…">，figcaption 保留 -->
+  <figure class="shot">
+    <div class="ph"><span class="ph-t"><b>截图待补</b>CASCView 左侧文件树全貌（展开 <code>war3.w3mod</code>）</span></div>
+    <figcaption>图 2　左侧树里的 <code>war3.w3mod</code>、<code>_hd.w3mod</code> 不是硬盘上的文件夹，而是 CASC 内部的虚拟层。</figcaption>
+  </figure>
+
+  <div class="note"><b>两点先记住</b>　① 文件树里到处出现的 <code>.w3mod</code> 后缀只是虚拟层目录名，不是真实文件夹；② CASCView 只读，要改文件得先导出，再走文末的本地文件流程。</div>
 
   <h2 id="install">安装目录速览</h2>
-  <p>战网客户端的安装形如 <code>Warcraft III\</code>（安装目录），1.32.7 起真正的游戏根是其中的 <code>_retail_\</code>。表内 <code>∟</code> 表示层级，说明列逐行解释该层的作用：</p>
+  <p>战网装出来的目录结构如下。只有 <code>_retail_\</code> 里才是游戏本体，工具和本地文件都指向它。</p>
   <div class="tbl-wrap">
   <table class="dirs">
-    <tbody><tr><th>路径</th><th>说明</th></tr>
-    <tr><td><code>Warcraft III\</code></td><td>战网安装目录，正式与 PTR 的游戏根并列于此</td></tr>
-    <tr><td class="sub">∟ <code>_retail_\</code></td><td>游戏根（PTR 为 <code>_ptr_\</code>），工具与本地文件都指向这里</td></tr>
-    <tr><td class="sub2">∟ <code>.build.info</code></td><td>记录构建版本与 CASC 指纹，CascView 靠它定位</td></tr>
-    <tr><td class="sub2">∟ <code>Data\</code></td><td>CASC 存储本体，全为二进制，不用手拆，交给工具</td></tr>
-    <tr><td class="sub3">∟ <code>data\</code></td><td>分包文件 <code>*.bin</code>，游戏数据的主体</td></tr>
-    <tr><td class="sub3">∟ <code>config\</code></td><td>存储配置</td></tr>
-    <tr><td class="sub3">∟ <code>indices\</code></td><td>索引，记录文件名与分包位置的对应关系</td></tr>
-    <tr><td class="sub3">∟ <code>dbcache\</code></td><td>本地数据库缓存</td></tr>
-    <tr><td class="sub2">∟ <code>x86_64\</code></td><td>64 位客户端目录，游戏与编辑器主程序都在这里</td></tr>
-    <tr><td class="sub3">∟ <code>Warcraft III.exe</code></td><td>游戏主程序</td></tr>
-    <tr><td class="sub3">∟ <code>World Editor.exe</code></td><td>世界编辑器主程序，汉化补丁作用的对象</td></tr>
-    <tr><td class="sub2">∟ <code>Warcraft III.exe</code></td><td>启动器，负责拉起 <code>x86_64\</code> 下的主程序</td></tr>
-  </tbody></table>
+    <thead><tr><th>路径</th><th>说明</th></tr></thead>
+    <tbody>
+    <tr><td><code>Warcraft III\</code></td><td>战网安装目录，正式版与 PTR 的游戏根并列于此</td></tr>
+    <tr><td class="sub"><code>_retail_\</code></td><td>游戏根（PTR 为 <code>_ptr_\</code>），工具与本地文件都指向这里</td></tr>
+    <tr><td class="sub2"><code>.build.info</code></td><td>记录构建版本与 CASC 指纹，CASCView 靠它定位</td></tr>
+    <tr><td class="sub2"><code>Data\</code></td><td>CASC 存储本体，全为二进制，不必手拆，交给工具</td></tr>
+    <tr><td class="sub3"><code>data\</code></td><td>分包文件 <code>*.bin</code>，游戏数据的主体</td></tr>
+    <tr><td class="sub3"><code>config\</code></td><td>存储配置</td></tr>
+    <tr><td class="sub3"><code>indices\</code></td><td>索引，记录文件名与分包位置的对应关系</td></tr>
+    <tr><td class="sub3"><code>dbcache\</code></td><td>本地数据库缓存</td></tr>
+    <tr><td class="sub2"><code>x86_64\</code></td><td>64 位客户端目录，游戏与编辑器主程序都在这里</td></tr>
+    <tr><td class="sub3"><code>Warcraft III.exe</code></td><td>游戏主程序</td></tr>
+    <tr><td class="sub3"><code>World Editor.exe</code></td><td>世界编辑器主程序，汉化补丁作用的对象</td></tr>
+    <tr><td class="sub2"><code>Warcraft III.exe</code></td><td>启动器，负责拉起 <code>x86_64\</code> 下的主程序</td></tr>
+    </tbody>
+  </table>
   </div>
 
   <h2 id="layers">CASC 分层结构</h2>
-  <p>CASC 内部不是一个大文件夹，而是像「图层」一样叠放多层根目录，读取时从上往下找，先命中先用。表内 <code>∟</code> 表示层级，说明列逐行解释该层的作用：</p>
+  <p>CASC 内部不是一个大文件夹树，而是多个根目录叠在一起。下面按优先级从高到低排，同名文件谁在上面谁生效。</p>
+  <div class="note"><b>先看一个例子</b>　同一个路径 <code>units\human\footman\footman.mdx</code> 在基础层放的是 SD 模型，在 <code>_hd.w3mod</code> 放的是 HD 模型。开高清时用 <code>_hd.w3mod</code> 那份，切回经典才落到基础层那份。</div>
   <div class="tbl-wrap">
   <table class="dirs">
-    <tbody><tr><th>层</th><th>说明</th></tr>
-    <tr><td><code>_Balance\</code></td><td>数据集覆盖层：slk 与 <code>*Func.txt</code> 各一套，即编辑器数据集</td></tr>
-    <tr><td class="sub">∟ <code>Melee_V0\</code></td><td>对战（近战）数据集</td></tr>
-    <tr><td class="sub">∟ <code>Custom_V0\</code></td><td>自定义数据集的基线版本</td></tr>
-    <tr><td class="sub">∟ <code>Custom_V1.w3mod\</code></td><td>自定义数据集的最新版本</td></tr>
+    <thead><tr><th>层</th><th>放什么</th></tr></thead>
+    <tbody>
+    <tr><td><code>_Balance\</code></td><td>数据集覆盖层：slk 与 <code>*Func.txt</code> 各一套，即编辑器里选得到的数据集</td></tr>
+    <tr><td class="sub"><code>Melee_V0\</code></td><td>对战（近战）数据集</td></tr>
+    <tr><td class="sub"><code>Custom_V0\</code></td><td>自定义数据集的基线版本</td></tr>
+    <tr><td class="sub"><code>Custom_V1.w3mod\</code></td><td>自定义数据集的最新版本</td></tr>
     <tr><td><code>_hd.w3mod\</code></td><td>重制版（HD）模型与贴图，贴图多为 <code>.dds</code></td></tr>
     <tr><td><code>_de.w3mod\</code></td><td>决定版（Definitive Edition）图标与美术</td></tr>
     <tr><td><code>_tilesets\</code></td><td>按地形组覆盖的 HD 资源</td></tr>
-    <tr><td class="sub">∟ <code>*.w3mod\</code></td><td>每个地形组一个包（洛丹伦的夏天、卡利姆多……）</td></tr>
+    <tr><td class="sub"><code>*.w3mod\</code></td><td>每个地形组一个包（洛丹伦的夏天、卡利姆多……）</td></tr>
     <tr><td><code>_locales\</code></td><td>语言覆盖层，每种语言一个包</td></tr>
-    <tr><td class="sub">∟ <code>&lt;语言&gt;.w3mod\</code></td><td>各语言一个包：串表、UI 文本、字体与配音</td></tr>
+    <tr><td class="sub"><code>&lt;语言&gt;.w3mod\</code></td><td>串表、UI 文本、字体与配音</td></tr>
     <tr><td><code>_teen.w3mod\</code></td><td>青少年模式（低暴力）资源</td></tr>
     <tr><td><code>_deprecated.w3mod\</code></td><td>为兼容保留、实际已弃用的文件</td></tr>
-    <tr><td><code>war3.w3mod\</code></td><td>基础层：对象数据、脚本、SD 美术与下表的目录</td></tr>
-  </tbody></table>
+    <tr><td><code>war3.w3mod\</code></td><td>基础层：SD 美术、对象数据、脚本，以及下节那张目录表</td></tr>
+    </tbody>
+  </table>
   </div>
+  <div class="note"><b>怎么用这张表</b>　想改的某个文件在哪一层，就在哪一层改；上层只放「改动过的文件」，没改的不必镜像一份。</div>
 
   <h2 id="dirs">war3.w3mod 目录速查</h2>
-  <p>一级目录 21 个，二级目录的组织主线只有三条：模型按「种族 / 地形组」分文件夹，每个素材再单独占一个目录；对象数据与 slk 表放在各目录根；贴图大多平铺。表内 <code>∟</code> 表示层级，路径较深的一层层拆成行，说明列逐行解释该文件夹的作用。</p>
+  <p>基础层的一级目录 21 个。二级目录的组织主线只有三条：模型按「种族 / 地形组」分文件夹，每个素材再单占一个目录；对象数据与 slk 表放在各目录根；贴图大多平铺。</p>
+
   <div class="tbl-wrap">
   <table class="dirs">
-    <tbody><tr><th>目录</th><th>说明</th></tr>
+    <thead><tr><th>目录</th><th>放什么</th></tr></thead>
+    <tbody>
     <tr><td><code>abilities\</code></td><td>技能特效与弹道模型，分两个子目录</td></tr>
-    <tr><td class="sub">∟ <code>spells\</code></td><td>技能特效模型，按「种族 → 技能」两层组织</td></tr>
-    <tr><td class="sub2">∟ <code>&lt;种族&gt;\</code></td><td>human / orc / undead / nightelf / demon 等</td></tr>
-    <tr><td class="sub3">∟ <code>&lt;技能&gt;\</code></td><td>每个技能一个目录，内含该技能的特效模型</td></tr>
-    <tr><td class="sub">∟ <code>weapons\&lt;弹道&gt;\</code></td><td>投射物 / 弹道模型，每个弹道一个目录</td></tr>
+    <tr><td class="sub"><code>spells\</code></td><td>技能特效模型，按「种族 → 技能」两层组织</td></tr>
+    <tr><td class="sub2"><code>&lt;种族&gt;\</code></td><td>human / orc / undead / nightelf / demon 等</td></tr>
+    <tr><td class="sub3"><code>&lt;技能&gt;\</code></td><td>每个技能一个目录，内含该技能的特效模型</td></tr>
+    <tr><td class="sub"><code>weapons\&lt;弹道&gt;\</code></td><td>投射物 / 弹道模型，每个弹道一个目录</td></tr>
     <tr><td><code>buildings\</code></td><td>建筑模型</td></tr>
-    <tr><td class="sub">∟ <code>&lt;种族&gt;\&lt;建筑&gt;\</code></td><td>每个建筑一个目录，按种族分</td></tr>
+    <tr><td class="sub"><code>&lt;种族&gt;\&lt;建筑&gt;\</code></td><td>每个建筑一个目录，按种族分</td></tr>
     <tr><td><code>campaign\</code></td><td>官方战役地图，按战役 / 章节分文件夹</td></tr>
     <tr><td><code>doodads\</code></td><td>装饰物模型</td></tr>
-    <tr><td class="sub">∟ <code>&lt;地形组&gt;\</code></td><td>lordaeronsummer / ashenvale / northrend 等</td></tr>
-    <tr><td class="sub2">∟ <code>&lt;类别&gt;\</code></td><td>structures / plants / props</td></tr>
-    <tr><td class="sub3">∟ <code>&lt;名称&gt;\</code></td><td>每个装饰物一个目录，内含模型与贴图</td></tr>
+    <tr><td class="sub"><code>&lt;地形组&gt;\</code></td><td>lordaeronsummer / ashenvale / northrend 等</td></tr>
+    <tr><td class="sub2"><code>&lt;类别&gt;\</code></td><td>structures / plants / props</td></tr>
+    <tr><td class="sub3"><code>&lt;名称&gt;\</code></td><td>每个装饰物一个目录，内含模型与贴图</td></tr>
     <tr><td><code>environment\</code></td><td>环境模型、植被；无子目录，按素材名平铺</td></tr>
     <tr><td><code>fonts\</code></td><td>字体；<code>.ttf</code> 直接平铺在此层</td></tr>
     <tr><td><code>maps\</code></td><td>对战与遭遇战地图</td></tr>
     <tr><td><code>movies\</code></td><td>过场动画；<code>.mp4</code> 直接平铺在此层</td></tr>
     <tr><td><code>objects\</code></td><td>杂项对象模型；除下列目录外，其余素材按名称平铺</td></tr>
-    <tr><td class="sub">∟ <code>inventoryitems\&lt;物品&gt;\</code></td><td>可拾取物品模型，每个物品一个目录</td></tr>
+    <tr><td class="sub"><code>inventoryitems\&lt;物品&gt;\</code></td><td>可拾取物品模型，每个物品一个目录</td></tr>
     <tr><td><code>pathtextures\</code></td><td>通行判定贴图，用于寻路与建造</td></tr>
     <tr><td><code>replaceabletextures\</code></td><td>可替换贴图：图标、选择圈、悬崖、团队色</td></tr>
-    <tr><td class="sub">∟ <code>commandbuttons\</code></td><td>技能 / 物品的亮图标（BTN*.blp）</td></tr>
-    <tr><td class="sub">∟ <code>commandbuttonsdisabled\</code></td><td>对应的暗图标（DISBTN*.blp），用于冷却与不可用态</td></tr>
-    <tr><td class="sub">∟ <code>selection\</code></td><td>选择圈、施法范围圈</td></tr>
-    <tr><td class="sub">∟ <code>cliff\</code></td><td>悬崖贴图</td></tr>
-    <tr><td class="sub">∟ <code>teamcolor\</code></td><td>团队色蒙版</td></tr>
+    <tr><td class="sub"><code>commandbuttons\</code></td><td>技能 / 物品的亮图标（<code>BTN*.blp</code>）</td></tr>
+    <tr><td class="sub"><code>commandbuttonsdisabled\</code></td><td>对应的暗图标（<code>DISBTN*.blp</code>），用于冷却与不可用态</td></tr>
+    <tr><td class="sub"><code>selection\</code></td><td>选择圈、施法范围圈</td></tr>
+    <tr><td class="sub"><code>cliff\</code></td><td>悬崖贴图</td></tr>
+    <tr><td class="sub"><code>teamcolor\</code></td><td>团队色蒙版</td></tr>
     <tr><td><code>scripts\</code></td><td>JASS 公共库与 AI 脚本</td></tr>
-    <tr><td class="sub">∟ <code>ai\</code></td><td>AI 脚本</td></tr>
+    <tr><td class="sub"><code>ai\</code></td><td>AI 脚本</td></tr>
     <tr><td><code>shaders\</code></td><td>着色器；无子目录，文件平铺</td></tr>
     <tr><td><code>sharedmodels\</code></td><td>共享杂项模型：烟雾、羽毛、光晕等</td></tr>
     <tr><td><code>sound\</code></td><td>单位语音、界面音、音乐、环境音</td></tr>
-    <tr><td class="sub">∟ <code>units\</code></td><td>单位语音，按「种族 → 单位」两层组织</td></tr>
-    <tr><td class="sub2">∟ <code>&lt;种族&gt;\</code></td><td>human / orc / undead / nightelf / creeps 等</td></tr>
-    <tr><td class="sub3">∟ <code>&lt;单位&gt;\</code></td><td>每个单位一个目录，内含选中、移动、攻击等语音</td></tr>
-    <tr><td class="sub">∟ <code>interface\</code></td><td>界面提示音，含 <code>warning\</code> 等</td></tr>
-    <tr><td class="sub">∟ <code>music\mp3Music\</code></td><td>背景音乐</td></tr>
-    <tr><td class="sub">∟ <code>ambient\</code></td><td>环境音</td></tr>
+    <tr><td class="sub"><code>units\</code></td><td>单位语音，按「种族 → 单位」两层组织</td></tr>
+    <tr><td class="sub2"><code>&lt;种族&gt;\</code></td><td>human / orc / undead / nightelf / creeps 等</td></tr>
+    <tr><td class="sub3"><code>&lt;单位&gt;\</code></td><td>每个单位一个目录，内含选中、移动、攻击等语音</td></tr>
+    <tr><td class="sub"><code>interface\</code></td><td>界面提示音，含 <code>warning\</code> 等</td></tr>
+    <tr><td class="sub"><code>music\mp3Music\</code></td><td>背景音乐</td></tr>
+    <tr><td class="sub"><code>ambient\</code></td><td>环境音</td></tr>
     <tr><td><code>splats\</code></td><td>地面贴花与闪电数据</td></tr>
     <tr><td><code>terrainart\</code></td><td>地形贴图与地形 slk</td></tr>
-    <tr><td class="sub">∟ <code>&lt;地形组&gt;\</code></td><td>按地形组划分，文件名形如 <code>&lt;缩写&gt;_&lt;地块&gt;.blp</code>*……</td></tr>
+    <tr><td class="sub"><code>&lt;地形组&gt;\</code></td><td>按地形组划分，文件名形如 <code>&lt;缩写&gt;_&lt;地块&gt;.blp</code></td></tr>
     <tr><td><code>textures\</code></td><td>贴图，以 <code>.blp</code> 为主；无子目录，基本平铺</td></tr>
     <tr><td><code>ui\</code></td><td>界面资源</td></tr>
-    <tr><td class="sub">∟ <code>framedef\</code></td><td><code>.fdf</code> 框架定义</td></tr>
-    <tr><td class="sub">∟ <code>glues\</code></td><td>主菜单等界面</td></tr>
-    <tr><td class="sub">∟ <code>console\</code></td><td>控制台皮肤</td></tr>
+    <tr><td class="sub"><code>framedef\</code></td><td><code>.fdf</code> 框架定义</td></tr>
+    <tr><td class="sub"><code>glues\</code></td><td>主菜单等界面</td></tr>
+    <tr><td class="sub"><code>console\</code></td><td>控制台皮肤</td></tr>
     <tr><td><code>units\</code></td><td>单位模型与对象数据</td></tr>
-    <tr><td class="sub">∟ <code>&lt;种族或类别&gt;\</code></td><td>human / orc / undead / creeps / critters 等</td></tr>
-    <tr><td class="sub2">∟ <code>&lt;单位&gt;\</code></td><td>每个单位一个目录，内含 <code>.mdx</code> 模型与贴图</td></tr>
+    <tr><td class="sub"><code>&lt;种族或类别&gt;\</code></td><td>human / orc / undead / creeps / critters 等</td></tr>
+    <tr><td class="sub2"><code>&lt;单位&gt;\</code></td><td>每个单位一个目录，内含 <code>.mdx</code> 模型与贴图</td></tr>
     <tr><td><code>webui\</code></td><td>1.32+ 的网页化前端资源</td></tr>
-    <tr><td class="sub">∟ <code>baseframes\</code></td><td>界面框架的网页资源</td></tr>
-  </tbody></table>
+    <tr><td class="sub"><code>baseframes\</code></td><td>界面框架的网页资源</td></tr>
+    </tbody>
+  </table>
   </div>
-  <p class="tip">路径不区分大小写；上表以经典（SD）层为准，<code>_hd.w3mod</code> / <code>_de.w3mod</code> 层的目录会多出一些、少一些。</p>
+  <p class="tip">路径不区分大小写。上表以经典（SD）层为准，<code>_hd.w3mod</code> / <code>_de.w3mod</code> 层的目录会多出一些、少一些。</p>
 
   <h2 id="data">核心数据文件：SLK 与 INI 串表</h2>
-  <p>「单位/技能/物品/科技」的对象数据由三类纯文本文件拼合而成，改数据、做对照都绕不开它们：</p>
+  <p>单位、技能、物品、科技的「对象数据」不是存在一个文件里，而是由三类纯文本拼合：slk 管数值，Func 管按钮与快捷键，Strings 管显示文本。改数据、做对照都绕不开它们。</p>
 
-  <h3>SLK 表（数值字段）</h3>
-  <p><code>units\</code> 与 <code>_Balance\*.w3mod\units\</code> 下的 <code>.slk</code> 是类 SYLK 电子表格文本，一行形如 <code>C;X列;Y行;K"值"</code>，首列 ID 决定对象。常见文件：</p>
+  <figure class="fig" role="img" aria-label="对象数据由 slk、Func.txt、Strings.txt 三类文本拼合而成">
+    <div class="mix-in">
+      <div class="mix-b"><b>*.slk</b><span>数值</span></div>
+      <div class="mix-b"><b>*Func.txt</b><span>按钮与快捷键</span></div>
+      <div class="mix-b"><b>*Strings.txt</b><span>显示文本</span></div>
+    </div>
+    <div class="mix-ar">↓　三类按对象 ID 拼合</div>
+    <div class="mix-out"><b>对象数据</b><span>编辑器里选中并修改的那个单位 / 技能 / 物品</span></div>
+    <p class="fig-cap">图 3　三份文件各自只写一部分，凑齐才是完整的对象。</p>
+  </figure>
+
+  <h3 id="slk">SLK 表：数值字段</h3>
+  <p><code>units\</code> 与 <code>_Balance\*.w3mod\units\</code> 下的 <code>.slk</code> 是类 SYLK 电子表格文本。一行形如 <code>C;X列;Y行;K"值"</code>，首列 ID 决定是哪个对象。</p>
   <ul>
-    <li><code>UnitData.slk</code> / <code>UnitBalance.slk</code> / <code>UnitUI.slk</code> / <code>UnitWeapons.slk</code> —— 单位数据（杂项 / 属性 / 界面 / 武器）</li>
-    <li><code>AbilityData.slk</code> —— 技能数据</li>
-    <li><code>ItemData.slk</code> —— 物品数据</li>
-    <li><code>UpgradeData.slk</code> —— 科技升级</li>
-    <li><code>DestructableData.slk</code> —— 可破坏物</li>
+    <li><code>UnitData.slk</code>：单位杂项数据</li>
+    <li><code>UnitBalance.slk</code>：单位属性与平衡值</li>
+    <li><code>UnitUI.slk</code>：单位界面字段</li>
+    <li><code>UnitWeapons.slk</code>：单位武器数据</li>
+    <li><code>AbilityData.slk</code>：技能数据</li>
+    <li><code>ItemData.slk</code>：物品数据</li>
+    <li><code>UpgradeData.slk</code>：科技升级</li>
+    <li><code>DestructableData.slk</code>：可破坏物</li>
   </ul>
 
-  <h3>*Func.txt（补充字段）</h3>
-  <p>同目录下的 <code>HumanUnitFunc.txt</code>、<code>CommonAbilityFunc.txt</code>、<code>ItemFunc.txt</code> 这类文件是 INI 风格的补充字段：按钮位置、快捷键、图例引用等。</p>
+  <h3 id="func">*Func.txt：补充字段</h3>
+  <p>同目录下的 <code>HumanUnitFunc.txt</code>、<code>CommonAbilityFunc.txt</code>、<code>ItemFunc.txt</code> 这类文件是 INI 风格的补充字段，放按钮位置、快捷键、图例引用这些 slk 装不下的东西。</p>
 
-  <h3>*Strings.txt（显示文本）</h3>
-  <p>名称与提示文本集中在语言层 <code>_locales\&lt;语言&gt;.w3mod\units\</code> 下（<code>humanunitstrings.txt</code>、<code>commonabilitystrings.txt</code>、<code>itemstrings.txt</code>……按种族 / 类别分文件），同样是 INI 格式，以对象 ID 为节：</p>
-<pre><code>[AHtb]                          ; 山丘之王 —— 风暴之锤（节选，有删改）
+  <h3 id="strings">*Strings.txt：显示文本</h3>
+  <p>名称与提示文本按种族 / 类别分文件，集中在语言层 <code>_locales\&lt;语言&gt;.w3mod\units\</code> 下，如 <code>humanunitstrings.txt</code>、<code>commonabilitystrings.txt</code>、<code>itemstrings.txt</code>。格式是 INI，以对象 ID 为节：</p>
+<pre><code>[AHtb]
+; 山丘之王 —— 风暴之锤（节选，有删改）
 Name=风暴之锤
 Tip=风暴之锤(|cffffcc00T|r)
 Ubertip=掷出一把魔法之锤，对目标造成伤害并使其眩晕。</code></pre>
-  <p>常用键：<code>Name</code>（名称）、<code>Tip</code>（按钮提示）、<code>Ubertip</code>（详细说明）、<code>Hotkey</code>、<code>EditorSuffix</code>；<code>|cAARRGGBB</code>…<code>|r</code> 是内联颜色标记。</p>
+  <p>常用键：<code>Name</code>（名称）、<code>Tip</code>（按钮提示）、<code>Ubertip</code>（详细说明）、<code>Hotkey</code>、<code>EditorSuffix</code>。文本里的 <code>|cAARRGGBB</code> … <code>|r</code> 是内联颜色标记。</p>
   <p class="tip">本站<a href="wc3-editor-glossary.html">汉化词条表</a>与<a href="patch-notes.html">补丁说明</a>的专名，就是拿 <code>zhcn.w3mod</code> 与 <code>enus.w3mod</code> 两套 Strings 逐 ID 对照核出来的。</p>
 
-  <h3>ui\ 目录（编辑器与界面）</h3>
-  <p>编辑器的行为数据在基础层 <code>ui\</code>：<code>triggerdata.txt</code>（触发 GUI 的事件 / 动作 / 参数结构）、<code>triggerstrings.txt</code>、<code>worldeditdata.txt</code>（菜单、对象编辑器字段等）、<code>worldeditstrings.txt</code>、<code>aieditordata.txt</code> 等；对应的显示文本在语言层 <code>_locales\&lt;语言&gt;.w3mod\ui\</code>。<code>ui\framedef\</code> 与语言层 <code>ui\framedef\*.fdf</code>（如 <code>globalstrings.fdf</code>）则是游戏内界面的框架定义。编辑器汉化补丁改的主要就是这批文件。</p>
+  <h3 id="uidir">ui\ 目录：编辑器与界面</h3>
+  <p>编辑器的行为数据放在基础层 <code>ui\</code>，显示文本在语言层 <code>_locales\&lt;语言&gt;.w3mod\ui\</code>，框架文本含 <code>globalstrings.fdf</code> 等。汉化补丁改的主要就是这批文件。</p>
+  <ul>
+    <li><code>triggerdata.txt</code>：触发 GUI 的事件 / 动作 / 参数结构</li>
+    <li><code>triggerstrings.txt</code>：对应的显示文本</li>
+    <li><code>worldeditdata.txt</code>：菜单与对象编辑器字段</li>
+    <li><code>worldeditstrings.txt</code>：编辑器界面文本</li>
+    <li><code>aieditordata.txt</code>：AI 编辑器数据</li>
+    <li><code>framedef\*.fdf</code>：界面框架定义</li>
+  </ul>
 
   <h2 id="map">地图文件（.w3m / .w3x / .w3n）</h2>
-  <p>地图也是档案包：<code>.w3m</code> 是原版（混乱之治）地图，<code>.w3x</code> 是冰封王座地图，<code>.w3n</code> 是战役包——本质都是带 512 字节头部的 MPQ 容器。游戏本体虽已改用 CASC，地图至今仍是 MPQ，所以拆地图用 MPQEditor，不必碰 CASC。包内的 <code>war3map.*</code> 家族——地形 <code>.w3e</code>、地图信息 <code>.w3i</code>、物编七件套 <code>.w3u / .w3t / .w3b / .w3d / .w3a / .w3h / .w3q</code>、触发 <code>.wtg / .wct</code>、字符串表 <code>.wts</code> 等——逐文件详解见姊妹篇：</p>
-  <p>→ <a href="map-anatomy.html">地图文件解剖：用 MPQEditor 拆开地图包</a></p>
+  <p>地图也是档案包，格式与游戏本体分家了：<code>.w3m</code> 是原版（混乱之治）地图，<code>.w3x</code> 是冰封王座地图，<code>.w3n</code> 是战役包，本质都是带 512 字节头部的 MPQ 容器。</p>
+  <p>游戏本体已改用 CASC，地图却至今仍是 MPQ——所以拆地图一律用 MPQEditor，不必碰 CASC。包里 <code>war3map.*</code> 家族的逐个详解见姊妹篇：</p>
+  <a class="pair" href="map-anatomy.html">
+    <span class="pt">→ 地图文件解剖：用 MPQEditor 拆开地图包</span>
+    <span class="pd">地形、物编七件套、触发、字符串表，逐个文件讲格式与作用，附加密手法对照。</span>
+  </a>
 
   <h2 id="assets">资源格式速查</h2>
   <div class="tbl-wrap">
   <table>
-    <tbody><tr><th>格式</th><th>说明</th></tr>
-    <tr><td><code>.blp</code></td><td>调色板或 DXT 压缩，贴图主力格式</td></tr>
-    <tr><td><code>.dds</code></td><td>HD 层使用的现代贴图格式</td></tr>
-    <tr><td><code>.tga</code></td><td>无压缩图片，常见于导入素材</td></tr>
-    <tr><td><code>.mdl / .mdx</code></td><td>模型（文本 / 二进制），含骨骼与动画</td></tr>
-    <tr><td><code>.wav / .mp3 / .ogg</code></td><td>音效与音乐</td></tr>
-    <tr><td><code>.ttf</code></td><td>字体（语言层 <code>fonts\</code>）</td></tr>
-    <tr><td><code>.fdf / .toc</code></td><td>UI 框架定义 / 框架载入清单</td></tr>
-    <tr><td><code>.mp4</code></td><td>过场动画（<code>movies\</code>）</td></tr>
-  </tbody></table>
+    <thead><tr><th>格式</th><th>是什么</th><th>放在哪</th></tr></thead>
+    <tbody>
+    <tr><td><code>.blp</code></td><td>调色板或 DXT 压缩图片</td><td><code>replaceabletextures\</code>、<code>textures\</code> 等贴图目录</td></tr>
+    <tr><td><code>.dds</code></td><td>现代贴图格式</td><td><code>_hd.w3mod\</code>、<code>_de.w3mod\</code> 层</td></tr>
+    <tr><td><code>.tga</code></td><td>无压缩图片</td><td>只作导入源图，需转成 <code>.blp</code></td></tr>
+    <tr><td><code>.mdl</code> / <code>.mdx</code></td><td>模型（文本 / 二进制），含骨骼与动画</td><td><code>units\</code>、<code>buildings\</code>、<code>doodads\</code></td></tr>
+    <tr><td><code>.wav</code> / <code>.mp3</code> / <code>.ogg</code></td><td>音频</td><td><code>sound\</code> 下的语音、音乐、环境音</td></tr>
+    <tr><td><code>.ttf</code></td><td>字体</td><td><code>_locales\&lt;语言&gt;.w3mod\fonts\</code></td></tr>
+    <tr><td><code>.fdf</code> / <code>.toc</code></td><td>UI 框架定义 / 框架载入清单</td><td><code>ui\framedef\</code></td></tr>
+    <tr><td><code>.mp4</code></td><td>视频</td><td><code>movies\</code></td></tr>
+    </tbody>
+  </table>
   </div>
 
   <h2 id="localfile">启用本地文件（Allow Local Files）</h2>
-  <p>游戏默认只读地图和 CASC。开启「本地文件」后，读取顺序变为「本地文件 &gt; 地图 &gt; CASC 各层」——把文件按 CASC 内的有效路径放进游戏根目录，游戏就会优先加载你的文件。</p>
-  <p class="fnote">注意本地文件整体只是最上面的一个「图层」，不能像 CASC 里的 <code>_hd.w3mod</code>、<code>_locales</code> 那样拆成多个层互相叠放覆盖。</p>
+  <p>游戏默认只读地图和 CASC。打开「本地文件」后，读取顺序变成「本地文件 &gt; 地图 &gt; CASC 各层」：把文件按有效路径放进游戏根目录，游戏就优先加载你的版本。</p>
 
-  <h3>第一步：修改注册表</h3>
-  <p>在注册表 <code>HKEY_CURRENT_USER\Software\Blizzard Entertainment\Warcraft III</code> 下新建一个 <code>DWORD (32 位) 值</code>：名称 <code>Allow Local Files</code>，数值数据 <code>1</code>。三种做法任选其一：</p>
+  <figure class="fig" role="img" aria-label="开启本地文件的三步：改注册表、按有效路径放文件、进游戏生效">
+    <div class="flow">
+      <div class="fl"><b>改注册表</b><span>Allow Local Files 设为 1</span></div>
+      <div class="fl-ar">→</div>
+      <div class="fl"><b>放文件</b><span>按有效路径拷进 <code>_retail_\</code></span></div>
+      <div class="fl-ar">→</div>
+      <div class="fl"><b>进游戏</b><span>优先加载你这份</span></div>
+    </div>
+    <p class="fig-cap">图 4　三步缺一不可：只改注册表不放文件，游戏表现不会有任何变化。</p>
+  </figure>
+
+  <div class="note"><b>注意层级上限</b>　本地文件整体只是最上面的一个图层，不能像 CASC 里的 <code>_hd.w3mod</code>、<code>_locales</code> 那样拆成多层互相叠放。</div>
+
+  <h3 id="reg">第一步：改注册表</h3>
+  <p>在 <code>HKEY_CURRENT_USER\Software\Blizzard Entertainment\Warcraft III</code> 下新建 <code>DWORD (32 位) 值</code>，名称 <code>Allow Local Files</code>，数值 <code>1</code>。三种做法任选其一：</p>
   <ul>
-    <li>直接运行本站<a href="hhbd.html">编辑器汉化补丁</a>附带的 <code>AllowLocalFiles.reg</code>；</li>
-    <li>自建 <code>.reg</code> 文件：新建文本文档，粘贴以下内容，另存为 <code>allow.reg</code> 后双击导入；</li>
-    <li>命令行一条搞定：<code>reg add "HKCU\Software\Blizzard Entertainment\Warcraft III" /v "Allow Local Files" /t REG_DWORD /d 1</code></li>
+    <li>现成文件：运行本站<a href="hhbd.html">编辑器汉化补丁</a>附带的 <code>AllowLocalFiles.reg</code>；</li>
+    <li>自建文件：新建文本文档，粘贴下面内容，另存为 <code>allow.reg</code> 后双击导入；</li>
+    <li>命令行：<code>reg add "HKCU\Software\Blizzard Entertainment\Warcraft III" /v "Allow Local Files" /t REG_DWORD /d 1</code></li>
   </ul>
 <pre><code>Windows Registry Editor Version 5.00
 
 [HKEY_CURRENT_USER\Software\Blizzard Entertainment\Warcraft III]
 "Allow Local Files"=dword:00000001</code></pre>
-  <p class="tip">关闭同理：把值改回 <code>0</code> 或删除该值即可。注意游戏根目录的位置：1.32.7 起是安装目录下的 <code>_retail_\</code>（PTR 为 <code>_ptr_\</code>），更早版本直接就是安装目录。</p>
 
-  <h3>第二步：按有效路径放文件</h3>
-  <p>把 CascView 导出的文件放进游戏根目录，路径 = CASC 虚拟路径去掉 <code>war3.w3mod\</code>、<code>_locales\zhcn.w3mod\</code> 等层前缀后的有效路径：</p>
+  <!-- 截图待补：替换时把整个 .ph 换成 <img src="…" alt="…">，figcaption 保留 -->
+  <figure class="shot">
+    <div class="ph"><span class="ph-t"><b>截图待补</b>注册表编辑器中 <code>Warcraft III</code> 项下的 <code>Allow Local Files</code> 值</span></div>
+    <figcaption>图 5　值类型是 <code>REG_DWORD</code>，数值为 <code>1</code>；名字里的空格不能少。</figcaption>
+  </figure>
+
+  <p class="tip">关闭同理：值改回 <code>0</code> 或删掉该值。游戏根目录的位置：1.32.7 起是安装目录下的 <code>_retail_\</code>（PTR 为 <code>_ptr_\</code>），更早的版本直接就是安装目录。</p>
+
+  <h3 id="place">第二步：按有效路径放文件</h3>
+  <p>放进游戏根目录时，路径要砍掉层前缀（<code>war3.w3mod\</code>、<code>_locales\zhcn.w3mod\</code> 这类），只留层内那一段：</p>
   <ul>
     <li><code>war3.w3mod\units\human\peasant\peasant.mdx</code> → <code>_retail_\units\human\peasant\peasant.mdx</code>（换农民模型）</li>
     <li><code>_locales\zhcn.w3mod\ui\WorldEditStrings.txt</code> → <code>_retail_\ui\WorldEditStrings.txt</code>（编辑器汉化补丁即由此生效）</li>
   </ul>
 
-  <h3>两个典型玩法</h3>
+  <!-- 截图待补：替换时把整个 .ph 换成 <img src="…" alt="…">，figcaption 保留 -->
+  <figure class="shot">
+    <div class="ph"><span class="ph-t"><b>截图待补</b><code>_retail_\</code> 目录下按有效路径铺好的 <code>units\</code>、<code>ui\</code> 等文件夹</span></div>
+    <figcaption>图 6　放好的文件与 CASC 内部保持同一套相对路径，游戏才认得出。</figcaption>
+  </figure>
+
+  <h3 id="mods">两个典型玩法</h3>
   <ul>
-    <li>画面 MOD：把改好的纹理和模型按目录整包复制进 <code>_retail_\</code> 的相应目录（<code>units\</code>、<code>buildings\</code>、<code>textures\</code>……），覆盖同名文件。</li>
-    <li>字体 MOD：把字体文件放进 <code>_retail_\</code> 的 <code>fonts\</code> 目录，覆盖 <code>war3.w3mod\fonts\</code> 同名文件。</li>
+    <li><b>画面 MOD</b>　把改好的模型与贴图按原目录结构放进 <code>_retail_\</code>（<code>units\</code>、<code>buildings\</code>、<code>textures\</code> 等），覆盖同名文件。</li>
+    <li><b>字体 MOD</b>　把字体文件放进 <code>_retail_\fonts\</code>，覆盖 <code>war3.w3mod\fonts\</code> 下的同名文件。</li>
   </ul>
-  <p class="tip">风险：本地文件在联机时同样生效，改动可能被对战平台视为作弊，请勿在对战中使用。</p>
+  <div class="warn"><b>风险</b>　本地文件在联机时同样生效，改动可能被对战平台判为作弊。请勿带着本地文件改动进对战。</div>
 
 </main>
 
 <script>
-(function(){var d=document,b=d.getElementById('themeBtn');
-function icon(){b.textContent=d.documentElement.getAttribute('data-theme')==='light'?'🌙':'☀️'}
-b.addEventListener('click',function(){var t=d.documentElement.getAttribute('data-theme')==='light'?'dark':'light';
-d.documentElement.setAttribute('data-theme',t);try{localStorage.setItem('site-theme',t)}catch(e){}icon()});
-icon()})();
+(function(){
+  var d=document,b=d.getElementById('themeBtn');
+  function icon(){b.textContent=d.documentElement.getAttribute('data-theme')==='light'?'🌙':'☀️'}
+  b.addEventListener('click',function(){var t=d.documentElement.getAttribute('data-theme')==='light'?'dark':'light';
+    d.documentElement.setAttribute('data-theme',t);try{localStorage.setItem('site-theme',t)}catch(e){}icon()});
+  icon();
+
+  /* 目录生成 + 当前章节高亮 + 右侧刻度滑杆 */
+  var heads=[].slice.call(document.querySelectorAll('main h2[id],main h3[id]')),
+      list=d.getElementById('tocList'),
+      marksBox=d.getElementById('railMarks'),
+      fill=d.getElementById('railFill'),
+      links=[],marks=[];
+  heads.forEach(function(h){
+    var txt=h.textContent.replace(/（[^）]*）/g,'').replace(/\s+/g,' ').trim();
+    var li=d.createElement('li'),a=d.createElement('a');
+    if(h.tagName==='H3') li.className='sub';
+    a.href='#'+h.id;a.textContent=txt;
+    li.appendChild(a);list.appendChild(li);links.push(a);
+
+    var m=d.createElement('a');m.className='mark';m.href='#'+h.id;m.title=txt;
+    var lb=d.createElement('span');lb.className='mk-lb';lb.textContent=txt;
+    var dt=d.createElement('span');dt.className='mk-dot';
+    m.appendChild(lb);m.appendChild(dt);marksBox.appendChild(m);marks.push(m);
+  });
+  function shown(h){return h.getClientRects().length>0;}
+  function layout(){
+    var hh=marksBox.clientHeight||1,
+        docH=Math.max(1,d.documentElement.scrollHeight),
+        st=window.pageYOffset||d.documentElement.scrollTop,
+        GAP=22,ys=[],idx=[];
+    heads.forEach(function(h,i){
+      if(!shown(h)){marks[i].style.display='none';return;}
+      idx.push(i);
+      ys.push(Math.min(1,Math.max(0,(h.getBoundingClientRect().top+st)/docH))*hh);
+    });
+    if(hh>80){
+      for(var i=1;i<ys.length;i++) if(ys[i]-ys[i-1]<GAP) ys[i]=ys[i-1]+GAP;
+      if(ys.length&&ys[ys.length-1]>hh){          /* 累计下推溢出末端，反向回压 */
+        ys[ys.length-1]=hh;
+        for(var j=ys.length-2;j>=0;j--) if(ys[j+1]-ys[j]<GAP) ys[j]=ys[j+1]-GAP;
+      }
+    }
+    idx.forEach(function(k,n){
+      var m=marks[k];
+      if(ys[n]<-1){m.style.display='none';return;}
+      m.style.display=''; m.style.top=(ys[n]/hh*100)+'%';
+    });
+  }
+  var ticking=false;
+  function upd(){
+    ticking=false;
+    var st=window.pageYOffset||d.documentElement.scrollTop,
+        hh=d.documentElement.scrollHeight-window.innerHeight,
+        ratio=hh>0?Math.min(1,Math.max(0,st/hh)):0,
+        line=window.innerHeight*0.35,cur=0;
+    fill.style.height=(ratio*100)+'%';
+    for(var i=0;i<heads.length;i++){
+      if(heads[i].getBoundingClientRect().top<=line) cur=i;
+    }
+    links.forEach(function(a,i){a.classList.toggle('on',i===cur)});
+    marks.forEach(function(a,i){a.classList.toggle('on',i===cur)});
+  }
+  function onScroll(){if(!ticking){ticking=true;(window.requestAnimationFrame||function(f){setTimeout(f,16)})(upd)}}
+
+  /* 滑杆交互：点刻度跳章节，按住拖动整页 */
+  var rail=d.getElementById('railNav'),downY=0,moved=false;
+  function jumpTo(cy){
+    var r=rail.getBoundingClientRect(),
+        p=Math.min(1,Math.max(0,(cy-r.top)/r.height)),
+        max=d.documentElement.scrollHeight-window.innerHeight;
+    window.scrollTo(0,p*max);
+  }
+  rail.addEventListener('pointerdown',function(e){
+    downY=e.clientY;moved=false;
+    try{rail.setPointerCapture(e.pointerId)}catch(err){}
+  });
+  rail.addEventListener('pointermove',function(e){
+    if(!e.buttons) return;
+    if(Math.abs(e.clientY-downY)>6) moved=true;
+    if(moved){e.preventDefault();jumpTo(e.clientY)}
+  });
+  rail.addEventListener('click',function(e){
+    e.preventDefault();
+    if(moved) return;
+    var a=e.target.closest('.mark');
+    if(!a) return;
+    var el=d.getElementById(a.getAttribute('href').slice(1));
+    if(el) window.scrollTo(0,el.getBoundingClientRect().top+window.pageYOffset-24);
+  });
+
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',function(){layout();onScroll()});
+  window.addEventListener('load',function(){layout();upd()});
+  layout();upd();
+})();
 </script>
-
-
-
 
 </body></html>

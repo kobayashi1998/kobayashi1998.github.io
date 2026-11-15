@@ -27,26 +27,70 @@
     border:1px solid var(--border);background:var(--panel2);border-radius:20px;padding:3px 13px;
     transition:color .15s,border-color .15s}
   .back a:hover{color:var(--accent);border-color:var(--accent)}
-  h1{margin:0 0 20px;font-size:22px;font-weight:600}
+  h1{margin:0 0 24px;font-size:22px;font-weight:600}
   h2{margin:36px 0 12px;font-size:15px;font-weight:600;padding-left:10px;border-left:3px solid var(--accent)}
-  h3{margin:22px 0 8px;font-size:14px;font-weight:600;color:var(--accent-bright)}
+  h3{margin:24px 0 12px;font-size:14px;font-weight:600;color:var(--accent-bright)}
   p{margin:0 0 12px}
   a{color:var(--accent);text-decoration:underline;text-underline-offset:3px}
   a:hover{color:var(--accent-bright)}
   .sep{color:var(--muted);margin:0 10px}
-  ol,ul{margin:0;padding-left:22px}
+  ol,ul{margin:0 0 12px;padding-left:22px}
   ol li,ul li{margin:0 0 8px}
+  ol li:last-child,ul li:last-child{margin-bottom:0}
   code{font-family:Consolas,Menlo,monospace;font-size:13.5px;color:var(--code)}
   .tip{color:var(--muted);font-size:13.5px}
-  table{width:100%;border-collapse:collapse;margin:0 0 14px;font-size:13.5px}
+  table{width:100%;border-collapse:collapse;margin:0 0 12px;font-size:13.5px}
   th,td{text-align:left;vertical-align:top;padding:7px 10px;border:1px solid var(--border)}
   th{background:var(--panel);font-weight:600}
   td{background:var(--panel2)}
   td:first-child{white-space:nowrap}
   .fname{font-family:Consolas,Menlo,monospace;font-size:12.5px;color:var(--code);word-break:break-all;white-space:normal}
+  table.sys td:first-child{width:1%;white-space:nowrap;padding-right:18px}
+  table.sys .fname{white-space:nowrap;word-break:normal}
 
   /* ===== 日间（浅色）令牌 ===== */
   
+
+  /* ===== 页内目录（窄屏） ===== */
+  .side-toc{max-width:880px;margin:0 0 24px;padding:12px 0 12px 16px;border-left:1px solid var(--border)}
+  .toc-h{font-size:12px;color:var(--muted);letter-spacing:.04em;margin:0 0 8px}
+  .side-toc ol{list-style:none;margin:0;padding:0;font-size:13px;line-height:1.65}
+  .side-toc li{margin:0 0 6px}
+  .side-toc li.sub a{padding-left:22px;font-size:12.5px}
+  .side-toc a{color:var(--muted);text-decoration:none;display:block;padding:1px 0 1px 10px;
+    border-left:2px solid transparent;margin-left:-11px;transition:color .15s,border-color .15s}
+  .side-toc a:hover{color:var(--text)}
+  .side-toc a.on{color:var(--accent);border-left-color:var(--accent);font-weight:600}
+  h2[id],h3[id]{scroll-margin-top:24px}   /* 页首目录原生锚点与滑杆跳转落到同一位置 */
+
+  /* ===== 右侧刻度滑杆（宽屏） ===== */
+  .rail{display:none}
+  @media (min-width:1200px){
+    .side-toc{display:none}
+    .rail{display:block;position:fixed;top:50%;right:14px;transform:translateY(-50%);
+      width:206px;height:60vh;z-index:50;
+      user-select:none;-webkit-user-select:none;touch-action:none}
+    .rail-track{position:absolute;right:0;top:0;bottom:0;width:2px;border-radius:1px;
+      background:var(--muted);opacity:.28}
+    .rail-fill{position:absolute;right:0;top:0;width:2px;border-radius:1px;height:0;
+      background:var(--accent);opacity:.8;transition:height .1s linear}
+    .rail-marks{position:absolute;inset:0}
+    .mark{position:absolute;right:0;transform:translateY(-50%);
+      display:flex;align-items:center;justify-content:flex-end;gap:8px;
+      padding:2px 0;text-decoration:none}
+    .mk-dot{flex:0 0 auto;width:6px;height:6px;border-radius:50%;
+      background:var(--soft-text);opacity:.85;margin-right:-2px;
+      transition:width .15s,height .15s,background .15s,opacity .15s,box-shadow .15s}
+    .mk-lb{font-size:11.5px;line-height:1.5;color:var(--muted);white-space:nowrap;
+      max-width:190px;overflow:hidden;text-overflow:ellipsis;
+      background:var(--bg);padding:0 4px 0 6px;border-radius:3px;
+      transition:color .15s}
+    .mark:hover .mk-lb{color:var(--text)}
+    .mark:hover .mk-dot{width:8px;height:8px;opacity:1;background:var(--text)}
+    .mark.on .mk-lb{color:var(--accent);font-weight:600}
+    .mark.on .mk-dot{width:9px;height:9px;opacity:1;background:var(--accent);
+      box-shadow:0 0 0 3px var(--accent-soft)}
+  }
 
   /* ===== 日/夜切换按钮 ===== */
   .theme-btn{position:fixed;top:14px;right:14px;z-index:99;width:30px;height:30px;border-radius:50%;
@@ -80,7 +124,18 @@ document.documentElement.setAttribute('data-theme',t)})();
 
   <p>一张 <code>.w3m</code> / <code>.w3x</code> 地图，本质是一个加了 512 字节头的 MPQ 压缩档案包。用 MPQEditor 把它打开，就能看到地图的全部家当：地形、单位、触发、物编修改、导入素材，各占一个文件。本页逐个讲清这些文件（夹）的数据格式与内容作用。</p>
 
-  <h2>工具：MPQEditor</h2>
+  <nav class="side-toc noprint" id="sideToc" aria-label="页内目录">
+    <div class="toc-h">本页目录</div>
+    <ol id="tocList"></ol>
+  </nav>
+
+  <nav class="rail noprint" id="railNav" aria-label="页内位置">
+    <div class="rail-track"></div>
+    <i class="rail-fill" id="railFill"></i>
+    <div class="rail-marks" id="railMarks"></div>
+  </nav>
+
+  <h2 id="tools">工具：MPQEditor</h2>
   <p>
     <a href="http://www.zezula.net/en/mpq/main.html" target="_blank" rel="noopener">Ladik's MPQ Editor</a>（下称 MPQEditor）是经典的 MPQ 档案查看与编辑工具，免费、免安装。游戏本体在 1.30+ 已改用 CASC 存储资源（需用 <a href="http://www.zezula.net/en/casc/main.html" target="_blank" rel="noopener">Ladik's Casc Viewer</a>），但地图文件至今仍是 MPQ 格式，所以拆地图不分新旧版本，一律用 MPQEditor。游戏本体的 CASC 分层结构与各数据文件格式，见姊妹篇 <a href="game-anatomy.html">游戏文件解剖</a>。
   </p>
@@ -91,7 +146,7 @@ document.documentElement.setAttribute('data-theme',t)})();
   </ol>
   <p class="tip">战役文件 .w3n 同样是 MPQ 包，内含多张地图，也可以用同样方式打开。</p>
 
-  <h2>地图头部（头 512 字节）</h2>
+  <h2 id="header512">地图头部（头 512 字节）</h2>
   <p>MPQ 数据之前有一个 512 字节的固定头部，游戏靠它识别文件类型：</p>
   <ul>
     <li>4 字节魔数：<code>HM3W</code>（.w3m，冰封王座之前）或倒写的 <code>SIGN</code>（.w3x，冰封王座起，紧跟 256 字节数字签名）。</li>
@@ -99,16 +154,16 @@ document.documentElement.setAttribute('data-theme',t)})();
   </ul>
   <p>用十六进制编辑器打开地图，开头就能看到这些信息；而 MPQEditor 只展示 MPQ 部分，不显示这段头。</p>
 
-  <h2>MPQ 系统文件</h2>
+  <h2 id="sysfiles">MPQ 系统文件</h2>
   <p>任何 MPQ 包内都有三个以括号命名的内部文件，它们不是地图数据，而是档案自身的管理信息：</p>
-  <table>
+  <table class="sys">
     <tr><th>文件</th><th>作用</th></tr>
     <tr><td><span class="fname">(listfile)</span></td><td>包内全部文件路径的清单。加密地图常删掉它，此时 MPQEditor 里看不到文件名，但文件其实还在。</td></tr>
     <tr><td><span class="fname">(attributes)</span></td><td>各文件的校验值与时间戳，用于完整性校验。</td></tr>
     <tr><td><span class="fname">(signature)</span></td><td>地图的数字签名（.w3x 由头部 SIGN 区引用）。</td></tr>
   </table>
 
-  <h2>文件速查表</h2>
+  <h2 id="quickref">文件速查表</h2>
   <table>
     <tr><th>文件</th><th>对应编辑器面板</th><th>内容</th></tr>
     <tr><td><span class="fname">war3map.w3i</span></td><td>地图属性</td><td>地图基本信息总表</td></tr>
@@ -130,22 +185,22 @@ document.documentElement.setAttribute('data-theme',t)})();
     <tr><td><span class="fname">war3mapPreview.tga / .blp</span></td><td>—</td><td>创建游戏界面右侧的地图预览图</td></tr>
   </table>
 
-  <h2>逐项详解</h2>
+  <h2 id="details">逐项详解</h2>
 
-  <h3>war3map.w3i —— 地图基本信息</h3>
+  <h3 id="w3i">war3map.w3i —— 地图基本信息</h3>
   <p>地图的「户口本」：地图名、作者、描述、推荐玩家数、加载画面、游戏模式与语音设置、玩家与势力配置、可用种族、科技树限制等。触发里用到的全部自定义文本也登记在它的字符串引用表中。物编与触发里凡出现 <code>TRIGSTR_xxx</code> 占位符，实际文本都存放在 <span class="fname">war3map.wts</span>。整张地图的玩家、联盟、胜利条件初始设定都由它确定。</p>
 
-  <h3>war3map.w3e —— 地形数据</h3>
+  <h3 id="w3e">war3map.w3e —— 地形数据</h3>
   <p>环境 / 地形文件，以 <code>W3E!</code> 魔数开头，记录地形主题（如洛丹伦夏天、艾泽拉斯）与使用的地面、悬崖贴图 ID 表。主体是逐格点的地形格数据：一张 N×N 格的地图有 (N+1)×(N+1) 个格点，每个格点固定 8 字节，包含高度、水面高度、标志位（斜坡、变黑、盲区等）、地面贴图、贴图细节与悬崖贴图。改高度图、批量换贴图等「外科手术」，改的都是这个文件。</p>
 
-  <h3>war3map.shd / wpm / mmp —— 三张辅助图</h3>
+  <h3 id="maps3">war3map.shd / wpm / mmp —— 三张辅助图</h3>
   <ul>
     <li><span class="fname">war3map.shd</span>：阴影位图。按地形网格分块的单字节位图，每一位记录一小块地面是否处于阴影中，对应装饰物、悬崖投下的静态阴影。</li>
     <li><span class="fname">war3map.wpm</span>：路径贴图。与地形同尺寸的网格，逐格标记可通行、可建造、不可见等属性，是寻路与建造判定的依据。</li>
     <li><span class="fname">war3map.mmp</span>：小地图标记。记录小地图上显示的矩形标记（如中立建筑图标、不可见区域），含坐标与镜头 / 边界标志。</li>
   </ul>
 
-  <h3>war3mapUnits.doo 与 war3map.doo —— 摆放数据</h3>
+  <h3 id="doo">war3mapUnits.doo 与 war3map.doo —— 摆放数据</h3>
   <p>两个文件名字相近，分工明确：</p>
   <ul>
     <li><span class="fname">war3mapUnits.doo</span>：单位面板里摆上去的所有预置单位与物品——类型 ID、位置、朝向、缩放、所属玩家、生命 / 魔法值、掉落物表、金币木材等，全部逐条记录。</li>
@@ -153,7 +208,7 @@ document.documentElement.setAttribute('data-theme',t)})();
   </ul>
   <p class="tip">游戏开局后，这两份「摆放清单」会被编译进地图脚本逐条创建；所以删除它们后地图仍能玩（脚本里的单位还在），但用编辑器再打开就「空了」。</p>
 
-  <h3>war3map.w3u / w3t / w3b / w3d / w3a / w3h / w3q —— 物编七件套</h3>
+  <h3 id="objdata">war3map.w3u / w3t / w3b / w3d / w3a / w3h / w3q —— 物编七件套</h3>
   <p>物体编辑器七个面板的数据各存一个文件，格式完全统一：文件头（版本 + 条目数）之后，每条记录为「原始 ID + 新 ID + 修改项列表」，修改项再细分为「属性 ID + 类型（整数 / 实数 / 布尔 / 字符串……）+ 值」。只改了一项属性，记录里就只有那一项，其余全部继承原版数据：</p>
   <table>
     <tr><th>文件</th><th>面板</th><th>内容</th></tr>
@@ -167,7 +222,7 @@ document.documentElement.setAttribute('data-theme',t)})();
   </table>
   <p class="tip">在物体编辑器里「导出物体数据」得到的 .w3o 文件，就是这七个文件按固定顺序拼在一起的合集，可以整包再导入另一张地图。</p>
 
-  <h3>war3map.wtg / wct / wts —— 触发与文本</h3>
+  <h3 id="trigger">war3map.wtg / wct / wts —— 触发与文本</h3>
   <ul>
     <li><span class="fname">war3map.wtg</span>：触发编辑器的完整原始数据——触发类别、全局变量，以及每个触发的注释、开关状态和事件 / 条件 / 动作（ECA）列表。1.31 起重制版编辑器改用了新版 wtg 格式，但内容结构一致。</li>
     <li><span class="fname">war3map.wct</span>：触发编辑器里的自定义 JASS 文本区（地图头代码与各触发的自定义脚本段）。</li>
@@ -175,10 +230,10 @@ document.documentElement.setAttribute('data-theme',t)})();
   </ul>
   <p class="tip">wtg / wct 只是给编辑器「看」的原始工程数据；游戏运行时并不读它们。删掉后地图照常运行，但再用编辑器打开会丢失全部触发工程。</p>
 
-  <h3>war3map.j / war3map.lua —— 地图脚本</h3>
+  <h3 id="script">war3map.j / war3map.lua —— 地图脚本</h3>
   <p>保存地图时，编辑器把触发的图形化数据、区域、镜头等编译成一个可执行脚本，这才是游戏真正运行的东西：JASS 地图是 <span class="fname">war3map.j</span>（纯文本，可在根目录，也常被挪到 <span class="fname">Scripts\war3map.j</span>）；1.31 起新建地图可选 Lua，对应 <span class="fname">war3map.lua</span>。游戏读取地图后先执行 <code>config</code> 函数配置玩家槽位，再执行 <code>main</code> 函数开始一局游戏。改图进阶操作（反加密、定制逻辑）大多落在这个文件上。</p>
 
-  <h3>war3map.w3r / w3c / w3s —— 区域、镜头、声音</h3>
+  <h3 id="regions">war3map.w3r / w3c / w3s —— 区域、镜头、声音</h3>
   <ul>
     <li><span class="fname">war3map.w3r</span>：区域面板定义的矩形区域——坐标、名称、天气效果、环境音效、是否作为变量导出等。</li>
     <li><span class="fname">war3map.w3c</span>：镜头面板定义的镜头——目标点、旋转角、攻击角、视距与各类距离 / 视野参数。</li>
@@ -186,23 +241,23 @@ document.documentElement.setAttribute('data-theme',t)})();
   </ul>
   <p>这三个面板的数据同样会被编译进地图脚本，属「编辑器原始数据」，删了不影响已编译地图运行。</p>
 
-  <h3>war3map.imp 与导入素材</h3>
+  <h3 id="imp">war3map.imp 与导入素材</h3>
   <p><span class="fname">war3map.imp</span> 是导入管理器的清单：记录每个导入文件在包内的完整路径与标志位。模型、贴图、图标、音效等素材本体则散落在包内各文件夹中（见下节）。路径必须与模型内部引用的路径一致，贴图才能被正确找到——这也是改图常见「贴图丢失」问题的根源。</p>
 
-  <h3>war3mapSkin.txt / Misc.txt / Extra.txt —— 三个设置文件</h3>
+  <h3 id="settings">war3mapSkin.txt / Misc.txt / Extra.txt —— 三个设置文件</h3>
   <ul>
     <li><span class="fname">war3mapSkin.txt</span>：界面自定义。替换游戏界面元素（计分板、资源图标、按钮框等）、自定义界面提示文本。</li>
     <li><span class="fname">war3mapMisc.txt</span>：平衡常数。英雄最高等级、经验获得系数、英雄复活时间等全局数值规则。</li>
     <li><span class="fname">war3mapExtra.txt</span>：杂项设置，如地图使用的游戏数据集（冰封王座 / 重制版）与编辑器版本信息。</li>
   </ul>
 
-  <h3>war3mapMap.blp / war3mapPreview.tga —— 两张图片</h3>
+  <h3 id="images">war3mapMap.blp / war3mapPreview.tga —— 两张图片</h3>
   <ul>
     <li><span class="fname">war3mapMap.blp</span>（旧图亦见 .tga / .b00）：游戏中显示的小地图图像。</li>
     <li><span class="fname">war3mapPreview.tga</span>（重制版亦见 .blp）：创建游戏界面右侧的地图预览图，在地图属性里设置。</li>
   </ul>
 
-  <h2>常见的文件夹</h2>
+  <h2 id="folders">常见的文件夹</h2>
   <p>地图包里除上述数据文件外，其余基本是导入的素材，按用途落在这些目录：</p>
   <ul>
     <li><span class="fname">war3mapImported\</span>：在导入管理器里不手动改路径时，新导入文件的默认落点。</li>
@@ -212,7 +267,7 @@ document.documentElement.setAttribute('data-theme',t)})();
     <li><span class="fname">Units\</span>：slk 拆分型地图的标志——物编数据被拆成一堆 .slk / .txt 表格放在这里（如 Unit.slk、Ability.slk），用于精简 / 加密地图数据。</li>
   </ul>
 
-  <h2>看懂文件列表，就能看懂加密</h2>
+  <h2 id="encryption">看懂文件列表，就能看懂加密</h2>
   <p>社区所谓「加密地图」，多数只是在 MPQ 层面做手脚。对照上面的速查表，一眼就能认出常见手法：</p>
   <ul>
     <li>删 <span class="fname">(listfile)</span>：MPQEditor 里文件名不可见，需靠特征恢复或暴力列名。</li>
@@ -230,5 +285,101 @@ function icon(){b.textContent=d.documentElement.getAttribute('data-theme')==='li
 b.addEventListener('click',function(){var t=d.documentElement.getAttribute('data-theme')==='light'?'dark':'light';
 d.documentElement.setAttribute('data-theme',t);try{localStorage.setItem('site-theme',t)}catch(e){}icon()});
 icon()})();
+
+/* ===== 页内目录 + 右侧刻度滑杆 ===== */
+(function(){
+  var d=document,
+      heads=[].slice.call(d.querySelectorAll('main h2[id],main h3[id]')),
+      list=d.getElementById('tocList'),
+      marksBox=d.getElementById('railMarks'),
+      fill=d.getElementById('railFill'),
+      rail=d.getElementById('railNav'),
+      links=[],marks=[];
+  if(!heads.length||!rail) return;
+
+  function short(t){var p=t.split('——')[0].trim();return p.length>20?p.slice(0,19)+'…':p;}
+  heads.forEach(function(h){
+    var full=h.textContent.replace(/（[^）]*）/g,' ').replace(/\s+/g,' ').trim(),
+        label=short(full);
+    var li=d.createElement('li'); if(h.tagName==='H3') li.className='sub';
+    var a=d.createElement('a'); a.href='#'+h.id; a.textContent=full;  /* 窄屏目录用全称，宽屏刻度才截断 */
+    li.appendChild(a); list.appendChild(li); links.push(a);
+
+    var m=d.createElement('a'); m.className='mark'; m.href='#'+h.id; m.title=full;
+    var lb=d.createElement('span'); lb.className='mk-lb'; lb.textContent=label;
+    var dt=d.createElement('i'); dt.className='mk-dot';
+    m.appendChild(lb); m.appendChild(dt); marksBox.appendChild(m); marks.push(m);
+  });
+
+  function shown(h){return h.getClientRects().length>0;}
+  function layout(){
+    var hh=marksBox.clientHeight||1,
+        docH=Math.max(1,d.documentElement.scrollHeight),
+        st=window.pageYOffset||d.documentElement.scrollTop,
+        GAP=22,ys=[],idx=[];
+    heads.forEach(function(h,i){
+      if(!shown(h)){marks[i].style.display='none';return;}
+      idx.push(i);
+      ys.push(Math.min(1,Math.max(0,(h.getBoundingClientRect().top+st)/docH))*hh);
+    });
+    if(hh>80){
+      for(var i=1;i<ys.length;i++) if(ys[i]-ys[i-1]<GAP) ys[i]=ys[i-1]+GAP;
+      if(ys.length&&ys[ys.length-1]>hh){          /* 累计下推溢出末端，反向回压 */
+        ys[ys.length-1]=hh;
+        for(var j=ys.length-2;j>=0;j--) if(ys[j+1]-ys[j]<GAP) ys[j]=ys[j+1]-GAP;
+      }
+    }
+    idx.forEach(function(k,n){
+      var m=marks[k];
+      if(ys[n]<-1){m.style.display='none';return;}
+      m.style.display=''; m.style.top=(ys[n]/hh*100)+'%';
+    });
+  }
+  var ticking=false;
+  function upd(){
+    ticking=false;
+    var st=window.pageYOffset||d.documentElement.scrollTop,
+        max=d.documentElement.scrollHeight-window.innerHeight,
+        ratio=max>0?Math.min(1,Math.max(0,st/max)):0,
+        line=window.innerHeight*0.35,cur=-1;
+    fill.style.height=(ratio*100)+'%';
+    heads.forEach(function(h,i){if(shown(h)&&h.getBoundingClientRect().top<=line) cur=i;});
+    links.forEach(function(a,i){a.classList.toggle('on',i===cur);});
+    marks.forEach(function(a,i){a.classList.toggle('on',i===cur);});
+  }
+  function onScroll(){if(!ticking){ticking=true;(window.requestAnimationFrame||function(f){setTimeout(f,16)})(upd);}}
+
+  /* 点刻度跳章节；按住滑杆拖动整页 */
+  var downY=0,moved=false;
+  function jumpTo(cy){
+    var r=rail.getBoundingClientRect(),
+        p=Math.min(1,Math.max(0,(cy-r.top)/r.height)),
+        max=d.documentElement.scrollHeight-window.innerHeight;
+    window.scrollTo(0,p*max);
+  }
+  rail.addEventListener('pointerdown',function(e){
+    downY=e.clientY;moved=false;
+    try{rail.setPointerCapture(e.pointerId);}catch(err){}
+  });
+  rail.addEventListener('pointermove',function(e){
+    if(!e.buttons) return;
+    if(Math.abs(e.clientY-downY)>6) moved=true;
+    if(moved){e.preventDefault();jumpTo(e.clientY);}
+  });
+  rail.addEventListener('click',function(e){
+    e.preventDefault();
+    if(moved) return;
+    var a=e.target.closest?e.target.closest('.mark'):null;
+    if(!a) return;
+    var el=d.getElementById(a.getAttribute('href').slice(1));
+    if(el) window.scrollTo(0,el.getBoundingClientRect().top+window.pageYOffset-24);
+  });
+
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',function(){layout();upd();});
+  window.addEventListener('load',function(){layout();upd();});
+  layout();upd();
+  window.__railLayout=function(){layout();upd();};
+})();
 </script>
 </body></html>
