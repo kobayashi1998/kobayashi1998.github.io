@@ -230,7 +230,7 @@
     .rail-marks{position:absolute;inset:0}
     .mark{position:absolute;right:0;transform:translateY(-50%);
       display:flex;align-items:center;justify-content:flex-end;gap:8px;
-      padding:2px 0;text-decoration:none}
+      text-decoration:none;-webkit-user-drag:none}
     .mk-dot{flex:0 0 auto;width:6px;height:6px;border-radius:50%;
       background:var(--soft-text);opacity:.85;margin-right:-2px;
       transition:width .15s,height .15s,background .15s,opacity .15s,box-shadow .15s}
@@ -645,17 +645,20 @@ icon()})();
     var hh=marksBox.clientHeight||1,
         docH=Math.max(1,d.documentElement.scrollHeight),
         st=window.pageYOffset||d.documentElement.scrollTop,
-        GAP=22,ys=[],idx=[];
+        ys=[],idx=[];
     heads.forEach(function(h,i){
       if(!shown(h)){marks[i].style.display='none';return;}
       idx.push(i);
       ys.push(Math.min(1,Math.max(0,(h.getBoundingClientRect().top+st)/docH))*hh);
     });
-    if(hh>80){
-      for(var i=1;i<ys.length;i++) if(ys[i]-ys[i-1]<GAP) ys[i]=ys[i-1]+GAP;
-      if(ys.length&&ys[ys.length-1]>hh){          /* 累计下推溢出末端，反向回压 */
-        ys[ys.length-1]=hh;
-        for(var j=ys.length-2;j>=0;j--) if(ys[j+1]-ys[j]<GAP) ys[j]=ys[j+1]-GAP;
+    if(hh>80&&ys.length){
+      var n=ys.length,GAP=22;
+      if((n-1)*GAP>hh) GAP=Math.max(18,hh/(n-1));          /* 空间不足时收紧间距 */
+      for(var i=1;i<n;i++) if(ys[i]-ys[i-1]<GAP) ys[i]=ys[i-1]+GAP;
+      if(ys[n-1]>hh){
+        ys[n-1]=hh;
+        for(var j=n-2;j>=0;j--) if(ys[j+1]-ys[j]<GAP) ys[j]=ys[j+1]-GAP;
+        if(ys[0]<0){var step=n>1?hh/(n-1):0;for(var k=0;k<n;k++) ys[k]=k*step;}
       }
     }
     idx.forEach(function(k,n){
@@ -678,29 +681,41 @@ icon()})();
   function onScroll(){if(!ticking){ticking=true;(window.requestAnimationFrame||function(f){setTimeout(f,16)})(upd);}}
 
   /* 点刻度跳章节；按住滑杆拖动整页 */
-  var downY=0,moved=false;
+  var downY=0,moved=false,downMark=null,tracking=false;
   function jumpTo(cy){
     var r=rail.getBoundingClientRect(),
         p=Math.min(1,Math.max(0,(cy-r.top)/r.height)),
         max=d.documentElement.scrollHeight-window.innerHeight;
     window.scrollTo(0,p*max);
   }
+  function jumpMark(m){
+    var el=m&&d.getElementById(m.getAttribute('href').slice(1));
+    if(el) window.scrollTo(0,el.getBoundingClientRect().top+window.pageYOffset-24);
+  }
+  /* pointerdown 时记住按下的刻度：setPointerCapture 会把 click 的 target 重定向到 rail，
+     所以跳转判定放在 pointerup，不能依赖 click 的 e.target */
   rail.addEventListener('pointerdown',function(e){
-    downY=e.clientY;moved=false;
-    try{rail.setPointerCapture(e.pointerId);}catch(err){}
+    if(e.pointerType==='mouse'&&e.button!==0) return;
+    downY=e.clientY;moved=false;tracking=true;
+    downMark=e.target.closest?e.target.closest('.mark'):null;
+    try{rail.setPointerCapture(e.pointerId)}catch(err){}
   });
   rail.addEventListener('pointermove',function(e){
-    if(!e.buttons) return;
+    if(!tracking||!e.buttons) return;
     if(Math.abs(e.clientY-downY)>6) moved=true;
     if(moved){e.preventDefault();jumpTo(e.clientY);}
   });
+  rail.addEventListener('pointerup',function(e){
+    if(!tracking) return;
+    tracking=false;
+    var m=downMark; downMark=null;
+    if(moved) return;
+    if(m) jumpMark(m); else jumpTo(e.clientY);   /* 点空白轨道按坐标跳 */
+  });
+  rail.addEventListener('pointercancel',function(){tracking=false;moved=false;downMark=null;});
   rail.addEventListener('click',function(e){
     e.preventDefault();
-    if(moved) return;
-    var a=e.target.closest?e.target.closest('.mark'):null;
-    if(!a) return;
-    var el=d.getElementById(a.getAttribute('href').slice(1));
-    if(el) window.scrollTo(0,el.getBoundingClientRect().top+window.pageYOffset-24);
+    if(e.detail===0) jumpMark(e.target.closest&&e.target.closest('.mark'));   /* 键盘回车 */
   });
 
   window.addEventListener('scroll',onScroll,{passive:true});
