@@ -548,7 +548,7 @@ document.documentElement.setAttribute('data-theme',t)})();
 </svg>
  <h1>杜隆塔尔的建立</h1>
  <p class="subtitle">图鉴：改造装备</p>
- <nav class="booknav" aria-label="图鉴导航"><a class="bn-home" href="index.html">◆ 专题首页</a><a aria-current="page" href="items.html" title="改造装备 · 九槽 · 五档 · 词条池"><span class="bn-n">01</span>改造装备</a><a href="talents.html" title="技能天赋 · 六层 · 每层三选一"><span class="bn-n">02</span>技能天赋</a><a href="shops.html" title="商店货架 · 三幕十七图 · 在架货位"><span class="bn-n">03</span>商店货架</a><a href="units.html" title="敌对单位 · 野怪 · 敌人 · 领主"><span class="bn-n">04</span>敌对单位</a></nav>
+ <nav class="booknav" aria-label="图鉴导航"><a class="bn-home" href="index.html">◆ 专题首页</a><a aria-current="page" href="items.html" title="改造装备 · 九槽 · 五档 · 算强度"><span class="bn-n">01</span>改造装备</a><a href="talents.html" title="技能天赋 · 六层 · 每层三选一"><span class="bn-n">02</span>技能天赋</a><a href="shops.html" title="商店货架 · 三幕十七图 · 在架货位"><span class="bn-n">03</span>商店货架</a><a href="units.html" title="敌对单位 · 野怪 · 敌人 · 领主"><span class="bn-n">04</span>敌对单位</a></nav>
  <div class="rule"><i></i>
  <svg width="46" height="12" viewBox="0 0 46 12" fill="#6b4a1d"><path d="M23 0l4 6-4 6-4-6z" opacity=".8"/>
  <circle cx="11" cy="6" r="2"/><circle cx="35" cy="6" r="2"/></svg><i></i></div>
@@ -574,21 +574,19 @@ document.documentElement.setAttribute('data-theme',t)})();
  </div>
 </section>
 <section class="chapter">
- <h2 class="sec">词条池 <small>施法六条 · 闪避 · 恢复</small></h2>
+ <h2 class="sec">强度怎么算 <small>先折 PU，再相加</small></h2>
  <div class="notes">
-  <div class="note"><b>六条施法词条</b>技能增强 / 技能速度 / 法术暴击几率 / 法术暴击伤害 / 负面抗性 / 魔法抗性 —— 六条词条只出现在装备上，不占技能栏与天赋位。</div>
-  <div class="note"><b>只作用于施法</b>上列六条只对施法生效，普通攻击吃不到。</div>
-  <div class="note"><b>闪避怎么算</b>+N% 闪避＝敌人对你的一次普通攻击有 N% 概率落空；只吃普通攻击、不吃法术。多件同时戴<strong>只取最高的一件</strong>，不叠加——2% 与 5% 一起戴，生效的还是 5%。</div>
-  <div class="note"><b>恢复分三种，别当成一回事</b><br>① <b>+N%法力恢复</b>＝按英雄<strong>自身</strong>的回蓝速度加成，智力越高回得越多；<br>② <b>+N点生命恢复</b>＝每秒固定多回 N 点生命，与属性无关，多少就是多少；<br>③ 光环与图腾上的<b>「每秒恢复 N% 最大生命值」</b>＝按<strong>血条总量</strong>算，血越厚回得越多。<br>三者算法不同，数值不能互换比较；另有「+N%法力效率」是降低施法耗蓝，不是回蓝，也不属于上面任何一种。</div>
-  <div class="note"><b>强度怎么算</b>「强度」把一件装备的全部词条折算成同一把尺子，便于横向比价；没有可折算技能的特效件标作「机制件」，不进强度轴。</div>
+  <div class="note"><b>尺子是 PU</b>1 PU = 50 生命上限 = 40 法力上限 = 2 攻击力 = 1 护甲 = 5% 攻速 = 0.25 点每秒法力恢复 = 0.5 点每秒生命恢复 = 10 移动速度；力量、敏捷、智力同价，1 点算 1 PU。生命上限与法力上限是一次性资源，按半价折（所以 1 PU 买到 50 生命 / 40 法力）。</div>
+  <div class="note"><b>一件装备的强度</b>把它身上的每条词条按上面这把尺子折成 PU，再全部相加，就是卡片上那个数。词条的数值只取原生那几档，同档同槽共用一份预算；页首的「强度中位」是全池中位数（机制件没有数字，不计入）。</div>
+  <div class="note"><b>怎么用这个数</b>只在<strong>同档同槽</strong>之间比，看两件谁更实在；别跨档跨槽比数字——档位只表示来头，不是强度上限。直接给技能、召唤、光环、触发的特效件没有可折算数值，卡片上标「机制件」，不给强度数字。</div>
  </div>
 </section>
 <section class="chapter">
  <h2 class="sec">全量明细 <small>按档位 · 槽位 · 价格排序</small></h2>
  <div class="toolbar">
-  <div class="fgroup"><em>档位 · 可多选</em><button class="chip on" data-tier="">全部</button><button class="chip" data-tier="普通" style="color:#6f6f68">普通 57</button><button class="chip" data-tier="精良" style="color:#41702f">精良 44</button><button class="chip" data-tier="稀有" style="color:#2f5794">稀有 39</button><button class="chip" data-tier="史诗" style="color:#6b3a8c">史诗 35</button><button class="chip" data-tier="传说" style="color:#a1550f">传说 26</button></div>
-  <div class="fgroup"><em>槽位 · 可多选</em><button class="chip on" data-slot="">全部槽位</button><button class="chip" data-slot="头部">头部 14</button><button class="chip" data-slot="胸部">胸部 22</button><button class="chip" data-slot="手部">手部 14</button><button class="chip" data-slot="足部">足部 13</button><button class="chip" data-slot="戒指">戒指 15</button><button class="chip" data-slot="主手">主手 44</button><button class="chip" data-slot="副手">副手 46</button><button class="chip" data-slot="饰品">饰品 33</button></div>
-  <div class="fgroup"><em>来源 · 可多选</em><button class="chip on" data-kind="">全部来源</button><button class="chip" data-kind="boss">首领掉落 19</button><button class="chip" data-kind="quest">任务奖励 16</button><button class="chip" data-kind="shop">商店出售 98</button><button class="chip" data-kind="world">世界摆放 8</button><button class="chip" data-kind="secret">秘密摆放 2</button><button class="chip" data-kind="random">随机掉落 52</button><button class="chip" data-kind="none" title="没有任何固定获取凭据：首领 / 任务 / 商店 / 摆放 / 随机池都不命中">未定义项 11</button></div>
+  <div class="fgroup"><em>档位</em><button class="chip on" data-tier="">全部</button><button class="chip" data-tier="普通" style="color:#6f6f68">普通 57</button><button class="chip" data-tier="精良" style="color:#41702f">精良 44</button><button class="chip" data-tier="稀有" style="color:#2f5794">稀有 39</button><button class="chip" data-tier="史诗" style="color:#6b3a8c">史诗 35</button><button class="chip" data-tier="传说" style="color:#a1550f">传说 26</button></div>
+  <div class="fgroup"><em>槽位</em><button class="chip on" data-slot="">全部槽位</button><button class="chip" data-slot="头部">头部 14</button><button class="chip" data-slot="胸部">胸部 22</button><button class="chip" data-slot="手部">手部 14</button><button class="chip" data-slot="足部">足部 13</button><button class="chip" data-slot="戒指">戒指 15</button><button class="chip" data-slot="主手">主手 44</button><button class="chip" data-slot="副手">副手 46</button><button class="chip" data-slot="饰品">饰品 33</button></div>
+  <div class="fgroup"><em>来源</em><button class="chip on" data-kind="">全部来源</button><button class="chip" data-kind="boss">首领掉落 19</button><button class="chip" data-kind="quest">任务奖励 16</button><button class="chip" data-kind="shop">商店出售 98</button><button class="chip" data-kind="world">世界摆放 8</button><button class="chip" data-kind="secret">秘密摆放 2</button><button class="chip" data-kind="random">随机掉落 52</button><button class="chip" data-kind="none" title="没有任何固定获取凭据：首领 / 任务 / 商店 / 摆放 / 随机池都不命中">未定义项 11</button></div>
   <div class="fgroup viewsw"><em>视图</em>
    <button class="chip vchip on" data-view="grid">网格</button>
    <button class="chip vchip" data-view="list">列表</button></div>
@@ -2813,7 +2811,7 @@ document.documentElement.setAttribute('data-theme',t)})();
  </div></article></div>
 </section>
 <div class="seal">杜隆塔尔<br>兽王战役</div>
-<footer class="foot"><div class="foot-src"><span>图鉴更新于 2026-11-16 12:04</span></div><div class="qq">[QQ群]杜隆塔尔的建立 <b>838476146</b></div><nav class="foot-nav"><a href="index.html">← 专题首页</a><a href="#top">↑ 回到顶部</a></nav></footer><script>
+<footer class="foot"><div class="foot-src"><span>图鉴更新于 2026-11-16 15:14</span></div><div class="qq">[QQ群]杜隆塔尔的建立 <b>838476146</b></div><nav class="foot-nav"><a href="index.html">← 专题首页</a><a href="#top">↑ 回到顶部</a></nav></footer><script>
 const cards=[...document.querySelectorAll('.card')];
 /* 档位 / 槽位 / 来源：每行独立多选，行内 OR、行间 AND */
 const GROUPS=['tier','slot','kind'];

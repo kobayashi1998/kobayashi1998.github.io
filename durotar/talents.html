@@ -473,7 +473,7 @@ table.ttipt th, table.ttipt td{border-top:1px solid var(--line2); padding:3px 5p
 table.ttipt tr:first-child th, table.ttipt tr:first-child td{border-top:none}
 table.ttipt th{color:var(--ink3); font-weight:600; white-space:nowrap; width:106px}
 table.ttipt td{color:var(--ink1); word-break:break-word}
-/* 筛选：三组单选，行内互斥、行间取交；层内全隐时整层让位 */
+/* 筛选：三组各自多选，组内 OR、组间取交；层内全隐时整层让位 */
 .node.hide,.layer.hide{display:none!important}
 #filter .fgroup{border-left:1px solid var(--line); padding-left:14px}
 #filter .fgroup:first-child{border-left:none; padding-left:0}
@@ -500,7 +500,7 @@ document.documentElement.setAttribute('data-theme',t)})();
 </svg>
  <h1>杜隆塔尔的建立</h1>
  <p class="subtitle">图鉴：技能天赋</p>
- <nav class="booknav" aria-label="图鉴导航"><a class="bn-home" href="index.html">◆ 专题首页</a><a href="items.html" title="改造装备 · 九槽 · 五档 · 词条池"><span class="bn-n">01</span>改造装备</a><a aria-current="page" href="talents.html" title="技能天赋 · 六层 · 每层三选一"><span class="bn-n">02</span>技能天赋</a><a href="shops.html" title="商店货架 · 三幕十七图 · 在架货位"><span class="bn-n">03</span>商店货架</a><a href="units.html" title="敌对单位 · 野怪 · 敌人 · 领主"><span class="bn-n">04</span>敌对单位</a></nav>
+ <nav class="booknav" aria-label="图鉴导航"><a class="bn-home" href="index.html">◆ 专题首页</a><a href="items.html" title="改造装备 · 九槽 · 五档 · 算强度"><span class="bn-n">01</span>改造装备</a><a aria-current="page" href="talents.html" title="技能天赋 · 六层 · 每层三选一"><span class="bn-n">02</span>技能天赋</a><a href="shops.html" title="商店货架 · 三幕十七图 · 在架货位"><span class="bn-n">03</span>商店货架</a><a href="units.html" title="敌对单位 · 野怪 · 敌人 · 领主"><span class="bn-n">04</span>敌对单位</a></nav>
  <div class="rule"><i></i>
  <svg width="46" height="12" viewBox="0 0 46 12" fill="#6b4a1d"><path d="M23 0l4 6-4 6-4-6z" opacity=".8"/>
  <circle cx="11" cy="6" r="2"/><circle cx="35" cy="6" r="2"/></svg><i></i></div>
@@ -534,7 +534,7 @@ document.documentElement.setAttribute('data-theme',t)})();
  </div>
 </section>
 <section class="chapter" id="filter">
- <h2 class="sec">筛选 <small>英雄 / 方向 / 层位 · 行间取交</small></h2>
+ <h2 class="sec">筛选 <small>英雄 / 方向 / 层位</small></h2>
  <div class="toolbar">
   <div class="fgroup"><em>英雄</em><button class="chip on" data-hero="">全部</button><button class="chip" data-hero="LEX">雷克萨</button><button class="chip" data-hero="ROK">洛坎</button><button class="chip" data-hero="CHEN">陈</button><button class="chip" data-hero="CAIRNE">凯恩</button></div>
   <div class="fgroup"><em>方向</em><button class="chip on" data-dir="">全部</button><button class="chip" data-dir="强" data-dirtag="强">强</button><button class="chip" data-dir="广" data-dirtag="广">广</button><button class="chip" data-dir="久" data-dirtag="久">久</button><button class="chip" data-dir="多" data-dirtag="多">多</button><button class="chip" data-dir="省" data-dirtag="省">省</button><button class="chip" data-dir="换" data-dirtag="换">换</button><button class="chip" data-dir="属性">属性</button></div>
@@ -784,24 +784,25 @@ document.documentElement.setAttribute('data-theme',t)})();
  <div class="txt"><h4>魔法抗性 +10%</h4>
  <p>受到的法术伤害降低 10%（与装备同源取最高）。</p><span class="nums">+10%</span></div></div></div></div>
 </section>
-<footer class="foot"><div class="foot-src"><span>图鉴更新于 2026-11-16 12:04</span></div><div class="qq">[QQ群]杜隆塔尔的建立 <b>838476146</b></div><nav class="foot-nav"><a href="index.html">← 专题首页</a><a href="#top">↑ 回到顶部</a></nav></footer><script>
-/* 英雄 / 方向 / 层位：每组单选，点「全部」或再点一次取消 */
+<footer class="foot"><div class="foot-src"><span>图鉴更新于 2026-11-16 15:14</span></div><div class="qq">[QQ群]杜隆塔尔的建立 <b>838476146</b></div><nav class="foot-nav"><a href="index.html">← 专题首页</a><a href="#top">↑ 回到顶部</a></nav></footer><script>
+/* 英雄 / 方向 / 层位：每组独立多选，组内 OR、组间 AND；点「全部」清空本组 */
 const tNodes=[...document.querySelectorAll('.node')];
 const tLayers=[...document.querySelectorAll('.layer')];
 const tKeys=['hero','dir','layer'];
-const tSel={hero:'',dir:'',layer:''};
+const tSel={hero:new Set(),dir:new Set(),layer:new Set()};
 const tChips=[...document.querySelectorAll('#filter .chip')];
 const tGroup=b=>tKeys.find(k=>b.dataset[k]!==undefined);
-function tSync(){
+function tSync(g){
   for(const b of tChips){
-    const g=tGroup(b); if(!g)continue;
-    b.classList.toggle('on',(b.dataset[g]||'')===tSel[g]);
+    if(tGroup(b)!==g)continue;
+    const v=b.dataset[g]||'';
+    b.classList.toggle('on', v==='' ? tSel[g].size===0 : tSel[g].has(v));
   }
 }
 function tApply(){
   let n=0;
   for(const c of tNodes){
-    const ok=tKeys.every(k=>!tSel[k]||c.dataset[k]===tSel[k]);
+    const ok=tKeys.every(k=>!tSel[k].size||tSel[k].has(c.dataset[k]));
     c.classList.toggle('hide',!ok); if(ok)n++;
   }
   for(const L of tLayers){
@@ -811,9 +812,10 @@ function tApply(){
 }
 tChips.forEach(b=>b.addEventListener('click',()=>{
   const g=tGroup(b); if(!g)return;
-  const v=b.dataset[g]||'';
-  tSel[g]=(tSel[g]===v)?'':v;      /* 再点一次同一枚 = 回到全部 */
-  tSync(); tApply();
+  const v=b.dataset[g]||'', s=tSel[g];
+  if(v==='')s.clear();                        /* 「全部」清空本组 */
+  else if(s.has(v))s.delete(v); else s.add(v); /* 再点一次取消该项 */
+  tSync(g); tApply();
 }));
 </script>
 </div></div><script>
