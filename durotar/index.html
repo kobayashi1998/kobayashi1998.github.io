@@ -2,10 +2,10 @@
 <html lang="zh-CN"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>杜隆塔尔的建立 · 兽王战役重制图鉴</title>
-<meta name="description" content="《魔兽争霸III：重制版》兽王战役重制「杜隆塔尔的建立」玩家专题：改造装备、技能天赋、商店货架、敌对单位四册图鉴。">
+<meta name="description" content="《魔兽争霸III：重制版》兽王战役重制「杜隆塔尔的建立」玩家专题：全流程攻略与改造装备、技能天赋、商店货架、敌对单位四册图鉴。">
 <meta property="og:type" content="website">
 <meta property="og:title" content="杜隆塔尔的建立 · 兽王战役重制图鉴">
-<meta property="og:description" content="《魔兽争霸III：重制版》兽王战役重制「杜隆塔尔的建立」玩家专题：改造装备、技能天赋、商店货架、敌对单位四册图鉴。">
+<meta property="og:description" content="《魔兽争霸III：重制版》兽王战役重制「杜隆塔尔的建立」玩家专题：全流程攻略与改造装备、技能天赋、商店货架、敌对单位四册图鉴。">
 <meta property="og:url" content="https://worldeditor.cn/durotar/">
 <meta name="theme-color" content="#17120c" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#f6f1e6" media="(prefers-color-scheme: light)">
@@ -103,6 +103,8 @@ body{background:radial-gradient(ellipse at 50% -10%, var(--frame-hi) 0%, var(--f
 .booknav .bn-n{font-family:ui-monospace,Consolas,monospace; font-size:10.5px; opacity:.72;
   letter-spacing:.04em}
 .booknav .bn-home{border-style:dashed}
+/* A288：攻略入口与图鉴区分——点线框、不带序号，读起来像「先看怎么走，再查图鉴」 */
+.booknav .bn-guide{border-style:dotted}
 /* 分册入口样式（A154 后不再注入 DOM，仅留样式兼容，勿据此恢复三分册） */
 .booknav.subnav{margin-top:9px; gap:6px}
 .booknav.subnav a{padding:3px 11px; font-size:12px; letter-spacing:.04em}
@@ -192,6 +194,9 @@ h2.sec::after{content:""; flex:1; height:1px; translate:0 -2px;
 
 /* 四册卡片 */
 .books{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px}
+/* A288：攻略卡通栏（单卡区） */
+.books.one{grid-template-columns:1fr}
+.book.wide h3,.book.wide .kick{letter-spacing:.12em}
 .book{position:relative; display:flex; flex-direction:column; padding:24px 24px 20px;
   background:var(--panel); border:1px solid var(--border); border-radius:3px;
   text-decoration:none; color:var(--text); overflow:hidden;
@@ -229,12 +234,6 @@ h2.sec::after{content:""; flex:1; height:1px; translate:0 -2px;
   margin-left:8px; font-family:inherit}
 .what p{margin:0; font-size:13.2px; color:var(--muted); line-height:1.72}
 
-/* 阅读提示 */
-.notes{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:16px}
-.note{border-left:2px solid var(--accent); padding:2px 0 2px 14px}
-.note b{display:block; font-size:13.4px; color:var(--strong); margin-bottom:3px; letter-spacing:.05em}
-.note p{margin:0; font-size:12.8px; color:var(--muted); line-height:1.7}
-
 /* 页尾 */
 .foot{margin-top:64px; padding-top:22px; border-top:1px solid var(--border);
   text-align:center; font-size:12.2px; color:var(--muted); line-height:1.8}
@@ -252,7 +251,6 @@ h2.sec::after{content:""; flex:1; height:1px; translate:0 -2px;
 
 @media (max-width:860px){
   .books, .what{grid-template-columns:1fr}
-  .notes{grid-template-columns:1fr}
   body{padding:34px 14px 56px}
   section{margin-top:44px}
 }
@@ -288,21 +286,21 @@ document.documentElement.setAttribute('data-theme',t)})();
 <p class="sub">WARCRAFT III · 兽王战役重制 · 三幕十七图</p>
 <p class="lede">那场横跨卡利姆多的兽王战役，按 <b>3.0 重制版</b> 的规矩重做了一遍：
 装备换成覆盖八类槽位的改造件，技能长出六层天赋，商店重新配货，敌人保留原版骨架、只补首领的排面与掉落。
-四册图鉴把这一版的<b>每一件装备、每一个天赋、每一格货架、每一种敌人</b>都摊开摆出来。</p>
-<div class="badge"><i></i>最近更新 2026-11-16</div>
+四册图鉴把这一版的<b>每一件装备、每一个天赋、每一格货架、每一种敌人</b>都摊开摆出来；
+另有<b>一页全流程攻略</b>，从第一幕的临终托付一路写到塞拉摩攻城。</p>
+<div class="badge"><i></i>最近更新 2026-11-19</div>
 </header>
 
 <section>
-<h2 class="sec">加载战役前 <small>先设画面</small></h2>
-<div class="notes">
- <div class="note"><b>把「画面模式」设为重制版画面（HD）</b><p>本战役的单位模型与染色按 3.0 重制画面制作。进入战役前，请先在选项的「画面模式 / Graphic Mode」里选「重制版画面（HD）」，切换后重启客户端再加载；用经典版画面（SD）或决定版画面（DE）加载时，熊猫人陈等个别单位会回落到对战模型，部分单位会出现染色偏移。这一段是提示，不是战役设置本身。</p></div>
-</div>
+<h2 class="sec">全流程攻略 <small>先看怎么走</small></h2>
+<p class="sec-lede">攻略只讲去哪、做什么、交什么任务、拿到什么；数值与售价归四册图鉴，两边不互相复述。</p>
+<div class="books one"><a class="book wide" href="guide.html"><h3>全流程攻略</h3><p class="kick">三幕 · 二十节 · 怎么走</p><p>三幕从头走到尾，二十节各写去哪、做什么、交什么任务、拿到什么。每节标出顺路的商店与容易漏的掉落。页内可按节跳转。</p><div class="nums"><div class="num"><b>20</b><span>节攻略</span></div><div class="num"><b>3</b><span>幕</span></div></div><span class="go">进入攻略</span></a></div>
 </section>
 
 <section>
 <h2 class="sec">四册图鉴 <small>点卡进入</small></h2>
 <p class="sec-lede">四册各管一块，互相查得到：装备页写着哪家店卖、商店页列着卖多少钱、敌人页写着谁掉。</p>
-<div class="books"><a class="book" href="items.html"><span class="no">01</span><h3>改造装备</h3><p class="kick">九槽 · 五档 · 算强度</p><p>9 个装备栏位归成 8 类改造槽位、五个档位，词条只引用原生技能。每件写清出处、售价、词条与强度。页内可按档位 / 槽位筛。</p><div class="nums"><div class="num"><b>201</b><span>件装备</span></div><div class="num"><b>280–10800</b><span>金价区间</span></div></div><span class="go">进入图鉴</span></a><a class="book" href="talents.html"><span class="no">02</span><h3>技能天赋</h3><p class="kick">六层 · 每层三选一</p><p>四棵树各 6 层、每层三选一，共 72 个节点，天赋之书只在任务里发。每个节点写清所在树、层位、技能与数值。页内可按英雄 / 层位筛。</p><div class="nums"><div class="num"><b>24</b><span>天赋之书 · 任务奖励</span></div><div class="num"><b>8</b><span>换技节点</span></div></div><span class="go">进入图鉴</span></a><a class="book" href="shops.html"><span class="no">03</span><h3>商店货架</h3><p class="kick">三幕十七图 · 在架货位</p><p>三幕十七图，每家店都按游戏内 4 列 × 3 行逐格铺开。每格写清谁在卖、卖什么、几个钱、按哪个键。页内可按分幕 / 地图筛。</p><div class="nums"><div class="num"><b>28</b><span>在架商店</span></div><div class="num"><b>244</b><span>在售货位</span></div></div><span class="go">进入图鉴</span></a><a class="book" href="units.html"><span class="no">04</span><h3>敌对单位</h3><p class="kick">野怪 · 敌人 · 领主</p><p>全战役十七图的野怪、敌人与领主按图分节排列，含剧情中途才刷出的单位。每种写清血量、DPS、技能、掉落与地图。页内可按类别 / 地图筛。</p><div class="nums"><div class="num"><b>439</b><span>单位种类</span></div><div class="num"><b>17</b><span>所在地图</span></div></div><span class="go">进入图鉴</span></a></div>
+<div class="books"><a class="book" href="items.html"><span class="no">01</span><h3>改造装备</h3><p class="kick">九槽 · 五档 · 算强度</p><p>9 个装备栏位归成 8 类改造槽位、五个档位，词条只引用原生技能。每件写清出处、售价、词条与强度。页内可按档位 / 槽位筛。</p><div class="nums"><div class="num"><b>203</b><span>件装备</span></div><div class="num"><b>280–43250</b><span>金价区间</span></div></div><span class="go">进入图鉴</span></a><a class="book" href="talents.html"><span class="no">02</span><h3>技能天赋</h3><p class="kick">六层 · 每层三选一</p><p>四棵树各 6 层、每层三选一，共 72 个节点，天赋之书只在任务里发。每个节点写清所在树、层位、技能与数值。页内可按英雄 / 层位筛。</p><div class="nums"><div class="num"><b>26</b><span>天赋之书 · 任务奖励</span></div><div class="num"><b>10</b><span>换技节点</span></div></div><span class="go">进入图鉴</span></a><a class="book" href="shops.html"><span class="no">03</span><h3>商店货架</h3><p class="kick">三幕十七图 · 在架货位</p><p>三幕十七图，每家店都按游戏内 4 列 × 3 行逐格铺开。每格写清谁在卖、卖什么、几个钱、按哪个键。页内可按分幕 / 地图筛。</p><div class="nums"><div class="num"><b>28</b><span>在架商店</span></div><div class="num"><b>250</b><span>在售货位</span></div></div><span class="go">进入图鉴</span></a><a class="book" href="units.html"><span class="no">04</span><h3>敌对单位</h3><p class="kick">野怪 · 敌人 · 领主</p><p>全战役十七图的野怪、敌人与领主按图分节排列，含剧情中途才刷出的单位。每种写清血量、DPS、技能、掉落与地图。页内可按类别 / 地图筛。</p><div class="nums"><div class="num"><b>442</b><span>单位种类</span></div><div class="num"><b>17</b><span>所在地图</span></div></div><span class="go">进入图鉴</span></a></div>
 </section>
 
 <section>
@@ -310,7 +308,7 @@ document.documentElement.setAttribute('data-theme',t)})();
 <!-- 本节只讲「相对原版动了哪条规矩」，不讲图鉴收了什么、每张卡写哪些字段、能按什么筛
      —— 那三件归上面四册的 BLURB。两边一旦互相复述，四册的简介就成了废句。 -->
 <div class="what">
- <div><h3>装备<em>一件一条渠道</em></h3><p>原版一件东西能同时挂在货架、野怪掉落表和任务奖励上；本版把发放收成四条互斥标签，一件只留一个来头。全池 201 件里 164 件从原生素材改造，野怪掉落也统一成一张按档位切的名单，同档机会均等。</p></div>
+ <div><h3>装备<em>一件一条渠道</em></h3><p>原版一件东西能同时挂在货架、野怪掉落表和任务奖励上；本版把发放收成四条互斥标签，一件只留一个来头。全池 203 件里 164 件从原生素材改造，野怪掉落也统一成一张按档位切的名单，同档机会均等。</p></div>
  <div><h3>天赋<em>不写触发器</em></h3><p>整棵树落成原生工程升级与技能对象，一行触发器、一句自定义代码都不加——战役读档不会把天赋点重置，也不必另装脚本。属性节点与技能节点交替排布，加值与换技写在同一套对象上，点到即生效。</p></div>
  <div><h3>商店<em>按套配货</em></h3><p>货架不许单摆：同功能、同族、同槽的货必须成组，两件组凑满一行、四件组不拆行、三件组只放末行，任务件与动态上货的例外逐店登记。价格按同一套口径重算，进店前就能算清这一趟的花销。</p></div>
  <div><h3>敌人<em>骨架不动</em></h3><p>原版野怪的攻击、技能与 AI 全部保留，只把首领这一层抬成英雄单位：血、甲、攻击按英雄公式重算，再补上各自的掉落。等级上限按幕重排成一幕 8、二幕 14、三幕 18、终章 20，杂兵的升级经验不再打折。</p></div>
@@ -318,7 +316,7 @@ document.documentElement.setAttribute('data-theme',t)})();
 </section>
 
 <footer class="foot">
-<div class="foot-src">图鉴更新于 2026-11-16 15:14</div>
+<div class="foot-src">图鉴更新于 2026-11-19 14:46</div>
 <div class="qq">[QQ群]杜隆塔尔的建立 <b>838476146</b></div>
 <nav class="foot-nav"><a href="#top">↑ 回到顶部</a><a href="https://worldeditor.cn/">世界编辑器中文站</a></nav>
 <div class="sig">◆ 杜隆塔尔 · 兽王战役 ◆</div>

@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>杜隆塔尔的建立 · 全流程攻略</title>
+<style>
+/* 日间（浅纸深墨）调色板 —— 也是全部令牌的默认值。
+   夜间（暗纸浅墨）同名令牌在 tools/site_nav.py 的 THEME_CSS 里整组覆盖，
+   两边令牌名必须一一对应，新增/改名只改这两处。 */
+:root{
+  /* 墨色 */
+  --ink0:#2f1e0d; --ink1:#3a2410; --ink:#2c1c0e; --ink2:#4b3520; --ink3:#6b5235;
+  --link:#6d4a18; --gold:#8a6a2f; --gold-deep:#7d4d0b;
+  --warn:#8c3b23; --seal:#9c2f21; --mech:#2f5f6b;
+  --gray:#6f6f68; --green:#41702f; --blue:#2f5794; --purple:#6b3a8c; --orange:#a1550f;
+  --tag-boss:#7d2f18; --tag-quest:#2c5e2a;
+  /* 天赋六类方向：圆点底色 + 圆点里那枚字（夜里两枚都换浅，见 site_nav） */
+  --dir-1:#8c3b23; --dir-2:#2f5f6b; --dir-3:#5c3f7a;
+  --dir-4:#3f6b2f; --dir-5:#7c5f28; --dir-6:#7a2f4a; --dir-fg:#fdf6e6;
+  /* 商店货架：面板与货位边框。白纸上用亮黄铜，12 个格子才分得开 */
+  --slot-a:#4a3720; --slot-b:#221809; --slot-bg:#140e07;
+  --slot-bd:#c2a05a; --slot-bd-hi:#ffd97a;
+  --slot-empty-bd:rgba(194,160,90,.62); --slot-dyn-bd:#e0bd72;
+  --slot-sel-bd:#c2a05a; --slot-sel-a:#54401f; --slot-sel-b:#161009;
+  /* 纸面：四段渐层 + 高光 / 暖晕 / 顶晕 / 外框 / 内压 / 折痕 */
+  --paper-1:#fdf7e8; --paper-2:#f7edd8; --paper-3:#fbf3e2; --paper-4:#efe2c6;
+  --paper-glow:rgba(255,255,250,.6); --paper-warm:rgba(150,110,50,.18);
+  --paper-cool:rgba(130,90,35,.12); --paper-rim:rgba(120,88,40,.38);
+  --paper-inset:rgba(120,88,40,.14); --paper-vig:rgba(130,92,42,.20);
+  --paper-hi:rgba(255,255,255,.6); --paper-fold-d:rgba(130,92,42,.10);
+  --paper-fold-l:rgba(255,252,240,.5);
+  /* 半透明底 / 棕调底 */
+  --wash-1:rgba(255,251,236,.45); --wash-2:rgba(255,252,242,.62);
+  --wash-3:rgba(255,253,246,.85); --wash-hi:rgba(255,255,255,.6);
+  --tint-1:rgba(120,86,40,.05); --tint-2:rgba(120,86,40,.09); --tint-3:rgba(120,86,40,.14);
+  /* 线与框 */
+  --line:rgba(90,62,26,.32); --line2:rgba(90,62,26,.16); --line3:rgba(120,86,40,.35);
+  --line4:rgba(90,62,26,.5); --gold-line:rgba(138,90,18,.5);
+  --img-bd:rgba(70,46,16,.5); --img-bg:rgba(60,40,14,.27); --img-sh:rgba(60,38,10,.3);
+  --chip-bg:#4a2f13; --chip-fg:#f6e9cc;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; padding:44px 18px 90px; color:var(--ink);
+  font-family:"Noto Serif SC","Source Han Serif SC","Songti SC",SimSun,"STSong",serif;
+  background:
+    radial-gradient(ellipse at 50% -10%, #4a3521 0%, #2b1d12 45%, #1a110a 100%) fixed,
+    #1a110a;
+  font-size:15px; line-height:1.72;
+  -webkit-font-smoothing:antialiased;
+}
+body::before{
+  content:""; position:fixed; inset:0; pointer-events:none; z-index:0; opacity:.10;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='260' height='260' filter='url(%23n)'/%3E%3C/svg%3E");
+  mix-blend-mode:overlay;
+}
+.scroll{position:relative; z-index:1; max-width:1180px; margin:0 auto}
+.sheet{
+  position:relative; padding:58px 54px 48px;
+  background:
+    radial-gradient(ellipse at 18% 6%, var(--paper-glow), transparent 46%),
+    radial-gradient(ellipse at 82% 92%, var(--paper-warm), transparent 52%),
+    radial-gradient(ellipse at 92% 4%, var(--paper-cool), transparent 38%),
+    linear-gradient(158deg,var(--paper-1) 0%,var(--paper-2) 38%,var(--paper-3) 62%,var(--paper-4) 100%);
+  box-shadow:0 40px 80px rgba(0,0,0,.62), 0 2px 0 var(--paper-hi) inset,
+             0 0 0 1px var(--paper-rim), 0 0 120px var(--paper-inset) inset;
+}
+.sheet::before{      /* 纸纹 */
+  content:""; position:absolute; inset:0; pointer-events:none; opacity:.055;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.72' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23p)'/%3E%3C/svg%3E");
+  mix-blend-mode:multiply;
+}
+.sheet::after{       /* 四边压深 + 两道折痕，像被翻旧 */
+  content:""; position:absolute; inset:0; pointer-events:none;
+  box-shadow:inset 0 0 90px var(--paper-vig), inset 0 0 22px var(--paper-vig),
+             inset 14px 0 26px -14px var(--paper-vig),
+             inset -14px 0 26px -14px var(--paper-vig);
+  background:
+    linear-gradient(90deg, transparent 11%, var(--paper-fold-d) 11.3%, var(--paper-fold-l) 11.8%, transparent 12.3%),
+    linear-gradient(90deg, transparent 88%, var(--paper-fold-d) 88.3%, var(--paper-fold-l) 88.8%, transparent 89.3%);
+}
+.sheet > *{position:relative; z-index:2}
+/* 卷轴木杆 */
+.rod{position:absolute; top:-14px; bottom:-14px; width:22px; border-radius:11px;
+  background:linear-gradient(90deg,#2c1a0c,#6b4520 35%,#8d5f2c 52%,#4a2d13 78%,#1e1208);
+  box-shadow:0 6px 18px rgba(0,0,0,.55), inset 0 0 6px rgba(255,220,160,.35)}
+.rod.l{left:-13px} .rod.r{right:-13px}
+.rod::before,.rod::after{content:""; position:absolute; left:-4px; width:30px; height:16px;
+  border-radius:50%; background:linear-gradient(90deg,#1c1108,#7b5122 45%,#3b2410);}
+.rod::before{top:-9px} .rod::after{bottom:-9px}
+
+/* 页头 */
+header.head{text-align:center; padding-bottom:8px}
+.crest{width:96px; height:96px; margin:0 auto 14px; opacity:.9; color:var(--gold)}
+h1{
+  font-family:"STKaiti","KaiTi","Noto Serif SC",serif;
+  font-size:clamp(30px,4.4vw,50px); letter-spacing:.16em; margin:0 0 6px;
+  color:var(--ink0); text-shadow:0 1px 0 var(--paper-hi);
+}
+.subtitle{font-size:clamp(14px,1.6vw,18px); letter-spacing:.34em; color:var(--ink3); margin:0}
+.rule{display:flex; align-items:center; justify-content:center; gap:14px; margin:22px 0 18px}
+.rule i{height:1px; flex:1; max-width:260px;
+  background:linear-gradient(90deg,transparent,var(--line4),transparent)}
+.lede{max-width:760px; margin:0 auto; color:var(--ink2); font-size:15px}
+.lede b{color:var(--ink2)}
+
+/* 统计 */
+.stats{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:12px; margin:30px 0 8px}
+.stat{border:1px solid var(--line); background:var(--wash-1);
+  padding:12px 14px; text-align:center; position:relative}
+.stat::after{content:""; position:absolute; inset:3px; border:1px solid var(--line2); pointer-events:none}
+.stat b{display:block; font-size:26px; line-height:1.2; color:var(--ink1); font-family:"STKaiti","KaiTi",serif}
+.stat span{font-size:12.5px; letter-spacing:.12em; color:var(--ink3)}
+
+/* 筛选 */
+.toolbar{display:flex; flex-wrap:wrap; gap:16px; align-items:center;
+  margin:26px 0 22px; padding:14px 16px; border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line); background:var(--tint-1)}
+.fgroup{display:flex; flex-wrap:wrap; gap:6px; align-items:center}
+.fgroup > em{font-style:normal; font-size:12px; letter-spacing:.16em; color:var(--ink3); margin-right:2px}
+.chip{cursor:pointer; border:1px solid var(--line); background:transparent; color:var(--ink2);
+  font-family:inherit; font-size:13px; padding:3px 11px; border-radius:2px; transition:.15s}
+.chip:hover{background:var(--tint-2)}
+.chip.on{background:var(--chip-bg); color:var(--chip-fg); border-color:var(--chip-bg)}
+.chip[data-tier="普通"].on{background:var(--gray); border-color:var(--gray)}
+.chip[data-tier="精良"].on{background:var(--green); border-color:var(--green)}
+.chip[data-tier="稀有"].on{background:var(--blue); border-color:var(--blue)}
+.chip[data-tier="史诗"].on{background:var(--purple); border-color:var(--purple)}
+.chip[data-tier="传说"].on{background:var(--orange); border-color:var(--orange)}
+.search{flex:1; min-width:170px; display:flex; justify-content:flex-end}
+.search input{width:100%; max-width:230px; font-family:inherit; font-size:13.5px;
+  padding:5px 10px; color:var(--ink); background:var(--wash-3);
+  border:1px solid var(--line); outline:none}
+.search input:focus{border-color:var(--gold); box-shadow:0 0 0 2px var(--gold-line)}
+.count{font-size:12.5px; color:var(--ink3); letter-spacing:.1em}
+
+/* 装备卡 */
+.grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(330px,1fr)); gap:16px}
+.card{position:relative; display:flex; gap:14px; padding:13px 15px 14px 17px;
+  border:1px solid var(--line); border-left:4px solid var(--c,#6f6f68);
+  background:var(--wash-2);
+  box-shadow:0 1px 0 var(--wash-hi) inset, 0 1px 3px rgba(70,45,16,.06); transition:.18s}
+.card:hover{background:var(--wash-3); transform:translateY(-2px);
+  box-shadow:0 10px 22px var(--tint-2)}
+.card.hide{display:none}
+.card .iconwrap{flex:0 0 76px; position:relative}
+.card img{width:76px; height:76px; display:block; border:1px solid var(--img-bd);
+  padding:2px; background:var(--img-bg); box-shadow:0 2px 6px var(--img-sh)}
+.card .body{flex:1; min-width:0}
+.card h3{margin:1px 0 2px; font-size:16.5px; font-weight:700; letter-spacing:.02em}
+.card h3 .oid{font-family:ui-monospace,Consolas,monospace; font-size:11px;
+  color:var(--ink3); font-weight:400; margin-left:6px; letter-spacing:0}
+.card .meta{font-size:11.8px; color:var(--ink3); letter-spacing:0; margin:0 0 7px;
+  display:flex; flex-wrap:wrap; align-items:baseline}
+.card .meta > span{white-space:nowrap}
+.card .meta > span + span{margin-left:.34em}
+.card .meta b{color:var(--ink2); font-weight:600}
+.affix{margin:0; font-size:13.4px; line-height:1.62; color:var(--ink1)}
+.affix div{position:relative; padding-left:11px}
+.affix div::before{content:"◆"; position:absolute; left:0; top:0; font-size:9px;
+  color:var(--ink3)}
+.affix div.mech{color:var(--mech)}
+.affix div.mech::before{content:"❖"; color:var(--mech)}
+.flavor{margin:7px 0 0; font-size:12.6px; color:var(--ink3); line-height:1.6;
+  font-style:normal; padding-top:6px; border-top:1px dotted var(--line2);
+  display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical;
+  overflow:hidden; cursor:pointer}
+.card.open .flavor{-webkit-line-clamp:unset}
+.tagswap{display:inline-block; margin-left:6px; font-size:10.5px; letter-spacing:.08em;
+  padding:1px 5px; border:1px solid var(--warn); color:var(--warn); border-radius:2px; vertical-align:2px}
+.tagsrc{display:inline-block; margin-left:5px; font-size:10px; letter-spacing:.08em;
+  padding:0 4px; border:1px solid var(--mech); color:var(--mech); border-radius:2px;
+  vertical-align:2px; opacity:.85}
+
+/* 获取标签 + 来源 */
+.pitag{display:inline-block; margin-left:5px; font-size:10px; letter-spacing:.1em;
+  padding:0 5px; border-radius:2px; vertical-align:2px; border:1px solid; opacity:.9}
+.pitag-boss{color:var(--tag-boss); border-color:rgba(125,47,24,.5); background:rgba(125,47,24,.07)}
+.pitag-quest{color:var(--tag-quest); border-color:rgba(44,94,42,.5); background:rgba(44,94,42,.07)}
+.pitag-shop{color:var(--ink3); border-color:rgba(107,74,18,.5); background:rgba(107,74,18,.07)}
+.pitag-world{color:var(--mech); border-color:rgba(47,95,107,.5); background:rgba(47,95,107,.07)}
+.pitag-secret{color:var(--mech); border-color:rgba(47,95,107,.5); background:rgba(47,95,107,.12)}
+.pitag-random{color:var(--ink3); border-color:rgba(107,82,53,.45); background:var(--tint-1)}
+.pitag-none{color:var(--ink3); border-color:var(--line2); background:var(--tint-1)}
+.srcs{margin:8px 0 0; padding:7px 9px 6px; border-left:2px solid var(--line3);
+  background:var(--tint-1); display:flex; flex-direction:column; gap:2px}
+.sitem{display:flex; align-items:baseline; gap:8px; flex-wrap:wrap}
+.skind{flex:0 0 auto; font-size:10.5px; letter-spacing:.06em; padding:0 5px;
+  border-radius:2px; background:var(--tint-3); color:var(--ink3);
+  border:1px solid var(--line3); line-height:1.7}
+.sloc{font-size:11.6px; color:var(--ink3); letter-spacing:.02em}
+.swho{font-size:12.4px; color:var(--ink1); padding:0 0 3px 1px}
+
+/* 九槽示意 */
+.slots{display:grid; grid-template-columns:repeat(auto-fit,minmax(112px,1fr)); gap:10px;
+  margin:18px 0 4px}
+.slot{display:flex; gap:9px; align-items:center; padding:8px 9px;
+  border:1px solid var(--line2); background:var(--wash-2)}
+.slot img{width:40px; height:40px; border:1px solid var(--img-bd); flex:0 0 40px}
+.slot b{display:block; font-size:13.4px; letter-spacing:.06em; color:var(--ink1)}
+.slot span{display:block; font-size:11px; color:var(--ink3); letter-spacing:.06em}
+
+/* 档位色带 */
+.tierbar{display:flex; height:12px; margin:6px 0 8px; border:1px solid var(--line);
+  background:var(--wash-2)}
+.tierbar i{display:block; height:100%}
+.tierlegend{display:flex; flex-wrap:wrap; gap:14px; font-size:11.6px; color:var(--ink3);
+  letter-spacing:.05em}
+.tierlegend s{text-decoration:none; display:inline-block; width:9px; height:9px;
+  margin-right:5px; vertical-align:1px}
+
+/* 印章 */
+.seal{width:100px; height:100px; margin:34px auto -6px;
+  transform:rotate(-7deg); opacity:.55; pointer-events:none; display:flex;
+  align-items:center; justify-content:center; border:2px solid var(--seal);
+  border-radius:4px; color:var(--seal); font-family:"STKaiti","KaiTi",serif;
+  font-size:14.5px; line-height:1.3; text-align:center; letter-spacing:.08em;
+  padding:6px; box-shadow:0 0 0 3px rgba(156,47,33,.16) inset}
+code{font-family:ui-monospace,Consolas,monospace; font-size:.92em; word-break:break-all;
+  background:var(--tint-2); padding:0 3px; border-radius:2px}
+
+/* 章节 */
+section.chapter{margin:44px 0 0}
+h2.sec{font-family:"STKaiti","KaiTi",serif; font-size:25px; letter-spacing:.12em;
+  margin:0 0 4px; color:var(--ink1); display:flex; align-items:baseline; gap:12px}
+h2.sec small{font-family:inherit; font-size:12px; letter-spacing:.2em; color:var(--ink3)}
+h2.sec::after{content:""; flex:1; height:1px; background:
+  linear-gradient(90deg,var(--line4),transparent)}
+
+/* 天赋：英雄 */
+.hero{margin:52px 0 0; padding:24px 24px 28px; position:relative;
+  border:1px solid var(--line); background:var(--wash-1)}
+.hero::after{content:""; position:absolute; inset:6px; border:1px solid var(--line2);
+  pointer-events:none}
+.herohead{display:flex; gap:20px; align-items:center; flex-wrap:wrap;
+  padding-bottom:18px; border-bottom:1px solid var(--line); margin-bottom:14px}
+.herohead img.face{width:90px; height:90px; border:2px solid var(--img-bd);
+  padding:2px; background:var(--img-bg); box-shadow:0 4px 14px var(--img-sh)}
+.herohead .who{flex:1; min-width:220px}
+.herohead h3{margin:0; font-family:"STKaiti","KaiTi",serif; font-size:28px;
+  letter-spacing:.1em; color:var(--ink1)}
+.herohead h3 em{font-style:normal; font-size:13px; letter-spacing:.16em; color:var(--ink3);
+  margin-left:10px; font-family:inherit}
+.herohead p{margin:4px 0 0; font-size:13.2px; color:var(--ink2)}
+.herohead .skills{display:flex; gap:9px}
+.herohead .skills figure{margin:0; text-align:center}
+.herohead .skills img{width:46px; height:46px; border:1px solid var(--img-bd); display:block}
+.herohead .skills figcaption{font-size:10.5px; color:var(--ink3); margin-top:4px; letter-spacing:.02em}
+
+.layer{display:grid; grid-template-columns:78px 1fr; gap:14px; padding:15px 10px 15px 4px;
+  border-bottom:1px dashed var(--line2)}
+.layer:last-child{border-bottom:none}
+.layer .lvl{text-align:center; padding-top:3px; border-right:1px dotted var(--line2)}
+.layer .lvl b{display:block; font-family:"STKaiti","KaiTi",serif; font-size:24px;
+  color:var(--ink1); line-height:1.1}
+.layer .lvl span{display:block; font-size:13px; letter-spacing:.1em; color:var(--ink2);
+  margin-top:5px; font-weight:700}
+.layer .lvl i{display:block; font-style:normal; font-size:10.4px; color:var(--ink3);
+  margin-top:4px; padding-top:4px; border-top:1px dotted var(--line2); line-height:1.45}
+.nodes{display:grid; grid-template-columns:repeat(3,1fr); gap:11px; align-items:stretch}
+.node{display:flex; align-items:flex-start; gap:10px; padding:10px 11px; border:1px solid var(--line2);
+  background:var(--wash-2); position:relative}
+.node.attr{background:var(--tint-2); border-color:var(--line3)}
+.node img{width:48px; height:48px; flex:0 0 48px; border:1px solid var(--img-bd);
+  box-shadow:0 2px 5px var(--img-sh)}
+.node .txt{min-width:0}
+.node h4{margin:0 0 3px; font-size:14.5px; letter-spacing:.02em; color:var(--ink0); line-height:1.35}
+.dir{display:inline-block; width:16px; height:16px; line-height:15px; text-align:center;
+  font-size:10.5px; border-radius:50%; color:var(--dir-fg); margin-right:5px; vertical-align:1px;
+  font-family:ui-monospace,Consolas,monospace; font-weight:400}
+.node h4 .swapmark{display:inline-block; margin-left:6px; font-size:9.5px; letter-spacing:.08em;
+  color:var(--warn); border:1px solid var(--warn); padding:0 3px; border-radius:2px;
+  vertical-align:1px; font-weight:400}
+.node p{margin:0; font-size:12.6px; line-height:1.6; color:var(--ink1)}
+.node .nums{display:block; margin-top:5px; font-size:11.5px; color:var(--gold-deep);
+  letter-spacing:.01em; line-height:1.55; padding-left:7px; border-left:1px solid var(--gold-line)}
+
+/* 说明块 */
+.notes{display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:14px;
+  margin:22px 0 0}
+.note{border-left:2px solid var(--gold); padding:4px 0 4px 12px; font-size:13.2px;
+  color:var(--ink2)}
+.note b{color:var(--ink2); display:block; font-size:13.6px; margin-bottom:2px; letter-spacing:.05em}
+.note b .dir{vertical-align:-2px; margin-right:7px; letter-spacing:0; font-size:10.5px}
+
+footer.foot{margin-top:46px; padding-top:20px; border-top:1px solid var(--line);
+  font-size:12px; color:var(--ink3); text-align:center; letter-spacing:.04em}
+footer.foot a{color:var(--link)}
+footer.foot code{background:none; padding:0; color:var(--link); word-break:normal}
+footer.foot .qq{margin:16px auto 0; display:block; width:fit-content; padding:7px 18px;
+  border:1px solid var(--gold-line); border-radius:2px;
+  background:var(--wash-2); font-size:13px; color:var(--link); letter-spacing:.08em}
+footer.foot .qq b{color:var(--ink1); font-size:15px; letter-spacing:.1em; margin-left:6px}
+.nav{display:flex; gap:18px; justify-content:center; flex-wrap:wrap; margin:18px 0 0;
+  font-size:13px; letter-spacing:.06em}
+.nav a{color:var(--link); text-decoration:none; border-bottom:1px solid var(--gold-line)}
+.nav a:hover{border-bottom-color:var(--link)}
+a{color:var(--link)}
+@media (max-width:820px){
+  .sheet{padding:38px 20px 34px}
+  .rod{display:none}
+  .layer{grid-template-columns:1fr}
+  .layer .lvl{text-align:left; display:flex; gap:8px; align-items:baseline; padding:0}
+  .layer .lvl i{border:none; margin:0; padding:0}
+  .nodes{grid-template-columns:1fr}
+  body{padding:18px 10px 60px}
+}
+
+
+/* ============ 玩家站主题（专题首页 + 四册图鉴共用，独立于世界编辑器中文站） ============ */
+:root{
+  --bg:#17120c; --panel:#211a12; --panel2:#2a2117; --border:#3a2f22;
+  --text:#efe4cf; --muted:#b3a488; --accent:#d8b063; --accent-soft:rgba(216,176,99,.14);
+  --strong:#fff8ea; --card-shadow:rgba(0,0,0,.5); --btn-shadow:rgba(0,0,0,.4);
+  --frame-hi:#4a3521; --frame-mid:#2b1d12; --frame-lo:#1a110a;
+}
+:root[data-theme="light"]{
+  --bg:#f6f1e6; --panel:#fffdf7; --panel2:#f2ead9; --border:#ddd0b8;
+  --text:#2b2116; --muted:#6b5c47; --accent:#8a6a2f; --accent-soft:rgba(138,106,47,.12);
+  --strong:#1f1a12; --card-shadow:rgba(92,66,30,.16); --btn-shadow:rgba(92,66,30,.2);
+  --frame-hi:#f5efe1; --frame-mid:#eae0cd; --frame-lo:#dccfb5;
+}
+/* 日/夜切换按钮：五个页面同一位置、同一套样式 */
+.theme-btn{position:fixed; top:14px; right:14px; z-index:99; width:32px; height:32px;
+  border-radius:50%; border:1px solid var(--border); background:var(--panel); color:var(--text);
+  font-size:13px; line-height:1; cursor:pointer; box-shadow:0 2px 10px var(--btn-shadow);
+  padding:0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif;
+  -webkit-print-color-adjust:exact; print-color-adjust:exact}
+.theme-btn:hover{border-color:var(--accent); color:var(--accent)}
+.theme-btn:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+@media (max-width:640px){ .theme-btn{width:28px; height:28px; top:10px; right:10px; font-size:12px} }
+
+/* 日间（浅纸深墨）的纸面 / 墨色令牌**不在这里重复**：真源是 gen_codex.py 的
+   `:root`（也是各生成器单独打开时的默认值）。这里只写「非日间」这一套整组覆盖，
+   令牌名必须与那边一一对应。 */
+:root:not([data-theme="light"]){
+  --ink0:#f7ecd4; --ink1:#e6d7b6; --ink:#f0e4c8; --ink2:#d8c7a4; --ink3:#b49c7c;
+  --link:#e0c184; --gold:#d8b063; --gold-deep:#e8c47a;
+  --warn:#e08a6a; --seal:#d97261; --mech:#7cc0cc;
+  --gray:#9a9488; --green:#8fbf6a; --blue:#7ba6dd; --purple:#b58cd8; --orange:#dda05a;
+  --tag-boss:#e59a78; --tag-quest:#a6d488;
+  --paper-1:#352a1e; --paper-2:#2b2118; --paper-3:#2f2519; --paper-4:#241c13;
+  --paper-glow:rgba(255,238,205,.06); --paper-warm:rgba(0,0,0,.20);
+  --paper-cool:rgba(255,220,160,.04); --paper-rim:rgba(230,192,134,.22);
+  --paper-inset:rgba(0,0,0,.32); --paper-vig:rgba(0,0,0,.42);
+  --paper-hi:rgba(255,240,205,.06); --paper-fold-d:rgba(0,0,0,.22);
+  --paper-fold-l:rgba(255,240,200,.05);
+  --wash-1:rgba(255,236,196,.045); --wash-2:rgba(255,236,196,.07);
+  --wash-3:rgba(255,236,196,.12); --wash-hi:rgba(255,240,205,.05);
+  --tint-1:rgba(255,226,178,.05); --tint-2:rgba(255,226,178,.09); --tint-3:rgba(255,226,178,.15);
+  --line:rgba(226,190,134,.26); --line2:rgba(226,190,134,.14); --line3:rgba(226,190,134,.30);
+  --line4:rgba(226,190,134,.40); --gold-line:rgba(216,176,99,.42);
+  --img-bd:rgba(228,196,140,.32); --img-bg:rgba(0,0,0,.30); --img-sh:rgba(0,0,0,.42);
+  --chip-bg:#e3c078; --chip-fg:#241a10;
+  /* 天赋六类方向：圆点底色只微提亮（圆点里那枚字恒浅，不能提太亮） */
+  --dir-1:#a94c30; --dir-2:#3a7180; --dir-3:#6f4d8f;
+  --dir-4:#4d7d38; --dir-5:#7d6128; --dir-6:#8f3f5c; --dir-fg:#fdf6e6;
+  /* 商店货架：暗纸上的货位边框收暗，只留一圈青铜 */
+  --slot-a:#2c2115; --slot-b:#150f08; --slot-bg:#120c06;
+  --slot-bd:#7a5c28; --slot-bd-hi:#e6c268;
+  --slot-empty-bd:rgba(122,90,40,.58); --slot-dyn-bd:#a9884a;
+  --slot-sel-bd:#7a5c28; --slot-sel-a:#3a2c16; --slot-sel-b:#140e07;
+}
+/* 暗底上的小徽章：原来那套「深彩色描边 + 极淡同色底」在暗纸上看不见，
+   统一改成 currentColor 描边（颜色本身已随 --tag-* / --purple / --blue 换过）。
+   注意用 background-color 而不是 background 简写——简写会把 `.icN` 的
+   background-image 一起冲掉，敌对册技能 / 掉落芯片的 16px 图标就是这么消失的。 */
+:root:not([data-theme="light"]) .pitag,
+:root:not([data-theme="light"]) .mg-tag,
+:root:not([data-theme="light"]) .sgbadge,
+:root:not([data-theme="light"]) .mg-ab i,
+:root:not([data-theme="light"]) .mg-dp i,
+:root:not([data-theme="light"]) .mg-lv,
+:root:not([data-theme="light"]) .tagsrc{border-color:currentColor; background-color:var(--tint-1)}
+
+/* ============ 图鉴页：页面外框 + 纸面 ============ */
+body{background:radial-gradient(ellipse at 50% -10%, var(--frame-hi) 0%, var(--frame-mid) 45%, var(--frame-lo) 100%) fixed, var(--frame-lo)}
+:root[data-theme="light"] .sheet{
+  box-shadow:0 26px 56px rgba(84,58,26,.30), 0 2px 0 rgba(255,255,255,.55) inset,
+             0 0 0 1px rgba(70,45,16,.38), 0 0 90px rgba(120,88,40,.12) inset}
+/* 日间的卷轴木杆换成浅木色：否则只有外框变浅，切换看着像没生效 */
+:root[data-theme="light"] .rod{
+  background:linear-gradient(90deg,#a98449,#d3ad72 35%,#e5c795 52%,#bd9459 78%,#96703a);
+  box-shadow:0 6px 16px rgba(90,62,26,.38), inset 0 0 6px rgba(255,246,224,.65)}
+:root[data-theme="light"] .rod::before,
+:root[data-theme="light"] .rod::after{
+  background:linear-gradient(90deg,#8a6432,#c9a468 45%,#a37c46)}
+
+/* 页头 · 图鉴导航 */
+.booknav{display:flex; flex-wrap:wrap; justify-content:center; gap:7px;
+  margin:18px auto 0; padding:0 2px; max-width:860px}
+.booknav a{display:inline-flex; align-items:center; gap:6px; padding:5px 13px;
+  font-size:13px; letter-spacing:.06em; text-decoration:none; color:var(--ink3);
+  border:1px solid var(--line); border-radius:2px; background:var(--wash-1);
+  transition:background .15s, border-color .15s, transform .15s, color .15s; white-space:nowrap}
+.booknav a:hover{border-color:var(--gold); background:var(--wash-3); transform:translateY(-1px)}
+.booknav a[aria-current="page"]{background:var(--chip-bg); border-color:var(--chip-bg);
+  color:var(--chip-fg); box-shadow:0 2px 8px var(--img-sh)}
+.booknav a[aria-current="page"] .bn-n{opacity:.85}
+.booknav .bn-n{font-family:ui-monospace,Consolas,monospace; font-size:10.5px; opacity:.72;
+  letter-spacing:.04em}
+.booknav .bn-home{border-style:dashed}
+/* A288：攻略入口与图鉴区分——点线框、不带序号，读起来像「先看怎么走，再查图鉴」 */
+.booknav .bn-guide{border-style:dotted}
+/* 分册入口样式（A154 后不再注入 DOM，仅留样式兼容，勿据此恢复三分册） */
+.booknav.subnav{margin-top:9px; gap:6px}
+.booknav.subnav a{padding:3px 11px; font-size:12px; letter-spacing:.04em}
+.booknav.subnav .sn-lab{padding:3px 4px 3px 0; font-size:11.5px; letter-spacing:.2em;
+  color:var(--ink3); opacity:.65; align-self:center}
+
+/* 页尾 */
+footer.foot .foot-src{max-width:820px; margin:0 auto; line-height:1.75; text-align:center;
+  font-size:12px; color:var(--ink3)}
+footer.foot .foot-nav{display:flex; gap:20px; justify-content:center; flex-wrap:wrap;
+  margin:14px 0 0; font-size:12px}
+footer.foot .foot-nav a{text-decoration:none; border-bottom:1px solid var(--gold-line)}
+footer.foot .foot-nav a:hover{border-bottom-color:var(--link)}
+
+/* 打印：白纸黑字，去掉装饰层与浮动控件 */
+@media print{
+  :root, :root[data-theme="light"], :root:not([data-theme="light"]){
+    --bg:#fff; --panel:#fff; --panel2:#fff; --border:#bbb; --text:#000; --muted:#444;
+    --accent:#6b4a18; --strong:#000;
+    --frame-hi:#fff; --frame-mid:#fff; --frame-lo:#fff;
+    --ink0:#000; --ink1:#000; --ink:#000; --ink2:#222; --ink3:#444; --link:#000; --gold:#6b4a18;
+    --gold-deep:#000; --warn:#000; --seal:#000; --mech:#333;
+    --paper-1:#fff; --paper-2:#fff; --paper-3:#fff; --paper-4:#fff;
+    --paper-glow:transparent; --paper-warm:transparent; --paper-cool:transparent;
+    --paper-rim:transparent; --paper-inset:transparent; --paper-vig:transparent;
+    --paper-hi:transparent; --paper-fold-d:transparent; --paper-fold-l:transparent;
+    --wash-1:transparent; --wash-2:transparent; --wash-3:transparent; --wash-hi:transparent;
+    --tint-1:transparent; --tint-2:transparent; --tint-3:transparent;
+    --line:#bbb; --line2:#ddd; --line3:#ccc; --line4:#bbb; --gold-line:#bbb;
+    --img-bd:#bbb; --img-bg:#fff; --img-sh:transparent;
+    --chip-bg:#eee; --chip-fg:#000;
+    --tag-boss:#000; --tag-quest:#000;
+    --gray:#000; --green:#000; --blue:#000; --purple:#000; --orange:#000;
+    /* 方向圆点在纸上只留黑字；货架面板印白底细网格，别糊一整块墨 */
+    --dir-1:transparent; --dir-2:transparent; --dir-3:transparent;
+    --dir-4:transparent; --dir-5:transparent; --dir-6:transparent; --dir-fg:#000;
+    --slot-a:#fff; --slot-b:#fff; --slot-bg:#fff;
+    --slot-bd:#666; --slot-bd-hi:#000;
+    --slot-empty-bd:#aaa; --slot-dyn-bd:#000;
+    --slot-sel-bd:#666; --slot-sel-a:#fff; --slot-sel-b:#fff;
+  }
+  body{background:#fff !important; color:#000; padding:0 0 8px !important}
+  body::before{display:none !important}
+  .theme-btn, .rod{display:none !important}
+  .sheet{background:#fff !important; box-shadow:none !important; padding:0 !important}
+  .sheet::before, .sheet::after{display:none !important}
+  .booknav a, footer.foot .foot-nav a{background:none !important; color:#000 !important;
+    border-color:#bbb !important; box-shadow:none !important}
+  .booknav a[aria-current="page"]{background:#eee !important; color:#000 !important}
+  a{color:#000 !important}
+  section.chapter, .hero, .node, article.card, .layer, tr{break-inside:avoid}
+}
+
+/* ============ 攻略页（A288） ============ */
+.gwrap{max-width:920px; margin:0 auto}
+/* 页内芯片目录（窄屏用）。A295：**不铺任何底色** —— 只有上下两条细线定界，
+   芯片本身也只留 1px 线框，跟右侧浮条同一口径（用户三次强调「不要填充背景色」）。 */
+.toc{display:flex; flex-wrap:wrap; gap:6px; margin:22px 0 0; padding:12px 0 11px;
+  border-top:1px solid var(--line2); border-bottom:1px solid var(--line2); background:none}
+.toc .toc-lab{flex:none; align-self:center; padding-right:6px; font-size:11.5px;
+  letter-spacing:.2em; color:var(--ink3)}
+.toc a{padding:3px 9px; font-size:12.5px; letter-spacing:.04em; text-decoration:none;
+  color:var(--ink2); border:1px solid var(--line2); border-radius:2px; background:none;
+  transition:border-color .15s, color .15s}
+.toc a:hover{border-color:var(--gold); color:var(--ink1)}
+.toc a i{font-style:normal; color:var(--gold-deep); margin-right:5px}
+
+.callout{margin:26px 0 0; padding:15px 18px; border-left:2px solid var(--gold);
+  background:var(--wash-1); color:var(--ink2); font-size:13.6px; line-height:1.78}
+.callout p{margin:0}
+.callout p + p{margin-top:9px}
+
+h2.sec .actno{font-family:ui-monospace,Consolas,monospace; font-size:11.5px;
+  letter-spacing:.14em; color:var(--gold-deep)}
+h3.step{display:flex; align-items:baseline; gap:10px; margin:26px 0 8px;
+  font-family:"STKaiti","KaiTi",serif; font-size:20px; letter-spacing:.08em;
+  color:var(--ink1); font-weight:700}
+h3.step .sn, h4.substep .sn{flex:none; font-size:15px; color:var(--gold-deep);
+  letter-spacing:0}
+h4.substep{display:flex; align-items:baseline; gap:9px; margin:17px 0 6px;
+  font-size:16px; letter-spacing:.05em; color:var(--ink2); font-weight:700}
+h4.substep .sn{font-size:13px}
+
+p.gp{margin:9px 0; font-size:14.4px; color:var(--ink2); line-height:1.8}
+ul.bul{margin:8px 0; padding-left:19px; font-size:14.2px; color:var(--ink2); line-height:1.82}
+ul.bul li{margin:5px 0}
+ul.bul li::marker{color:var(--gold)}
+ul.bul ul{margin:4px 0 2px; padding-left:17px; font-size:13.8px}
+ul.bul ul li::marker{color:var(--ink3)}
+ul.bul b, p.gp b{color:var(--ink1)}
+table.gtab{width:100%; margin:12px 0 4px; border-collapse:collapse; font-size:13.4px;
+  color:var(--ink2); background:var(--wash-1)}
+table.gtab th, table.gtab td{padding:8px 11px; text-align:left; vertical-align:top;
+  border:1px solid var(--line2); line-height:1.7}
+/* 首列是子图名，四五个字，别让长句把它挤成三行 */
+table.gtab th:first-child, table.gtab td:first-child{width:7.5em; white-space:nowrap}
+table.gtab th{background:var(--wash-2); color:var(--ink1); font-weight:700;
+  font-size:13px; letter-spacing:.04em}
+table.gtab tr:nth-child(even) td{background:var(--wash-1)}
+table.gtab b{color:var(--ink1)}
+section.chapter{scroll-margin-top:18px}
+h3.step, h4.substep{scroll-margin-top:18px}
+/* A296：撤掉每幕末尾的「↑ 回到顶部」——幕尾不再回头，直接接下一幕。 */
+
+/* 页内芯片目录与右侧滑杆的取舍：滑杆本体（含窄/宽判定）在 tools/site_rail.py，
+   A297 起六页共用；这里只管「宽屏出滑杆时把芯片目录收起来」。
+   阈值同样是 3/2，先后顺序与 site_rail 对齐：先隐藏、最后一条再放出来，
+   保证恰好 3/2 的窗口落到「页内目录」这一侧。 */
+@media (min-width:1300px) and (min-aspect-ratio:3/2){
+  .toc{display:none}
+}
+@media (max-aspect-ratio:3/2){
+  .toc{display:flex}
+}
+
+@media (max-width:640px){
+  .sheet{padding:38px 20px 34px !important}
+  h3.step{font-size:18px}
+  table.gtab{font-size:12.4px}
+  table.gtab th, table.gtab td{padding:6px 7px}
+  table.gtab th:first-child, table.gtab td:first-child{width:auto; white-space:normal}
+}
+@media print{
+  .toc{display:none !important}
+  .rail{display:none !important}
+  table.gtab, ul.bul li, h3.step, h4.substep{break-inside:avoid}
+}
+
+/* ============ 右侧刻度滑杆（A292 攻略页 → A297 六页共用）============
+   显式透明写在 .rail / .mark / .mk-lb 三处，别只写一个 —— 只写外层时，
+   里面的标签仍会继承某些 UA 默认底色。 */
+.rail{display:none; position:fixed; top:50%; transform:translateY(-50%);
+  right:10px; width:clamp(26px, calc(50vw - 617px), 140px); height:74vh; z-index:50;
+  background:none; border:0; box-shadow:none;
+  -webkit-backdrop-filter:none; backdrop-filter:none;
+  user-select:none; -webkit-user-select:none; touch-action:none}
+.rail-track{position:absolute; right:0; top:0; bottom:0; width:2px; border-radius:1px;
+  background:var(--ink3); opacity:.24}
+.rail-fill{position:absolute; right:0; top:0; width:2px; border-radius:1px; height:0;
+  background:var(--gold); opacity:.85; transition:height .1s linear}
+.rail-marks{position:absolute; inset:0}
+.mark{position:absolute; right:0; max-width:100%; transform:translateY(-50%); display:flex;
+  align-items:center; justify-content:flex-end; gap:7px; text-decoration:none;
+  background:none; -webkit-user-drag:none}
+.mk-dot{flex:0 0 auto; width:6px; height:6px; border-radius:50%; background:var(--ink3);
+  opacity:.8; margin-right:-2px;
+  transition:width .15s,height .15s,background .15s,opacity .15s,box-shadow .15s}
+.mk-lb{font-size:11.5px; line-height:1.5; color:var(--ink3); white-space:nowrap;
+  min-width:0; overflow:hidden; text-overflow:ellipsis;
+  background:none; border:0; border-radius:0; padding:0; transition:color .15s}
+:root:not([data-theme="light"]) .mk-lb{text-shadow:0 1px 2px rgba(0,0,0,.72)}
+/* 大节（幕 / 章）比小节重一档，扫一眼就知道自己在第几幕 */
+.mark.mk-act .mk-lb{color:var(--ink2); font-weight:700}
+.mark.mk-act .mk-dot{width:7px; height:7px; background:var(--gold); opacity:.9}
+.mark:hover .mk-lb{color:var(--ink1)}
+.mark:hover .mk-dot{width:8px; height:8px; opacity:1; background:var(--ink1)}
+.mark.on .mk-lb{color:var(--gold-deep); font-weight:700}
+.mark.on .mk-dot{width:9px; height:9px; opacity:1; background:var(--gold);
+  box-shadow:0 0 0 3px var(--gold-line)}
+
+@media (min-width:1474px) and (min-aspect-ratio:3/2){
+  .rail{display:block}
+}
+@media (min-width:1300px) and (max-width:1473.98px) and (min-aspect-ratio:3/2){
+  .rail{display:block; width:clamp(24px, calc(50vw - 612px), 33px)}
+  .mk-lb{display:none}
+}
+/* 收尾压边界：恰好 3/2 的窗口两条宽屏查询都会命中（min/max 都含等号），
+   这条写在最后，把 3/2 及更方的窗口一律判回「窄屏」。
+   阈值取 3/2（1.5）而不是 4/3（1.333）：浏览器有地址栏 / 标签栏，4:3 屏最大化后
+   视口比例只剩 1.38~1.42，仍会被 4/3 判成「宽屏」；取 1.5 才能把 4:3、5:4 这类
+   方屏稳稳判进窄屏，16:9（1.78）、16:10（1.6）照样出滑杆。 */
+@media (max-aspect-ratio:3/2){
+  .rail{display:none}
+}
+@media print{
+  .rail{display:none !important}
+}
+</style><script>
+(function(){var t=null;try{t=localStorage.getItem('durotar-theme')}catch(e){}
+if(t!=='light'&&t!=='dark'){t=(window.matchMedia&&matchMedia('(prefers-color-scheme: light)').matches)?'light':'dark'}
+document.documentElement.setAttribute('data-theme',t)})();
+</script></head>
+<body id="top"><button id="themeBtn" class="theme-btn" type="button" aria-label="切换日间/夜间模式" title="切换日间/夜间模式">☀️</button><div class="scroll"><div class="sheet"><div class="rod l"></div><div class="rod r"></div>
+<header class="head"><svg class="crest" viewBox="0 0 100 100" fill="none" stroke="currentColor"
+ stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+ <circle cx="50" cy="50" r="44" opacity=".55"/>
+ <circle cx="50" cy="50" r="37" opacity=".3"/>
+ <path d="M50 22 L58 44 L80 50 L58 56 L50 78 L42 56 L20 50 L42 44 Z" opacity=".8"/>
+ <circle cx="50" cy="50" r="5"/>
+ <path d="M28 30 L36 38 M72 30 L64 38 M28 70 L36 62 M72 70 L64 62" opacity=".55"/>
+</svg>
+ <h1>杜隆塔尔的建立</h1>
+ <p class="subtitle">攻略：全流程</p>
+ <nav class="booknav" aria-label="图鉴导航"><a class="bn-home" href="index.html">◆ 专题首页</a><a class="bn-guide" aria-current="page" href="guide.html" title="全流程攻略 · 三幕 · 二十节 · 怎么走"><span class="bn-n">◇</span>全流程攻略</a><a href="items.html" title="改造装备 · 九槽 · 五档 · 算强度"><span class="bn-n">01</span>改造装备</a><a href="talents.html" title="技能天赋 · 六层 · 每层三选一"><span class="bn-n">02</span>技能天赋</a><a href="shops.html" title="商店货架 · 三幕十七图 · 在架货位"><span class="bn-n">03</span>商店货架</a><a href="units.html" title="敌对单位 · 野怪 · 敌人 · 领主"><span class="bn-n">04</span>敌对单位</a></nav>
+ <div class="rule"><i></i>
+ <svg width="46" height="12" viewBox="0 0 46 12" fill="#6b4a1d"><path d="M23 0l4 6-4 6-4-6z" opacity=".8"/>
+ <circle cx="11" cy="6" r="2"/><circle cx="35" cy="6" r="2"/></svg><i></i></div>
+ <p class="lede">20 节 · <b>3 幕</b> · 从临终托付一路走到塞拉摩攻城。只讲去哪、做什么、交什么、拿到什么——装备与消耗品的数值、售价一概不写，那些查四册图鉴。</p>
+</header>
+<div class="stats"><div class="stat"><b>20</b><span>节攻略</span></div><div class="stat"><b>3</b><span>幕</span></div></div>
+<nav class="rail" id="railNav" aria-label="页内位置"><div class="rail-track"></div><i class="rail-fill" id="railFill"></i><div class="rail-marks" id="railMarks"><a class="mark mk-act" href="#a1" title="一、第一幕：征服大地"><span class="mk-lb">第一幕：征服大地</span><i class="mk-dot"></i></a><a class="mark" href="#s01" title="1. 临终托付"><span class="mk-lb">1. 临终托付</span><i class="mk-dot"></i></a><a class="mark" href="#s02" title="2. 立稳脚跟（三选三，建议一次清完）"><span class="mk-lb">2. 立稳脚跟</span><i class="mk-dot"></i></a><a class="mark" href="#s03" title="3. 陈的怪酒（越早越好）"><span class="mk-lb">3. 陈的怪酒</span><i class="mk-dot"></i></a><a class="mark" href="#s04" title="4. 术士密会（隐藏支线）"><span class="mk-lb">4. 术士密会</span><i class="mk-dot"></i></a><a class="mark" href="#s05" title="5. 边境侦察 → 保卫边境"><span class="mk-lb">5. 边境侦察 → 保卫边境</span><i class="mk-dot"></i></a><a class="mark" href="#s06" title="6. 再探雷霆山（主线后续，别漏）"><span class="mk-lb">6. 再探雷霆山</span><i class="mk-dot"></i></a><a class="mark" href="#s07" title="7. 警告巨魔 + 击退舰队（回音群岛）"><span class="mk-lb">7. 警告巨魔 + 击退舰队</span><i class="mk-dot"></i></a><a class="mark" href="#s08" title="8. 悬崖会谈（第一幕收尾）"><span class="mk-lb">8. 悬崖会谈</span><i class="mk-dot"></i></a><a class="mark mk-act" href="#a2" title="二、第二幕：旧日的仇恨"><span class="mk-lb">第二幕：旧日的仇恨</span><i class="mk-dot"></i></a><a class="mark" href="#s09" title="9. 海滨基地"><span class="mk-lb">9. 海滨基地</span><i class="mk-dot"></i></a><a class="mark" href="#s10" title="10. 塞拉摩岛（人类幸存者 + 逃离）"><span class="mk-lb">10. 塞拉摩岛</span><i class="mk-dot"></i></a><a class="mark" href="#s11" title="11. 莫高雷：鹰身女妖偷猎者 + 科多偷猎者"><span class="mk-lb">11. 莫高雷：鹰身女妖偷猎者…</span><i class="mk-dot"></i></a><a class="mark" href="#s12" title="12. 救贝恩，凯恩入队"><span class="mk-lb">12. 救贝恩，凯恩入队</span><i class="mk-dot"></i></a><a class="mark" href="#s13" title="13. 尘泥沼泽：石槌食人魔 + 双试炼"><span class="mk-lb">13. 尘泥沼泽：石槌食人魔 …</span><i class="mk-dot"></i></a><a class="mark" href="#s14" title="14. 格拉格特可汗（可选）"><span class="mk-lb">14. 格拉格特可汗</span><i class="mk-dot"></i></a><a class="mark" href="#s15" title="15. 四张刷怪子图（冲级、淘传说件）"><span class="mk-lb">15. 四张刷怪子图</span><i class="mk-dot"></i></a><a class="mark" href="#s16" title="16. 杜隆塔尔的旗帜（可选任务，奖励别漏）"><span class="mk-lb">16. 杜隆塔尔的旗帜</span><i class="mk-dot"></i></a><a class="mark" href="#s17" title="17. 先血之役（狂潮湾，第二幕终战）"><span class="mk-lb">17. 先血之役</span><i class="mk-dot"></i></a><a class="mark mk-act" href="#a3" title="三、第三幕：荣光"><span class="mk-lb">第三幕：荣光</span><i class="mk-dot"></i></a><a class="mark" href="#s18" title="18. 血海"><span class="mk-lb">18. 血海</span><i class="mk-dot"></i></a><a class="mark" href="#s19" title="19. 塞拉摩攻城：最后的海军上将"><span class="mk-lb">19. 塞拉摩攻城：最后的海军…</span><i class="mk-dot"></i></a><a class="mark" href="#s20" title="20. 结局"><span class="mk-lb">20. 结局</span><i class="mk-dot"></i></a></div></nav>
+<div class="gwrap">
+<div class="callout"><p>本攻略只讲<b>去哪、做什么、交什么任务、拿到什么</b>。装备与消耗品的具体数值、售价一律不写—— 那些以游戏内提示与《四册图鉴》为准，改动也不影响本流程。</p><p><b>掉落常识</b>：野怪本身已经不掉符文与金币了。首领一倒，身边会多出<b>木箱</b>或<b>木桶</b>—— <b>箱子出符文与符石、木桶出金币</b>，都在首领脚边一圈内，走之前顺手砸开，别漏。</p></div>
+<div class="toc"><span class="toc-lab">目录</span><a href="#s01"><i>1.</i>临终托付</a><a href="#s02"><i>2.</i>立稳脚跟（三选三，建议一次清完）</a><a href="#s03"><i>3.</i>陈的怪酒（越早越好）</a><a href="#s04"><i>4.</i>术士密会（隐藏支线）</a><a href="#s05"><i>5.</i>边境侦察 → 保卫边境</a><a href="#s06"><i>6.</i>再探雷霆山（主线后续，别漏）</a><a href="#s07"><i>7.</i>警告巨魔 + 击退舰队（回音群岛）</a><a href="#s08"><i>8.</i>悬崖会谈（第一幕收尾）</a><a href="#s09"><i>9.</i>海滨基地</a><a href="#s10"><i>10.</i>塞拉摩岛（人类幸存者 + 逃离）</a><a href="#s11"><i>11.</i>莫高雷：鹰身女妖偷猎者 + 科多偷猎者</a><a href="#s12"><i>12.</i>救贝恩，凯恩入队</a><a href="#s13"><i>13.</i>尘泥沼泽：石槌食人魔 + 双试炼</a><a href="#s14"><i>14.</i>格拉格特可汗（可选）</a><a href="#s15"><i>15.</i>四张刷怪子图（冲级、淘传说件）</a><a href="#s16"><i>16.</i>杜隆塔尔的旗帜（可选任务，奖励别漏）</a><a href="#s17"><i>17.</i>先血之役（狂潮湾，第二幕终战）</a><a href="#s18"><i>18.</i>血海</a><a href="#s19"><i>19.</i>塞拉摩攻城：最后的海军上将</a><a href="#s20"><i>20.</i>结局</a></div>
+<section class="chapter" id="a1"><h2 class="sec">一、第一幕：征服大地<small>8 节</small></h2><p class="gp">主图 1 张 + 子图 4 张。出生点周围集中了第一幕全部补给，出发前先把八家店逛一遍。</p><h3 class="step" id="s01"><span class="sn">1.</span>临终托付</h3><ul class="bul"><li>信使莫戈林被野猪人围杀，清怪，把报告送进奥格瑞玛交给萨尔。</li><li>往东先认一眼<b>复活石</b>，以后死在这一带从这儿爬起来。</li><li>出生点周围八家店，各有分工：<ul><li><b>奥格瑞玛军械库</b>——第一幕唯一的换装点：四件属性装（护手、鞋、斗篷、头环）与四把武器。</li><li><b>战争磨坊</b>——两把近战、两把远程与四件护甲。</li><li><b>尼洛克的前哨站</b>、<b>地精货仓</b>——戒指、卷轴、药水，另有几件图腾与法杖。</li><li><b>艾西拉的市集</b>——隐形与明澈药水、生命石与魔法石；雷酒要等陈的怪酒做到那一步才上架。</li><li><b>巫毒小屋</b>——书店：经验之书、重修之书、三属性之书、知识之书。</li><li><b>穆普</b>——被遗忘者四件套，整套卖。</li><li><b>伐木机尊享版v800</b>——伐木机左臂与工程护目镜三档。</li></ul></li><li>第一幕手头很紧，<b>书店先别进</b>：装备优先，书全指望任务发。</li></ul><h3 class="step" id="s02"><span class="sn">2.</span>立稳脚跟（三选三，建议一次清完）</h3><h4 class="substep"><span class="sn">①</span>封死隧道（加兹鲁维）</h4><ul class="bul"><li>子图：奥格瑞玛地道。护送 4 个地精工兵，炸掉西北、东北、东南三根支撑柱。</li><li>工兵死一个门口补一个；英雄倒下在入口复活石起。</li><li>顺路有<b>地精商店</b>，第一幕最便宜的一家。</li><li>奖励：<b>符文护手</b> + 奥术卷轴 + 一本天赋之书。护手拿到先拖进装备槽。</li></ul><h4 class="substep"><span class="sn">②</span>雷霆草药（德雷克塔尔）</h4><ul class="bul"><li>子图：雷霆山。采齐微光草。</li><li>笼子里关着兽人萨满，砸开笼子他会入队帮打。</li><li>顺路<b>地精商店</b>，只卖药水、治疗卷轴与药膏——别指望在这张图换装。</li><li>奖励：<b>附魔小瓶</b> + 一本天赋之书。</li><li>此图野点密集，后面还要回来——雷霆蜥蜴与凤凰蛋都在这条线上。</li></ul><h4 class="substep"><span class="sn">③</span>鹰身女妖之患（纳兹格雷尔）</h4><ul class="bul"><li>杀鹰身女妖首领<b>血羽</b>。她会飞，是本作第一次「对空分工」：雷克萨风暴之锤点、洛坎妖术与毒蛇、米莎顶地面小怪。前期没有对空转远程的副手，对空只能靠技能与远程普攻。</li><li>固定掉落：<b>血羽之心</b>（史诗饰品）。</li><li>交任务后军械库上架三件<b>标价 0 的奖励件</b>，但<b>只能挑一件</b>——买走任一件，另外两件当场下架。这是第一幕最重要的选装决策：<ul><li><b>火拳护手</b>（史诗手套，攻速）</li><li><b>折刃护甲</b>（稀有胸甲，带全队护甲光环）</li><li><b>奥金护盾</b>（精良副手，纯护甲）</li></ul></li><li>判断只看队伍缺什么：缺前排拿火拳，缺全队减伤拿折刃，缺副手槽拿奥金。</li></ul><h3 class="step" id="s03"><span class="sn">3.</span>陈的怪酒（越早越好）</h3><ul class="bul"><li>陈在主图正中偏上、血羽巢上方魔法泉附近，<b>头顶没有感叹号</b>。</li><li>三样材料：雷霆花鳞茎（左上）、一桶雷酒（右侧艾西拉市集，任务做到这步才上架）、雷霆凤凰蛋（右上，打雷霆凤凰）。</li><li>凤凰会秒人：洛坎变形、米莎顶脸，别让陈自己上。</li><li>凤凰倒下除了掉蛋，还掉 <b>凤凰印记</b>（精良饰品，主动技是一口锥形火焰），顺手捡走。</li><li>完成：<b>陈入队</b>，自带一桶麦酒（精良副手，回蓝续航的底子）、城镇传送卷轴、微光烤肉，另有两本天赋之书。</li><li>一桶麦酒是<b>装备</b>不是道具，要拖进副手槽才生效。</li></ul><h3 class="step" id="s04"><span class="sn">4.</span>术士密会（隐藏支线）</h3><ul class="bul"><li>触发：主图左上角野猪人隧道尽头，走进死胡同即触发。</li><li>救出被控制的兽人萨满摩根·狼歌，杀掉背叛的术士。</li><li>奖励：<b>萨满利爪</b>（史诗主手）与<b>古老圣物</b>（任务奖励，摩根尸体旁），另有一件随机装备；收尾处还会给一本天赋之书。</li><li>这一带还能捡到<b>发条企鹅</b>（史诗饰品，纯玩具，占格子，卖掉换钱）。</li></ul><h3 class="step" id="s05"><span class="sn">5.</span>边境侦察 → 保卫边境</h3><ul class="bul"><li>先找瞭望哨的加尔索克，穿过兽穴到观星台，回萨尔交任务。</li><li><b>兽穴顺路清野猪人（可选支线）</b>：这张子图就是主线去观星台必经的地下岩洞，全图野猪人清完即可，不用单跑。全作经验与金币最肥的一图，别漏角落。此图无商店。</li><li>东北海岸人类营地：先杀<b>牧师</b>（不杀就是无限奶），再处理步枪兵，狮鹫交给雷克萨风暴之锤。</li><li>营地首领<b>本尼迪克中尉</b>固定掉落：<b>荣誉护盾</b>（史诗副手，带全队攻击光环）。全队第一件能用的团队光环副手，凯恩与雷克萨都吃得到。</li></ul><h3 class="step" id="s06"><span class="sn">6.</span>再探雷霆山（主线后续，别漏）</h3><ul class="bul"><li>萨尔让你和德雷克塔尔查雷霆蜥蜴发狂的原因，真相是人类伐木营砍秃了林地。</li><li>这一趟三件重头：<ul><li><b>雷蜥钻石</b>（史诗饰品，带主动闪电链）——雷霆蜥蜴掉。</li><li><b>德雷克塔尔的法术书</b>（传说副手）——三颗雷霆蜥蜴蛋都收齐时给，全作最容易到手的一件传说。</li><li><b>雷纹宝珠</b>（饰品）——把发狂的雷霆蜥蜴清完给。</li></ul></li><li>这张图没有专属首领，别为传说件反复刷。巨人力量腰带、法师长袍、贵族头环都是第二幕的店货，这儿打不到。</li></ul><h3 class="step" id="s07"><span class="sn">7.</span>警告巨魔 + 击退舰队（回音群岛）</h3><ul class="bul"><li>劝沃金撤退；过程中变成灵魂飞龙 / 蝙蝠骑士，击沉库尔提拉斯战舰。</li><li>五处篝火，最后一处由海巨人守着。陈火焰之息 + 雷克萨风暴之锤最稳。</li><li>这一图两家店，卖的几乎全是消耗品：<b>地精商店</b>（治疗 / 法力 / 隐形 / 明澈药水，另有生命石与魔法石）、<b>巫毒小屋</b>（强效药水、无敌药水，另有野性护符与暗矛之印）。换装只能靠野点。</li><li>野点里有一件硬货：<b>死亡领主之冠</b>（传说头盔）——深海领主亡魂必掉。</li><li><b>符文护腕</b>（稀有手套）不从这张图掉，第二幕的塞拉摩市集与地精集市有售。</li><li>沃金和他的族人在这张图与后续两幕反复出场。</li></ul><h3 class="step" id="s08"><span class="sn">8.</span>悬崖会谈（第一幕收尾）</h3><ul class="bul"><li>萨尔收到「人类使节求和」信，约在奥格瑞玛东南悬崖，伏兵是冲萨尔来的抓捕队。</li><li>打完从暗矛新村落坐飞艇去塞拉摩。<b>出发前把药补满</b>：飞艇落地就是第二幕，第一幕的店回不去了。</li></ul></section><section class="chapter" id="a2"><h2 class="sec">二、第二幕：旧日的仇恨<small>9 节</small></h2><p class="gp">大地图 + 9 张子图。主线一路推，支线插在刚能进的时候。</p><h3 class="step" id="s09"><span class="sn">9.</span>海滨基地</h3><ul class="bul"><li>落地找剑圣<b>萨穆罗</b>。人类船坞安放不稳定药水 → 趁乱进岛见吉安娜。</li><li>贴阴影走，别引巡逻队；桶摆完引爆，炮位一乱就冲传送点。</li><li>这一段是萨穆罗的单独戏份，<b>雷克萨一行被移交、无敌且钉在待机点</b>，操控的只有萨穆罗；他身上捡的东西离场时会被统一丢在吉安娜会面点，别指望带走。</li><li><b>支线·血喙之怒</b>：开图不到半分钟任务栏就会挂上这条——萨穆罗的私仇，大地图北侧杀<b>狂暴的血喙</b>。固定掉<b>沉默法杖</b>，顺手做掉。</li><li>店 <b>地精图书馆</b>：经验之书、重修之书、三属性之书、知识之书——第二幕的书全在这儿。药水与保命件回主图的<b>巫毒大厅</b>买。</li></ul><h3 class="step" id="s10"><span class="sn">10.</span>塞拉摩岛（人类幸存者 + 逃离）</h3><ul class="bul"><li>进纳迦巢穴救出被围的人类残兵，拿到「是戴林的人」的铁证。</li><li>守关是纳迦海巫 / 女祭司法系：洛坎先变形，雷克萨点飞蛇。</li><li>逃：抢运输舰 → 砸港口闸门（先点牧师和炮塔）→ 驾船出海。</li><li>这一图四家店，是第二幕最富的补给点：<b>希德的特价药水商店</b>（药水与恢复卷轴）、<b>魔杖法杖专卖店</b>（四把法杖 + 四把魔杖，天裔法杖就在这儿）、<b>塞拉摩市集</b>（腰带、靴、长袍、头冠、护手、护腕等属性装），还有一家只卖四色宝珠（火焰 / 冰霜 / 闪电 / 毒液）。</li></ul><h3 class="step" id="s11"><span class="sn">11.</span>莫高雷：鹰身女妖偷猎者 + 科多偷猎者</h3><ul class="bul"><li>先找凯恩：儿子贝恩被半人马掳走。</li><li>两条声望支线，不做也卡不住主线，清完凯恩态度直接转。</li><li>店 <b>地精集市</b>：腰带、靴、长袍、头冠、护手、护腕，外加生命宝石与法力垂饰——中段属性装一整套。</li><li>掉落以皮甲、回血石与随机装备为主；这张图不卖书，别为买书绕路。</li></ul><h3 class="step" id="s12"><span class="sn">12.</span>救贝恩，凯恩入队</h3><ul class="bul"><li>出村往南，先遇流亡的白牛头人，灵魂行者<b>波文·风之图腾</b>入队（能复活倒下的牛头人）。</li><li>一路推半人马营，尽头打半人马首领<b>凯拉格</b>。他带随从，别一次全拉；陈踩地板、凯恩践踏控场。</li><li>打死救出贝恩，<b>还得原路扛回去</b>：洞穴会再刷半人马，路口有落石堵路。</li><li>贝恩交回 → <b>凯恩·血蹄入队</b>。他等级低，后面四张刷怪图要带他一起刷。</li></ul><h3 class="step" id="s13"><span class="sn">13.</span>尘泥沼泽：石槌食人魔 + 双试炼</h3><ul class="bul"><li>飞艇西南角下，找督军<b>考戈尔</b>。</li><li>力量试炼：东边死亡擂台，清怪到底。通关给 <b>好战头盔</b>（史诗头盔）。</li><li>鲜血试炼：单挑考戈尔，<b>禁用所有道具</b>（装备与天赋照常生效）。<ul><li>取巧：把闸门引开，放雷霆蜥蜴 / 野怪进来咬他；场上有回血符文与加速符文。</li><li>决斗前装备与消耗品会被收走交给保管人，打完原样交还，<b>放心带东西进去</b>。</li></ul></li><li>赢下当上新督军，食人魔军团归你，<b>天界灵魂宝珠</b>（传说饰品）是完成奖励。</li><li>店 <b>魔法商店</b>：药水、四种卷轴，另有食人魔三件——战棍、法师图腾、法师护腕。</li></ul><h3 class="step" id="s14"><span class="sn">14.</span>格拉格特可汗（可选）</h3><ul class="bul"><li>大地图偏西，科卡尔半人马营地，笼子里关着兽人奴隶。</li><li>打通营地、杀格拉格特可汗、救奴隶。涨声望，不影响主线。</li></ul><h3 class="step" id="s15"><span class="sn">15.</span>四张刷怪子图（冲级、淘传说件）</h3><table class="gtab"><thead><tr><th>子图</th><th>打什么</th><th>值得拿的东西</th></tr></thead><tbody><tr><td><b>远古墓穴</b></td><td>远古温多、先祖守护者、亡灵系</td><td><b>塔伦达尔的颅骨盔</b>（传说饰品，塔伦达尔领主必掉）、<b>凝法护盾</b>（传说副手，暗影女王必掉）</td></tr><tr><td><b>失落的巢穴</b></td><td>被放逐的野兽、纳迦余孽、流浪施法者</td><td><b>寒冰碎片</b>（传说饰品，远古雪怪必掉，全图只这一只）；其余随机装备与符文</td></tr><tr><td><b>魔导神殿</b></td><td>人类叛逃执政官、傀儡卫兵、奥术构造体；宝座前站着末日守卫</td><td>法系密集，先把加法力与智力的件穿上撑连续施法；末日守卫掉 <b>末日之握</b>（史诗手套）；另有<b>黑市</b>，卖高级属性增益与高阶主手、胸甲</td></tr><tr><td><b>外域竞技场</b></td><td>三个恶魔领主牢笼：毁灭者扎迪卡尔、施痛者辛特丽斯、催眠者托尼瓦尔；踩能量圈放怪</td><td>前三轮固定给<b>怠惰之赐</b> → <b>暴怒之赐</b> → <b>傲慢之赐</b>（三枚戒指）；之后每次击杀给随机装备，对手刷到 10 级以上改给金币。三擂台<b>累计第 99 胜</b>给<b>贪婪之赐</b></td></tr></tbody></table><ul class="bul"><li>外域竞技场是冲级主战场：凯恩顶、陈醉拳、洛坎奶 + 变形、雷克萨点远程。<b>别四人挤一团</b>，会一起吃地狱火和催眠。</li><li>魔导神殿法系多：雷克萨点法师，洛坎优先变形施法者。</li></ul><h3 class="step" id="s16"><span class="sn">16.</span>杜隆塔尔的旗帜（可选任务，奖励别漏）</h3><ul class="bul"><li>这条不是一开局就能接：得等 ⑬ 双试炼交完、先血之役的任务挂上之后，回奥格瑞玛找萨尔才会接下。</li><li><b>先回奥格瑞玛找萨尔说话</b>：萨尔会委托你凑三样材料，这段对话结束，狂潮湾路口的封锁才撤（守卫让开、入口的弹回区失效）。</li><li>三样材料的野怪——野枭兽、风暴之主、青铜龙——<b>都是这段过场结束后才刷出来的</b>，提前跑到位置上只有空地；任务一挂上，小地图会把三处一并标出来。</li><li><b>青铜龙</b>（三只里最硬，满编再去）：除青铜龙鳞外，还掉 <b>法术免疫项链</b>（传说饰品）。</li><li>大地图东侧另有隐藏死亡领主（两只闪电亡魂守着，走浅滩过去）：掉 <b>死亡领主之盾</b>（传说副手）。它常驻在地图上，与军旗无关，早去晚去都行。</li><li>材料凑齐再进狂潮湾：靠近萨尔，他当场授旗、封你为部落勇士，<b>奥格瑞玛战旗</b>直接进雷克萨背包（传说饰品，三属性加成 + 近战英雄与周围友方近战单位攻击吸血）。</li><li>三样没凑齐也能进湾，但授旗不会播，战旗就拿不到。</li></ul><h3 class="step" id="s17"><span class="sn">17.</span>先血之役（狂潮湾，第二幕终战）</h3><ul class="bul"><li>人口上限 40，四族能造，但不是传统运营图。目标只有一个：<b>拆掉戴林的前线城堡</b>，城堡不回血，蹭一下都算。</li><li>配队：牛头人 + 食人魔 + 狼骑 + 投石车。</li><li>别硬冲主门（箭塔 + 狮鹫巢），走北侧侧门逐塔拔。</li><li>凯恩震荡波拆箭塔、陈火焰之息清步兵、雷克萨点狮鹫、洛坎变形保命。</li><li>三家店：<b>维兹班的岛屿珍宝店</b>（各槽中段件 + 两件传说）、<b>部落商店</b>（药水与恢复卷轴）、<b>特价饰品店</b>（生命石与魔法石、闪避护符、重生十字章）。</li><li>维兹班那两件传说是第二幕最后的补强机会，<b>过完这图就没了</b>。</li></ul></section><section class="chapter" id="a3"><h2 class="sec">三、第三幕：荣光<small>3 节</small></h2><p class="gp">只有两张图，判定比前两幕苛刻。</p><h3 class="step" id="s18"><span class="sn">18.</span>血海</h3><ul class="bul"><li>开场萨尔被戴林的战列舰堵在海岸，吉安娜传送来，说外岛有地精船坞。</li><li>吉安娜的条件：<b>别杀她的兵</b>。这句就是胜负线。</li><li>三阶段：夺外岛地精船坞（岸炮 + 水元素守着，英雄别挤一团吃溅射）→ 出无畏舰与护卫舰 → 击沉库尔提拉斯战列舰。</li><li>打法：别一次引两艘以上；先点护航驱逐舰和空军，再围殴战列舰，主炮砸无畏舰极痛。</li><li>击沉<b>第 5 艘</b>战列舰时给 <b>暴风雄狮号角</b>（传说副手，全队护甲光环）——打满五艘才有，别提前收工。</li><li>店 <b>地精商店</b>：极效药水与保命件，另有两件大件——<b>凯伦的逃脱匕首</b>与<b>冰龙颅骨盾</b>。</li><li>血海之后是终局攻城，钱没花完不用急，城内还有三家店。</li></ul><h3 class="step" id="s19"><span class="sn">19.</span>塞拉摩攻城：最后的海军上将</h3><ul class="bul"><li>胜利：击杀海军上将<b>戴林·普罗德摩尔</b>。</li><li>失败：<b>拆掉任何一座塞拉摩守卫建筑</b>（吉安娜的塔、房子、民房全算）。全战役唯一会让你重打的地方。</li><li>三路钳形：西侧巨魔 + 食人魔、南侧牛头人、西南兽人主力。跟凯恩那路拆得最快。</li><li>戴林本体：圣骑士模板 + 法系爆发，身边带牧师 / 法师 / 狙击手。<ul><li>优先变形牧师，雷克萨点法师。</li><li>凯恩开光环顶前排，记住留够蓝（要复活）；陈醉拳硬吃。</li><li>他残血会开保命技，大招别一次交空。</li></ul></li><li>城内三家店，全战役最好的补给：<b>赫布瑞姆药剂坊</b>（药水与恢复卷轴）、<b>魔法戒指杂货铺</b>（青玉 / 雄狮 / 蜘蛛三色戒指与闪避护符，另有生命石与魔法石）、<b>金吉尔的魔法小屋</b>（卷轴、献祭之书与灵魂魔典，另有知识之书、威能之书、重修之书）。</li><li>打完看一眼背包：这是最后一次整理装备的机会。</li></ul><h3 class="step" id="s20"><span class="sn">20.</span>结局</h3><p class="gp">部落按誓言撤出塞拉摩，只留一片烧过的码头，杜隆塔尔站稳了。</p></section>
+</div>
+<footer class="foot"><div class="foot-src"><span>攻略生成于 2026-11-19 15:18</span></div><div class="qq">[QQ群]杜隆塔尔的建立 <b>838476146</b></div><nav class="foot-nav"><a href="index.html">← 专题首页</a><a href="#top">↑ 回到顶部</a></nav></footer>
+<script>
+(function(){
+  var d=document, rail=d.getElementById('railNav'), box=d.getElementById('railMarks'),
+      fill=d.getElementById('railFill');
+  if(!rail||!box) return;
+  var marks=[].slice.call(box.querySelectorAll('.mark')),
+      heads=marks.map(function(m){return d.getElementById(m.getAttribute('href').slice(1));});
+
+  function shown(h){return !!h&&h.getClientRects().length>0;}
+  function layout(){
+    var hh=box.clientHeight||1, docH=Math.max(1,d.documentElement.scrollHeight),
+        st=window.pageYOffset||d.documentElement.scrollTop, ys=[], idx=[];
+    heads.forEach(function(h,i){
+      if(!shown(h)){marks[i].style.display='none'; return;}
+      idx.push(i);
+      ys.push(Math.min(1,Math.max(0,(h.getBoundingClientRect().top+st)/docH))*hh);
+    });
+    if(hh>80&&ys.length){
+      var n=ys.length, GAP=22;
+      if((n-1)*GAP>hh) GAP=Math.max(18,hh/(n-1));      /* 空间不足时收紧间距，别叠成一坨 */
+      for(var i=1;i<n;i++) if(ys[i]-ys[i-1]<GAP) ys[i]=ys[i-1]+GAP;
+      if(ys[n-1]>hh){
+        ys[n-1]=hh;
+        for(var j=n-2;j>=0;j--) if(ys[j+1]-ys[j]<GAP) ys[j]=ys[j+1]-GAP;
+        if(ys[0]<0){var step=n>1?hh/(n-1):0; for(var k=0;k<n;k++) ys[k]=k*step;}
+      }
+    }
+    idx.forEach(function(k,n){
+      var m=marks[k];
+      if(ys[n]<-1){m.style.display='none'; return;}
+      m.style.display=''; m.style.top=(ys[n]/hh*100)+'%';
+    });
+  }
+  var ticking=false;
+  function upd(){
+    ticking=false;
+    var st=window.pageYOffset||d.documentElement.scrollTop,
+        max=d.documentElement.scrollHeight-window.innerHeight,
+        ratio=max>0?Math.min(1,Math.max(0,st/max)):0,
+        line=window.innerHeight*0.35, cur=-1;
+    if(fill) fill.style.height=(ratio*100)+'%';
+    heads.forEach(function(h,i){ if(shown(h)&&h.getBoundingClientRect().top<=line) cur=i; });
+    marks.forEach(function(m,i){ m.classList.toggle('on', i===cur); });
+  }
+  function onScroll(){ if(!ticking){ ticking=true;
+    (window.requestAnimationFrame||function(f){setTimeout(f,16)})(upd); } }
+
+  /* 点刻度跳节；按住轨道拖动整页 */
+  var downY=0, moved=false, downMark=null, tracking=false, smooth='';
+  function jumpTo(cy){
+    var r=rail.getBoundingClientRect(),
+        p=Math.min(1,Math.max(0,(cy-r.top)/r.height)),
+        max=d.documentElement.scrollHeight-window.innerHeight;
+    window.scrollTo(0,p*max);
+  }
+  function jumpMark(m){
+    var el=m&&d.getElementById(m.getAttribute('href').slice(1));
+    if(el) window.scrollTo(0,el.getBoundingClientRect().top+window.pageYOffset-24);
+  }
+  /* 拖动时要瞬时跟手，先把 html 的 scroll-behavior:smooth 临时关掉 */
+  function smoothOff(){ var r=d.documentElement; smooth=r.style.scrollBehavior; r.style.scrollBehavior='auto'; }
+  function smoothOn(){ d.documentElement.style.scrollBehavior=smooth; }
+
+  /* pointerdown 时记住按下的刻度：setPointerCapture 会把 click 的 target 重定向到 rail，
+     所以跳转判定放在 pointerup，不能依赖 click 的 e.target */
+  rail.addEventListener('pointerdown',function(e){
+    if(e.pointerType==='mouse'&&e.button!==0) return;
+    downY=e.clientY; moved=false; tracking=true; smoothOff();
+    downMark=e.target.closest?e.target.closest('.mark'):null;
+    try{rail.setPointerCapture(e.pointerId)}catch(err){}
+  });
+  rail.addEventListener('pointermove',function(e){
+    if(!tracking||!e.buttons) return;
+    if(Math.abs(e.clientY-downY)>6) moved=true;
+    if(moved){ e.preventDefault(); jumpTo(e.clientY); }
+  });
+  rail.addEventListener('pointerup',function(e){
+    if(!tracking) return;
+    tracking=false; smoothOn();
+    var m=downMark; downMark=null;
+    if(moved) return;
+    if(m) jumpMark(m); else jumpTo(e.clientY);     /* 点空白轨道按坐标跳 */
+  });
+  rail.addEventListener('pointercancel',function(){ tracking=false; moved=false; downMark=null; smoothOn(); });
+  rail.addEventListener('click',function(e){
+    e.preventDefault();
+    if(e.detail===0) jumpMark(e.target.closest&&e.target.closest('.mark'));   /* 键盘回车 */
+  });
+
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',function(){layout();upd();});
+  window.addEventListener('load',function(){layout();upd();});
+  layout(); upd();
+  /* 调试 / 外部改版后重算：筛选隐藏了某些节、切了视图，都要调一下 */
+  window.__railLayout=function(){layout();upd();};
+})();
+</script>
+</div></div><script>
+(function(){var d=document,b=d.getElementById('themeBtn');if(!b)return;
+function ic(){b.textContent=d.documentElement.getAttribute('data-theme')==='light'?'🌙':'☀️';
+b.title=b.textContent==='☀️'?'切换到日间模式':'切换到夜间模式'}
+b.addEventListener('click',function(){
+ var r=d.documentElement,t=r.getAttribute('data-theme')==='light'?'dark':'light';
+ r.setAttribute('data-theme',t);try{localStorage.setItem('durotar-theme',t)}catch(e){}ic()});
+ic()})();
+</script></body></html>
