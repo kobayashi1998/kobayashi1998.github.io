@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>魔兽争霸III 世界编辑器 汉化词条表 · 0.5.0</title>
-<meta name="description" content="基于编辑器汉化补丁 0.5.0 的 5 个 UI 文件自动提取的中英对照词条表，共 9200+ 条，按种族、单位、技能、触发器、编辑器界面等 10 大类整理，支持搜索与筛选。">
+<title>魔兽争霸III 世界编辑器 汉化词条表 · 0.6.0</title>
+<meta name="description" content="基于编辑器汉化补丁 0.6.0 的 6 个 UI 文件自动提取的中英对照词条表，共 9900+ 条，按种族、单位、技能、触发器、编辑器界面、图标与模型资源等 11 大类整理，支持搜索与筛选。">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="世界编辑器中文站">
-<meta property="og:title" content="魔兽争霸III 世界编辑器 汉化词条表 · 0.5.0">
-<meta property="og:description" content="补丁 0.5.0 的中英对照词条表，9200+ 条，分 10 大类，支持中文 / 原文 / 键名搜索。">
+<meta property="og:title" content="魔兽争霸III 世界编辑器 汉化词条表 · 0.6.0">
+<meta property="og:description" content="补丁 0.6.0 的中英对照词条表，9900+ 条，分 11 大类，支持中文 / 原文 / 键名搜索。">
 <meta property="og:url" content="https://worldeditor.cn/wc3-editor-glossary.html">
 <meta name="twitter:card" content="summary">
 <link rel="canonical" href="https://worldeditor.cn/wc3-editor-glossary.html">
@@ -121,6 +121,7 @@ td.zh{color:var(--fg);font-weight:500}
 td.en{color:var(--fg2);font-family:Consolas,"Cascadia Mono",monospace;font-size:12.5px}
 td.src{color:var(--fg3);font-size:11.5px;white-space:nowrap}
 td.note{color:var(--fg3);font-size:11.5px}
+td.note .path{display:block;margin-top:1px;color:var(--fg3);opacity:.85;word-break:break-all}
 mark{background:var(--mark-bg);color:var(--mark-fg);border-radius:3px;padding:0 2px}
 
 .empty{text-align:center;padding:70px 20px;color:var(--fg3)}
@@ -166,9 +167,9 @@ footer{margin-top:56px;padding-top:22px;border-top:1px solid var(--line);
 <div class="back"><a href="index.html">← 返回主页</a></div>
 
 <header>
-  <h1>魔兽争霸III 世界编辑器 汉化词条表 <span class="badge">补丁 0.5.0</span></h1>
+  <h1>魔兽争霸III 世界编辑器 汉化词条表 <span class="badge">补丁 0.6.0</span></h1>
   <div class="sub">
-    基于 <b>编辑器汉化补丁 0.5.0</b> 的 5 个 UI 文件（triggerdata / triggerstrings / worldeditstrings / worldeditgamestrings / aieditordata）自动提取，
+    基于 <b>编辑器汉化补丁 0.6.0</b> 的 6 个 UI 文件（triggerdata / triggerstrings / worldeditstrings / worldeditgamestrings / aieditordata / worldeditdata）自动提取，
     共 <b id="total">0</b> 条词条的中英对照，划分为 <b id="catn">0</b> 个大类。
   </div>
 </header>
@@ -189,7 +190,7 @@ footer{margin-top:56px;padding-top:22px;border-top:1px solid var(--line);
 <div id="body"><div class="loading-hint">正在载入词条表…</div></div>
 
 <footer>
-  数据来源：编辑器汉化补丁 0.5.0（5 个 UI 文件）<br>
+  数据来源：编辑器汉化补丁 0.6.0（6 个 UI 文件）<br>
   词条以补丁内实际译名为准；同一原文键在不同文件中译法不同时会分别列出。
 </footer>
 
@@ -197,7 +198,7 @@ footer{margin-top:56px;padding-top:22px;border-top:1px solid var(--line);
 
 <script src="glossary-data.js"></script>
 <script>
-const META = {"icon": {"种族与势力": "🏳️", "世界观与场景": "🌍", "英雄与单位": "🦸", "技能与魔法效果": "✨", "物体数据字段": "📊", "触发器组件": "⚡", "AI 编辑器": "🤖", "编辑器界面": "🛠️", "地形与地图编辑": "🗺️", "通用与偏好": "⚙️"}, "desc": {"种族与势力": "种族、势力、单位分类（护甲 / 类型）等阵营相关术语", "世界观与场景": "战役章节、音乐主题、地表纹理、天气环境、物品分类等场景术语", "英雄与单位": "单位与英雄语音、单位命令、英雄技能、英雄属性、模型与动画", "技能与魔法效果": "技能数值字段、技能字段（实数 / 整数 / 布尔 / 字符串）、技能与魔法效果类型", "物体数据字段": "单位 / 物品 / 单位武器的各项数据字段，以及护甲、防御、移动等分类枚举", "触发器组件": "事件、条件、动作、函数、参数、触发类别等触发器术语", "AI 编辑器": "AI 编辑器函数与界面文本", "编辑器界面": "菜单、工具栏、面板、对象树、镜头、声音编辑器、载入画面等界面元素", "地形与地图编辑": "地形刷子、悬崖高度、地表纹理、路径、装饰物与可破坏物、区域", "通用与偏好": "首选项设置、通用按钮、警告错误、撤销保存、文件导出等"}, "color": {"种族与势力": "#e05c5c", "世界观与场景": "#4ea1ff", "英雄与单位": "#f0a04b", "技能与魔法效果": "#c77dff", "物体数据字段": "#5bc0be", "触发器组件": "#3ecf8e", "AI 编辑器": "#8b7cf6", "编辑器界面": "#f2c14e", "地形与地图编辑": "#5fa8d3", "通用与偏好": "#9aa5b1"}, "order": ["种族与势力", "世界观与场景", "英雄与单位", "技能与魔法效果", "物体数据字段", "触发器组件", "AI 编辑器", "编辑器界面", "地形与地图编辑", "通用与偏好"]};
+const META = {"icon": {"种族与势力": "🏳️", "世界观与场景": "🌍", "英雄与单位": "🦸", "技能与魔法效果": "✨", "物体数据字段": "📊", "触发器组件": "⚡", "AI 编辑器": "🤖", "编辑器界面": "🛠️", "地形与地图编辑": "🗺️", "通用与偏好": "⚙️", "图标与模型资源": "🖼️"}, "desc": {"种族与势力": "种族、势力、单位分类（护甲 / 类型）等阵营相关术语", "世界观与场景": "战役章节、音乐主题、地表纹理、天气环境、物品分类等场景术语", "英雄与单位": "单位与英雄语音、单位命令、英雄技能、英雄属性、模型与动画", "技能与魔法效果": "技能数值字段、技能字段（实数 / 整数 / 布尔 / 字符串）、技能与魔法效果类型", "物体数据字段": "单位 / 物品 / 单位武器的各项数据字段，以及护甲、防御、移动等分类枚举", "触发器组件": "事件、条件、动作、函数、参数、触发类别等触发器术语", "AI 编辑器": "AI 编辑器函数与界面文本", "编辑器界面": "菜单、工具栏、面板、对象树、镜头、声音编辑器、载入画面等界面元素", "地形与地图编辑": "地形刷子、悬崖高度、地表纹理、路径、装饰物与可破坏物、区域", "通用与偏好": "首选项设置、通用按钮、警告错误、撤销保存、文件导出等", "图标与模型资源": "worldeditdata 里的图标与模型资源清单：按钮图标与模型路径，按资源 ID 索引"}, "color": {"种族与势力": "#e05c5c", "世界观与场景": "#4ea1ff", "英雄与单位": "#f0a04b", "技能与魔法效果": "#c77dff", "物体数据字段": "#5bc0be", "触发器组件": "#3ecf8e", "AI 编辑器": "#8b7cf6", "编辑器界面": "#f2c14e", "地形与地图编辑": "#5fa8d3", "通用与偏好": "#9aa5b1", "图标与模型资源": "#e879a6"}, "order": ["种族与势力", "世界观与场景", "英雄与单位", "技能与魔法效果", "物体数据字段", "触发器组件", "AI 编辑器", "编辑器界面", "地形与地图编辑", "通用与偏好", "图标与模型资源"]};
 const CATS = META.order;
 const ICON = META.icon, DESC = META.desc;
 // 夜间用：原亮色分类色
@@ -205,7 +206,8 @@ const COLOR_D = META.color;
 // 日间用：同色系加深，保证白底可读（AA）
 const COLOR_L = {"种族与势力":"#b8372f", "世界观与场景":"#1668b8", "英雄与单位":"#96601a",
   "技能与魔法效果":"#7b3fbf", "物体数据字段":"#17776f", "触发器组件":"#10804f",
-  "AI 编辑器":"#4f3fc4", "编辑器界面":"#8a6400", "地形与地图编辑":"#1c6b93", "通用与偏好":"#5a6672"};
+  "AI 编辑器":"#4f3fc4", "编辑器界面":"#8a6400", "地形与地图编辑":"#1c6b93", "通用与偏好":"#5a6672",
+  "图标与模型资源":"#ab3a68"};
 let COLOR = document.documentElement.getAttribute('data-theme') === 'light' ? COLOR_L : COLOR_D;
 
 const $ = s => document.querySelector(s);
@@ -260,7 +262,7 @@ function collect(q, cat, subF){
     for(const sub of subs){
       const rows = [];
       for(const r of TREE[c][sub]){
-        const hay = (r[0]+' '+r[1]+' '+r[2]+' '+r[3]).toLowerCase();
+        const hay = (r[0]+' '+r[1]+' '+r[2]+' '+r[3]+' '+(r[4]||'')).toLowerCase();
         if(q && !hay.includes(q)) continue;
         rows.push(r);
       }
@@ -291,7 +293,7 @@ function tableHtml(c, sub, rows, q){
         <td class="zh">${hl(r[1],q)}</td>
         <td class="en">${hl(r[0],q)}</td>
         <td class="src">${esc(r[3])}</td>
-        <td class="note">${hl(r[2]||'',q)}</td>
+        <td class="note">${hl(r[2]||'',q)}${r[4] ? `<span class="path">${hl(r[4],q)}</span>` : ''}</td>
       </tr>`).join('')}</tbody>
     </table></div>
   </div>`;

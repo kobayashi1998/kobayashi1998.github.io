@@ -3,7 +3,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>编辑器汉化补丁</title>
-<meta name="description" content="魔兽争霸III 重制版地图编辑器的纯净汉化补丁：下载渠道、安装步骤与使用说明。">
+<meta name="description" content="魔兽争霸III 重制版地图编辑器的纯净汉化补丁：下载渠道、安装步骤、使用说明与历次更新记录。">
     <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%2032%2032%22%3E%3Ctext%20x=%221%22%20y=%2225%22%20font-size=%2223%22%20font-family=%22Segoe%20UI%20Emoji,Apple%20Color%20Emoji,Noto%20Color%20Emoji,sans-serif%22%3E%F0%9F%93%9C%3C/text%3E%3C/svg%3E">
 <meta name="theme-color" content="#0d1117" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#f6f4ef" media="(prefers-color-scheme: light)">
@@ -27,7 +27,9 @@
     border:1px solid var(--border);background:var(--panel2);border-radius:20px;padding:3px 13px;
     transition:color .15s,border-color .15s}
   .back a:hover{color:var(--accent);border-color:var(--accent)}
-  h1{margin:0 0 20px;font-size:22px;font-weight:600}
+  h1{margin:0 0 20px;font-size:22px;font-weight:600;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .badge{font-size:12px;font-weight:400;line-height:1.6;padding:2px 11px;border-radius:20px;
+    border:1px solid var(--border);background:var(--panel2);color:var(--muted)}
   h2{margin:36px 0 12px;font-size:15px;font-weight:600;padding-left:10px;border-left:3px solid var(--accent)}
   p{margin:0 0 12px}
   a{color:var(--accent);text-decoration:underline;text-underline-offset:3px}
@@ -37,6 +39,17 @@
   ol li{margin:0 0 8px}
   code{font-family:Consolas,Menlo,monospace;font-size:13.5px;color:var(--code)}
   .tip{color:var(--muted);font-size:13.5px}
+
+  /* ===== 更新说明 ===== */
+  .log li{margin:0 0 5px}
+  .log .rel{margin:0 0 16px;padding-left:14px;border-left:2px solid var(--border)}
+  .log .rel:last-child{margin-bottom:0}
+  .log .rel-h{font-size:14px;font-weight:600;margin:0 0 5px;display:flex;align-items:baseline;gap:10px}
+  .log .rel-h .ver{color:var(--accent)}
+  .log .rel-h time{font-size:12.5px;font-weight:400;color:var(--muted);font-variant-numeric:tabular-nums}
+  .log ul{margin:0;padding-left:18px}
+  .log li{font-size:14px;line-height:1.75}
+  .log .tag{font-family:Consolas,Menlo,monospace;font-size:12px;color:var(--muted);margin-right:3px}
 
   /* ===== 日间（浅色）令牌 ===== */
   
@@ -69,13 +82,13 @@ document.documentElement.setAttribute('data-theme',t)})();
 
   <div class="back"><a href="index.html">← 返回主页</a></div>
 
-  <h1>编辑器汉化补丁</h1>
+  <h1>编辑器汉化补丁 <span class="badge">补丁 0.6.0</span></h1>
 
   <p>适用于《魔兽争霸III：重制版》地图编辑器的纯净汉化补丁。</p>
 
   <h2>下载渠道</h2>
   <p>
-    <a href="https://k12cs.cn/downloads/%E7%BC%96%E8%BE%91%E5%99%A8%E6%B1%89%E5%8C%96%E8%A1%A5%E4%B8%810.5.0.zip" target="_blank" rel="noopener noreferrer">直接下载</a> <span class="sep">|</span> <a href="https://github.com/kobayashi1998/worldeditor-zhcn/releases" target="_blank" rel="noopener noreferrer">Github 下载</a>
+    <a href="wc3-editor-zhcn-0.6.0.zip" download>直接下载</a> <span class="sep">|</span> <a href="https://github.com/kobayashi1998/worldeditor-zhcn/releases" target="_blank" rel="noopener noreferrer">Github 下载</a>
   </p>
 
   <h2>使用说明</h2>
@@ -84,6 +97,77 @@ document.documentElement.setAttribute('data-theme',t)})();
     <li>将补丁中的 <code>_retail_</code> 文件夹复制到游戏根目录即可。</li>
   </ol>
   <p class="tip">补丁使游戏优先调用本地文件，不涉及修改游戏本体；删除相关文件即可移除本补丁。</p>
+
+  <h2>更新说明</h2>
+  <div class="log">
+    <div class="rel">
+      <div class="rel-h"><span class="ver">0.6.0</span><time datetime="2026-11-20">2026-11-20</time></div>
+      <ul>
+        <li><span class="tag">[New]</span>新增了 worldeditdata.txt，补充了隐藏资源，并附上了中文名</li>
+      </ul>
+    </div>
+    <div class="rel">
+      <div class="rel-h"><span class="ver">0.5.0</span><time datetime="2026-10-20">2026-10-20</time></div>
+      <ul>
+        <li><span class="tag">[New]</span>重新补充了 3.0.1 所有新条目</li>
+        <li><span class="tag">[New]</span>依照 jassdoc 新增了一些触发器提示</li>
+        <li><span class="tag">[Chg]</span>单位 / 技能 / 势力 / 地点等名称全面采用了新翻译</li>
+      </ul>
+    </div>
+    <div class="rel">
+      <div class="rel-h"><span class="ver">0.4.3</span><time datetime="2026-10-08">2026-10-08</time></div>
+      <ul>
+        <li><span class="tag">[New]</span>补充了 3.0.1 所有新条目</li>
+      </ul>
+    </div>
+    <div class="rel">
+      <div class="rel-h"><span class="ver">0.4.2</span><time datetime="2026-09-19">2026-09-19</time></div>
+      <ul>
+        <li><span class="tag">[New]</span>补充了 worldeditstrings.txt 中缺失的快捷键相关的内容</li>
+      </ul>
+    </div>
+    <div class="rel">
+      <div class="rel-h"><span class="ver">0.4.1</span><time datetime="2026-09-15">2026-09-15</time></div>
+      <ul>
+        <li><span class="tag">[New]</span>这次真补充了 3.0 所有新条目</li>
+        <li><span class="tag">[New]</span>新增了 worldeditgamestrings.txt</li>
+      </ul>
+    </div>
+    <div class="rel">
+      <div class="rel-h"><span class="ver">0.4.0</span><time datetime="2026-09-14">2026-09-14</time></div>
+      <ul>
+        <li><span class="tag">[New]</span>补充了 3.0 所有新条目</li>
+        <li><span class="tag">[Chg]</span>调整并统一了部分术语</li>
+      </ul>
+    </div>
+    <div class="rel">
+      <div class="rel-h"><span class="ver">0.3.1</span><time datetime="2025-08-24">2025-08-24</time></div>
+      <ul>
+        <li><span class="tag">[New]</span>新增了 aieditordata.txt</li>
+        <li><span class="tag">[New]</span>补充了 worldeditstrings.txt 在 2.0.3 新增的文本</li>
+      </ul>
+    </div>
+    <div class="rel">
+      <div class="rel-h"><span class="ver">0.2.3</span><time datetime="2025-02-07">2025-02-07</time></div>
+      <ul>
+        <li><span class="tag">[New]</span>新增了 worldeditstrings.txt，补充了部分缺失的翻译文本</li>
+        <li><span class="tag">[Chg]</span>调整了部分术语，例如：技能 ID 调整为技能类型，命令 ID 调整为命令串</li>
+      </ul>
+    </div>
+    <div class="rel">
+      <div class="rel-h"><span class="ver">0.2.2</span><time datetime="2024-01-30">2024-01-30</time></div>
+      <ul>
+        <li><span class="tag">[Fix]</span>修正 triggerdata.txt 中误注释掉的函数，现在可以正常打开官方战役地图了</li>
+      </ul>
+    </div>
+    <div class="rel">
+      <div class="rel-h"><span class="ver">0.1.1</span><time datetime="2022-11-19">2022-11-19</time></div>
+      <ul>
+        <li><span class="tag">[New]</span>新增了更新说明文档</li>
+        <li><span class="tag">[Chg]</span>重新排序 triggerdata.txt 中部分条目</li>
+      </ul>
+    </div>
+  </div>
 
 </main>
 
